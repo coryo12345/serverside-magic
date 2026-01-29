@@ -22,7 +22,7 @@ public class FireBolt extends BaseSpell {
         double maxDistance = 5;
 
         // Spawn particles
-        int i = 0;
+        int i = 3; // start a bit away from the camera
         Vec3 nextParticlePos = new Vec3(startPos.x, startPos.y, startPos.z);
         while (Math.abs(startPos.distanceTo(nextParticlePos)) < maxDistance) {
             // offset each particle just a little bit more so they aren't too far away
