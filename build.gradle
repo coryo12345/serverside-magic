@@ -22,7 +22,7 @@ loom {
 	splitEnvironmentSourceSets()
 
 	mods {
-		"mc-server-magic" {
+		"servermagic" {
 			sourceSet sourceSets.main
 			sourceSet sourceSets.client
 		}
