@@ -1,5 +1,6 @@
 package servermagic;
 
+import java.io.IOException;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -51,12 +52,16 @@ public class ServerMagic implements ModInitializer {
 		// AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
 
 		// Handle web portal
-		// Database database = new Database("./config/servermagic/data.db");
-		// WebPortal webPortal = new WebPortal(database);
-		// webPortal.start();
+		try {
+			Database database = new Database("config/servermagic/data.db");
+			WebPortal webPortal = new WebPortal(database);
+			webPortal.start();
 
-		// ServerLifecycleEvents.SERVER_STOPPING.register(server -> {
-		// 	webPortal.stop();
-		// });
+			ServerLifecycleEvents.SERVER_STOPPING.register(server -> {
+				webPortal.stop();
+			});
+		} catch (IOException e) {
+			LOGGER.error("FAILED TO OPEN DATABASE - WEB PORTAL WILL NOT BE AVAILABLE");
+		}
 	}
 }

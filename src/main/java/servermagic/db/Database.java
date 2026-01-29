@@ -1,12 +1,17 @@
 package servermagic.db;
 
-import org.sql2o.Sql2o;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 import org.sql2o.Connection;
+import org.sql2o.Sql2o;
 
 public class Database {
     private Sql2o sql2o;
 
-    public Database(String dbPath) {
+    public Database(String dbPath) throws IOException {
+        Files.createDirectories(Paths.get(dbPath).normalize().getParent());
         sql2o = new Sql2o("jdbc:sqlite:" + dbPath, null, null);
         initTables();
     }

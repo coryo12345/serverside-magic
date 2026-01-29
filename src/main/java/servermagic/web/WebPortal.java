@@ -21,7 +21,9 @@ public class WebPortal {
     public void start() {
         app = Javalin.create(config -> {
             // First, try to serve from external directory (development)
-            Path externalWebDir = Paths.get("./config/servermagic/web");
+            Path externalWebDir = Paths.get("config/servermagic/web").normalize();
+
+            ServerMagic.LOGGER.info("Web file directory: " + externalWebDir.toAbsolutePath().toString());
 
             if (Files.exists(externalWebDir)) {
                 // Development mode - serve from external directory
