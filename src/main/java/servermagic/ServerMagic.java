@@ -52,16 +52,30 @@ public class ServerMagic implements ModInitializer {
 		// AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
 
 		// Handle web portal
-		try {
-			Database database = new Database("config/servermagic/data.db");
-			WebPortal webPortal = new WebPortal(database);
-			webPortal.start();
+		WebApp webApp = new WebApp(null);
+		ServerLifecycleEvents.SERVER_STARTED.register(server -> {
+			try {
+				Database database = new Database("config/servermagic/data.db");
+				WebPortal webPortal = new WebPortal(database, server);
+				webPortal.start();
+				webApp.webPortal = webPortal;
 
-			ServerLifecycleEvents.SERVER_STOPPING.register(server -> {
-				webPortal.stop();
-			});
-		} catch (IOException e) {
-			LOGGER.error("FAILED TO OPEN DATABASE - WEB PORTAL WILL NOT BE AVAILABLE");
+			} catch (IOException e) {
+				LOGGER.error("FAILED TO OPEN DATABASE - WEB PORTAL WILL NOT BE AVAILABLE");
+			}
+		});
+
+		ServerLifecycleEvents.SERVER_STOPPING.register(server -> {
+			if (webApp.webPortal != null) {
+				webApp.webPortal.stop();
+			}
+		});
+	}
+
+	private class WebApp {
+		public WebPortal webPortal;
+		public WebApp(WebPortal webPortal) {
+			this.webPortal = webPortal;
 		}
 	}
 }

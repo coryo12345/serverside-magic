@@ -11,6 +11,17 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    Avatar: typeof import('primevue/avatar')['default']
     Button: typeof import('primevue/button')['default']
+    Card: typeof import('primevue/card')['default']
+    Dashboard: typeof import('./src/components/Dashboard.vue')['default']
+    InputOtp: typeof import('primevue/inputotp')['default']
+    InputText: typeof import('primevue/inputtext')['default']
+    LoginPage: typeof import('./src/components/LoginPage.vue')['default']
+    Message: typeof import('primevue/message')['default']
+    Panel: typeof import('primevue/panel')['default']
+  }
+  export interface GlobalDirectives {
+    Tooltip: typeof import('primevue/tooltip')['default']
   }
 }

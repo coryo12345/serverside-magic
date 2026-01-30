@@ -5,16 +5,19 @@ import java.util.Optional;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 import io.jsonwebtoken.Claims;
+import net.minecraft.server.MinecraftServer;
 import servermagic.db.Database;
 import servermagic.web.auth.AuthTokens;
 
 public abstract class RouteGroup {
     protected Javalin app;
     protected Database db;
+    protected MinecraftServer server;
 
-    public RouteGroup(Javalin app, Database db) {
+    public RouteGroup(Javalin app, Database db, MinecraftServer server) {
         this.app = app;
         this.db = db;
+        this.server = server;
     }
 
     public abstract void registerRoutes();

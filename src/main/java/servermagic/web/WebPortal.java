@@ -6,16 +6,19 @@ import java.nio.file.Paths;
 
 import io.javalin.Javalin;
 import io.javalin.http.staticfiles.Location;
+import net.minecraft.server.MinecraftServer;
 import servermagic.ServerMagic;
 import servermagic.db.Database;
 
 public class WebPortal {
-    private Javalin app;
-    private Database db;
     private final int port = 8080;
+    protected Javalin app;
+    protected Database db;
+    protected MinecraftServer server;
 
-    public WebPortal(Database db) {
+    public WebPortal(Database db, MinecraftServer server) {
         this.db = db;
+        this.server = server;
     }
 
     public void start() {
@@ -53,7 +56,7 @@ public class WebPortal {
         }
     }
 
-    private void setupRoutes() {
-        new AuthRoutes(app, db).registerRoutes();
+    protected void setupRoutes() {
+        new AuthRoutes(app, db, server).registerRoutes();
     }
 }
