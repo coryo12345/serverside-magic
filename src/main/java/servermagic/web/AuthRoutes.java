@@ -1,5 +1,6 @@
 package servermagic.web;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import io.javalin.Javalin;
@@ -8,6 +9,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import servermagic.db.Database;
 import servermagic.db.tables.Authcode;
+import servermagic.web.auth.AuthTokens;
 
 public class AuthRoutes extends RouteGroup {
 
@@ -20,6 +22,10 @@ public class AuthRoutes extends RouteGroup {
         // Public login endpoint
         app.post("/api/auth/requesttoken", ctx -> {
             String username = ctx.formParam("username");
+            if (username == null || username.length() == 0) {
+                ctx.status(400).result();
+                return;
+            }
 
             ServerPlayer player = server.getPlayerList().getPlayer(username);
             if (player == null) {
@@ -45,10 +51,31 @@ public class AuthRoutes extends RouteGroup {
             String username = ctx.formParam("username");
             String code = ctx.formParam("code");
 
-            // Check DB table to make sure this code is legit
-            // If so, generate JWT token
-            // remove / invalidate auth code entry in db
-            // respond with jwt token
+            if (code == null || username == null) {
+                ctx.status(400).result();
+            }
+
+            Optional<Authcode> ac = Authcode.GetCodeForUser(db, username);
+            if (ac.isEmpty()) {
+                ctx.status(404).result("Invalid code");
+                return;
+            }
+
+            LocalDateTime expiry = LocalDateTime.parse(ac.get().expires);
+            if (LocalDateTime.now().isAfter(expiry)) {
+                ctx.status(404).result("Invalid code");
+                return;
+            }
+
+            if (!code.equals(ac.get().code)) {
+                ctx.status(401).result("Invalid code");
+                return;
+            }
+
+            String token = new AuthTokens().generateToken(username);
+            Authcode.ClearForUser(db, username);
+
+            ctx.status(200).result(token);
         });
     }
 

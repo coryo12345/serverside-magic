@@ -1,3 +1,4 @@
+import { AuthToken } from "./authtoken";
 import { Result } from "./result";
 
 class MagicAPI {
@@ -10,12 +11,20 @@ class MagicAPI {
     },
   ): Promise<Result<T>> {
     try {
+      const headers: Record<string, string> = {};
+
+      const auth = AuthToken.get();
+      if (auth && auth.length) {
+        headers["Authorization"] = `Bearer ${auth}`;
+      }
+
       const resp = await fetch(url.href, {
         method: options?.method ?? "GET",
         body: options?.body,
+        headers,
       });
       if (!resp.ok) {
-        const err = await resp.text()
+        const err = await resp.text();
         return Result.Error(err ?? "Invalid Response");
       }
       let data: T;
@@ -41,7 +50,24 @@ class MagicAPI {
     });
   }
 
-  //   async authVerify(username: string, code: number) {}
+  async authVerify(username: string, code: string): Promise<Result<string>> {
+    const url = new URL("/api/auth/validate", window.location.origin);
+    const formData = new FormData();
+    formData.append("username", username);
+    formData.append("code", code.toString());
+    return this.request(url, {
+      body: formData,
+      method: "POST",
+      responseType: "text",
+    });
+  }
+
+  // get myspells - gets my available spells and currently slotted spells
+  // get alltrees - gets the skill trees with basic info (id/name/icon/etc...)
+  // get mytree/{id} - the full skill tree for ME (what do i have unlocked). Price for each skill, how many skill points, etc..
+  // post unlock - unlock a spell for me
+  // post spellslot - slot a spell into oen of my spell slots
+  // post resettree - reset a skill tree
 }
 
 export const api = new MagicAPI();

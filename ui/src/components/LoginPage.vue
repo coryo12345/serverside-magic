@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import { api } from "../lib/api";
+import { AuthToken } from "../lib/authtoken";
 
 const emit = defineEmits<{
   (e: "login-success", username: string): void;
@@ -23,7 +24,6 @@ const handleUsernameSubmit = async () => {
   error.value = "";
   loading.value = true;
 
-  // Mock API Call
   const result = await api.requestCode(username.value);
   if (result.isError()) {
     error.value = result.error().message || "Failed to verify username.";
@@ -43,22 +43,16 @@ const handleTokenSubmit = async () => {
   error.value = "";
   loading.value = true;
 
-  try {
-    // Mock API Call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    // Simulate token validation (any 4 digit code works for now)
-    if (!/^\d{4}$/.test(token.value)) {
-      throw new Error("Invalid token format.");
-    }
-
-    // Success
+  const result = await api.authVerify(username.value, token.value);
+  if (result.isError()) {
+    error.value =
+      result.error().message ||
+      "Failed to verify code. Try refreshing the page.";
+  } else {
+    AuthToken.set(result.get());
     emit("login-success", username.value);
-  } catch (err: any) {
-    error.value = err.message || "Invalid token.";
-  } finally {
-    loading.value = false;
   }
+  loading.value = false;
 };
 
 // Auto-detect username from URL
@@ -67,9 +61,6 @@ onMounted(() => {
   const userParam = params.get("username");
   if (userParam) {
     username.value = userParam;
-    // Optional: Auto-submit if username is present?
-    // The prompt says "look for a query parameter... to allow the user to skip that step."
-    // Let's auto-submit to verify it, then move to step 2.
     handleUsernameSubmit();
   }
 });
@@ -134,7 +125,6 @@ const reset = () => {
                     :disabled="loading"
                     placeholder="Enter your username"
                     class="w-full"
-                    autofocus
                   />
                 </div>
 
