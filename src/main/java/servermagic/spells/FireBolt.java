@@ -44,4 +44,14 @@ public class FireBolt extends BaseSpell {
         }
     }
 
+    @Override
+    public String displayName() {
+        return "Firebolt";
+    }
+
+    @Override
+    public String description() {
+        return "Short-range burst of flame";
+    }
+
 }

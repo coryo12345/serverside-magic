@@ -25,4 +25,14 @@ public class LightningOnTarget extends BaseSpell {
         world.addFreshEntity(lb);
     }
 
+    @Override
+    public String displayName() {
+        return "Lightning Strike";
+    }
+
+    @Override
+    public String description() {
+        return "Strike your target with lightning";
+    }
+
 }

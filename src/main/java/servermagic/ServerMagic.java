@@ -16,6 +16,7 @@ import servermagic.data.items.ItemInteractionDispatcher;
 import servermagic.db.Database;
 import servermagic.db.MigrationFailedException;
 import servermagic.web.WebPortal;
+import servermagic.web.spell.Spells;
 
 public class ServerMagic implements ModInitializer {
 	public static final String MOD_ID = "servermagic";
@@ -52,6 +53,9 @@ public class ServerMagic implements ModInitializer {
 		// TODO if needed
 		// AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
 
+		// initialize spell defs for web
+		Spells.Get();
+
 		// Handle web portal
 		WebApp webApp = new WebApp(null);
 		ServerLifecycleEvents.SERVER_STARTED.register(server -> {
@@ -77,6 +81,7 @@ public class ServerMagic implements ModInitializer {
 
 	private class WebApp {
 		public WebPortal webPortal;
+
 		public WebApp(WebPortal webPortal) {
 			this.webPortal = webPortal;
 		}

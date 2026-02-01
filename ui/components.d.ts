@@ -19,7 +19,6 @@ declare module 'vue' {
     InputText: typeof import('primevue/inputtext')['default']
     LoginPage: typeof import('./src/components/LoginPage.vue')['default']
     Message: typeof import('primevue/message')['default']
-    Panel: typeof import('primevue/panel')['default']
   }
   export interface GlobalDirectives {
     Tooltip: typeof import('primevue/tooltip')['default']

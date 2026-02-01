@@ -31,4 +31,15 @@ public abstract class BaseSpell {
         }
         return InteractionResult.FAIL;
     }
+
+    public int cost() {
+        return 1;
+    }
+
+    public String id() {
+        return this.getClass().getSimpleName();
+    }
+
+    public abstract String displayName();
+    public abstract String description();
 }

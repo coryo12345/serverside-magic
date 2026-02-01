@@ -62,6 +62,12 @@ class MagicAPI {
     });
   }
 
+  async getMySpells(): Promise<Result<any>> {
+    const url = new URL("/api/spells/mine", window.location.origin);
+    return this.request(url, { method: "GET", responseType: "json" });
+  }
+
+  // get auth - verify current token (we should probably call this every ~5 min? if we are close to expiry then just log out and clear)
   // get myspells - gets my available spells and currently slotted spells
   // get alltrees - gets the skill trees with basic info (id/name/icon/etc...)
   // get mytree/{id} - the full skill tree for ME (what do i have unlocked). Price for each skill, how many skill points, etc..

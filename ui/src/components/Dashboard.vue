@@ -1,5 +1,24 @@
 <script setup lang="ts">
+import { onMounted, ref } from "vue";
+import { api } from "../lib/api";
+
 const emit = defineEmits(["logout"]);
+
+onMounted(() => {
+  loadSpells();
+});
+
+const spells = ref(null);
+const err = ref<string | null>(null);
+async function loadSpells() {
+  err.value = null;
+  const res = await api.getMySpells();
+  if (res.isError()) {
+    err.value = res.error().message;
+  } else {
+    spells.value = res.get();
+  }
+}
 </script>
 
 <template>
@@ -10,9 +29,7 @@ const emit = defineEmits(["logout"]);
           <h1 class="text-3xl font-bold text-surface-900 dark:text-surface-0">
             Dashboard
           </h1>
-          <p class="text-surface-500 dark:text-surface-400">
-            Welcome back!
-          </p>
+          <p class="text-surface-500 dark:text-surface-400">Welcome back!</p>
         </div>
         <Button
           label="Logout"
@@ -22,38 +39,7 @@ const emit = defineEmits(["logout"]);
         />
       </header>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Placeholder Stats -->
-        <Card class="surface-card p-4 shadow-sm border-round">
-          <template #title>Server Status</template>
-          <template #content>
-            <div class="flex items-center gap-2 text-green-500 font-medium">
-              <i class="pi pi-check-circle"></i>
-              <span>Online</span>
-            </div>
-          </template>
-        </Card>
-
-        <Card class="surface-card p-4 shadow-sm border-round">
-          <template #title>Active Players</template>
-          <template #content>
-            <span class="text-2xl font-bold">12</span>
-          </template>
-        </Card>
-
-        <Card class="surface-card p-4 shadow-sm border-round">
-          <template #title>Uptime</template>
-          <template #content>
-            <span class="text-2xl font-bold">4d 12h</span>
-          </template>
-        </Card>
-      </div>
-
-      <div class="mt-8">
-        <Panel header="Recent Activity">
-          <p class="m-0">No recent activity to display.</p>
-        </Panel>
-      </div>
+      <pre>{{ JSON.stringify(spells, null, 2) }}</pre>
     </div>
   </div>
 </template>
