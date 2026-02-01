@@ -1,10 +1,13 @@
 package servermagic.web;
 
+import java.util.Optional;
+
 import io.javalin.Javalin;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import servermagic.db.Database;
+import servermagic.db.tables.Authcode;
 
 public class AuthRoutes extends RouteGroup {
 
@@ -24,10 +27,16 @@ public class AuthRoutes extends RouteGroup {
                 return;
             }
 
-            int code = (int) Math.floor(Math.random() * 9999);
-            // TODO need to store this code in the DB
+            Optional<Authcode> ac = Authcode.GenerateCodeForUser(db, username);
+            if (ac.isEmpty()) {
+                ctx.status(500).result("Something went wrong...");
+                return;
+            }
 
-            player.displayClientMessage(Component.literal("Your Code is:  " + code + "  | It will expire in 5 minutes."),
+            String code = ac.get().code;
+
+            player.displayClientMessage(
+                    Component.literal("Your Code is:  " + code + "  | It will expire in 5 minutes."),
                     false);
             ctx.status(200).result("Verification sent to player");
         });

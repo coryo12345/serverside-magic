@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.reflections.Reflections;
@@ -101,11 +102,23 @@ public class Database {
         }
     }
 
-    // public User getUser(String username) {
-    // try (Connection conn = sql2o.open()) {
-    // return conn.createQuery("SELECT * FROM users WHERE username = :username")
-    // .addParameter("username", username)
-    // .executeAndFetchFirst(User.class);
-    // }
-    // }
+    @SuppressWarnings("unchecked")
+    public <T> Optional<T> query(DBQueryCallback callback) {
+        try (Connection conn = sql2o.open()) {
+            return (Optional<T>) callback.callback(conn);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> Optional<T> transaction(DBQueryCallback callback) {
+        try (Connection conn = sql2o.beginTransaction()) {
+            try {
+                Optional<T> res = (Optional<T>) callback.callback(conn);
+                return res;
+            } catch (Exception e) {
+                conn.rollback();
+            }
+            return Optional.empty();
+        }
+    }
 }
