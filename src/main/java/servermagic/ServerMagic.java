@@ -14,6 +14,7 @@ import net.minecraft.world.InteractionResult;
 import servermagic.data.items.CustomItem;
 import servermagic.data.items.ItemInteractionDispatcher;
 import servermagic.db.Database;
+import servermagic.db.MigrationFailedException;
 import servermagic.web.WebPortal;
 
 public class ServerMagic implements ModInitializer {
@@ -62,6 +63,8 @@ public class ServerMagic implements ModInitializer {
 
 			} catch (IOException e) {
 				LOGGER.error("FAILED TO OPEN DATABASE - WEB PORTAL WILL NOT BE AVAILABLE");
+			} catch (MigrationFailedException e) {
+				LOGGER.error("FAILED TO RUN MIGRATIONS - MOD WILL NOT WORK");
 			}
 		});
 

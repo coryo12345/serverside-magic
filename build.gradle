@@ -54,11 +54,14 @@ dependencies {
     runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.3'
     
     // Database
-    implementation 'org.xerial:sqlite-jdbc:3.44.1.0'
-    implementation 'org.sql2o:sql2o:1.6.0'
+    implementation 'org.xerial:sqlite-jdbc:3.51.1.0'
+    implementation 'org.sql2o:sql2o:1.9.1'
     
     // SLF4J (Javalin uses it, Minecraft already has it)
     compileOnly 'org.slf4j:slf4j-api:2.0.9'
+	
+	// reflections (for migrations)
+	implementation 'org.reflections:reflections:0.10.2'
 }
 
 processResources {
