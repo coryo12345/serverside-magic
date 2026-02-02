@@ -19,6 +19,8 @@ declare module 'vue' {
     InputText: typeof import('primevue/inputtext')['default']
     LoginPage: typeof import('./src/components/LoginPage.vue')['default']
     Message: typeof import('primevue/message')['default']
+    SpellbookConfig: typeof import('./src/components/spellbook/SpellbookConfig.vue')['default']
+    SpellCard: typeof import('./src/components/spellbook/SpellCard.vue')['default']
   }
   export interface GlobalDirectives {
     Tooltip: typeof import('primevue/tooltip')['default']
