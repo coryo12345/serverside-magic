@@ -40,31 +40,40 @@ function onSlotChange(slotIndex: number, event: any) {
     <!-- Header -->
     <div class="bg-surface-0 dark:bg-surface-800 p-6 rounded-xl shadow-sm border border-surface-200 dark:border-surface-700">
       <h2 class="text-xl font-bold text-surface-900 dark:text-surface-0 mb-4">Spell Hotbar</h2>
-      <p class="text-surface-500 dark:text-surface-400 mb-6 text-sm">
+      <p class="text-surface-500 dark:text-surface-400 mb-12 text-sm">
         Drag spells from your spellbook below into the slots to assign them.
       </p>
 
       <!-- Hotbar Slots -->
-      <div class="grid grid-cols-4 md:grid-cols-8 gap-4">
+      <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-x-4 gap-y-8 mt-4">
         <div
           v-for="(slotList, index) in slots"
           :key="index"
-          class="aspect-square bg-surface-50 dark:bg-surface-900 rounded-lg border-2 border-dashed border-surface-300 dark:border-surface-700 flex flex-col justify-center overflow-hidden relative"
+          class="relative flex flex-col"
         >
-          <span class="absolute top-1 left-2 text-xs text-surface-400 font-mono">{{ index + 1 }}</span>
-          
+          <span
+            class="absolute -top-6 left-1/2 -translate-x-1/2 text-xs text-surface-400 font-mono"
+            >Slot {{ index + 1 }}</span
+          >
+
           <VueDraggableNext
-            class="h-full w-full flex items-center justify-center p-1"
+            class="w-full rounded-xl transition-all duration-200"
+            :class="[
+              slotList.length === 0
+                ? 'aspect-square border-2 border-dashed border-surface-300 dark:border-surface-700 bg-surface-50 dark:bg-surface-900 hover:border-surface-400 dark:hover:border-surface-600'
+                : 'bg-transparent',
+            ]"
             :list="slotList"
             group="spells"
             @change="(e) => onSlotChange(index, e)"
             :item-key="'id'"
           >
-            <template v-if="slotList.length === 0">
-                 <div class="h-full w-full"></div>
-            </template>
-            <div v-for="element in slotList" :key="element.id" class="w-full h-full">
-               <SpellCard :spell="element" compact />
+            <div
+              v-for="element in slotList"
+              :key="element.id"
+              class="w-full h-full"
+            >
+              <SpellCard :spell="element" compact />
             </div>
           </VueDraggableNext>
         </div>

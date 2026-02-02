@@ -15,10 +15,12 @@ declare module 'vue' {
     Button: typeof import('primevue/button')['default']
     Card: typeof import('primevue/card')['default']
     Dashboard: typeof import('./src/components/Dashboard.vue')['default']
+    Drawer: typeof import('primevue/drawer')['default']
     InputOtp: typeof import('primevue/inputotp')['default']
     InputText: typeof import('primevue/inputtext')['default']
     LoginPage: typeof import('./src/components/LoginPage.vue')['default']
     Message: typeof import('primevue/message')['default']
+    SideNavigation: typeof import('./src/components/SideNavigation.vue')['default']
     SpellbookConfig: typeof import('./src/components/spellbook/SpellbookConfig.vue')['default']
     SpellCard: typeof import('./src/components/spellbook/SpellCard.vue')['default']
   }
