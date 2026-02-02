@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import { api } from "../lib/api";
+import { type SpellDefinition } from "../lib/types";
 
 const emit = defineEmits(["logout"]);
 
@@ -8,7 +9,7 @@ onMounted(() => {
   loadSpells();
 });
 
-const spells = ref(null);
+const spells = ref<Record<string, SpellDefinition> | null>(null);
 const err = ref<string | null>(null);
 async function loadSpells() {
   err.value = null;

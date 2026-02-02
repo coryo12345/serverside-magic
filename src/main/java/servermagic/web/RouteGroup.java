@@ -29,6 +29,21 @@ public abstract class RouteGroup {
         });
     }
 
+    protected Optional<String> getAuthSubject(Context ctx) {
+        String authHeader = ctx.header("Authorization");
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            return Optional.empty();
+        }
+
+        String token = authHeader.substring(7);
+        Optional<Claims> claims = new AuthTokens().parseToken(token);
+        if (claims.isEmpty()) {
+            return Optional.empty();
+        }
+        String username = claims.get().getSubject();
+        return Optional.of(username);
+    }
+
     /**
      * Handles the authentication logic for this request.
      * If returned AuthResult is valid, the user is authorized and flow can

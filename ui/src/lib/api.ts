@@ -1,5 +1,6 @@
 import { AuthToken } from "./authtoken";
 import { Result } from "./result";
+import type { SpellDefinition, SpellSlot } from "./types";
 
 class MagicAPI {
   private async request<T>(
@@ -62,17 +63,30 @@ class MagicAPI {
     });
   }
 
-  async getMySpells(): Promise<Result<any>> {
+  async getMySpells(): Promise<Result<Record<string, SpellDefinition>>> {
     const url = new URL("/api/spells/mine", window.location.origin);
     return this.request(url, { method: "GET", responseType: "json" });
   }
 
+  async setSpellSlot(
+    spellId: string,
+    slot: number,
+  ): Promise<Result<SpellSlot>> {
+    const url = new URL("/api/spells/slot", window.location.origin);
+    const formData = new FormData();
+    formData.append("slot", slot.toString());
+    formData.append("spellId", spellId);
+    return this.request(url, {
+      method: "POST",
+      body: formData,
+      responseType: "text",
+    });
+  }
+
   // get auth - verify current token (we should probably call this every ~5 min? if we are close to expiry then just log out and clear)
-  // get myspells - gets my available spells and currently slotted spells
   // get alltrees - gets the skill trees with basic info (id/name/icon/etc...)
   // get mytree/{id} - the full skill tree for ME (what do i have unlocked). Price for each skill, how many skill points, etc..
   // post unlock - unlock a spell for me
-  // post spellslot - slot a spell into oen of my spell slots
   // post resettree - reset a skill tree
 }
 
