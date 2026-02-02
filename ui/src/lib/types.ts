@@ -3,6 +3,8 @@ export type SpellDefinition = {
     displayName: string;
     description: string;
     cost: string;
+    icon?: string;
+    group?: string;
 };
 
 export type SpellSlot = {
