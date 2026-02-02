@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import { VueDraggableNext } from "vue-draggable-next";
+import { useToast } from "primevue/usetoast";
 import { api } from "../../lib/api";
 import { type SpellDefinition } from "../../lib/types";
 import SpellCard from "./SpellCard.vue";
 
+const toast = useToast();
 const allSpells = ref<SpellDefinition[]>([]);
 // 8 slots, each is a list of spells (max 1)
 const slots = ref<SpellDefinition[][]>(Array.from({ length: 8 }, () => []));
@@ -19,18 +21,39 @@ onMounted(async () => {
   }
 });
 
-function onSlotChange(slotIndex: number, event: any) {
+async function onSlotChange(slotIndex: number, event: any) {
   if (event.added) {
     const newSpell = event.added.element;
-    const slot = slots.value[slotIndex];
-    
-    if (slot && slot.length > 1) {
-       // Keep only the newly added spell in this slot
-       slots.value[slotIndex] = [newSpell];
+    const currentSlot = slots.value[slotIndex];
+    if (!currentSlot) return;
+
+    let originalSlotState: SpellDefinition[] = [];
+    if (currentSlot.length > 1) {
+      // The one that is NOT the new spell was the old one
+      originalSlotState = currentSlot.filter((s) => s.id !== newSpell.id);
+    } else {
+      // It was empty before
+      originalSlotState = [];
     }
 
+    // Optimistic update: Enforce single item
+    slots.value[slotIndex] = [newSpell];
+
     // Call API
-    api.setSpellSlot(newSpell.id, slotIndex);
+    const result = await api.setSpellSlot(newSpell.id, slotIndex);
+
+    if (result.isError()) {
+      // Revert state
+      slots.value[slotIndex] = originalSlotState;
+
+      // Show error
+      toast.add({
+        severity: "error",
+        summary: "Error",
+        detail: "Failed to assign spell",
+        life: 3000,
+      });
+    }
   }
 }
 </script>
@@ -38,14 +61,20 @@ function onSlotChange(slotIndex: number, event: any) {
 <template>
   <div class="space-y-6">
     <!-- Header -->
-    <div class="bg-surface-0 dark:bg-surface-800 p-6 rounded-xl shadow-sm border border-surface-200 dark:border-surface-700">
-      <h2 class="text-xl font-bold text-surface-900 dark:text-surface-0 mb-4">Spell Hotbar</h2>
+    <div
+      class="bg-surface-0 dark:bg-surface-800 p-6 rounded-xl shadow-sm border border-surface-200 dark:border-surface-700"
+    >
+      <h2 class="text-xl font-bold text-surface-900 dark:text-surface-0 mb-4">
+        Spell Hotbar
+      </h2>
       <p class="text-surface-500 dark:text-surface-400 mb-12 text-sm">
         Drag spells from your spellbook below into the slots to assign them.
       </p>
 
       <!-- Hotbar Slots -->
-      <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-x-4 gap-y-8 mt-4">
+      <div
+        class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-x-4 gap-y-8 mt-4"
+      >
         <div
           v-for="(slotList, index) in slots"
           :key="index"
@@ -81,10 +110,16 @@ function onSlotChange(slotIndex: number, event: any) {
     </div>
 
     <!-- Spell Library -->
-    <div class="bg-surface-0 dark:bg-surface-800 p-6 rounded-xl shadow-sm border border-surface-200 dark:border-surface-700">
-      <h2 class="text-xl font-bold text-surface-900 dark:text-surface-0 mb-4">My Spellbook</h2>
-      <div v-if="error" class="text-red-500 mb-4">Error loading spells: {{ error }}</div>
-      
+    <div
+      class="bg-surface-0 dark:bg-surface-800 p-6 rounded-xl shadow-sm border border-surface-200 dark:border-surface-700"
+    >
+      <h2 class="text-xl font-bold text-surface-900 dark:text-surface-0 mb-4">
+        My Spellbook
+      </h2>
+      <div v-if="error" class="text-red-500 mb-4">
+        Error loading spells: {{ error }}
+      </div>
+
       <div class="h-[500px] overflow-y-auto pr-2 custom-scrollbar">
         <VueDraggableNext
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"

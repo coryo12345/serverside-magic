@@ -32,6 +32,7 @@ onMounted(() => {
   <div
     class="app-container font-sans text-surface-900 dark:text-surface-0 antialiased"
   >
+    <Toast />
     <transition name="fade" mode="out-in">
       <LoginPage
         v-if="currentView === 'login'"

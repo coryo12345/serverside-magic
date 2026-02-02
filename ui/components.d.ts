@@ -23,6 +23,7 @@ declare module 'vue' {
     SideNavigation: typeof import('./src/components/SideNavigation.vue')['default']
     SpellbookConfig: typeof import('./src/components/spellbook/SpellbookConfig.vue')['default']
     SpellCard: typeof import('./src/components/spellbook/SpellCard.vue')['default']
+    Toast: typeof import('primevue/toast')['default']
   }
   export interface GlobalDirectives {
     Tooltip: typeof import('primevue/tooltip')['default']
