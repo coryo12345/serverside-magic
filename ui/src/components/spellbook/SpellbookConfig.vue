@@ -104,6 +104,7 @@ async function onSlotChange(slotIndex: number | string, event: any) {
             @change="(e) => onSlotChange(index, e)"
             :item-key="'id'"
           >
+          <!-- TODO this is kinda busted on drag, it shows extra slots when you drag? -->
             <div
               v-for="element in slotList"
               :key="element.id"
