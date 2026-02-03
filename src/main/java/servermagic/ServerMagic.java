@@ -13,6 +13,7 @@ import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.minecraft.world.InteractionResult;
 import servermagic.data.items.CustomItem;
 import servermagic.data.items.ItemInteractionDispatcher;
+import servermagic.data.items.PlayerSpellFocusCaster;
 import servermagic.db.Database;
 import servermagic.db.MigrationFailedException;
 import servermagic.web.WebPortal;
@@ -61,6 +62,8 @@ public class ServerMagic implements ModInitializer {
 		ServerLifecycleEvents.SERVER_STARTED.register(server -> {
 			try {
 				Database database = new Database("config/servermagic/data.db");
+				// initialize spell caster singleton
+				PlayerSpellFocusCaster.Init(database);
 				WebPortal webPortal = new WebPortal(database, server);
 				webPortal.start();
 				webApp.webPortal = webPortal;

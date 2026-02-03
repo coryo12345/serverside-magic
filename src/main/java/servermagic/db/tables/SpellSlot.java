@@ -42,13 +42,28 @@ public class SpellSlot {
 
     public static Optional<List<SpellSlot>> GetSlotsForPlayer(Database db, String username) {
         return db.query(conn -> {
-            List<SpellSlot> spells = conn.createQuery("select * from spellslot where username = :username order by slot asc")
+            List<SpellSlot> spells = conn
+                    .createQuery("select * from spellslot where username = :username order by slot asc")
                     .addParameter("username", username)
                     .executeAndFetch(SpellSlot.class);
             if (spells == null) {
                 return Optional.empty();
             }
             return Optional.of(spells);
+        });
+    }
+
+    public static Optional<SpellSlot> GetSlotForPlayer(Database db, String username, int slot) {
+        return db.query(conn -> {
+            List<SpellSlot> spells = conn
+                    .createQuery("select * from spellslot where username = :username and slot = :slot")
+                    .addParameter("username", username)
+                    .addParameter("slot", slot)
+                    .executeAndFetch(SpellSlot.class);
+            if (spells == null || spells.isEmpty()) {
+                return Optional.empty();
+            }
+            return Optional.of(spells.get(0));
         });
     }
 }

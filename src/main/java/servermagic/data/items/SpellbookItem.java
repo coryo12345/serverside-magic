@@ -10,7 +10,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.phys.EntityHitResult;
-import servermagic.spells.FireBolt;
 import servermagic.spells.LightningOnTarget;
 
 public class SpellbookItem extends CustomItem {
@@ -30,12 +29,16 @@ public class SpellbookItem extends CustomItem {
 
     @Override
     public InteractionResult onUse(ServerLevel world, ServerPlayer player, InteractionHand hand) {
-        FireBolt spell = new FireBolt(world, player);
-        InteractionResult ir = spell.castAsInteraction();
-        if (ir == InteractionResult.SUCCESS) {
-            player.getCooldowns().addCooldown(player.getItemInHand(hand), 20);
+        try {
+            PlayerSpellFocusCaster caster = PlayerSpellFocusCaster.Get();
+            InteractionResult ir = caster.handleClick(world, player);
+            if (ir == InteractionResult.SUCCESS) {
+                player.getCooldowns().addCooldown(player.getItemInHand(hand), 20);
+            }
+            return ir;
+        } catch (Exception e) {
+            return InteractionResult.FAIL;
         }
-        return ir;
     }
 
     @Override
