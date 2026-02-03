@@ -20,4 +20,17 @@ export class AuthToken {
     const currentTime = new Date().getTime() / 1000;
     return !exp || currentTime > exp;
   }
+
+  static willExpireWithin(seconds: number): boolean {
+    const token = this.get();
+    if (!token) return true;
+    try {
+      const { exp } = jwtDecode(token);
+      if (!exp) return true;
+      const currentTime = Date.now() / 1000;
+      return currentTime + seconds > exp;
+    } catch {
+      return true;
+    }
+  }
 }

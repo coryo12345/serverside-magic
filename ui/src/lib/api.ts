@@ -40,6 +40,17 @@ class MagicAPI {
     }
   }
 
+  /**
+   * @returns the current user's username 
+   */
+  async userinfo(): Promise<Result<string>> {
+    const url = new URL("/api/auth/userinfo", window.location.origin);
+    return this.request(url, {
+      method: "GET",
+      responseType: "text",
+    });
+  }
+
   async requestCode(username: string): Promise<Result<string>> {
     const url = new URL("/api/auth/requesttoken", window.location.origin);
     const formData = new FormData();
@@ -83,7 +94,6 @@ class MagicAPI {
     });
   }
 
-  // get auth - verify current token (we should probably call this every ~5 min? if we are close to expiry then just log out and clear)
   // get alltrees - gets the skill trees with basic info (id/name/icon/etc...)
   // get mytree/{id} - the full skill tree for ME (what do i have unlocked). Price for each skill, how many skill points, etc..
   // post unlock - unlock a spell for me

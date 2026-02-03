@@ -77,6 +77,20 @@ public class AuthRoutes extends RouteGroup {
 
             ctx.status(200).result(token);
         });
+
+        app.get("/api/auth/userinfo", ctx -> {
+            AuthResult res = this.handleAuth(ctx);
+            if (res.isInvalid()) {
+                ctx.status(400).result();
+                return;
+            }
+            Optional<String> username = this.getAuthSubject(ctx);
+            if (username.isEmpty()) {
+                ctx.status(400).result();
+                return;
+            }
+            ctx.status(200).result(username.get());
+        });
     }
 
 }

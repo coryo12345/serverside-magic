@@ -20,6 +20,7 @@ declare module 'vue' {
     InputText: typeof import('primevue/inputtext')['default']
     LoginPage: typeof import('./src/components/LoginPage.vue')['default']
     Message: typeof import('primevue/message')['default']
+    ProgressSpinner: typeof import('primevue/progressspinner')['default']
     SideNavigation: typeof import('./src/components/SideNavigation.vue')['default']
     SpellbookConfig: typeof import('./src/components/spellbook/SpellbookConfig.vue')['default']
     SpellCard: typeof import('./src/components/spellbook/SpellCard.vue')['default']
