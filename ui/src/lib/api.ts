@@ -1,6 +1,6 @@
 import { AuthToken } from "./authtoken";
 import { Result } from "./result";
-import type { SpellDefinition, SpellSlot } from "./types";
+import type { PlayerSpellResponse, SpellSlot } from "./types";
 
 class MagicAPI {
   private async request<T>(
@@ -41,7 +41,7 @@ class MagicAPI {
   }
 
   /**
-   * @returns the current user's username 
+   * @returns the current user's username
    */
   async userinfo(): Promise<Result<string>> {
     const url = new URL("/api/auth/userinfo", window.location.origin);
@@ -74,7 +74,7 @@ class MagicAPI {
     });
   }
 
-  async getMySpells(): Promise<Result<Record<string, SpellDefinition>>> {
+  async getMySpells(): Promise<Result<PlayerSpellResponse>> {
     const url = new URL("/api/spells/mine", window.location.origin);
     return this.request(url, { method: "GET", responseType: "json" });
   }

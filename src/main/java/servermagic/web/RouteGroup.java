@@ -29,19 +29,19 @@ public abstract class RouteGroup {
         });
     }
 
-    protected Optional<String> getAuthSubject(Context ctx) {
+    protected String getAuthSubject(Context ctx) throws Exception {
         String authHeader = ctx.header("Authorization");
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            return Optional.empty();
+            throw new Exception("Not Authorized");
         }
 
         String token = authHeader.substring(7);
         Optional<Claims> claims = new AuthTokens().parseToken(token);
         if (claims.isEmpty()) {
-            return Optional.empty();
+            throw new Exception("Not Authorized");
         }
         String username = claims.get().getSubject();
-        return Optional.of(username);
+        return username;
     }
 
     /**

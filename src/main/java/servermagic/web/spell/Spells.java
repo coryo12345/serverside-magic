@@ -35,7 +35,9 @@ public class Spells {
         for (var spellClass : allSpells) {
             try {
                 UISpellDefinition def = UISpellDefinition.FromSpell(spellClass);
-                this.spellMap.put(def.id, def);
+                if (def != null) {
+                    this.spellMap.put(def.id, def);
+                }
             } catch (Exception e) {
                 ServerMagic.LOGGER.error("UNABLE TO INSTANTIATE SPELL: " + spellClass.getSimpleName());
             }

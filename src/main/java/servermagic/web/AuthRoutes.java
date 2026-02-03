@@ -84,12 +84,8 @@ public class AuthRoutes extends RouteGroup {
                 ctx.status(400).result();
                 return;
             }
-            Optional<String> username = this.getAuthSubject(ctx);
-            if (username.isEmpty()) {
-                ctx.status(400).result();
-                return;
-            }
-            ctx.status(200).result(username.get());
+            String username = this.getAuthSubject(ctx);
+            ctx.status(200).result(username);
         });
     }
 

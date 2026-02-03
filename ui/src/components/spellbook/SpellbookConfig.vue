@@ -5,11 +5,13 @@ import { useToast } from "primevue/usetoast";
 import { api } from "../../lib/api";
 import { type SpellDefinition } from "../../lib/types";
 import SpellCard from "./SpellCard.vue";
+import { SPELL_SLOTS } from "../../lib/spellslots";
 
 const toast = useToast();
 const allSpells = ref<SpellDefinition[]>([]);
-// 8 slots, each is a list of spells (max 1)
-const slots = ref<SpellDefinition[][]>(Array.from({ length: 8 }, () => []));
+// 8 slots, each is a list of spells. This is to keep track of pre/post change state
+// so we can easily revert actions if the API denies it
+const slots = ref<Record<number, SpellDefinition[]>>({});
 const error = ref<string | null>(null);
 
 onMounted(async () => {
@@ -17,43 +19,49 @@ onMounted(async () => {
   if (res.isError()) {
     error.value = res.error().message;
   } else {
-    allSpells.value = Object.values(res.get());
+    allSpells.value = Object.values(res.get().availableSpells);
+    slots.value = {};
+    Object.entries(res.get().spellSlotMap).forEach(([slot, def]) => {
+      slots.value[parseInt(slot)] = [def];
+    });
+    Object.values(SPELL_SLOTS).forEach((slotNum) => {
+      if (!slots.value[slotNum]) {
+        slots.value[slotNum] = [];
+      }
+    });
   }
 });
 
-async function onSlotChange(slotIndex: number, event: any) {
-  if (event.added) {
-    const newSpell = event.added.element;
-    const currentSlot = slots.value[slotIndex];
-    if (!currentSlot) return;
+async function onSlotChange(slotIndex: number | string, event: any) {
+  if (!event.added) return;
+  slotIndex = parseInt(slotIndex.toString());
+  const newSpell = event.added.element;
+  const currentSlot = slots.value[slotIndex];
+  if (!currentSlot) return;
 
-    let originalSlotState: SpellDefinition[] = [];
-    if (currentSlot.length > 1) {
-      // The one that is NOT the new spell was the old one
-      originalSlotState = currentSlot.filter((s) => s.id !== newSpell.id);
-    } else {
-      // It was empty before
-      originalSlotState = [];
-    }
+  let originalSlotState: SpellDefinition[] = [];
+  if (currentSlot.length > 1) {
+    // The one that is NOT the new spell was the old one
+    originalSlotState = currentSlot.filter((s) => s.id !== newSpell.id);
+  } else {
+    // It was empty before
+    originalSlotState = [];
+  }
 
-    // Optimistic update: Enforce single item
-    slots.value[slotIndex] = [newSpell];
+  // Optimistic update: Enforce single item
+  slots.value[slotIndex] = [newSpell];
 
-    // Call API
-    const result = await api.setSpellSlot(newSpell.id, slotIndex);
+  const result = await api.setSpellSlot(newSpell.id, slotIndex);
+  if (result.isError()) {
+    // Revert state
+    slots.value[slotIndex] = originalSlotState;
 
-    if (result.isError()) {
-      // Revert state
-      slots.value[slotIndex] = originalSlotState;
-
-      // Show error
-      toast.add({
-        severity: "error",
-        summary: "Error",
-        detail: "Failed to assign spell",
-        life: 3000,
-      });
-    }
+    toast.add({
+      severity: "error",
+      summary: "Error",
+      detail: "Failed to assign spell",
+      life: 3000,
+    });
   }
 }
 </script>
@@ -78,12 +86,11 @@ async function onSlotChange(slotIndex: number, event: any) {
         <div
           v-for="(slotList, index) in slots"
           :key="index"
-          class="relative flex flex-col"
+          class="flex flex-col items-center justify-start"
         >
-          <span
-            class="absolute -top-6 left-1/2 -translate-x-1/2 text-xs text-surface-400 font-mono"
-            >Slot {{ index + 1 }}</span
-          >
+          <p class="text-xs text-surface-400 font-mono text-center text-nowrap">
+            Slot {{ index + 1 }}
+          </p>
 
           <VueDraggableNext
             class="w-full rounded-xl transition-all duration-200"
@@ -120,7 +127,7 @@ async function onSlotChange(slotIndex: number, event: any) {
         Error loading spells: {{ error }}
       </div>
 
-      <div class="h-[500px] overflow-y-auto pr-2 custom-scrollbar">
+      <div class="h-125 overflow-y-auto pr-2 custom-scrollbar">
         <VueDraggableNext
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
           :list="allSpells"

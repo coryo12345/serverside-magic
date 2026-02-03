@@ -38,7 +38,7 @@ public class UISpellDefinition {
             return def;
         } catch (Exception e) {
             ServerMagic.LOGGER.error("FAILED TO CONVERT SPELL TO DEFINITION: " + e.getMessage());
-            return new UISpellDefinition();
+            return null;
         }
     }
 }
