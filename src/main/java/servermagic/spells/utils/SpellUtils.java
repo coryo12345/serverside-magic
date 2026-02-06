@@ -1,4 +1,4 @@
-package servermagic.spells;
+package servermagic.spells.utils;
 
 import java.util.ArrayList;
 import java.util.List;

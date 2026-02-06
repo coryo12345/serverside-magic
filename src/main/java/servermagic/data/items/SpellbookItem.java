@@ -10,7 +10,8 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.phys.EntityHitResult;
-import servermagic.spells.LightningOnTarget;
+import servermagic.spells.utils.ClickType;
+import servermagic.spells.utils.PlayerSpellFocusCaster;
 
 public class SpellbookItem extends CustomItem {
     public static final String ID = "base_spellbook";
@@ -31,7 +32,7 @@ public class SpellbookItem extends CustomItem {
     public InteractionResult onUse(ServerLevel world, ServerPlayer player, InteractionHand hand) {
         try {
             PlayerSpellFocusCaster caster = PlayerSpellFocusCaster.Get();
-            InteractionResult ir = caster.handleClick(world, player);
+            InteractionResult ir = caster.handleClick(world, player, ClickType.RIGHT_CLICK);
             if (ir == InteractionResult.SUCCESS) {
                 player.getCooldowns().addCooldown(player.getItemInHand(hand), 20);
             }
@@ -44,8 +45,7 @@ public class SpellbookItem extends CustomItem {
     @Override
     public InteractionResult onAttack(ServerLevel world, ServerPlayer player, InteractionHand hand, Entity entity,
             EntityHitResult hitResult) {
-        LightningOnTarget spell = new LightningOnTarget(world, player);
-        return spell.castAsInteraction();
+        return super.onAttack(world, player, hand, entity, hitResult);
     }
 
 }

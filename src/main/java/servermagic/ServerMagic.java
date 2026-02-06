@@ -13,9 +13,9 @@ import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.minecraft.world.InteractionResult;
 import servermagic.data.items.CustomItem;
 import servermagic.data.items.ItemInteractionDispatcher;
-import servermagic.data.items.PlayerSpellFocusCaster;
 import servermagic.db.Database;
 import servermagic.db.MigrationFailedException;
+import servermagic.spells.utils.PlayerSpellFocusCaster;
 import servermagic.web.WebPortal;
 import servermagic.web.spell.Spells;
 
