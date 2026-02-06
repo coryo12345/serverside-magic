@@ -19,6 +19,7 @@ public class SpellSlotsInit extends BaseMigration {
                     slot int not null
                 );
                 """;
+                // TODO do we need an index on this table?
     }
 
 }

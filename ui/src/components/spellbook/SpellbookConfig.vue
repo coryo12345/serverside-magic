@@ -88,6 +88,7 @@ async function onSlotChange(slotIndex: number | string, event: any) {
           :key="index"
           class="flex flex-col items-center justify-start"
         >
+          <!-- TODO we need to update the labels on these with their activating keybinds -->
           <p class="text-xs text-surface-400 font-mono text-center text-nowrap">
             Slot {{ index + 1 }}
           </p>
@@ -104,7 +105,7 @@ async function onSlotChange(slotIndex: number | string, event: any) {
             @change="(e) => onSlotChange(index, e)"
             :item-key="'id'"
           >
-          <!-- TODO this is kinda busted on drag, it shows extra slots when you drag? -->
+            <!-- TODO this is kinda busted on drag, it shows extra slots when you drag? -->
             <div
               v-for="element in slotList"
               :key="element.id"

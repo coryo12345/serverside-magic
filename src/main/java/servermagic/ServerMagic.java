@@ -50,8 +50,7 @@ public class ServerMagic implements ModInitializer {
 				return dispatcher.dispatchAttack(entity, hitResult);
 			}
 		});
-
-		// TODO if needed
+		// if we need it?
 		// AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
 
 		// initialize spell defs for web

@@ -19,6 +19,7 @@ public class AuthcodesInit extends BaseMigration {
                     expires TIMESTAMP not null
                 );
                 """;
+                // TODO do we need an index on this table?
     }
 
 }
