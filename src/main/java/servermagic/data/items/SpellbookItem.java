@@ -10,10 +10,11 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.phys.EntityHitResult;
+import servermagic.data.items.utils.ISpellFocus;
 import servermagic.spells.utils.ClickType;
 import servermagic.spells.utils.PlayerSpellFocusCaster;
 
-public class SpellbookItem extends CustomItem {
+public class SpellbookItem extends CustomItem implements ISpellFocus {
     public static final String ID = "base_spellbook";
 
     @Override

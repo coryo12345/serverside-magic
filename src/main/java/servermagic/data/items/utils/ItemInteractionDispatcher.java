@@ -1,4 +1,4 @@
-package servermagic.data.items;
+package servermagic.data.items.utils;
 
 import java.util.Map;
 import java.util.Optional;
@@ -17,6 +17,8 @@ import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import servermagic.ServerMagic;
+import servermagic.data.items.CustomItem;
+import servermagic.data.items.SpellbookItem;
 
 public class ItemInteractionDispatcher {
     private ServerLevel world;
