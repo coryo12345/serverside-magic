@@ -24,6 +24,7 @@ declare module 'vue' {
     SideNavigation: typeof import('./src/components/SideNavigation.vue')['default']
     SpellbookConfig: typeof import('./src/components/spellbook/SpellbookConfig.vue')['default']
     SpellCard: typeof import('./src/components/spellbook/SpellCard.vue')['default']
+    SpellDetailsDialog: typeof import('./src/components/spellbook/SpellDetailsDialog.vue')['default']
     Toast: typeof import('primevue/toast')['default']
   }
   export interface GlobalDirectives {

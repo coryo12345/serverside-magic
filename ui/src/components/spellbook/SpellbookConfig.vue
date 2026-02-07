@@ -5,6 +5,7 @@ import { useToast } from "primevue/usetoast";
 import { api } from "../../lib/api";
 import { type SpellDefinition } from "../../lib/types";
 import SpellCard from "./SpellCard.vue";
+import SpellDetailsDialog from "./SpellDetailsDialog.vue";
 import { slotNumberToString, SPELL_SLOTS } from "../../lib/spellslots";
 
 const toast = useToast();
@@ -13,6 +14,14 @@ const allSpells = ref<SpellDefinition[]>([]);
 // so we can easily revert actions if the API denies it
 const slots = ref<Record<number, SpellDefinition[]>>({});
 const error = ref<string | null>(null);
+
+const selectedSpell = ref<SpellDefinition | null>(null);
+const isDialogVisible = ref(false);
+
+function openSpellDetails(spell: SpellDefinition) {
+  selectedSpell.value = spell;
+  isDialogVisible.value = true;
+}
 
 onMounted(async () => {
   const res = await api.getMySpells();
@@ -108,7 +117,8 @@ async function onSlotChange(slotIndex: number | string, event: any) {
             <div
               v-for="element in slotList"
               :key="element.id"
-              class="w-full h-full"
+              class="w-full h-full cursor-pointer"
+              @click="openSpellDetails(element)"
             >
               <SpellCard :spell="element" compact />
             </div>
@@ -136,12 +146,22 @@ async function onSlotChange(slotIndex: number | string, event: any) {
           :sort="false"
           :item-key="'id'"
         >
-          <div v-for="element in allSpells" :key="element.id">
+          <div
+            v-for="element in allSpells"
+            :key="element.id"
+            class="cursor-pointer"
+            @click="openSpellDetails(element)"
+          >
             <SpellCard :spell="element" compact />
           </div>
         </VueDraggableNext>
       </div>
     </div>
+    
+    <SpellDetailsDialog
+      v-model:visible="isDialogVisible"
+      :spell="selectedSpell"
+    />
   </div>
 </template>
 
