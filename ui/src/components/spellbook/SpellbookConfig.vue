@@ -5,7 +5,7 @@ import { useToast } from "primevue/usetoast";
 import { api } from "../../lib/api";
 import { type SpellDefinition } from "../../lib/types";
 import SpellCard from "./SpellCard.vue";
-import { SPELL_SLOTS } from "../../lib/spellslots";
+import { slotNumberToString, SPELL_SLOTS } from "../../lib/spellslots";
 
 const toast = useToast();
 const allSpells = ref<SpellDefinition[]>([]);
@@ -81,20 +81,19 @@ async function onSlotChange(slotIndex: number | string, event: any) {
 
       <!-- Hotbar Slots -->
       <div
-        class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-x-4 gap-y-8 mt-4"
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-8 mt-4"
       >
         <div
           v-for="(slotList, index) in slots"
           :key="index"
           class="flex flex-col items-center justify-start"
         >
-          <!-- TODO we need to update the labels on these with their activating keybinds -->
           <p class="text-xs text-surface-400 font-mono text-center text-nowrap">
-            Slot {{ index + 1 }}
+            {{ slotNumberToString(index) }}
           </p>
 
           <VueDraggableNext
-            class="w-full rounded-xl transition-all duration-200"
+            class="w-full rounded-xl transition-all duration-200 slot-grid"
             :class="[
               slotList.length === 0
                 ? 'aspect-square border-2 border-dashed border-surface-300 dark:border-surface-700 bg-surface-50 dark:bg-surface-900 hover:border-surface-400 dark:hover:border-surface-600'
@@ -147,6 +146,18 @@ async function onSlotChange(slotIndex: number | string, event: any) {
 </template>
 
 <style scoped>
+/* Force children of the slot to overlap */
+.slot-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+
+.slot-grid > * {
+  grid-column: 1;
+  grid-row: 1;
+}
+
 /* Custom scrollbar for better look in containers */
 .custom-scrollbar::-webkit-scrollbar {
   width: 8px;
