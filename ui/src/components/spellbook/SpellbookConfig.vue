@@ -130,14 +130,14 @@ async function onSlotChange(slotIndex: number | string, event: any) {
 
       <div class="h-125 overflow-y-auto pr-2 custom-scrollbar">
         <VueDraggableNext
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-8"
           :list="allSpells"
           :group="{ name: 'spells', pull: 'clone', put: false }"
           :sort="false"
           :item-key="'id'"
         >
           <div v-for="element in allSpells" :key="element.id">
-            <SpellCard :spell="element" />
+            <SpellCard :spell="element" compact />
           </div>
         </VueDraggableNext>
       </div>
