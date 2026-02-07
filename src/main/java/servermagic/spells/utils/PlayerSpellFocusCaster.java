@@ -2,6 +2,8 @@ package servermagic.spells.utils;
 
 import java.util.Optional;
 
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
@@ -10,6 +12,7 @@ import servermagic.db.tables.PlayerCastStatus;
 import servermagic.db.tables.PlayerCastStatus.PlayerCastResult;
 import servermagic.db.tables.SpellSlot;
 import servermagic.spells.BaseSpell;
+import servermagic.web.spell.SpellSlots;
 import servermagic.web.spell.Spells;
 import servermagic.web.spell.UISpellDefinition;
 
@@ -54,8 +57,10 @@ public class PlayerSpellFocusCaster {
             return InteractionResult.PASS;
         }
 
+        this.sendCastStatusToPlayer(player, playerCastStatus.get().status());
+
         if (!playerCastStatus.get().status().isCastComplete()) {
-            // still casting, this is okay, we have nothing to do
+            // still casting, this is okay, we have nothing more to do
             return InteractionResult.PASS;
         }
 
@@ -88,5 +93,33 @@ public class PlayerSpellFocusCaster {
         } catch (Exception e) {
             return InteractionResult.FAIL;
         }
+    }
+
+    private void sendCastStatusToPlayer(ServerPlayer player, PlayerCastStatus status) {
+        if (status.cast_state.length() < 2)
+            return;
+        StringBuilder s = new StringBuilder();
+        if (status.cast_state.charAt(status.cast_state.length() - 1) == '1') {
+            s.append("Shift-");
+        }
+        int itemCount = 1; // 1 for shift
+        for (int i = status.cast_state.length() - 2; i >= 0; i--) {
+            if (status.cast_state.charAt(i) == ClickType.LEFT_CLICK.getValue().toString().charAt(0)) {
+                s.append("L");
+            } else {
+                s.append("R");
+            }
+            itemCount++;
+            if (itemCount < SpellSlots.SPELL_SLOT_BINARY_CODE_LEN) {
+                s.append("-");
+            }
+        }
+
+        ChatFormatting color = status.cast_state.length() >= SpellSlots.SPELL_SLOT_BINARY_CODE_LEN
+                ? ChatFormatting.GREEN
+                : ChatFormatting.RED;
+
+        Component combo = Component.literal(s.toString()).withStyle(ChatFormatting.BOLD, color);
+        player.displayClientMessage(combo, true);
     }
 }
