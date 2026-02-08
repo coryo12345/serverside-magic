@@ -29,7 +29,7 @@ public class AuthRoutes extends RouteGroup {
 
             ServerPlayer player = server.getPlayerList().getPlayer(username);
             if (player == null) {
-                ctx.status(401).result("Player does not exist");
+                ctx.status(401).result("Can't find that player. Are you logged in on the server?");
                 return;
             }
 
