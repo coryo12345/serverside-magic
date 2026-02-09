@@ -23,13 +23,10 @@ public class SummonMount extends BaseSpell {
     protected void spellImplementation() {
         Horse horse = EntityType.HORSE.create(world, EntitySpawnReason.MOB_SUMMONED);
         horse.setPos(player.getX(), player.getY(), player.getZ());
-        // TODO rotation is not right
-        horse.setXRot(player.getXRot());
-        horse.setYBodyRot(player.getYRot());
         horse.setOwner(player);
         horse.addTag(CUSTOM_HORSE_TAG);
         horse.setTamed(true);
-
+        horse.forceSetRotation(player.getYHeadRot(), true, player.xRotO, true);
         // TODO we'll need to go get info about what unlocks the user has
         // to determine these...
         // these values are NOT BASE
