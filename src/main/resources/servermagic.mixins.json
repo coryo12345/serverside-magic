@@ -3,7 +3,8 @@
 	"package": "servermagic.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"PlayerSwingMixin"
+		"PlayerSwingMixin",
+		"PlayerDismountMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

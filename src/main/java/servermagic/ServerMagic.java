@@ -8,13 +8,16 @@ import org.slf4j.LoggerFactory;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionResult;
 import servermagic.data.items.CustomItem;
 import servermagic.data.items.utils.ItemInteractionDispatcher;
 import servermagic.db.Database;
 import servermagic.db.MigrationFailedException;
+import servermagic.spells.SummonMount;
 import servermagic.spells.utils.PlayerSpellFocusCaster;
 import servermagic.web.WebPortal;
 import servermagic.web.spell.Spells;
@@ -26,6 +29,8 @@ public class ServerMagic implements ModInitializer {
 	// It is considered best practice to use your mod id as the logger's name.
 	// That way, it's clear which mod wrote info, warnings, and errors.
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+
+	private int tickCount = 0;
 
 	@Override
 	public void onInitialize() {
@@ -52,6 +57,14 @@ public class ServerMagic implements ModInitializer {
 		});
 		// if we need it?
 		// AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
+
+		ServerTickEvents.END_WORLD_TICK.register((ServerLevel world) -> {
+			tickCount = (++tickCount % 1000); // so we dont get too large
+			// once every third second - things that don't need to happen often
+			if (tickCount % 60 == 0) {
+				SummonMount.tickCleanup(world);
+			}
+		});
 
 		// initialize spell defs for web
 		Spells.Get();
