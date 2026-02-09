@@ -1,5 +1,7 @@
 package servermagic.db.migrations;
 
+import java.util.List;
+
 import servermagic.db.BaseMigration;
 
 public class PlayerCastStatusInit extends BaseMigration {
@@ -10,17 +12,16 @@ public class PlayerCastStatusInit extends BaseMigration {
     }
 
     @Override
-    public String getSql() {
-        return """
-                create table if not exists playercaststatus (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    username TEXT UNIQUE not null,
-                    cast_state TEXT,
-                    last_updated TIMESTAMP not null
-                );
-
-                create index status_username_idx on playercaststatus (username);
-                """;
+    public List<String> getSql() {
+        return List.of("""
+                    create table if not exists playercaststatus (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        username TEXT UNIQUE not null,
+                        cast_state TEXT,
+                        last_updated TIMESTAMP not null
+                    );
+                """,
+                "create index status_username_idx on playercaststatus (username);");
     }
 
 }

@@ -72,9 +72,12 @@ public class Database {
                     }
 
                     if (allMet) {
-                        String sql = m.getSql();
-                        try (Connection conn = sql2o.open()) {
-                            conn.createQuery(sql).executeUpdate();
+                        List<String> queries = m.getSql();
+                        try (Connection conn = sql2o.beginTransaction()) {
+                            for (String sql : queries) {
+                                conn.createQuery(sql).executeUpdate();
+                            }
+                            conn.commit();
                         }
 
                         try (Connection conn = sql2o.open()) {

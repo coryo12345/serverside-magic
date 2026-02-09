@@ -1,5 +1,7 @@
 package servermagic.db;
 
+import java.util.List;
+
 public abstract class BaseMigration {
     public abstract String getName();
 
@@ -7,5 +9,5 @@ public abstract class BaseMigration {
         return new String[] {};
     }
 
-    public abstract String getSql();
+    public abstract List<String> getSql();
 }
