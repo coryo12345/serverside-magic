@@ -6,6 +6,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import servermagic.spells.utils.SummonedArmor;
+import servermagic.spells.utils.SummonedArmor.ArmorDescriptor;
 
 public class AngelWings extends BaseSpell {
 
@@ -20,14 +21,20 @@ public class AngelWings extends BaseSpell {
             return;
         }
 
-        boolean shouldSummon = equipped.isEmpty() || !SummonedArmor.IsTempArmor(equipped);
+        ArmorDescriptor ad = SummonedArmor.GetInfo(equipped);
+        boolean shouldSummon = equipped.isEmpty() || !"angelwings".equals(ad.armorType());
 
         if (shouldSummon) {
             // TODO we need to apply some custom model to this armor
-            ItemStack tempChestplate = SummonedArmor.ConvertOriginalToSummonedItem(player, equipped, new ItemStack(Items.ELYTRA));
+            ItemStack tempChestplate = SummonedArmor.BuildSummonedItem(player, equipped,
+                    new ItemStack(Items.ELYTRA), "angelwings");
+            if (tempChestplate == null) {
+                return;
+            }
+            tempChestplate.setDamageValue(tempChestplate.getMaxDamage() - 100);
             player.setItemSlot(EquipmentSlot.CHEST, tempChestplate);
         } else {
-            ItemStack original = SummonedArmor.RevertSummonedItemToOriginal(player, equipped);
+            ItemStack original = SummonedArmor.DecodeOriginalFromSummonedItem(player, equipped);
             if (original == null) {
                 player.setItemSlot(EquipmentSlot.CHEST, ItemStack.EMPTY);
             } else {
@@ -35,15 +42,6 @@ public class AngelWings extends BaseSpell {
             }
         }
     }
-
-    // TODO it would be good to abstract this into some shared utility somehow
-    // BUT we'll need to add a property to the custom data for the temporary item
-    // type
-    // if I cast a different conjure spell that creates a temporary chestplate,
-    // then i need to know that I am wearing a temporary chestplate, but it is a
-    // different "custom item"
-    // otherwise, using a different spell would just un-summon the current one.
-    // THEN, i'll need to transfer over the original data to the new chest
 
     @Override
     public String displayName() {

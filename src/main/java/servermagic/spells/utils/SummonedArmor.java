@@ -17,22 +17,8 @@ import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.enchantment.Enchantments;
 
 public class SummonedArmor {
-    public static boolean IsTempArmor(ItemStack item) {
-        CustomData customData = item.get(DataComponents.CUSTOM_DATA);
-        if (customData == null) {
-            return false;
-        }
-
-        CompoundTag tag = customData.copyTag();
-        Optional<Boolean> val = tag.getBoolean("servermagic-temporary-item");
-        if (val.isEmpty()) {
-            return false;
-        }
-        return val.get().booleanValue() == true;
-    }
-
-    public static ItemStack ConvertOriginalToSummonedItem(ServerPlayer player, ItemStack originalItem,
-            ItemStack newItem) {
+    public static ItemStack BuildSummonedItem(ServerPlayer player, ItemStack originalItem,
+            ItemStack newItem, String itemType) {
         // Add Curse of Binding so player cant remove it
         HolderLookup.Provider registryAccess = player.level().registryAccess();
         newItem.enchant(
@@ -41,6 +27,25 @@ public class SummonedArmor {
 
         CompoundTag customTag = new CompoundTag();
         customTag.putBoolean("servermagic-temporary-item", true);
+        customTag.putString("servermagic-temporary-item-type", itemType);
+
+        ArmorDescriptor ad = GetInfo(originalItem);
+        if (ad.IsTempArmor) {
+            boolean differentType = ad.armorType != null && !ad.armorType.equals(itemType);
+            if (differentType) {
+                // this means we already have a different temporary piece equipped of some kind,
+                // so we need to decode the original out of it to store in the NEW temp piece
+                ItemStack maybeOriginal = DecodeOriginalFromSummonedItem(player, originalItem);
+                if (maybeOriginal != null) {
+                    originalItem = maybeOriginal;
+                }
+            } else {
+                // we have the same type of armor already equipped
+                // OR we can't determine the type.
+                // So we can't safely encode this original
+                return null;
+            }
+        }
 
         // Store the original chestplate
         if (originalItem != null && !originalItem.isEmpty()) {
@@ -51,6 +56,7 @@ public class SummonedArmor {
                 customTag.put("servermagic-temporary-item-original", storedData);
             } catch (Exception e) {
                 e.printStackTrace();
+                return null;
             }
         }
 
@@ -58,7 +64,7 @@ public class SummonedArmor {
         return newItem;
     }
 
-    public static ItemStack RevertSummonedItemToOriginal(ServerPlayer player, ItemStack equipped) {
+    public static ItemStack DecodeOriginalFromSummonedItem(ServerPlayer player, ItemStack equipped) {
         // Check if it's a temporary chestplate
         CustomData customData = equipped.get(DataComponents.CUSTOM_DATA);
         if (customData == null) {
@@ -85,5 +91,30 @@ public class SummonedArmor {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public static ArmorDescriptor GetInfo(ItemStack item) {
+        CustomData customData = item.get(DataComponents.CUSTOM_DATA);
+        if (customData == null) {
+            return new ArmorDescriptor(false, null);
+        }
+
+        CompoundTag tag = customData.copyTag();
+        Optional<Boolean> val = tag.getBoolean("servermagic-temporary-item");
+        if (val.isEmpty()) {
+            return new ArmorDescriptor(false, null);
+        }
+
+        if (val.get().booleanValue() == true) {
+            Optional<String> valType = tag.getString("servermagic-temporary-item-type");
+            if (valType.isEmpty()) {
+                return new ArmorDescriptor(true, null);
+            }
+            return new ArmorDescriptor(true, valType.get());
+        }
+        return new ArmorDescriptor(false, null);
+    }
+
+    public record ArmorDescriptor(boolean IsTempArmor, String armorType) {
     }
 }
