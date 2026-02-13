@@ -47,6 +47,49 @@ public class SpellUtils {
         return hitEntities;
     }
 
+    public static List<LivingEntity> getAllLivingEntitiesInCone(ServerPlayer player, double maxDistance,
+            double halfAngleDegrees) {
+        Vec3 eyePos = player.getEyePosition();
+        Vec3 lookVec = player.getViewVector(1.0F);
+
+        // Precompute the cosine threshold — dot product must exceed this
+        double cosThreshold = Math.cos(Math.toRadians(halfAngleDegrees));
+
+        // Same broad-phase AABB as your original to cheaply cull distant entities
+        AABB searchBox = player.getBoundingBox()
+                .expandTowards(lookVec.scale(maxDistance))
+                .inflate(maxDistance); // inflate by full distance so side angles are included
+
+        List<LivingEntity> hitEntities = new ArrayList<>();
+
+        List<Entity> nearbyEntities = player.level().getEntities(
+                player,
+                searchBox,
+                (entity) -> !entity.isSpectator() && entity.isPickable());
+
+        for (Entity entity : nearbyEntities) {
+            if (!(entity instanceof LivingEntity living))
+                continue;
+
+            // Vector from eye to the center of the entity
+            Vec3 toEntity = entity.getBoundingBox().getCenter().subtract(eyePos);
+            double distance = toEntity.length();
+
+            if (distance > maxDistance)
+                continue;
+
+            // Normalize and dot with look direction
+            double dot = toEntity.normalize().dot(lookVec);
+
+            // dot > cosThreshold means the angle is within the cone
+            if (dot >= cosThreshold) {
+                hitEntities.add(living);
+            }
+        }
+
+        return hitEntities;
+    }
+
     public static Optional<LivingEntity> getFirstEntityInLineOfSight(ServerPlayer player, double maxDistance) {
         Vec3 eyePos = player.getEyePosition();
         Vec3 lookVec = player.getViewVector(1.0F);
