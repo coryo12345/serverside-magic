@@ -1,5 +1,15 @@
 <script setup lang="ts">
-defineEmits(["logout"]);
+defineProps<{
+  modelValue: string;
+}>();
+
+defineEmits(["logout", "update:modelValue"]);
+
+const navItems = [
+  { id: "spellbook", label: "My Spellbook", icon: "pi pi-book" },
+  { id: "skills", label: "Skill Tree", icon: "pi pi-sitemap" },
+  { id: "secrets", label: "Secrets", icon: "pi pi-lock" },
+];
 </script>
 
 <template>
@@ -11,13 +21,20 @@ defineEmits(["logout"]);
     </div>
 
     <nav class="flex-1 p-4 space-y-2">
-      <a
-        href="#"
-        class="flex items-center px-4 py-3 rounded-lg bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300 font-medium transition-colors"
+      <button
+        v-for="item in navItems"
+        :key="item.id"
+        @click="$emit('update:modelValue', item.id)"
+        class="flex items-center w-full px-4 py-3 rounded-lg font-medium transition-colors"
+        :class="[
+          modelValue === item.id
+            ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300'
+            : 'text-surface-600 dark:text-surface-400 hover:bg-surface-100 dark:hover:bg-surface-800',
+        ]"
       >
-        <i class="pi pi-book mr-3"></i>
-        My Spellbook
-      </a>
+        <i :class="[item.icon, 'mr-3']"></i>
+        {{ item.label }}
+      </button>
     </nav>
 
     <div class="p-4 border-t border-surface-200 dark:border-surface-700">

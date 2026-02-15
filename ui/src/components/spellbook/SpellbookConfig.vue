@@ -77,7 +77,18 @@ async function onSlotChange(slotIndex: number | string, event: any) {
 
 <template>
   <div class="space-y-6">
-    <!-- Header -->
+    <header class="mb-8">
+      <h1
+        class="text-2xl md:text-3xl font-bold text-surface-900 dark:text-surface-0"
+      >
+        Spellbook Configuration
+      </h1>
+      <p class="text-surface-500 dark:text-surface-400">
+        Manage your known spells and hotbar.
+      </p>
+    </header>
+
+    <!-- Hotbar Slots -->
     <div
       class="bg-surface-0 dark:bg-surface-800 p-6 rounded-xl shadow-sm border border-surface-200 dark:border-surface-700"
     >

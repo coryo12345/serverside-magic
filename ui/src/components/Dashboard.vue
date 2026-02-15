@@ -5,6 +5,7 @@ import SideNavigation from "./SideNavigation.vue";
 
 const emit = defineEmits(["logout"]);
 const drawerVisible = ref(false);
+const currentPage = ref("spellbook");
 </script>
 
 <template>
@@ -13,44 +14,84 @@ const drawerVisible = ref(false);
     <aside
       class="hidden md:flex w-64 bg-surface-0 dark:bg-surface-800 border-r border-surface-200 dark:border-surface-700 flex-col shrink-0 transition-all duration-300"
     >
-      <SideNavigation @logout="emit('logout')" />
+      <SideNavigation
+        v-model="currentPage"
+        @logout="emit('logout')"
+      />
     </aside>
 
     <!-- Mobile Drawer -->
     <Drawer v-model:visible="drawerVisible">
-      <SideNavigation @logout="emit('logout')" />
+      <SideNavigation
+        v-model="currentPage"
+        @logout="emit('logout')"
+        @update:modelValue="drawerVisible = false"
+      />
     </Drawer>
 
     <!-- Main Content -->
     <main class="flex-1 overflow-y-auto h-screen flex flex-col">
       <!-- Mobile Header / Toggle -->
       <div
-        class="md:hidden p-4 bg-surface-0 dark:bg-surface-800 border-b border-surface-200 dark:border-surface-700 flex items-center gap-4"
+        class="md:hidden p-4 bg-surface-0 dark:bg-surface-800 border-b border-surface-200 dark:border-surface-700 flex items-center justify-between"
       >
-        <Button
-          icon="pi pi-bars"
-          text
-          aria-label="Menu"
-          @click="drawerVisible = true"
-        />
-        <h1 class="text-lg font-bold text-surface-900 dark:text-surface-0">
-          Server Magic
-        </h1>
+        <div class="flex items-center gap-4">
+          <Button
+            icon="pi pi-bars"
+            text
+            aria-label="Menu"
+            @click="drawerVisible = true"
+          />
+          <h1 class="text-lg font-bold text-primary-600 dark:text-primary-400">
+            Server Magic
+          </h1>
+        </div>
       </div>
 
-      <div class="p-8 max-w-7xl mx-auto w-full">
-        <header class="mb-8">
-          <h1
-            class="text-2xl md:text-3xl font-bold text-surface-900 dark:text-surface-0"
-          >
-            Spellbook Configuration
-          </h1>
-          <p class="text-surface-500 dark:text-surface-400">
-            Manage your known spells and hotbar.
-          </p>
-        </header>
+      <div class="p-4 md:p-8 max-w-7xl mx-auto w-full">
+        <template v-if="currentPage === 'spellbook'">
+          <SpellbookConfig />
+        </template>
 
-        <SpellbookConfig />
+        <template v-else-if="currentPage === 'skills'">
+          <header class="mb-8">
+            <h1
+              class="text-2xl md:text-3xl font-bold text-surface-900 dark:text-surface-0"
+            >
+              Skill Tree
+            </h1>
+            <p class="text-surface-500 dark:text-surface-400">
+              Unlock and upgrade your magical abilities.
+            </p>
+          </header>
+          <div
+            class="bg-surface-0 dark:bg-surface-800 p-6 rounded-xl shadow-sm border border-surface-200 dark:border-surface-700"
+          >
+            <p class="text-surface-600 dark:text-surface-400">
+              Skill tree content coming soon...
+            </p>
+          </div>
+        </template>
+
+        <template v-else-if="currentPage === 'secrets'">
+          <header class="mb-8">
+            <h1
+              class="text-2xl md:text-3xl font-bold text-surface-900 dark:text-surface-0"
+            >
+              Secrets
+            </h1>
+            <p class="text-surface-500 dark:text-surface-400">
+              Discover hidden knowledge and ancient mysteries.
+            </p>
+          </header>
+          <div
+            class="bg-surface-0 dark:bg-surface-800 p-6 rounded-xl shadow-sm border border-surface-200 dark:border-surface-700"
+          >
+            <p class="text-surface-600 dark:text-surface-400">
+              Secrets content coming soon...
+            </p>
+          </div>
+        </template>
       </div>
     </main>
   </div>
