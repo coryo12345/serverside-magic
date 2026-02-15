@@ -27,4 +27,14 @@ public class SkillUnlocks {
         });
         return row.isPresent();
     }
+
+    public static Optional<List<SkillUnlocks>> GetAllPlayerUnlockedSkills(Database db, String username) {
+        return db.query(conn -> {
+            List<SkillUnlocks> su = conn.createQuery("select * from skillunlocks where username = :username")
+                    .addParameter("username", username)
+                    .executeAndFetch(SkillUnlocks.class);
+
+            return Optional.of(su);
+        });
+    }
 }
