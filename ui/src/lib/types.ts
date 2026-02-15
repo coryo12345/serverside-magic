@@ -18,3 +18,16 @@ export type PlayerSpellResponse = {
   spellSlotMap: Record<number, SpellDefinition>;
   availableSpells: Record<string, SpellDefinition>;
 };
+
+export type Skill = {
+  id: string;
+  name: string;
+  description: string;
+  parentId: string;
+};
+
+export type SkillTree = {
+  skill: Skill;
+  unlocked: boolean;
+  branches: SkillTree[];
+};

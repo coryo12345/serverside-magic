@@ -1,6 +1,6 @@
 import { AuthToken } from "./authtoken";
 import { Result } from "./result";
-import type { PlayerSpellResponse, SpellSlot } from "./types";
+import type { PlayerSpellResponse, SkillTree, SpellSlot } from "./types";
 
 class MagicAPI {
   private async request<T>(
@@ -92,6 +92,11 @@ class MagicAPI {
       body: formData,
       responseType: "text",
     });
+  }
+
+  async getSkillTrees(): Promise<Result<SkillTree[]>> {
+    const url = new URL("/api/skills/tree", window.location.origin);
+    return this.request(url, { method: "GET", responseType: "json" });
   }
 
   // get alltrees - gets the skill trees with basic info (id/name/icon/etc...)

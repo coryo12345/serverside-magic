@@ -38,18 +38,18 @@ public class SkillTree {
         }
 
         // Step 2: build a tree out of the skills
-        Map<Skill, SkillTree> baseNodes = new HashMap<>();
-        Map<Skill, SkillTree> allNodes = new HashMap<>();
+        Map<String, SkillTree> baseNodes = new HashMap<>();
+        Map<String, SkillTree> allNodes = new HashMap<>();
 
         // Find base nodes (skills with no parent)
         List<Skill> remainingSkills = new ArrayList<>(allSkills);
         List<Skill> toRemove = new ArrayList<>();
 
         for (Skill s : remainingSkills) {
-            if (s.parent() == null) {
+            if (s.parentId() == null) {
                 SkillTree node = new SkillTree(s);
-                baseNodes.put(s, node);
-                allNodes.put(s, node);
+                baseNodes.put(s.id(), node);
+                allNodes.put(s.id(), node);
                 toRemove.add(s);
             }
         }
@@ -61,10 +61,10 @@ public class SkillTree {
             changed = false;
             toRemove.clear();
             for (Skill s : remainingSkills) {
-                if (allNodes.containsKey(s.parent())) {
+                if (allNodes.containsKey(s.parentId())) {
                     SkillTree node = new SkillTree(s);
-                    allNodes.get(s.parent()).branches.add(node);
-                    allNodes.put(s, node);
+                    allNodes.get(s.parentId()).branches.add(node);
+                    allNodes.put(s.id(), node);
                     toRemove.add(s);
                     changed = true;
                 }
@@ -73,7 +73,8 @@ public class SkillTree {
         }
 
         if (!remainingSkills.isEmpty()) {
-            ServerMagic.LOGGER.warn("Some skills could not be placed in a tree (orphaned or circular dependencies): " + remainingSkills);
+            ServerMagic.LOGGER.warn("Some skills could not be placed in a tree (orphaned or circular dependencies): "
+                    + remainingSkills);
         }
 
         return new ArrayList<SkillTree>(baseNodes.values());
