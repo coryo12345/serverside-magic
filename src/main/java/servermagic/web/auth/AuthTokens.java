@@ -16,8 +16,9 @@ public class AuthTokens {
     // server restarts will reset auth, which is okay i think
     // private static final SecretKey JWT_SECRET = Jwts.SIG.HS256.key().build();
     // ^ PROD | DEV v
-    private static final SecretKey JWT_SECRET = Keys.hmacShaKeyFor("debug-key-must-be-at-least-32-characters-long-12345678".getBytes(StandardCharsets.UTF_8));
-    private static final long JWT_EXPIRATION = 86400000; // 24 hours
+    private static final SecretKey JWT_SECRET = Keys
+            .hmacShaKeyFor("debug-key-must-be-at-least-32-characters-long-12345678".getBytes(StandardCharsets.UTF_8));
+    private static final long JWT_EXPIRATION = 1000 * 60 * 60 * 24 * 7; // 24 hours
 
     public AuthTokens() {
     }
