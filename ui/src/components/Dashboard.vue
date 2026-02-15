@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import SpellbookConfig from "./spellbook/SpellbookConfig.vue";
 import SideNavigation from "./SideNavigation.vue";
+import SkillTreePage from "./skilltree/SkillTreePage.vue";
 
 const emit = defineEmits(["logout"]);
 const drawerVisible = ref(false);
@@ -14,10 +15,7 @@ const currentPage = ref("spellbook");
     <aside
       class="hidden md:flex w-64 bg-surface-0 dark:bg-surface-800 border-r border-surface-200 dark:border-surface-700 flex-col shrink-0 transition-all duration-300"
     >
-      <SideNavigation
-        v-model="currentPage"
-        @logout="emit('logout')"
-      />
+      <SideNavigation v-model="currentPage" @logout="emit('logout')" />
     </aside>
 
     <!-- Mobile Drawer -->
@@ -54,23 +52,7 @@ const currentPage = ref("spellbook");
         </template>
 
         <template v-else-if="currentPage === 'skills'">
-          <header class="mb-8">
-            <h1
-              class="text-2xl md:text-3xl font-bold text-surface-900 dark:text-surface-0"
-            >
-              Skill Tree
-            </h1>
-            <p class="text-surface-500 dark:text-surface-400">
-              Unlock and upgrade your magical abilities.
-            </p>
-          </header>
-          <div
-            class="bg-surface-0 dark:bg-surface-800 p-6 rounded-xl shadow-sm border border-surface-200 dark:border-surface-700"
-          >
-            <p class="text-surface-600 dark:text-surface-400">
-              Skill tree content coming soon...
-            </p>
-          </div>
+          <SkillTreePage></SkillTreePage>
         </template>
 
         <template v-else-if="currentPage === 'secrets'">
