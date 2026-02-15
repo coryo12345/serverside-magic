@@ -10,13 +10,14 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.equine.Horse;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import servermagic.db.Database;
 
 public class SummonMount extends BaseSpell {
 
     private final static String CUSTOM_HORSE_TAG = "server-magic-mount-horse";
 
-    public SummonMount(ServerLevel world, ServerPlayer player) {
-        super(world, player);
+    public SummonMount(ServerLevel world, ServerPlayer player, Database db) {
+        super(world, player, db);
     }
 
     @Override

@@ -8,12 +8,13 @@ import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
+import servermagic.db.Database;
 import servermagic.spells.utils.SpellUtils;
 
 public class LightningOnTarget extends BaseSpell {
 
-    public LightningOnTarget(ServerLevel world, ServerPlayer player) {
-        super(world, player);
+    public LightningOnTarget(ServerLevel world, ServerPlayer player, Database db) {
+        super(world, player, db);
     }
 
     @Override

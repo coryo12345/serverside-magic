@@ -4,11 +4,12 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.projectile.hurtingprojectile.WitherSkull;
 import net.minecraft.world.phys.Vec3;
+import servermagic.db.Database;
 
 public class WitherBlast extends BaseSpell {
 
-    public WitherBlast(ServerLevel world, ServerPlayer player) {
-        super(world, player);
+    public WitherBlast(ServerLevel world, ServerPlayer player, Database db) {
+        super(world, player, db);
     }
 
     @Override

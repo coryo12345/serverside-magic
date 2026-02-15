@@ -9,6 +9,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import servermagic.db.Database;
 import servermagic.spells.utils.SummonedArmor;
 import servermagic.spells.utils.SummonedArmor.ArmorDescriptor;
 
@@ -17,8 +18,8 @@ public class BattlemageArmor extends BaseSpell {
 
     private final Map<EquipmentSlot, Item> baseTempItems;
 
-    public BattlemageArmor(ServerLevel world, ServerPlayer player) {
-        super(world, player);
+    public BattlemageArmor(ServerLevel world, ServerPlayer player, Database db) {
+        super(world, player, db);
         this.baseTempItems = Map.of(
                 EquipmentSlot.HEAD, Items.CHAINMAIL_HELMET,
                 EquipmentSlot.CHEST, Items.CHAINMAIL_CHESTPLATE,

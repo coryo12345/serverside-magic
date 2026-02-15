@@ -4,11 +4,12 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import servermagic.db.Database;
 
 public class SpeedSpell extends BaseSpell {
 
-    public SpeedSpell(ServerLevel world, ServerPlayer player) {
-        super(world, player);
+    public SpeedSpell(ServerLevel world, ServerPlayer player, Database db) {
+        super(world, player, db);
     }
 
     @Override

@@ -87,9 +87,14 @@ public class PlayerSpellFocusCaster {
         Class<? extends BaseSpell> clazz = def.get().getClazz();
 
         try {
-            BaseSpell spell = clazz.getDeclaredConstructor(ServerLevel.class, ServerPlayer.class).newInstance(world,
-                    player);
-            return spell.castAsInteraction();
+            BaseSpell spell = clazz.getDeclaredConstructor(ServerLevel.class, ServerPlayer.class, Database.class)
+                    .newInstance(world,
+                            player, db);
+            if (spell.isUnlocked()) {
+                return spell.castAsInteraction();
+            } else {
+                return InteractionResult.PASS;
+            }
         } catch (Exception e) {
             return InteractionResult.FAIL;
         }

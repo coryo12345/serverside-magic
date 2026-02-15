@@ -7,11 +7,12 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.projectile.hurtingprojectile.windcharge.WindCharge;
 import net.minecraft.world.phys.Vec3;
+import servermagic.db.Database;
 
 public class WindChargeSpell extends BaseSpell {
 
-    public WindChargeSpell(ServerLevel world, ServerPlayer player) {
-        super(world, player);
+    public WindChargeSpell(ServerLevel world, ServerPlayer player, Database db) {
+        super(world, player, db);
     }
 
     @Override

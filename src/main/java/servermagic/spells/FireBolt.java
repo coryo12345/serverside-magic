@@ -1,6 +1,7 @@
 package servermagic.spells;
 
 import java.util.List;
+import java.util.Optional;
 
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -8,12 +9,15 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.Vec3;
+import servermagic.db.Database;
 import servermagic.spells.utils.SpellUtils;
+import servermagic.web.skill.Skill;
+import servermagic.web.skill.Skills;
 
 public class FireBolt extends BaseSpell {
 
-    public FireBolt(ServerLevel world, ServerPlayer player) {
-        super(world, player);
+    public FireBolt(ServerLevel world, ServerPlayer player, Database db) {
+        super(world, player, db);
     }
 
     @Override
@@ -53,6 +57,11 @@ public class FireBolt extends BaseSpell {
     @Override
     public String description() {
         return "Short-range burst of flame";
+    }
+
+    @Override
+    public Optional<Skill> getRequiredSkill() {
+        return Optional.of(Skills.FIREBOLT);
     }
 
 }

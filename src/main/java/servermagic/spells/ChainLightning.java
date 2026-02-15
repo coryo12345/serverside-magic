@@ -9,12 +9,13 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.Vec3;
+import servermagic.db.Database;
 import servermagic.spells.utils.SpellUtils;
 
 public class ChainLightning extends BaseSpell {
 
-    public ChainLightning(ServerLevel world, ServerPlayer player) {
-        super(world, player);
+    public ChainLightning(ServerLevel world, ServerPlayer player, Database db) {
+        super(world, player, db);
     }
 
     @Override

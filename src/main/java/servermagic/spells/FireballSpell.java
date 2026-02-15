@@ -7,11 +7,12 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.projectile.hurtingprojectile.LargeFireball;
 import net.minecraft.world.phys.Vec3;
+import servermagic.db.Database;
 
 public class FireballSpell extends BaseSpell {
 
-    public FireballSpell(ServerLevel world, ServerPlayer player) {
-        super(world, player);
+    public FireballSpell(ServerLevel world, ServerPlayer player, Database db) {
+        super(world, player, db);
     }
 
     @Override

@@ -10,11 +10,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
+import servermagic.db.Database;
 
 public class PoisonLingeringPotionSpell extends BaseSpell {
 
-    public PoisonLingeringPotionSpell(ServerLevel world, ServerPlayer player) {
-        super(world, player);
+    public PoisonLingeringPotionSpell(ServerLevel world, ServerPlayer player, Database db) {
+        super(world, player, db);
     }
 
     @Override

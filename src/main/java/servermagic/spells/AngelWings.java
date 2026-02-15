@@ -1,17 +1,22 @@
 package servermagic.spells;
 
+import java.util.Optional;
+
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import servermagic.db.Database;
 import servermagic.spells.utils.SummonedArmor;
 import servermagic.spells.utils.SummonedArmor.ArmorDescriptor;
+import servermagic.web.skill.Skill;
+import servermagic.web.skill.Skills;
 
 public class AngelWings extends BaseSpell {
 
-    public AngelWings(ServerLevel world, ServerPlayer player) {
-        super(world, player);
+    public AngelWings(ServerLevel world, ServerPlayer player, Database db) {
+        super(world, player, db);
     }
 
     @Override
@@ -53,4 +58,8 @@ public class AngelWings extends BaseSpell {
         return "Replace your current armor with angel wings. 'He can fly!'";
     }
 
+    @Override
+    public Optional<Skill> getRequiredSkill() {
+        return Optional.of(Skills.ANGEL_WINGS);
+    }
 }
