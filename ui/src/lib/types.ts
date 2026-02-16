@@ -31,3 +31,9 @@ export type SkillTree = {
   unlocked: boolean;
   branches: SkillTree[];
 };
+
+export type SkillUnlock = {
+  id: number;
+  username: string;
+  skill: string; // Skill.id
+};

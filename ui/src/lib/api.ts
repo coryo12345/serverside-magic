@@ -1,6 +1,11 @@
 import { AuthToken } from "./authtoken";
 import { Result } from "./result";
-import type { PlayerSpellResponse, SkillTree, SpellSlot } from "./types";
+import type {
+  PlayerSpellResponse,
+  SkillTree,
+  SkillUnlock,
+  SpellSlot,
+} from "./types";
 
 class MagicAPI {
   private async request<T>(
@@ -99,10 +104,19 @@ class MagicAPI {
     return this.request(url, { method: "GET", responseType: "json" });
   }
 
-  // get alltrees - gets the skill trees with basic info (id/name/icon/etc...)
-  // get mytree/{id} - the full skill tree for ME (what do i have unlocked). Price for each skill, how many skill points, etc..
-  // post unlock - unlock a spell for me
+  async unlockSkill(skillId: string): Promise<Result<SkillUnlock>> {
+    const url = new URL("/api/skills/unlock", window.location.origin);
+    const formData = new FormData();
+    formData.append("skillId", skillId);
+    return this.request(url, {
+      method: "POST",
+      body: formData,
+      responseType: "json",
+    });
+  }
+
   // post resettree - reset a skill tree
+  // get secrets - get all secret skills unlocked
 }
 
 export const api = new MagicAPI();

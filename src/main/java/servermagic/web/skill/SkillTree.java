@@ -1,6 +1,5 @@
 package servermagic.web.skill;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,21 +20,7 @@ public class SkillTree {
 
     public static List<SkillTree> GetTrees() {
         // Step 1: get all the available skills
-        Field[] declaredFields = Skills.class.getDeclaredFields();
-        List<Skill> allSkills = new ArrayList<>();
-        for (Field field : declaredFields) {
-            if (java.lang.reflect.Modifier.isStatic(field.getModifiers())) {
-                try {
-                    Object o = field.get(null);
-                    if (o instanceof Skill s) {
-                        allSkills.add(s);
-                    }
-                } catch (NullPointerException | IllegalAccessException | IllegalArgumentException e) {
-                    // shouldn't happen since we're using static fields
-                    ServerMagic.LOGGER.error("Failed to access skill using reflection: " + e.getStackTrace());
-                }
-            }
-        }
+        List<Skill> allSkills = Skills.GetAllSkills();
 
         // Step 2: build a tree out of the skills
         Map<String, SkillTree> baseNodes = new HashMap<>();
