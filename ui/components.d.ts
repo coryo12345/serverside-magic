@@ -22,6 +22,8 @@ declare module 'vue' {
     Message: typeof import('primevue/message')['default']
     ProgressSpinner: typeof import('primevue/progressspinner')['default']
     SideNavigation: typeof import('./src/components/SideNavigation.vue')['default']
+    SkillTree: typeof import('./src/components/skilltree/SkillTree.vue')['default']
+    SkillTreePage: typeof import('./src/components/skilltree/SkillTreePage.vue')['default']
     SpellbookConfig: typeof import('./src/components/spellbook/SpellbookConfig.vue')['default']
     SpellCard: typeof import('./src/components/spellbook/SpellCard.vue')['default']
     SpellDetailsDialog: typeof import('./src/components/spellbook/SpellDetailsDialog.vue')['default']

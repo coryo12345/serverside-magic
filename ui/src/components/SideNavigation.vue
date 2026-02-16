@@ -25,11 +25,11 @@ const navItems = [
         v-for="item in navItems"
         :key="item.id"
         @click="$emit('update:modelValue', item.id)"
-        class="flex items-center w-full px-4 py-3 rounded-lg font-medium transition-colors"
+        class="flex items-center w-full px-4 py-3 rounded-lg font-medium transition-colors cursor-pointer"
         :class="[
           modelValue === item.id
             ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300'
-            : 'text-surface-600 dark:text-surface-400 hover:bg-surface-100 dark:hover:bg-surface-800',
+            : 'text-surface-600 dark:text-surface-400 hover:bg-surface-100 dark:hover:bg-surface-700',
         ]"
       >
         <i :class="[item.icon, 'mr-3']"></i>

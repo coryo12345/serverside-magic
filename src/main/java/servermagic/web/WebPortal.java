@@ -59,5 +59,6 @@ public class WebPortal {
     protected void setupRoutes() {
         new AuthRoutes(app, db, server).registerRoutes();
         new SpellRoutes(app, db, server).registerRoutes();
+        new SkillRoutes(app, db, server).registerRoutes();
     }
 }
