@@ -1,5 +1,7 @@
 package servermagic.spells;
 
+import java.util.Optional;
+
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -11,6 +13,8 @@ import net.minecraft.world.entity.animal.equine.Horse;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import servermagic.db.Database;
+import servermagic.web.skill.Skill;
+import servermagic.web.skill.Skills;
 
 public class SummonMount extends BaseSpell {
 
@@ -73,4 +77,8 @@ public class SummonMount extends BaseSpell {
         return "Summon your loyal steed and mount, ready to ride. This summon uses all enabled upgrades from the spell tree";
     }
 
+    @Override
+    public Optional<Skill> getRequiredSkill() {
+        return Optional.of(Skills.SUMMON_MOUNT);
+    }
 }

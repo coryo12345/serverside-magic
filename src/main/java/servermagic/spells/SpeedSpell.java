@@ -1,10 +1,14 @@
 package servermagic.spells;
 
+import java.util.Optional;
+
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import servermagic.db.Database;
+import servermagic.web.skill.Skill;
+import servermagic.web.skill.Skills;
 
 public class SpeedSpell extends BaseSpell {
 
@@ -27,5 +31,10 @@ public class SpeedSpell extends BaseSpell {
     @Override
     public String description() {
         return "Gives you speed for 30 seconds";
+    }
+
+    @Override
+    public Optional<Skill> getRequiredSkill() {
+        return Optional.of(Skills.SPEED_SPELL);
     }
 }

@@ -1,5 +1,7 @@
 package servermagic.spells;
 
+import java.util.Optional;
+
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -8,6 +10,8 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.projectile.hurtingprojectile.windcharge.WindCharge;
 import net.minecraft.world.phys.Vec3;
 import servermagic.db.Database;
+import servermagic.web.skill.Skill;
+import servermagic.web.skill.Skills;
 
 public class WindChargeSpell extends BaseSpell {
 
@@ -25,25 +29,23 @@ public class WindChargeSpell extends BaseSpell {
         world.addFreshEntity(windCharge);
 
         // Play sound
-        world.playSound(null, player.getX(), player.getY(), player.getZ(), 
-            SoundEvents.WIND_CHARGE_THROW, SoundSource.PLAYERS, 1.0F, 1.0F);
+        world.playSound(null, player.getX(), player.getY(), player.getZ(),
+                SoundEvents.WIND_CHARGE_THROW, SoundSource.PLAYERS, 1.0F, 1.0F);
 
         // Add particles for effect
         for (int i = 0; i < 5; i++) {
             world.sendParticles(
-                ParticleTypes.SMALL_GUST,
-                startPos.x + (world.random.nextDouble() - 0.5) * 0.5,
-                startPos.y + (world.random.nextDouble() - 0.5) * 0.5,
-                startPos.z + (world.random.nextDouble() - 0.5) * 0.5,
-                1, 0.0, 0.0, 0.0, 0.05
-            );
+                    ParticleTypes.SMALL_GUST,
+                    startPos.x + (world.random.nextDouble() - 0.5) * 0.5,
+                    startPos.y + (world.random.nextDouble() - 0.5) * 0.5,
+                    startPos.z + (world.random.nextDouble() - 0.5) * 0.5,
+                    1, 0.0, 0.0, 0.0, 0.05);
         }
-        
+
         world.sendParticles(
-            ParticleTypes.CLOUD,
-            startPos.x, startPos.y, startPos.z,
-            10, 0.2, 0.2, 0.2, 0.1
-        );
+                ParticleTypes.CLOUD,
+                startPos.x, startPos.y, startPos.z,
+                10, 0.2, 0.2, 0.2, 0.1);
     }
 
     @Override
@@ -54,5 +56,10 @@ public class WindChargeSpell extends BaseSpell {
     @Override
     public String description() {
         return "Shoot a powerful gust of wind";
+    }
+
+    @Override
+    public Optional<Skill> getRequiredSkill() {
+        return Optional.of(Skills.WINDCHARGE);
     }
 }

@@ -10,6 +10,8 @@ import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
 import servermagic.db.Database;
 import servermagic.spells.utils.SpellUtils;
+import servermagic.web.skill.Skill;
+import servermagic.web.skill.Skills;
 
 public class LightningOnTarget extends BaseSpell {
 
@@ -37,4 +39,8 @@ public class LightningOnTarget extends BaseSpell {
         return "Strike your target with lightning";
     }
 
+    @Override
+    public Optional<Skill> getRequiredSkill() {
+        return Optional.of(Skills.LIGHTNING_STRIKE);
+    }
 }

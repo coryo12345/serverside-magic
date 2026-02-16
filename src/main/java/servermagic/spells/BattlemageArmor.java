@@ -2,6 +2,7 @@ package servermagic.spells;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -12,6 +13,8 @@ import net.minecraft.world.item.Items;
 import servermagic.db.Database;
 import servermagic.spells.utils.SummonedArmor;
 import servermagic.spells.utils.SummonedArmor.ArmorDescriptor;
+import servermagic.web.skill.Skill;
+import servermagic.web.skill.Skills;
 
 public class BattlemageArmor extends BaseSpell {
     private final String TEMP_ITEM_TYPE = "battlemage";
@@ -89,4 +92,8 @@ public class BattlemageArmor extends BaseSpell {
         return "Summon bound armor, in classic battlemage fashion";
     }
 
+    @Override
+    public Optional<Skill> getRequiredSkill() {
+        return Optional.of(Skills.BATTLEMAGE_ARMOR);
+    }
 }
