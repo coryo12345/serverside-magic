@@ -51,6 +51,7 @@
         :key="node.id"
         class="absolute"
         :style="{ left: `${node.x}px`, top: `${node.y}px` }"
+        @click.stop="openSkillDetails(node)"
       >
         <div
           class="skill-node transform -translate-x-1/2 -translate-y-1/2 p-4 rounded-xl border-2 text-center transition-all duration-300 backdrop-blur-md"
@@ -116,17 +117,31 @@
     >
       <i class="pi pi-arrows-alt mr-1"></i> Drag to pan • Scroll to zoom
     </div>
+
+    <SkillDetailDialog
+      v-model:visible="isDetailsOpen"
+      :node="selectedNode"
+      @unlocked="$emit('reload')"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import Button from "primevue/button";
 import { onMounted, ref, toRef } from "vue";
-import { useSkillTreeLayout } from "../../composables/useSkillTreeLayout";
+import {
+  useSkillTreeLayout,
+  type PositionedNode,
+} from "../../composables/useSkillTreeLayout";
 import type { SkillTree } from "../../lib/types";
+import SkillDetailDialog from "./SkillDetailDialog.vue";
 
 const props = defineProps<{
   tree: SkillTree;
+}>();
+
+const emit = defineEmits<{
+  (e: "reload"): void;
 }>();
 
 const { nodes, connections } = useSkillTreeLayout(toRef(props, "tree"));
@@ -136,6 +151,14 @@ const offset = ref({ x: 0, y: 0 });
 const scale = ref(1);
 const isDragging = ref(false);
 const lastMousePos = ref({ x: 0, y: 0 });
+
+const selectedNode = ref<PositionedNode | null>(null);
+const isDetailsOpen = ref(false);
+
+const openSkillDetails = (node: PositionedNode) => {
+  selectedNode.value = node;
+  isDetailsOpen.value = true;
+};
 
 onMounted(() => {
   if (viewport.value) {

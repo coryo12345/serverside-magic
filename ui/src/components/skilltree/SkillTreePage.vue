@@ -32,7 +32,7 @@
     </div>
 
     <div v-else-if="skillTrees.length === 1" class="flex-1">
-      <SkillTreeViewer :tree="skillTrees[0]!" />
+      <SkillTreeViewer :tree="skillTrees[0]!" @reload="loadSkillTrees" />
     </div>
 
     <div v-else class="h-[calc(100vh-16rem)] flex flex-col flex-1">
@@ -53,7 +53,7 @@
             :value="tree.skill.id"
             class="p-0! h-full"
           >
-            <SkillTreeViewer :tree="tree" />
+            <SkillTreeViewer :tree="tree" @reload="loadSkillTrees" />
           </TabPanel>
         </TabPanels>
       </Tabs>
@@ -76,7 +76,7 @@ const skillTrees = ref<SkillTree[]>([]);
 const loading = ref(true);
 const error = ref<string | null>(null);
 
-onMounted(async () => {
+const loadSkillTrees = async () => {
   try {
     const result = await api.getSkillTrees();
     if (!result.isError()) {
@@ -90,5 +90,9 @@ onMounted(async () => {
   } finally {
     loading.value = false;
   }
+};
+
+onMounted(() => {
+  loadSkillTrees();
 });
 </script>
