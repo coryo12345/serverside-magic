@@ -20,7 +20,9 @@ public class SkillUnlocksInit extends BaseMigration {
                     skill TEXT not null
                 );
                 """,
-                "create index skillunlocks_user_idx on skillunlocks (username);");
+                "create index skillunlocks_user_idx on skillunlocks (username);",
+                "create index skillunlocks_skill_idx on skillunlocks (skill);",
+                "create index skillunlocks_compound_idx on skillunlocks (username, skill);");
     }
 
 }

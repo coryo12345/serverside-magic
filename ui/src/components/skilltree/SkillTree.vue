@@ -56,8 +56,8 @@
           class="skill-node transform -translate-x-1/2 -translate-y-1/2 p-4 rounded-xl border-2 text-center transition-all duration-300 backdrop-blur-md"
           :class="[
             node.unlocked
-              ? 'bg-primary/20 border-primary shadow-[0_0_20px_rgba(168,85,247,0.6)] text-white'
-              : 'bg-surface-900/40 border-surface-700 text-surface-500',
+              ? 'bg-primary-700 border-primary shadow-[0_0_20px_rgba(168,85,247,0.6)] text-white'
+              : 'bg-surface-900 border-surface-700 text-surface-500',
           ]"
         >
           <div

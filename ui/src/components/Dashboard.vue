@@ -46,7 +46,7 @@ const currentPage = ref("spellbook");
         </div>
       </div>
 
-      <div class="p-4 md:p-8 max-w-7xl mx-auto w-full">
+      <div class="p-4 md:p-8 max-w-7xl mx-auto w-full h-full">
         <template v-if="currentPage === 'spellbook'">
           <SpellbookConfig />
         </template>
