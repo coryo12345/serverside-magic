@@ -90,7 +90,7 @@ public class PlayerSpellFocusCaster {
             BaseSpell spell = clazz.getDeclaredConstructor(ServerLevel.class, ServerPlayer.class, Database.class)
                     .newInstance(world,
                             player, db);
-            if (spell.isUnlocked()) {
+            if (spell.playerHasRequiredSkill()) {
                 return spell.castAsInteraction();
             } else {
                 return InteractionResult.PASS;

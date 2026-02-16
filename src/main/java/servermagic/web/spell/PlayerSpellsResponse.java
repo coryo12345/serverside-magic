@@ -11,13 +11,18 @@ public class PlayerSpellsResponse {
     public Map<Integer, UISpellDefinition> spellSlotMap;
     public Map<String, UISpellDefinition> availableSpells;
 
+    public PlayerSpellsResponse() {
+        this.spellSlotMap = new HashMap<>();
+        this.availableSpells = new HashMap<>();
+    }
+
     public PlayerSpellsResponse(Map<Integer, UISpellDefinition> spellMap,
             Map<String, UISpellDefinition> availableSpells) {
         this.spellSlotMap = spellMap;
         this.availableSpells = availableSpells;
     }
 
-    public static PlayerSpellsResponse FromSpellSlots(List<SpellSlot> spellSlots) {
+    public void setSpellSlots(List<SpellSlot> spellSlots) {
         Map<Integer, UISpellDefinition> spellSlotMap = new HashMap<>();
         for (SpellSlot ss : spellSlots) {
             Optional<UISpellDefinition> def = Spells.Get().getSpell(ss.spell_id);
@@ -25,6 +30,11 @@ public class PlayerSpellsResponse {
                 spellSlotMap.put(ss.slot, def.get());
             }
         }
-        return new PlayerSpellsResponse(spellSlotMap, Spells.Get().all());
+
+        this.spellSlotMap = spellSlotMap;
+    }
+
+    public void setAvailableSpells(Map<String, UISpellDefinition> allSpells) {
+        this.availableSpells = allSpells;
     }
 }

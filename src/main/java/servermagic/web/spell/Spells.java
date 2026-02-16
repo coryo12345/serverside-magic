@@ -1,13 +1,17 @@
 package servermagic.web.spell;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.Map.Entry;
 
 import org.reflections.Reflections;
 
 import servermagic.ServerMagic;
+import servermagic.db.Database;
+import servermagic.db.tables.SkillUnlocks;
 import servermagic.spells.BaseSpell;
 
 public class Spells {
@@ -54,5 +58,26 @@ public class Spells {
 
     public Map<String, UISpellDefinition> all() {
         return new HashMap<>(this.spellMap);
+    }
+
+    public Optional<Map<String, UISpellDefinition>> allForPlayer(Database db, String username) {
+        // get player unlocked skills
+        Optional<List<SkillUnlocks>> unlocks = SkillUnlocks.GetAllPlayerUnlockedSkills(db, username);
+        if (unlocks.isEmpty()) {
+            return Optional.empty();
+        }
+        List<String> unlockedSkillIds = unlocks.get().stream().map(unlock -> {
+            return unlock.skill;
+        }).toList();
+
+        Map<String, UISpellDefinition> availableSpells = new HashMap<>();
+        for (Entry<String, UISpellDefinition> entry : this.spellMap.entrySet()) {
+            UISpellDefinition spellDef = entry.getValue();
+            if (spellDef.requiredSkillId != null && unlockedSkillIds.contains(spellDef.requiredSkillId)) {
+                availableSpells.put(entry.getKey(), entry.getValue());
+            }
+        }
+
+        return Optional.of(availableSpells);
     }
 }

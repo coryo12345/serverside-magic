@@ -1,6 +1,7 @@
 package servermagic.web;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import io.javalin.Javalin;
@@ -9,6 +10,8 @@ import servermagic.db.Database;
 import servermagic.db.tables.SpellSlot;
 import servermagic.web.spell.PlayerSpellsResponse;
 import servermagic.web.spell.SpellSlots;
+import servermagic.web.spell.Spells;
+import servermagic.web.spell.UISpellDefinition;
 
 public class SpellRoutes extends RouteGroup {
 
@@ -28,7 +31,15 @@ public class SpellRoutes extends RouteGroup {
                 return;
             }
 
-            PlayerSpellsResponse psr = PlayerSpellsResponse.FromSpellSlots(spells.get());
+            Optional<Map<String, UISpellDefinition>> allSpells = Spells.Get().allForPlayer(db, username);
+            if (allSpells.isEmpty()) {
+                ctx.status(500).result();
+                return;
+            }
+
+            PlayerSpellsResponse psr = new PlayerSpellsResponse();
+            psr.setSpellSlots(spells.get());
+            psr.setAvailableSpells(allSpells.get());
             ctx.status(200).json(psr);
         });
 

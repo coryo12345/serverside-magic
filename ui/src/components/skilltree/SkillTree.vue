@@ -54,7 +54,7 @@
         @click.stop="openSkillDetails(node)"
       >
         <div
-          class="skill-node transform -translate-x-1/2 -translate-y-1/2 p-4 rounded-xl border-2 text-center transition-all duration-300 backdrop-blur-md"
+          class="skill-node w-26 h-26 transform -translate-x-1/2 -translate-y-1/2 p-4 rounded-xl border-2 text-center transition-all duration-300 backdrop-blur-md"
           :class="[
             node.unlocked
               ? 'bg-primary-700 border-primary shadow-[0_0_20px_rgba(168,85,247,0.6)] text-white'
@@ -66,13 +66,11 @@
             v-if="node.unlocked"
           ></div>
           <div class="relative">
-            <div class="font-bold text-sm mb-1 whitespace-nowrap tracking-wide">
-              {{ node.name }}
-            </div>
+            <!-- TODO these should be icons once i have them -->
             <div
-              class="text-[10px] max-w-[130px] leading-tight opacity-80 font-medium"
+              class="font-bold text-sm mb-1 wrap-break-word text-wrap tracking-wide"
             >
-              {{ node.description }}
+              {{ node.name }}
             </div>
           </div>
 
@@ -190,21 +188,21 @@ const stopDrag = () => {
 const handleWheel = (e: WheelEvent) => {
   e.preventDefault();
   const delta = e.deltaY > 0 ? -0.1 : 0.1;
-  
+
   // Get mouse position relative to the viewport element
   const rect = viewport.value?.getBoundingClientRect();
   if (!rect) return;
-  
+
   const mx = e.clientX - rect.left;
   const my = e.clientY - rect.top;
-  
+
   zoom(delta, { x: mx, y: my });
 };
 
 const zoom = (delta: number, focalPoint?: { x: number; y: number }) => {
   const oldScale = scale.value;
   const newScale = Math.max(0.2, Math.min(2, oldScale + delta));
-  
+
   if (oldScale === newScale) return;
 
   // Use provided focal point or default to center of viewport
@@ -215,7 +213,7 @@ const zoom = (delta: number, focalPoint?: { x: number; y: number }) => {
   // Formula: offset_new = focal_point - (focal_point - offset_old) * (scale_new / scale_old)
   offset.value.x = fx - (fx - offset.value.x) * (newScale / oldScale);
   offset.value.y = fy - (fy - offset.value.y) * (newScale / oldScale);
-  
+
   scale.value = newScale;
 };
 
@@ -308,7 +306,6 @@ const resetView = () => {
 }
 
 .skill-node {
-  min-width: 150px;
   cursor: pointer;
   z-index: 10;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);

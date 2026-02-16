@@ -1,16 +1,20 @@
 package servermagic.web.spell;
 
+import java.util.Optional;
+
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import servermagic.ServerMagic;
 import servermagic.db.Database;
 import servermagic.spells.BaseSpell;
+import servermagic.web.skill.Skill;
 
 public class UISpellDefinition {
     public String id;
     public String displayName;
     public String description;
     public int cost;
+    public String requiredSkillId;
 
     private Class<? extends BaseSpell> clazz;
 
@@ -27,8 +31,9 @@ public class UISpellDefinition {
 
     public static UISpellDefinition FromSpell(Class<? extends BaseSpell> clazz) {
         try {
-            BaseSpell spell = clazz.getDeclaredConstructor(ServerLevel.class, ServerPlayer.class, Database.class).newInstance(null,
-                    null, null);
+            BaseSpell spell = clazz.getDeclaredConstructor(ServerLevel.class, ServerPlayer.class, Database.class)
+                    .newInstance(null,
+                            null, null);
 
             UISpellDefinition def = new UISpellDefinition();
             def.id = spell.id();
@@ -36,6 +41,10 @@ public class UISpellDefinition {
             def.description = spell.description();
             def.cost = spell.cost();
             def.clazz = clazz;
+            Optional<Skill> s = spell.getRequiredSkill();
+            if (s.isPresent()) {
+                def.requiredSkillId = s.get().id();
+            }
             return def;
         } catch (Exception e) {
             ServerMagic.LOGGER.error("FAILED TO CONVERT SPELL TO DEFINITION: " + e.getMessage());

@@ -51,7 +51,7 @@ public abstract class BaseSpell {
         return Optional.empty();
     }
 
-    public boolean isUnlocked() {
+    public boolean playerHasRequiredSkill() {
         Optional<Skill> skill = getRequiredSkill();
         if (skill.isEmpty()) {
             return true;
