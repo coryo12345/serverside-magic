@@ -18,9 +18,10 @@
 
     <!-- Transformable Canvas -->
     <div
-      class="absolute inset-0 transition-transform duration-75 ease-out"
+      class="absolute inset-0"
       :style="{
         transform: `translate(${offset.x}px, ${offset.y}px) scale(${scale})`,
+        transformOrigin: '0 0',
       }"
     >
       <!-- Connections (SVG) -->
@@ -166,11 +167,32 @@ const stopDrag = () => {
 const handleWheel = (e: WheelEvent) => {
   e.preventDefault();
   const delta = e.deltaY > 0 ? -0.1 : 0.1;
-  zoom(delta);
+  
+  // Get mouse position relative to the viewport element
+  const rect = viewport.value?.getBoundingClientRect();
+  if (!rect) return;
+  
+  const mx = e.clientX - rect.left;
+  const my = e.clientY - rect.top;
+  
+  zoom(delta, { x: mx, y: my });
 };
 
-const zoom = (delta: number) => {
-  const newScale = Math.max(0.2, Math.min(2, scale.value + delta));
+const zoom = (delta: number, focalPoint?: { x: number; y: number }) => {
+  const oldScale = scale.value;
+  const newScale = Math.max(0.2, Math.min(2, oldScale + delta));
+  
+  if (oldScale === newScale) return;
+
+  // Use provided focal point or default to center of viewport
+  const fx = focalPoint?.x ?? (viewport.value?.clientWidth ?? 0) / 2;
+  const fy = focalPoint?.y ?? (viewport.value?.clientHeight ?? 0) / 2;
+
+  // Adjust offset to keep the focal point stationary in world-space
+  // Formula: offset_new = focal_point - (focal_point - offset_old) * (scale_new / scale_old)
+  offset.value.x = fx - (fx - offset.value.x) * (newScale / oldScale);
+  offset.value.y = fy - (fy - offset.value.y) * (newScale / oldScale);
+  
   scale.value = newScale;
 };
 
