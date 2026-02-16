@@ -18,8 +18,7 @@ export interface Connection {
 }
 
 export function useSkillTreeLayout(rootTree: Ref<SkillTree> | SkillTree) {
-  // const nodeRadius = 60;
-  const levelDistance = 200;
+  const levelDistance = 250;
 
   const countLeaves = (tree: SkillTree): number => {
     if (tree.branches.length === 0) return 1;
@@ -34,15 +33,13 @@ export function useSkillTreeLayout(rootTree: Ref<SkillTree> | SkillTree) {
     const processNode = (
       tree: SkillTree,
       level: number,
-      startAngle: number,
-      endAngle: number,
+      currentAngle: number,
+      availableArc: number,
       parentPos: { x: number; y: number } | null,
     ) => {
-      const angle = (startAngle + endAngle) / 2;
       const radius = level * levelDistance;
-
-      const x = radius * Math.cos((angle * Math.PI) / 180);
-      const y = radius * Math.sin((angle * Math.PI) / 180);
+      const x = radius * Math.cos((currentAngle * Math.PI) / 180);
+      const y = radius * Math.sin((currentAngle * Math.PI) / 180);
 
       const currentPos = { x, y };
 
@@ -66,22 +63,39 @@ export function useSkillTreeLayout(rootTree: Ref<SkillTree> | SkillTree) {
 
       if (tree.branches.length > 0) {
         const totalLeaves = countLeaves(tree);
-        let currentStartAngle = startAngle;
+        
+        // For the root, we want to use the full 360 degrees.
+        // For sub-branches, we tighten the spread to keep them 'behind' the parent.
+        let actualArc;
+        if (level === 0) {
+          actualArc = 360;
+        } else {
+          const anglePerLeaf = Math.max(15, 60 / (level + 1));
+          const preferredSpread = (totalLeaves - 1) * anglePerLeaf;
+          actualArc = Math.min(availableArc, preferredSpread, 120);
+        }
+        
+        let startAngle = currentAngle - actualArc / 2;
 
-        for (const branch of tree.branches) {
-          const branchLeaves = countLeaves(branch);
-          const angularWidth =
-            ((endAngle - startAngle) * branchLeaves) / totalLeaves;
+        // If there's only one branch and it's not the root, it should continue straight
+        if (tree.branches.length === 1 && level > 0) {
+          processNode(tree.branches[0]!, level + 1, currentAngle, availableArc, currentPos);
+        } else {
+          for (const branch of tree.branches) {
+            const branchLeaves = countLeaves(branch);
+            const branchArc = (actualArc * branchLeaves) / totalLeaves;
+            const branchAngle = startAngle + branchArc / 2;
 
-          processNode(
-            branch,
-            level + 1,
-            currentStartAngle,
-            currentStartAngle + angularWidth,
-            currentPos,
-          );
+            processNode(
+              branch,
+              level + 1,
+              branchAngle,
+              branchArc,
+              currentPos,
+            );
 
-          currentStartAngle += angularWidth;
+            startAngle += branchArc;
+          }
         }
       }
     };
