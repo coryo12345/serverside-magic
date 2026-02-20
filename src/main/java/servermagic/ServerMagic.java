@@ -11,12 +11,17 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
 import servermagic.data.items.CustomItem;
 import servermagic.data.items.utils.ItemInteractionDispatcher;
 import servermagic.db.Database;
 import servermagic.db.MigrationFailedException;
+import servermagic.mana.ManaInfo;
+import servermagic.mana.ManaScoreboard;
+import servermagic.mana.ManaTracker;
 import servermagic.spells.SummonMount;
 import servermagic.spells.utils.PlayerSpellFocusCaster;
 import servermagic.web.WebPortal;
@@ -31,10 +36,12 @@ public class ServerMagic implements ModInitializer {
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
 	private int tickCount = 0;
+	private ManaTracker manaTracker;
 
 	@Override
 	public void onInitialize() {
 		LOGGER.info("Starting server magic!");
+		this.manaTracker = new ManaTracker();
 
 		UseItemCallback.EVENT.register((player, world, hand) -> {
 			ItemInteractionDispatcher dispatcher = new ItemInteractionDispatcher(world, player, hand);
@@ -64,6 +71,24 @@ public class ServerMagic implements ModInitializer {
 			if (tickCount % 60 == 0) {
 				SummonMount.tickCleanup(world);
 			}
+			// if we do this too frequently we overload the client with messages
+			if (tickCount % 100 == 0) {
+				this.handleManaRegenUpdates(world);
+			}
+		});
+
+		ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
+			ManaInfo manaInfo = manaTracker.initPlayer(handler.player.getPlainTextName());
+			ManaScoreboard.onPlayerJoin(handler.player);
+			ManaScoreboard.updateManaDisplay(manaInfo, handler.player);
+		});
+
+		ServerPlayConnectionEvents.DISCONNECT.register((handler, server) -> {
+			// Note: sending packets on disconnect is a no-op since the connection
+			// is closing, but calling it is harmless and keeps the code symmetric.
+			// The client cleans itself up on disconnect anyway.
+			ManaScoreboard.onPlayerQuit(handler.player);
+			this.manaTracker.removePlayer(handler.player.getPlainTextName());
 		});
 
 		// initialize spell defs for web
@@ -99,6 +124,19 @@ public class ServerMagic implements ModInitializer {
 
 		public WebApp(WebPortal webPortal) {
 			this.webPortal = webPortal;
+		}
+	}
+
+	private void handleManaRegenUpdates(ServerLevel world) {
+		// update the record of current mana for all players
+		this.manaTracker.manaRegenTick(1.0);
+		// then send the info to the clients
+		for (ServerPlayer player : world.players()) {
+			Optional<ManaInfo> m = manaTracker.getManaInfoForPlayer(player.getPlainTextName());
+			if (m.isEmpty()) {
+				continue;
+			}
+			ManaScoreboard.updateManaDisplay(m.get(), player);
 		}
 	}
 }
