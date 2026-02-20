@@ -38,6 +38,9 @@ public class SummonedArmor {
                 ItemStack maybeOriginal = DecodeOriginalFromSummonedItem(player, originalItem);
                 if (maybeOriginal != null) {
                     originalItem = maybeOriginal;
+                } else {
+                    // The user never had an original chestplate, just temporary items
+                    originalItem = ItemStack.EMPTY;
                 }
             } else {
                 // we have the same type of armor already equipped
