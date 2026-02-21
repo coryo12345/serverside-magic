@@ -28,7 +28,7 @@ public class Skills {
             "Conjure a cloud of poison in an area", SPEED_SPELL.id());
     public static final Skill WINDCHARGE = new Skill("windcharge", "Wind Charge",
             "Shoot a powerful gust of wind", SPEED_SPELL.id())
-            .setAdvancement("adventure/who_needs_rockets");
+            .setAdvancement("adventure/who_needs_rockets", "Who Needs Rockets?");
 
     public static List<Skill> GetAllSkills() {
         Field[] declaredFields = Skills.class.getDeclaredFields();

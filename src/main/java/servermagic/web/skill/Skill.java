@@ -6,6 +6,7 @@ public class Skill {
     public String description;
     public String parentId;
     public String advancementResourceLocation;
+    public String advancementName;
 
     public Skill(String id, String name, String description, String parentId) {
         this.id = id;
@@ -34,8 +35,13 @@ public class Skill {
         return this.advancementResourceLocation;
     }
 
-    public Skill setAdvancement(String resourceLocation) {
+    public String advancementName() {
+        return this.advancementName;
+    }
+
+    public Skill setAdvancement(String resourceLocation, String name) {
         this.advancementResourceLocation = resourceLocation;
+        this.advancementName = name;
         return this;
     }
 }
