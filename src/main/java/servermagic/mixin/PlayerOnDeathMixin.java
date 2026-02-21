@@ -20,9 +20,10 @@ import servermagic.spells.utils.SummonedArmor.ArmorDescriptor;
 public class PlayerOnDeathMixin {
 
 	/**
-	 * To support spells with vehicles
-	 * 
-	 * When the player gets off the vehicle, handle the cases of logic to run
+	 * For summoned (bound) armor, we need to revert armor back to it's original
+	 * form after the player dies. We always put curse of binding on summed armor,
+	 * so we need to make sure to revert it since the player COULD get around
+	 * the curse by purposefully dieing
 	 */
 	@Inject(method = "dropEquipment(Lnet/minecraft/server/level/ServerLevel;)V", at = @At("HEAD"))
 	protected void onDropEquipment(ServerLevel serverLevel, CallbackInfo ci) {

@@ -1,16 +1,17 @@
 {
-	"required": true,
-	"package": "servermagic.mixin",
-	"compatibilityLevel": "JAVA_21",
-	"mixins": [
-		"PlayerSwingMixin",
-		"PlayerDismountMixin",
-		"PlayerOnDeathMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
-	},
-	"overwrites": {
-		"requireAnnotations": true
-	}
+  "required": true,
+  "package": "servermagic.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "PlayerSwingMixin",
+    "PlayerDismountMixin",
+    "PlayerOnDeathMixin",
+    "ItemOnBreakMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
 }

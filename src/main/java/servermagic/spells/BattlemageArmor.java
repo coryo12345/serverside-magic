@@ -64,9 +64,6 @@ public class BattlemageArmor extends BaseSpell {
                 // lets summon!
                 ItemStack equipped = player.getItemBySlot(slot);
                 // TODO we need to apply some custom model to this armor
-                // TODO we need to handle the case of this armor piece breaking...
-                // do we try todo a mixin and revert the piece if it breaks?
-                // or do we make it unbreakable?
                 ItemStack tempPiece = SummonedArmor.BuildSummonedItem(
                         player,
                         equipped,
@@ -75,6 +72,7 @@ public class BattlemageArmor extends BaseSpell {
                 if (tempPiece == null) {
                     continue;
                 }
+                tempPiece.setDamageValue(tempPiece.getMaxDamage() - 100);
                 player.setItemSlot(slot, tempPiece);
             }
         }
