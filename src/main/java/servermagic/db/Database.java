@@ -13,6 +13,24 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
 public class Database {
+    // need to get the DB as a singleton so mixin code can access
+    // just so much simpler so we dont need to worry.
+    // Not ideal but good enough for this project
+    private static Database _db;
+
+    public static void SetDB(Database db) {
+        _db = db;
+    }
+
+    public static Optional<Database> GetDB() {
+        if (_db == null) {
+            return Optional.empty();
+        }
+        return Optional.of(_db);
+    }
+
+    // ===================================================
+
     private Sql2o sql2o;
 
     public Database(String dbPath) throws IOException, MigrationFailedException {

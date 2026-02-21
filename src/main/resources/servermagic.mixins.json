@@ -6,7 +6,8 @@
     "PlayerSwingMixin",
     "PlayerDismountMixin",
     "PlayerOnDeathMixin",
-    "ItemOnBreakMixin"
+    "ItemOnBreakMixin",
+    "PlayerAdvancementsMixin"
   ],
   "injectors": {
     "defaultRequire": 1

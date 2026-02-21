@@ -99,6 +99,8 @@ public class ServerMagic implements ModInitializer {
 		ServerLifecycleEvents.SERVER_STARTED.register(server -> {
 			try {
 				Database database = new Database("config/servermagic/data.db");
+				// needed for mixins :(
+				Database.SetDB(database);
 				// initialize spell caster singleton
 				PlayerSpellFocusCaster.Init(database);
 				WebPortal webPortal = new WebPortal(database, server);
