@@ -77,4 +77,17 @@ public class SkillUnlocks {
             return Optional.of(unlock.get(0));
         });
     }
+
+    public static void SetSkillAvailability(Database db, String username, String skillId, boolean available) {
+        db.transaction(conn -> {
+            conn.createQuery(
+                    "update skillunlocks set available_in_tree = :available where username = :username and skill = :skill")
+                    .addParameter("available", available ? 1 : 0)
+                    .addParameter("username", username)
+                    .addParameter("skill", skillId)
+                    .executeUpdate();
+            conn.commit();
+            return null;
+        });
+    }
 }

@@ -22,6 +22,9 @@ public class SkillRoutes extends RouteGroup {
         app.get("/api/skills/tree", ctx -> {
             String username = this.getAuthSubject(ctx);
 
+            // Ensure availability is synced
+            SkillTree.UpdateSpellAvailabiltyForPlayer(db, username);
+
             // first we get the skill trees setup
             List<SkillTree> trees = SkillTree.GetTrees();
 

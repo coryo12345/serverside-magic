@@ -73,13 +73,38 @@ public class SkillTree {
         if (su.isEmpty()) {
             return;
         }
-        
+
+        List<SkillUnlocks> unlockedRows = su.get();
+        Map<String, Integer> currentAvailability = new HashMap<>();
+        for (SkillUnlocks row : unlockedRows) {
+            currentAvailability.put(row.skill, row.available_in_tree);
+        }
+
         List<SkillTree> trees = GetTrees();
 
-        // we need to recurse over the nodes in each tree. 
-        // For skill tree node, check if the player has the skillunlock for it.
-        // If the player does not have the skillunlock, do not look at any of this nodes children.
-        // If the player has the unlock, and it is marked as available, continue on with each of the children of this node.
-        // If the player has the unlock, but it is not marked as available, save this skill to a list, we need to mark it as available. Continue on with all children of this node
+        for (SkillTree tree : trees) {
+            updateNodeRecursive(db, player, tree, true, currentAvailability);
+        }
+    }
+
+    private static void updateNodeRecursive(Database db, String player, SkillTree node, boolean parentAvailable,
+            Map<String, Integer> currentAvailability) {
+        String skillId = node.skill.id();
+        boolean isUnlocked = currentAvailability.containsKey(skillId);
+
+        boolean shouldBeAvailable = isUnlocked && parentAvailable;
+
+        if (isUnlocked) {
+            int currentVal = currentAvailability.get(skillId);
+            int newVal = shouldBeAvailable ? 1 : 0;
+
+            if (currentVal != newVal) {
+                SkillUnlocks.SetSkillAvailability(db, player, skillId, shouldBeAvailable);
+            }
+        }
+
+        for (SkillTree branch : node.branches) {
+            updateNodeRecursive(db, player, branch, shouldBeAvailable, currentAvailability);
+        }
     }
 }

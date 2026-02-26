@@ -15,6 +15,7 @@ import net.minecraft.server.level.ServerPlayer;
 import servermagic.db.Database;
 import servermagic.db.tables.SkillUnlocks;
 import servermagic.web.skill.Skill;
+import servermagic.web.skill.SkillTree;
 import servermagic.web.skill.Skills;
 
 @Mixin(PlayerAdvancements.class)
@@ -37,8 +38,16 @@ public abstract class PlayerAdvancementsMixin {
 
         String advancementResourceLocation = advancementHolder.id().toShortString();
         List<Skill> skillsToUnlock = Skills.GetSkillsAwardedForAdvancement(advancementResourceLocation);
+        boolean anyUnlocked = false;
         for (Skill s : skillsToUnlock) {
-            SkillUnlocks.UnlockSkillForPlayerIfAble(db.get(), player.getPlainTextName(), s);
+            Optional<SkillUnlocks> su = SkillUnlocks.UnlockSkillForPlayerIfAble(db.get(), player.getPlainTextName(), s);
+            if (su.isPresent()) {
+                anyUnlocked = true;
+            }
+        }
+
+        if (anyUnlocked) {
+            SkillTree.UpdateSpellAvailabiltyForPlayer(db.get(), player.getPlainTextName());
         }
     }
 }
