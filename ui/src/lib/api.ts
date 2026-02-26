@@ -3,7 +3,6 @@ import { Result } from "./result";
 import type {
   PlayerSpellResponse,
   SkillTree,
-  SkillUnlock,
   SpellSlot,
 } from "./types";
 
@@ -104,18 +103,6 @@ class MagicAPI {
     return this.request(url, { method: "GET", responseType: "json" });
   }
 
-  async unlockSkill(skillId: string): Promise<Result<SkillUnlock>> {
-    const url = new URL("/api/skills/unlock", window.location.origin);
-    const formData = new FormData();
-    formData.append("skillId", skillId);
-    return this.request(url, {
-      method: "POST",
-      body: formData,
-      responseType: "json",
-    });
-  }
-
-  // post resettree - reset a skill tree
   // get secrets - get all secret skills unlocked
 }
 

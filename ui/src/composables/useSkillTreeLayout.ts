@@ -9,6 +9,8 @@ export interface PositionedNode {
   x: number;
   y: number;
   parentId: string | null;
+  advancementName?: string;
+  unlockDescription?: string;
 }
 
 export interface Connection {
@@ -51,6 +53,8 @@ export function useSkillTreeLayout(rootTree: Ref<SkillTree> | SkillTree) {
         x,
         y,
         parentId: tree.skill.parentId,
+        advancementName: tree.skill.advancementName,
+        unlockDescription: tree.skill.unlockDescription,
       });
 
       if (parentPos) {

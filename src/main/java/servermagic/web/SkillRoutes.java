@@ -41,29 +41,6 @@ public class SkillRoutes extends RouteGroup {
 
             ctx.status(200).json(trees);
         });
-
-        app.post("/api/skills/unlock", ctx -> {
-            String username = this.getAuthSubject(ctx);
-            String skillId = ctx.formParam("skillId");
-            if (skillId == null || skillId.trim().length() == 0) {
-                ctx.status(404).result("Skill not found");
-                return;
-            }
-
-            List<Skill> skills = Skills.GetAllSkills();
-            Optional<Skill> requestedSkill = skills.stream().filter(s -> s.id().equals(skillId)).findFirst();
-            if (requestedSkill.isEmpty()) {
-                ctx.status(404).result("Skill not found");
-                return;
-            }
-
-            Optional<SkillUnlocks> unlock = SkillUnlocks.UnlockSkillForPlayerIfAble(db, username, requestedSkill.get());
-            if (unlock.isEmpty()) {
-                ctx.status(400).result("Not able to unlock skill");
-                return;
-            }
-            ctx.status(200).json(unlock);
-        });
     }
 
     private void markUnlocked(SkillTree tree, List<String> unlockedSkillIds) {

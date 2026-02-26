@@ -119,7 +119,6 @@
     <SkillDetailDialog
       v-model:visible="isDetailsOpen"
       :node="selectedNode"
-      @unlocked="$emit('reload')"
     />
   </div>
 </template>

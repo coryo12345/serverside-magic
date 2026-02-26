@@ -1,51 +1,13 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
 import Dialog from "primevue/dialog";
-import Button from "primevue/button";
 import Tag from "primevue/tag";
-import Message from "primevue/message";
-import { api } from "../../lib/api";
 import type { PositionedNode } from "../../composables/useSkillTreeLayout";
 
-const props = defineProps<{
+defineProps<{
   node: PositionedNode | null;
 }>();
 
-const emit = defineEmits<{
-  (e: "unlocked"): void;
-}>();
-
 const visible = defineModel<boolean>("visible");
-const loading = ref(false);
-const error = ref<string | null>(null);
-
-// Placeholder for future logic where we might have requirements like level or resources
-const requirementsMet = computed(() => {
-  // In the future, this would check against the user's current status
-  return true;
-});
-
-const unlock = async () => {
-  if (!props.node) return;
-  
-  loading.value = true;
-  error.value = null;
-  
-  try {
-    const result = await api.unlockSkill(props.node.id);
-    if (!result.isError()) {
-      emit("unlocked");
-      visible.value = false;
-    } else {
-      error.value = result.error?.toString() || "Failed to unlock skill";
-    }
-  } catch (e) {
-    error.value = "An unexpected error occurred: " + (e as Error).message;
-    console.error(e);
-  } finally {
-    loading.value = false;
-  }
-};
 </script>
 
 <template>
@@ -56,6 +18,7 @@ const unlock = async () => {
     :header="node?.name || 'Skill Details'"
     :style="{ width: '30rem' }"
     :breakpoints="{ '1199px': '75vw', '575px': '90vw' }"
+    :class="{ 'border-2 border-primary-500': node?.unlocked }"
   >
     <div v-if="node" class="flex flex-col gap-6">
       <!-- Skill Info -->
@@ -98,34 +61,36 @@ const unlock = async () => {
           </p>
         </div>
 
-        <!-- Unlock Section -->
-        <div v-if="!node.unlocked" class="pt-4 border-t border-surface-200 dark:border-surface-700">
-          <div class="mb-4">
-             <label class="text-sm font-semibold text-surface-500 dark:text-surface-400 block mb-2">
-                Requirements
-             </label>
-             <div v-if="requirementsMet" class="flex items-center gap-2 text-sm text-green-600 dark:text-green-400">
-                <i class="pi pi-check-circle"></i>
-                <span>All requirements met</span>
-             </div>
-             <div v-else class="flex items-center gap-2 text-sm text-orange-600 dark:text-orange-400">
-                <i class="pi pi-exclamation-triangle"></i>
-                <span>You do not meet the requirements to unlock this skill.</span>
-             </div>
+        <!-- Unlock Requirements -->
+        <div v-if="node.advancementName || node.unlockDescription" class="pt-4 border-t border-surface-200 dark:border-surface-700">
+          <label class="text-sm font-semibold text-surface-500 dark:text-surface-400 block mb-2">
+             {{ node.unlocked ? 'Unlock Requirements' : 'How to Unlock' }}
+          </label>
+          
+          <div v-if="node.advancementName" class="mb-3">
+            <div class="flex items-start gap-2 text-surface-900 dark:text-surface-100">
+              <i class="pi pi-shield mt-1 text-primary-500"></i>
+              <div>
+                <span class="font-medium">Advancement:</span>
+                <p class="text-sm text-surface-600 dark:text-surface-400">
+                  {{ node.advancementName }}
+                </p>
+              </div>
+            </div>
           </div>
 
-          <Button
-            label="Unlock Skill"
-            icon="pi pi-unlock"
-            class="w-full"
-            :loading="loading"
-            :disabled="!requirementsMet"
-            @click="unlock"
-          />
-          
-          <Message v-if="error" severity="error" class="mt-4" closable @close="error = null">
-            {{ error }}
-          </Message>
+          <div v-if="node.unlockDescription">
+            <div class="flex items-start gap-2 text-surface-900 dark:text-surface-100">
+              <i class="pi pi-info-circle mt-1 text-primary-500"></i>
+              <div>
+                <span v-if="node.advancementName" class="font-medium">Additional Info:</span>
+                <span v-else class="font-medium">Requirement:</span>
+                <p class="text-sm text-surface-600 dark:text-surface-400">
+                  {{ node.unlockDescription }}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

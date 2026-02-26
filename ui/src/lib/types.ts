@@ -24,16 +24,13 @@ export type Skill = {
   name: string;
   description: string;
   parentId: string;
+  advancementResourceLocation: string;
+  advancementName: string;
+  unlockDescription: string;
 };
 
 export type SkillTree = {
   skill: Skill;
   unlocked: boolean;
   branches: SkillTree[];
-};
-
-export type SkillUnlock = {
-  id: number;
-  username: string;
-  skill: string; // Skill.id
 };
