@@ -17,12 +17,12 @@ public class SkillUnlocksInit extends BaseMigration {
                 create table if not exists skillunlocks (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     username TEXT not null,
-                    skill TEXT not null
+                    skill TEXT not null,
+                    available_in_tree TINYINT not null default 0
                 );
                 """,
                 "create index skillunlocks_user_idx on skillunlocks (username);",
-                "create index skillunlocks_skill_idx on skillunlocks (skill);",
-                "create index skillunlocks_compound_idx on skillunlocks (username, skill);");
+                "create index skillunlocks_compound_idx on skillunlocks (username, skill, available_in_tree);");
     }
 
 }

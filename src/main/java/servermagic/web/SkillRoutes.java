@@ -7,9 +7,7 @@ import io.javalin.Javalin;
 import net.minecraft.server.MinecraftServer;
 import servermagic.db.Database;
 import servermagic.db.tables.SkillUnlocks;
-import servermagic.web.skill.Skill;
 import servermagic.web.skill.SkillTree;
-import servermagic.web.skill.Skills;
 
 public class SkillRoutes extends RouteGroup {
 
@@ -28,7 +26,7 @@ public class SkillRoutes extends RouteGroup {
             List<SkillTree> trees = SkillTree.GetTrees();
 
             // then we need to determine which skills the player has and mark accordingly
-            Optional<List<SkillUnlocks>> unlocks = SkillUnlocks.GetAllPlayerUnlockedSkills(db, username);
+            Optional<List<SkillUnlocks>> unlocks = SkillUnlocks.GetAllPlayerUnlockedSkills(db, username, false);
             if (unlocks.isEmpty()) {
                 ctx.status(500).result("Unable to determine unlocked skills for player");
                 return;

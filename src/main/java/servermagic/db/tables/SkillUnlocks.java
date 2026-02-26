@@ -10,12 +10,16 @@ public class SkillUnlocks {
     public Long id;
     public String username;
     public String skill;
+    public int available_in_tree;
 
-    public static boolean IsSkillUnlocked(Database db, String username, Skill sk) {
+    public static boolean IsSkillUnlocked(Database db, String username, Skill sk, boolean includeUnavailable) {
         Optional<SkillUnlocks> row = db.query(conn -> {
+            String sql = "select * from skillunlocks where username = :username and skill = :skill";
+            if (!includeUnavailable) {
+                sql = sql + " and available_in_tree = 1";
+            }
             List<SkillUnlocks> su = conn
-                    .createQuery(
-                            "select * from skillunlocks where username = :username and skill = :skill")
+                    .createQuery(sql)
                     .addParameter("username", username)
                     .addParameter("skill", sk.id())
                     .executeAndFetch(SkillUnlocks.class);
@@ -28,9 +32,14 @@ public class SkillUnlocks {
         return row.isPresent();
     }
 
-    public static Optional<List<SkillUnlocks>> GetAllPlayerUnlockedSkills(Database db, String username) {
+    public static Optional<List<SkillUnlocks>> GetAllPlayerUnlockedSkills(Database db, String username,
+            boolean includeUnavailable) {
         return db.query(conn -> {
-            List<SkillUnlocks> su = conn.createQuery("select * from skillunlocks where username = :username")
+            String sql = "select * from skillunlocks where username = :username";
+            if (!includeUnavailable) {
+                sql = sql + " and available_in_tree = 1";
+            }
+            List<SkillUnlocks> su = conn.createQuery(sql)
                     .addParameter("username", username)
                     .executeAndFetch(SkillUnlocks.class);
 
@@ -42,8 +51,7 @@ public class SkillUnlocks {
         return db.transaction(conn -> {
             // see if the player already has this skill
             List<SkillUnlocks> su = conn
-                    .createQuery(
-                            "select * from skillunlocks where username = :username and skill = :skill")
+                    .createQuery("select * from skillunlocks where username = :username and skill = :skill")
                     .addParameter("username", username)
                     .addParameter("skill", skill.id())
                     .executeAndFetch(SkillUnlocks.class);

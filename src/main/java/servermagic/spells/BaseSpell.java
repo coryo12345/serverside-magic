@@ -56,7 +56,7 @@ public abstract class BaseSpell {
         if (skill.isEmpty()) {
             return true;
         }
-        return SkillUnlocks.IsSkillUnlocked(db, player.getPlainTextName(), skill.get());
+        return SkillUnlocks.IsSkillUnlocked(db, player.getPlainTextName(), skill.get(), false);
     }
 
     public abstract String displayName();

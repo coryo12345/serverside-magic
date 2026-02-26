@@ -3,9 +3,9 @@ package servermagic.web.spell;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
-import java.util.Map.Entry;
 
 import org.reflections.Reflections;
 
@@ -62,7 +62,7 @@ public class Spells {
 
     public Optional<Map<String, UISpellDefinition>> allForPlayer(Database db, String username) {
         // get player unlocked skills
-        Optional<List<SkillUnlocks>> unlocks = SkillUnlocks.GetAllPlayerUnlockedSkills(db, username);
+        Optional<List<SkillUnlocks>> unlocks = SkillUnlocks.GetAllPlayerUnlockedSkills(db, username, false);
         if (unlocks.isEmpty()) {
             return Optional.empty();
         }
