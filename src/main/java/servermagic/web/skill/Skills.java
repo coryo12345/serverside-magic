@@ -7,15 +7,18 @@ import java.util.List;
 import servermagic.ServerMagic;
 
 public class Skills {
-    public static final Skill ANGEL_WINGS = new Skill("angel_wings", "Angel Wings", "Summon wings and fly!", null);
+    public static final Skill ANGEL_WINGS = new Skill("angel_wings", "Angel Wings", "Summon wings and fly!", null)
+            .setAdvancement("end/elytra", "Sky's the limit");
     public static final Skill SUMMON_MOUNT = new Skill("summon_mount", "Mount: Horse", "Summon your loyal steed",
-            ANGEL_WINGS.id());
+            ANGEL_WINGS.id())
+            .setAdvancement("husbandry/tame_an_animal", "Best friends forever");
     public static final Skill BATTLEMAGE_ARMOR = new Skill("battlemage_armor", "Battlemage Armor",
             "Summon a suit of bound armor", ANGEL_WINGS.id());
     public static final Skill FIREBOLT = new Skill("firebolt", "Firebolt", "Shoot a short bolt of fire",
             ANGEL_WINGS.id());
     public static final Skill SPEED_SPELL = new Skill("speed_spell", "Speed Spell",
-            "Enhance self with a burst of speed", ANGEL_WINGS.id());
+            "Enhance self with a burst of speed", ANGEL_WINGS.id())
+            .setAdvancement("nether/brew_potion", "Local brewery");
     public static final Skill CHAIN_LIGHTNING = new Skill("chain_lightning", "Chain Lightning",
             "Shoot an arcing blast of lightning that chains between enemies", ANGEL_WINGS.id());
     public static final Skill FIREBALL = new Skill("fireball", "Fireball",
