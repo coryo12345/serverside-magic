@@ -60,9 +60,6 @@ public class SkillUnlocks {
                 return Optional.of(su.get(0));
             }
 
-            // TODO check player skill points
-            // TODO if enough, deduct points from player
-
             List<SkillUnlocks> unlock = conn
                     .createQuery("insert into skillunlocks (username, skill) values (:username, :skill) returning *")
                     .addParameter("username", username)
