@@ -52,8 +52,10 @@ public class PlayerSwingMixin {
 			return;
 		}
 
-		// we need to delay this because the swing can happen before the punch attack is registered
-		// If that happens, the players attack strength wont have dropped so we have no clue 
+		// we need to delay this because the swing can happen before the punch attack is
+		// registered
+		// If that happens, the players attack strength wont have dropped so we have no
+		// clue
 		// if this was an interaction, block placement, dropping something, etc..
 		TaskScheduler.scheduleTask(() -> {
 			if (player.getAttackStrengthScale(0.0F) >= 0.5F) {
@@ -70,7 +72,7 @@ public class PlayerSwingMixin {
 			// swing can incorrectly trigger this
 			// idk the solution though so this works for now
 			if (item.get() instanceof ISpellFocus spellFocus) {
-				spellFocus.cast(world, player, ClickType.LEFT_CLICK);
+				spellFocus.cast(world, player, InteractionHand.MAIN_HAND, ClickType.LEFT_CLICK);
 			}
 		}, 1);
 	}

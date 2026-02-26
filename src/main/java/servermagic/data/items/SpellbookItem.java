@@ -12,7 +12,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.phys.EntityHitResult;
 import servermagic.data.items.utils.ISpellFocus;
 import servermagic.spells.utils.ClickType;
-import servermagic.spells.utils.PlayerSpellFocusCaster;
 
 public class SpellbookItem extends CustomItem implements ISpellFocus {
     public static final String ID = "base_spellbook";
@@ -31,16 +30,7 @@ public class SpellbookItem extends CustomItem implements ISpellFocus {
 
     @Override
     public InteractionResult onUse(ServerLevel world, ServerPlayer player, InteractionHand hand) {
-        try {
-            PlayerSpellFocusCaster caster = PlayerSpellFocusCaster.Get();
-            InteractionResult ir = caster.handleClick(world, player, ClickType.RIGHT_CLICK);
-            if (ir == InteractionResult.SUCCESS) {
-                player.getCooldowns().addCooldown(player.getItemInHand(hand), 20);
-            }
-            return ir;
-        } catch (Exception e) {
-            return InteractionResult.FAIL;
-        }
+        return this.cast(world, player, hand, ClickType.RIGHT_CLICK);
     }
 
     @Override
