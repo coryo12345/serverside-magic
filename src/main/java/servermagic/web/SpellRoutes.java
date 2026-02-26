@@ -71,6 +71,31 @@ public class SpellRoutes extends RouteGroup {
             }
             ctx.status(200).json(ss.get());
         });
+
+        app.delete("/api/spells/slot", ctx -> {
+            String username = this.getAuthSubject(ctx);
+            String slotStr = ctx.queryParam("slot");
+
+            if (slotStr == null) {
+                ctx.status(400).result("slot is required");
+                return;
+            }
+
+            int slot;
+            try {
+                slot = Integer.parseInt(slotStr);
+            } catch (NumberFormatException e) {
+                ctx.status(400).result("slot is not valid");
+                return;
+            }
+            if (!SpellSlots.isValidSlot(slot)) {
+                ctx.status(400).result("slot is not valid");
+                return;
+            }
+
+            SpellSlot.ClearSlotForPlayer(db, username, slot);
+            ctx.status(204);
+        });
     }
 
 }

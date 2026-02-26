@@ -42,35 +42,52 @@ onMounted(async () => {
 });
 
 async function onSlotChange(slotIndex: number | string, event: any) {
-  if (!event.added) return;
   slotIndex = parseInt(slotIndex.toString());
-  const newSpell = event.added.element;
-  const currentSlot = slots.value[slotIndex];
-  if (!currentSlot) return;
 
-  let originalSlotState: SpellDefinition[] = [];
-  if (currentSlot.length > 1) {
-    // The one that is NOT the new spell was the old one
-    originalSlotState = currentSlot.filter((s) => s.id !== newSpell.id);
-  } else {
-    // It was empty before
-    originalSlotState = [];
-  }
+  if (event.added) {
+    const newSpell = event.added.element;
+    const currentSlot = slots.value[slotIndex];
+    if (!currentSlot) return;
 
-  // Optimistic update: Enforce single item
-  slots.value[slotIndex] = [newSpell];
+    let originalSlotState: SpellDefinition[] = [];
+    if (currentSlot.length > 1) {
+      // The one that is NOT the new spell was the old one
+      originalSlotState = currentSlot.filter((s) => s.id !== newSpell.id);
+    } else {
+      // It was empty before
+      originalSlotState = [];
+    }
 
-  const result = await api.setSpellSlot(newSpell.id, slotIndex);
-  if (result.isError()) {
-    // Revert state
-    slots.value[slotIndex] = originalSlotState;
+    // Optimistic update: Enforce single item
+    slots.value[slotIndex] = [newSpell];
 
-    toast.add({
-      severity: "error",
-      summary: "Error",
-      detail: "Failed to assign spell",
-      life: 3000,
-    });
+    const result = await api.setSpellSlot(newSpell.id, slotIndex);
+    if (result.isError()) {
+      // Revert state
+      slots.value[slotIndex] = originalSlotState;
+
+      toast.add({
+        severity: "error",
+        summary: "Error",
+        detail: "Failed to assign spell",
+        life: 3000,
+      });
+    }
+  } else if (event.removed) {
+    const removedSpell = event.removed.element;
+    const result = await api.clearSpellSlot(slotIndex);
+
+    if (result.isError()) {
+      // Revert state
+      slots.value[slotIndex] = [removedSpell];
+
+      toast.add({
+        severity: "error",
+        summary: "Error",
+        detail: "Failed to clear slot",
+        life: 3000,
+      });
+    }
   }
 }
 </script>
