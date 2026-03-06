@@ -8,7 +8,7 @@ import servermagic.ServerMagic;
 
 public class Skills {
         public static final Skill UNLOCK_MAGIC = new Skill("unlock_magic", "Unlock Magic", "Unlock the use of magic!",
-                        null);
+                        null).setAdvancement("end/root", "The End");
         public static final Skill SUMMON_MOUNT = new Skill("summon_mount", "Mount: Horse", "Summon your loyal steed",
                         UNLOCK_MAGIC.id())
                         .setAdvancement("husbandry/tame_an_animal", "Best friends forever");
@@ -19,6 +19,12 @@ public class Skills {
         public static final Skill SPEED_SPELL = new Skill("speed_spell", "Speed Spell",
                         "Enhance self with a burst of speed", UNLOCK_MAGIC.id())
                         .setAdvancement("nether/brew_potion", "Local brewery");
+        public static final Skill INSTANT_HEALTH_SPELL = new Skill("instant_health_spell", "Heal Spell",
+                        "Heal a small amount of hearts", SPEED_SPELL.id());
+        public static final Skill INSTANT_HEALTH_SPLASH_SPELL = new Skill("instant_health_splash_spell", "Heal Others",
+                        "Throw a splash healing mist", INSTANT_HEALTH_SPELL.id());
+        public static final Skill FIRE_RESISTANCE_SPELL = new Skill("fire_resistance_spell", "Fire Resistance",
+                        "Grant fire resistance to yourself", SPEED_SPELL.id());
         public static final Skill FIREBALL = new Skill("fireball", "Fireball",
                         "Shoot an explosive fireball", FIREBOLT.id());
         public static final Skill WITHERBLAST = new Skill("witherblast", "Witherblast",

@@ -15,6 +15,7 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.ItemStack;
 import servermagic.data.items.CustomItem;
 import servermagic.data.items.utils.ItemInteractionDispatcher;
 import servermagic.db.Database;
@@ -25,6 +26,7 @@ import servermagic.mana.ManaTracker;
 import servermagic.spells.SummonMount;
 import servermagic.spells.utils.PlayerSpellFocusCaster;
 import servermagic.web.WebPortal;
+import servermagic.web.skill.SkillGranter;
 import servermagic.web.spell.Spells;
 
 public class ServerMagic implements ModInitializer {
@@ -46,11 +48,17 @@ public class ServerMagic implements ModInitializer {
 		UseItemCallback.EVENT.register((player, world, hand) -> {
 			ItemInteractionDispatcher dispatcher = new ItemInteractionDispatcher(world, player, hand);
 			Optional<CustomItem> item = dispatcher.getHeldCustomItem();
-			if (item.isEmpty()) {
-				return InteractionResult.PASS;
-			} else {
+			if (!item.isEmpty()) {
 				return dispatcher.dispatchUse();
 			}
+			// TODO detect item type here
+			Optional<Database> db = Database.GetDB();
+			if (db.isPresent() && world instanceof ServerLevel && player instanceof ServerPlayer) {
+				SkillGranter granter = new SkillGranter((ServerLevel) world, (ServerPlayer) player, db.get());
+				ItemStack stack = player.getItemInHand(hand);
+				granter.grantFromItemUse(stack);
+			}
+			return InteractionResult.PASS;
 		});
 
 		AttackEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
