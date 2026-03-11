@@ -22,27 +22,37 @@
       :style="{
         transform: `translate(${offset.x}px, ${offset.y}px) scale(${scale})`,
         transformOrigin: '0 0',
+        willChange: 'transform',
       }"
     >
       <!-- Connections (SVG) -->
       <svg class="absolute inset-0 overflow-visible pointer-events-none">
-        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-          <feGaussianBlur stdDeviation="3" result="blur" />
-          <feComposite in="SourceGraphic" in2="blur" operator="over" />
-        </filter>
-        <line
-          v-for="(conn, index) in connections"
-          :key="index"
-          :x1="conn.from.x"
-          :y1="conn.from.y"
-          :x2="conn.to.x"
-          :y2="conn.to.y"
-          :stroke="conn.unlocked ? '#a855f7' : '#334155'"
-          :stroke-width="conn.unlocked ? 4 : 2"
-          :stroke-dasharray="conn.unlocked ? '0' : '8,4'"
-          class="connection-line"
-          :class="{ unlocked: conn.unlocked }"
-        />
+        <g v-for="(conn, index) in connections" :key="index">
+          <!-- Glow Layer (Static geometry instead of expensive filter) -->
+          <line
+            v-if="conn.unlocked"
+            :x1="conn.from.x"
+            :y1="conn.from.y"
+            :x2="conn.to.x"
+            :y2="conn.to.y"
+            stroke="#a855f7"
+            stroke-width="12"
+            opacity="0.2"
+            stroke-linecap="round"
+          />
+          <!-- Core Line -->
+          <line
+            :x1="conn.from.x"
+            :y1="conn.from.y"
+            :x2="conn.to.x"
+            :y2="conn.to.y"
+            :stroke="conn.unlocked ? '#a855f7' : '#334155'"
+            :stroke-width="conn.unlocked ? 4 : 2"
+            :stroke-dasharray="conn.unlocked ? '0' : '8,4'"
+            class="connection-line"
+            :class="{ unlocked: conn.unlocked }"
+          />
+        </g>
       </svg>
 
       <!-- Nodes -->
@@ -251,7 +261,7 @@ const resetView = () => {
       rgba(236, 72, 153, 0.1) 0%,
       transparent 60%
     );
-  filter: blur(60px);
+  /* filter: blur(60px); Removed for performance */
   animation: nebula-float 30s ease-in-out infinite alternate;
 }
 
@@ -317,7 +327,6 @@ const resetView = () => {
 }
 
 .connection-line {
-  filter: drop-shadow(0 0 4px rgba(168, 85, 247, 0.3));
   transition: all 0.5s ease;
 }
 
@@ -329,14 +338,9 @@ const resetView = () => {
 @keyframes flow {
   0% {
     stroke-dashoffset: 0;
-    filter: drop-shadow(0 0 4px rgba(168, 85, 247, 0.6));
-  }
-  50% {
-    filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.9));
   }
   100% {
     stroke-dashoffset: -20;
-    filter: drop-shadow(0 0 4px rgba(168, 85, 247, 0.6));
   }
 }
 </style>
