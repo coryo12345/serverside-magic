@@ -12,6 +12,8 @@ public class Skills {
         public static final Skill SUMMON_MOUNT = new Skill("summon_mount", "Mount: Horse", "Summon your loyal steed",
                         UNLOCK_MAGIC.id())
                         .setAdvancement("husbandry/tame_an_animal", "Best friends forever");
+        public static final Skill BOUND_SWORD = new Skill("bound_sword", "Bound Sword", "Conjure a bound sword",
+                        UNLOCK_MAGIC.id());
         public static final Skill BATTLEMAGE_ARMOR = new Skill("battlemage_armor", "Battlemage Armor",
                         "Summon a suit of bound armor", UNLOCK_MAGIC.id());
         public static final Skill FIREBOLT = new Skill("firebolt", "Firebolt", "Shoot a short bolt of fire",
