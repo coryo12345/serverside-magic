@@ -8,7 +8,9 @@
     "PlayerOnDeathMixin",
     "ItemOnBreakMixin",
     "PlayerAdvancementsMixin",
-    "PlayerDropMixin"
+    "PlayerDropMixin",
+    "SlotMayPlaceMixin",
+    "ShulkerBoxSlotMayPlaceMixin"
   ],
   "injectors": {
     "defaultRequire": 1

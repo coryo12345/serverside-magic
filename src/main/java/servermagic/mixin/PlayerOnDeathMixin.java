@@ -13,6 +13,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import servermagic.spells.utils.BoundItems;
 import servermagic.spells.utils.SummonedArmor;
 import servermagic.spells.utils.SummonedArmor.ArmorDescriptor;
 
@@ -54,6 +55,12 @@ public class PlayerOnDeathMixin {
 			if (ad.IsTempArmor()) {
 				itemsToRemove.add(item);
 				ItemStack original = SummonedArmor.DecodeOriginalFromSummonedItem(player, item);
+				if (original != null) {
+					itemsToAdd.add(original);
+				}
+			} else if (BoundItems.IsItemBound(item)) {
+				itemsToRemove.add(item);
+				ItemStack original = BoundItems.DecodeOriginalFromBoundItem(player, item);
 				if (original != null) {
 					itemsToAdd.add(original);
 				}
