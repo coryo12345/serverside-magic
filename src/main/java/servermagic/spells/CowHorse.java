@@ -26,7 +26,6 @@ public class CowHorse extends BaseSpell {
         Vec3 playerView = player.getViewVector(1.0F);
         Vec3 entityPosition = new Vec3(position.x + playerView.x, position.y, position.z + playerView.z);
 
-        // TODO summon cow & horse at position.
         Horse horse = EntityType.HORSE.create(world, EntitySpawnReason.COMMAND);
         horse.setPos(entityPosition.x, entityPosition.y, entityPosition.z);
         Cow cow = EntityType.COW.create(world, EntitySpawnReason.COMMAND);
@@ -36,8 +35,6 @@ public class CowHorse extends BaseSpell {
 
         world.addFreshEntity(cow);
         world.addFreshEntity(horse);
-        // then bind them with entitybindingutil.bind
-        // then test!
     }
 
     @Override
