@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
@@ -20,6 +21,9 @@ import servermagic.data.items.CustomItem;
 import servermagic.data.items.utils.ItemInteractionDispatcher;
 import servermagic.db.Database;
 import servermagic.db.MigrationFailedException;
+import servermagic.entitybinding.EntityBindingLifecycleHandler;
+import servermagic.entitybinding.EntityBindingManager;
+import servermagic.entitybinding.EntityBindingTickHandler;
 import servermagic.mana.ManaInfo;
 import servermagic.mana.ManaScoreboard;
 import servermagic.mana.ManaTracker;
@@ -73,6 +77,8 @@ public class ServerMagic implements ModInitializer {
 		// if we need it?
 		// AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
 
+		ServerTickEvents.END_SERVER_TICK.register(EntityBindingTickHandler::tick);
+
 		ServerTickEvents.END_WORLD_TICK.register((ServerLevel world) -> {
 			tickCount = (++tickCount % 1000); // so we dont get too large
 			// once every third second - things that don't need to happen often
@@ -84,6 +90,8 @@ public class ServerMagic implements ModInitializer {
 				this.handleManaRegenUpdates(world);
 			}
 		});
+
+		ServerEntityEvents.ENTITY_UNLOAD.register(EntityBindingLifecycleHandler::onEntityUnload);
 
 		ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
 			ManaInfo manaInfo = manaTracker.initPlayer(handler.player.getPlainTextName());
@@ -126,6 +134,10 @@ public class ServerMagic implements ModInitializer {
 			if (webApp.webPortal != null) {
 				webApp.webPortal.stop();
 			}
+		});
+
+		ServerLifecycleEvents.SERVER_STOPPED.register(server -> {
+			EntityBindingManager.clearCache();
 		});
 	}
 
