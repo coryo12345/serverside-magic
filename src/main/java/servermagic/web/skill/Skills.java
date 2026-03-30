@@ -93,6 +93,12 @@ public class Skills {
         // Elemental Attakcs
         public static final Skill FIREBALL = new Skill("fireball", "Fireball",
                         "Shoot an explosive fireball", FIREBOLT.id());
+        public static final Skill BUILD_LINE = new Skill("build_line", "Build: Line", "Build blocks in a line",
+                        UNLOCK_MAGIC.id());
+        public static final Skill BUILD_SQUARE = new Skill("build_square", "Build: Square",
+                        "Build a hollow square around the player", BUILD_LINE.id());
+        public static final Skill BUILD_RING = new Skill("build_ring", "Build: Ring",
+                        "Build a hollow ring around the player", BUILD_LINE.id());
         public static final Skill LIGHTNING_STRIKE = new Skill("lightning_strike", "Lightning Strike",
                         "Strike your target with a bolt of lightning from above", FIREBOLT.id());
         public static final Skill CHAIN_LIGHTNING = new Skill("chain_lightning", "Chain Lightning",
