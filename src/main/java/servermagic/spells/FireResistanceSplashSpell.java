@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import servermagic.db.Database;
@@ -14,8 +15,8 @@ import servermagic.web.skill.Skills;
 
 public class FireResistanceSplashSpell extends BaseSpell {
 
-    public FireResistanceSplashSpell(ServerLevel world, ServerPlayer player, Database db) {
-        super(world, player, db);
+    public FireResistanceSplashSpell(ServerLevel world, ServerPlayer player, Database db, InteractionHand hand) {
+        super(world, player, db, hand);
     }
 
     @Override

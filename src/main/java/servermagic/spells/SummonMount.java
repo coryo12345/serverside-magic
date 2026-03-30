@@ -5,6 +5,7 @@ import java.util.Optional;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
@@ -20,8 +21,8 @@ public class SummonMount extends BaseSpell {
 
     private final static String CUSTOM_HORSE_TAG = "server-magic-mount-horse";
 
-    public SummonMount(ServerLevel world, ServerPlayer player, Database db) {
-        super(world, player, db);
+    public SummonMount(ServerLevel world, ServerPlayer player, Database db, InteractionHand hand) {
+        super(world, player, db, hand);
     }
 
     @Override

@@ -6,6 +6,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import servermagic.db.Database;
 import servermagic.db.tables.PlayerCastStatus;
@@ -42,7 +43,7 @@ public class PlayerSpellFocusCaster {
      * @return SUCCESS if spell was cast, FAIL if something went wrong, PASS
      *         otherwise
      */
-    public InteractionResult handleClick(ServerLevel world, ServerPlayer player, ClickType clickType) {
+    public InteractionResult handleClick(ServerLevel world, ServerPlayer player, InteractionHand hand, ClickType clickType) {
         Optional<PlayerCastResult> playerCastStatus = PlayerCastStatus.UpdateCastForPlayer(db,
                 player.getPlainTextName(), clickType, player.isCrouching());
         if (playerCastStatus.isEmpty()) {

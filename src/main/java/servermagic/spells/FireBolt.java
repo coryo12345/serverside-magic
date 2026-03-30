@@ -6,6 +6,7 @@ import java.util.Optional;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.Vec3;
@@ -16,8 +17,8 @@ import servermagic.web.skill.Skills;
 
 public class FireBolt extends BaseSpell {
 
-    public FireBolt(ServerLevel world, ServerPlayer player, Database db) {
-        super(world, player, db);
+    public FireBolt(ServerLevel world, ServerPlayer player, Database db, InteractionHand hand) {
+        super(world, player, db, hand);
     }
 
     @Override

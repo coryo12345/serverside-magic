@@ -4,14 +4,15 @@ import java.util.Optional;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
 import servermagic.db.Database;
 import servermagic.web.skill.Skill;
 import servermagic.web.skill.Skills;
 
 public class InstantHealthSpell extends BaseSpell {
 
-    public InstantHealthSpell(ServerLevel world, ServerPlayer player, Database db) {
-        super(world, player, db);
+    public InstantHealthSpell(ServerLevel world, ServerPlayer player, Database db, InteractionHand hand) {
+        super(world, player, db, hand);
     }
 
     @Override

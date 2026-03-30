@@ -63,20 +63,10 @@ public class SkillGranter {
                         skillsPotentiallyEarned.add(Skills.INSTANT_HEALTH_SPLASH_SPELL);
                     } else if (effect.getEffect().equals(MobEffects.FIRE_RESISTANCE)) {
                         skillsPotentiallyEarned.add(Skills.FIRE_RESISTANCE_SPLASH_SPELL);
-                    } else if (effect.getEffect().equals(MobEffects.JUMP_BOOST)) {
-                        skillsPotentiallyEarned.add(Skills.JUMP_BOOST_SPLASH_SPELL);
-                    } else if (effect.getEffect().equals(MobEffects.SLOW_FALLING)) {
-                        skillsPotentiallyEarned.add(Skills.SLOW_FALLING_SPLASH_SPELL);
-                    } else if (effect.getEffect().equals(MobEffects.NIGHT_VISION)) {
-                        skillsPotentiallyEarned.add(Skills.NIGHT_VISION_SPLASH_SPELL);
                     } else if (effect.getEffect().equals(MobEffects.INVISIBILITY)) {
                         skillsPotentiallyEarned.add(Skills.INVISIBILITY_SPLASH_SPELL);
-                    } else if (effect.getEffect().equals(MobEffects.WATER_BREATHING)) {
-                        skillsPotentiallyEarned.add(Skills.WATER_BREATHING_SPLASH_SPELL);
                     } else if (effect.getEffect().equals(MobEffects.REGENERATION)) {
                         skillsPotentiallyEarned.add(Skills.REGENERATION_SPLASH_SPELL);
-                    } else if (effect.getEffect().equals(MobEffects.STRENGTH)) {
-                        skillsPotentiallyEarned.add(Skills.STRENGTH_SPLASH_SPELL);
                     }
                 }
             }

@@ -5,6 +5,7 @@ import java.util.Optional;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
@@ -15,8 +16,8 @@ import servermagic.web.skill.Skills;
 
 public class BuildSquare extends BaseSpell {
 
-    public BuildSquare(ServerLevel world, ServerPlayer player, Database db) {
-        super(world, player, db);
+    public BuildSquare(ServerLevel world, ServerPlayer player, Database db, InteractionHand hand) {
+        super(world, player, db, hand);
     }
 
     @Override

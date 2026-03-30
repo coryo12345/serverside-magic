@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
@@ -15,8 +16,8 @@ import servermagic.web.skill.Skills;
 
 public class LightningOnTarget extends BaseSpell {
 
-    public LightningOnTarget(ServerLevel world, ServerPlayer player, Database db) {
-        super(world, player, db);
+    public LightningOnTarget(ServerLevel world, ServerPlayer player, Database db, InteractionHand hand) {
+        super(world, player, db, hand);
     }
 
     @Override

@@ -14,14 +14,14 @@ import servermagic.web.skill.Skills;
 
 public class BoundSword extends BaseSpell {
 
-    public BoundSword(ServerLevel world, ServerPlayer player, Database db) {
-        super(world, player, db);
+    public BoundSword(ServerLevel world, ServerPlayer player, Database db, InteractionHand hand) {
+        super(world, player, db, hand);
     }
 
     @Override
     protected void spellImplementation() {
         ItemStack sword = new ItemStack(Items.IRON_SWORD);
-        ItemStack mainHandItem = this.player.getMainHandItem();
+        ItemStack mainHandItem = this.player.getItemInHand(hand);
         BoundItems.BuildBoundItem(this.player, mainHandItem, sword);
         this.player.setItemInHand(InteractionHand.MAIN_HAND, sword);
     }

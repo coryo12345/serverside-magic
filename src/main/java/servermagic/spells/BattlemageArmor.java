@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -21,8 +22,8 @@ public class BattlemageArmor extends BaseSpell {
 
     private final Map<EquipmentSlot, Item> baseTempItems;
 
-    public BattlemageArmor(ServerLevel world, ServerPlayer player, Database db) {
-        super(world, player, db);
+    public BattlemageArmor(ServerLevel world, ServerPlayer player, Database db, InteractionHand hand) {
+        super(world, player, db, hand);
         this.baseTempItems = Map.of(
                 EquipmentSlot.HEAD, Items.CHAINMAIL_HELMET,
                 EquipmentSlot.CHEST, Items.CHAINMAIL_CHESTPLATE,

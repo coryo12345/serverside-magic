@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import servermagic.db.Database;
 import servermagic.db.tables.SkillUnlocks;
@@ -13,11 +14,13 @@ public abstract class BaseSpell {
     protected ServerLevel world;
     protected ServerPlayer player;
     protected Database db;
+    protected InteractionHand hand;
 
-    public BaseSpell(ServerLevel world, ServerPlayer player, Database db) {
+    public BaseSpell(ServerLevel world, ServerPlayer player, Database db, InteractionHand hand) {
         this.world = world;
         this.player = player;
         this.db = db;
+        this.hand = hand;
     }
 
     protected abstract void spellImplementation();

@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -15,8 +16,8 @@ import servermagic.web.skill.Skills;
 
 public class AngelWings extends BaseSpell {
 
-    public AngelWings(ServerLevel world, ServerPlayer player, Database db) {
-        super(world, player, db);
+    public AngelWings(ServerLevel world, ServerPlayer player, Database db, InteractionHand hand) {
+        super(world, player, db, hand);
     }
 
     @Override

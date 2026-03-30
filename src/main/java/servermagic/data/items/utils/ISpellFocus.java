@@ -23,7 +23,7 @@ public interface ISpellFocus {
             }
 
             PlayerSpellFocusCaster caster = PlayerSpellFocusCaster.Get();
-            InteractionResult ir = caster.handleClick(world, player, clickType);
+            InteractionResult ir = caster.handleClick(world, player, hand, clickType);
             if (ir == InteractionResult.SUCCESS) {
                 player.getCooldowns().addCooldown(this.getDefaultItemStack(), this.spellCastCooldown());
             }

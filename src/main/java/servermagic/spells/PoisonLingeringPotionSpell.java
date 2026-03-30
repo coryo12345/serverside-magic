@@ -7,6 +7,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.projectile.throwableitemprojectile.ThrownLingeringPotion;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -18,8 +19,8 @@ import servermagic.web.skill.Skills;
 
 public class PoisonLingeringPotionSpell extends BaseSpell {
 
-    public PoisonLingeringPotionSpell(ServerLevel world, ServerPlayer player, Database db) {
-        super(world, player, db);
+    public PoisonLingeringPotionSpell(ServerLevel world, ServerPlayer player, Database db, InteractionHand hand) {
+        super(world, player, db, hand);
     }
 
     @Override

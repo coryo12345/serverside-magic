@@ -26,25 +26,14 @@ public class Skills {
         public static final Skill JUMP_BOOST_SPELL = new Skill("jump_boost_spell", "Jump Boost",
                         "Leap higher into the air", SPEED_SPELL.id())
                         .setUnlockDescription("Drink a potion of leaping");
-        public static final Skill JUMP_BOOST_SPLASH_SPELL = new Skill("jump_boost_splash_spell", "Jump Boost Others",
-                        "Grant jump boost to others", JUMP_BOOST_SPELL.id())
-                        .setUnlockDescription("Use a splash potion of leaping");
         public static final Skill SLOW_FALLING_SPELL = new Skill("slow_falling_spell", "Slow Falling",
                         "Fall slowly and safely", JUMP_BOOST_SPELL.id())
                         .setUnlockDescription("Drink a potion of slow falling");
-        public static final Skill SLOW_FALLING_SPLASH_SPELL = new Skill("slow_falling_splash_spell",
-                        "Slow Falling Others",
-                        "Grant slow falling to others", SLOW_FALLING_SPELL.id())
-                        .setUnlockDescription("Use a splash potion of slow falling");
 
         // Utility Effects Branch
         public static final Skill NIGHT_VISION_SPELL = new Skill("night_vision_spell", "Night Vision",
                         "See clearly in the dark", SPEED_SPELL.id())
                         .setUnlockDescription("Drink a potion of night vision");
-        public static final Skill NIGHT_VISION_SPLASH_SPELL = new Skill("night_vision_splash_spell",
-                        "Night Vision Others",
-                        "Grant night vision to others", NIGHT_VISION_SPELL.id())
-                        .setUnlockDescription("Use a splash potion of night vision");
         public static final Skill INVISIBILITY_SPELL = new Skill("invisibility_spell", "Invisibility",
                         "Vanish from sight", NIGHT_VISION_SPELL.id())
                         .setUnlockDescription("Drink a potion of invisibility");
@@ -55,10 +44,6 @@ public class Skills {
         public static final Skill WATER_BREATHING_SPELL = new Skill("water_breathing_spell", "Water Breathing",
                         "Breathe underwater", NIGHT_VISION_SPELL.id())
                         .setUnlockDescription("Drink a potion of water breathing");
-        public static final Skill WATER_BREATHING_SPLASH_SPELL = new Skill("water_breathing_splash_spell",
-                        "Water Breathing Others",
-                        "Grant water breathing to others", WATER_BREATHING_SPELL.id())
-                        .setUnlockDescription("Use a splash potion of water breathing");
 
         // Health Branches
         public static final Skill INSTANT_HEALTH_SPELL = new Skill("instant_health_spell", "Heal Spell",
@@ -86,9 +71,6 @@ public class Skills {
         public static final Skill STRENGTH_SPELL = new Skill("strength_spell", "Strength",
                         "Increase melee damage", FIRE_RESISTANCE_SPELL.id())
                         .setUnlockDescription("Drink a potion of strength");
-        public static final Skill STRENGTH_SPLASH_SPELL = new Skill("strength_splash_spell", "Strength Others",
-                        "Grant strength to others", STRENGTH_SPELL.id())
-                        .setUnlockDescription("Use a splash potion of strength");
 
         // Elemental Attakcs
         public static final Skill FIREBALL = new Skill("fireball", "Fireball",

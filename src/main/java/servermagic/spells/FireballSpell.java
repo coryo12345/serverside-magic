@@ -7,6 +7,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.projectile.hurtingprojectile.LargeFireball;
 import net.minecraft.world.phys.Vec3;
 import servermagic.db.Database;
@@ -15,8 +16,8 @@ import servermagic.web.skill.Skills;
 
 public class FireballSpell extends BaseSpell {
 
-    public FireballSpell(ServerLevel world, ServerPlayer player, Database db) {
-        super(world, player, db);
+    public FireballSpell(ServerLevel world, ServerPlayer player, Database db, InteractionHand hand) {
+        super(world, player, db, hand);
     }
 
     @Override
