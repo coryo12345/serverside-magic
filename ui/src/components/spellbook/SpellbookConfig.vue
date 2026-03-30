@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { VueDraggableNext } from "vue-draggable-next";
 import { useToast } from "primevue/usetoast";
 import { api } from "../../lib/api";
@@ -14,6 +14,15 @@ const allSpells = ref<SpellDefinition[]>([]);
 // so we can easily revert actions if the API denies it
 const slots = ref<Record<number, SpellDefinition[]>>({});
 const error = ref<string | null>(null);
+const search = ref("");
+
+const filteredSpells = computed(() => {
+  const q = search.value.trim().toLowerCase();
+  if (!q) return allSpells.value;
+  return allSpells.value.filter((s) =>
+    s.displayName.toLowerCase().includes(q)
+  );
+});
 
 const selectedSpell = ref<SpellDefinition | null>(null);
 const isDialogVisible = ref(false);
@@ -118,19 +127,19 @@ async function onSlotChange(slotIndex: number | string, event: any) {
 
       <!-- Hotbar Slots -->
       <div
-        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-8 mt-4"
+        class="flex flex-wrap gap-x-4 gap-y-6 mt-4"
       >
         <div
           v-for="(slotList, index) in slots"
           :key="index"
-          class="flex flex-col items-center justify-start"
+          class="flex flex-col items-center justify-start w-24 shrink-0 gap-1"
         >
           <p class="text-xs text-surface-400 font-mono text-center text-nowrap">
             {{ slotNumberToString(index) }}
           </p>
 
           <VueDraggableNext
-            class="w-full rounded-xl transition-all duration-200 slot-grid"
+            class="w-24 h-24 rounded-xl transition-all duration-200 slot-grid"
             :class="[
               slotList.length === 0
                 ? 'aspect-square border-2 border-dashed border-surface-300 dark:border-surface-700 bg-surface-50 dark:bg-surface-900 hover:border-surface-400 dark:hover:border-surface-600'
@@ -165,24 +174,29 @@ async function onSlotChange(slotIndex: number | string, event: any) {
         Error loading spells: {{ error }}
       </div>
 
-      <div class="h-125 overflow-y-auto pr-2 custom-scrollbar">
-        <VueDraggableNext
-          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-8"
-          :list="allSpells"
-          :group="{ name: 'spells', pull: 'clone', put: false }"
-          :sort="false"
-          :item-key="'id'"
+      <input
+        v-model="search"
+        type="text"
+        placeholder="Search spells..."
+        class="mb-4 w-full max-w-xs px-3 py-1.5 text-sm rounded-lg border border-surface-300 dark:border-surface-600 bg-surface-50 dark:bg-surface-900 text-surface-900 dark:text-surface-0 placeholder-surface-400 focus:outline-none focus:ring-2 focus:ring-primary-400"
+      />
+
+      <VueDraggableNext
+        class="flex flex-wrap gap-x-4 gap-y-6"
+        :list="filteredSpells"
+        :group="{ name: 'spells', pull: 'clone', put: false }"
+        :sort="false"
+        :item-key="'id'"
+      >
+        <div
+          v-for="element in filteredSpells"
+          :key="element.id"
+          class="cursor-pointer w-24 h-24 shrink-0"
+          @click="openSpellDetails(element)"
         >
-          <div
-            v-for="element in allSpells"
-            :key="element.id"
-            class="cursor-pointer"
-            @click="openSpellDetails(element)"
-          >
-            <SpellCard :spell="element" compact />
-          </div>
-        </VueDraggableNext>
-      </div>
+          <SpellCard :spell="element" compact />
+        </div>
+      </VueDraggableNext>
     </div>
     
     <SpellDetailsDialog
@@ -203,20 +217,8 @@ async function onSlotChange(slotIndex: number | string, event: any) {
 .slot-grid > * {
   grid-column: 1;
   grid-row: 1;
+  min-width: 0;
+  min-height: 0;
 }
 
-/* Custom scrollbar for better look in containers */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 8px;
-}
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: var(--surface-300);
-  border-radius: 20px;
-}
-.dark .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: var(--surface-600);
-}
 </style>
