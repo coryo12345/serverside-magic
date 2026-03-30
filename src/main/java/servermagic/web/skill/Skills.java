@@ -12,8 +12,24 @@ public class Skills {
         public static final Skill SUMMON_MOUNT = new Skill("summon_mount", "Mount: Horse", "Summon your loyal steed",
                         UNLOCK_MAGIC.id())
                         .setAdvancement("husbandry/tame_an_animal", "Best friends forever");
+        public static final Skill BOUND_SPYGLASS = new Skill("bound_spyglass", "Bound Spyglass",
+                        "Conjure a bound spyglass", UNLOCK_MAGIC.id());
         public static final Skill BOUND_SWORD = new Skill("bound_sword", "Bound Sword", "Conjure a bound sword",
-                        UNLOCK_MAGIC.id());
+                        BOUND_SPYGLASS.id());
+        public static final Skill BOUND_AXE = new Skill("bound_axe", "Bound Axe", "Conjure a bound axe",
+                        BOUND_SWORD.id());
+        public static final Skill BOUND_SPEAR = new Skill("bound_spear", "Bound Spear", "Conjure a bound spear",
+                        BOUND_SWORD.id());
+        public static final Skill BOUND_PICKAXE = new Skill("bound_pickaxe", "Bound Pickaxe",
+                        "Conjure a bound pickaxe", BOUND_SPYGLASS.id());
+        public static final Skill BOUND_SHOVEL = new Skill("bound_shovel", "Bound Shovel", "Conjure a bound shovel",
+                        BOUND_PICKAXE.id());
+        public static final Skill BOUND_HOE = new Skill("bound_hoe", "Bound Hoe", "Conjure a bound hoe",
+                        BOUND_SHOVEL.id());
+        public static final Skill BOUND_SHEARS = new Skill("bound_shears", "Bound Shears", "Conjure bound shears",
+                        BOUND_PICKAXE.id());
+        public static final Skill BOUND_FISHING_ROD = new Skill("bound_fishing_rod", "Bound Fishing Rod",
+                        "Conjure a bound fishing rod", BOUND_SPYGLASS.id());
         public static final Skill BATTLEMAGE_ARMOR = new Skill("battlemage_armor", "Battlemage Armor",
                         "Summon a suit of bound armor", UNLOCK_MAGIC.id());
         public static final Skill FIREBOLT = new Skill("firebolt", "Firebolt", "Shoot a short bolt of fire",
