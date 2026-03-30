@@ -182,7 +182,7 @@ async function onSlotChange(slotIndex: number | string, event: any) {
       </div>
 
       <VueDraggableNext
-        class="flex flex-wrap gap-x-4 gap-y-6"
+        class="flex flex-wrap gap-x-4 gap-y-6 items-center justify-center"
         :list="filteredSpells"
         :group="{ name: 'spells', pull: 'clone', put: false }"
         :sort="false"

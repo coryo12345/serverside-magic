@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
 import servermagic.ServerMagic;
 import servermagic.db.Database;
 import servermagic.spells.BaseSpell;
@@ -31,9 +32,8 @@ public class UISpellDefinition {
 
     public static UISpellDefinition FromSpell(Class<? extends BaseSpell> clazz) {
         try {
-            BaseSpell spell = clazz.getDeclaredConstructor(ServerLevel.class, ServerPlayer.class, Database.class)
-                    .newInstance(null,
-                            null, null);
+            BaseSpell spell = clazz.getDeclaredConstructor(ServerLevel.class, ServerPlayer.class, Database.class, InteractionHand.class)
+                    .newInstance(null, null, null, null);
 
             UISpellDefinition def = new UISpellDefinition();
             def.id = spell.id();
