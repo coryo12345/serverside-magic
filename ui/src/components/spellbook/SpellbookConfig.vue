@@ -19,9 +19,7 @@ const search = ref("");
 const filteredSpells = computed(() => {
   const q = search.value.trim().toLowerCase();
   if (!q) return allSpells.value;
-  return allSpells.value.filter((s) =>
-    s.displayName.toLowerCase().includes(q)
-  );
+  return allSpells.value.filter((s) => s.displayName.toLowerCase().includes(q));
 });
 
 const selectedSpell = ref<SpellDefinition | null>(null);
@@ -127,19 +125,19 @@ async function onSlotChange(slotIndex: number | string, event: any) {
 
       <!-- Hotbar Slots -->
       <div
-        class="flex flex-wrap gap-x-4 gap-y-6 mt-4"
+        class="flex flex-wrap gap-x-4 gap-y-6 mt-4 items-center justify-center"
       >
         <div
           v-for="(slotList, index) in slots"
           :key="index"
-          class="flex flex-col items-center justify-start w-24 shrink-0 gap-1"
+          class="flex flex-col items-center justify-start w-32 shrink-0 gap-1"
         >
           <p class="text-xs text-surface-400 font-mono text-center text-nowrap">
             {{ slotNumberToString(index) }}
           </p>
 
           <VueDraggableNext
-            class="w-24 h-24 rounded-xl transition-all duration-200 slot-grid"
+            class="w-32 h-32 rounded-xl transition-all duration-200 slot-grid"
             :class="[
               slotList.length === 0
                 ? 'aspect-square border-2 border-dashed border-surface-300 dark:border-surface-700 bg-surface-50 dark:bg-surface-900 hover:border-surface-400 dark:hover:border-surface-600'
@@ -167,19 +165,21 @@ async function onSlotChange(slotIndex: number | string, event: any) {
     <div
       class="bg-surface-0 dark:bg-surface-800 p-6 rounded-xl shadow-sm border border-surface-200 dark:border-surface-700"
     >
-      <h2 class="text-xl font-bold text-surface-900 dark:text-surface-0 mb-4">
-        My Spellbook
-      </h2>
+      <div class="flex justify-between items-center">
+        <h2 class="text-xl font-bold text-surface-900 dark:text-surface-0 mb-4">
+          My Spellbook
+        </h2>
+        <input
+          v-model="search"
+          type="text"
+          placeholder="Search spells..."
+          class="mb-4 w-full max-w-xs px-3 py-1.5 text-sm rounded-lg border border-surface-300 dark:border-surface-600 bg-surface-50 dark:bg-surface-900 text-surface-900 dark:text-surface-0 placeholder-surface-400 focus:outline-none focus:ring-2 focus:ring-primary-400"
+        />
+      </div>
+
       <div v-if="error" class="text-red-500 mb-4">
         Error loading spells: {{ error }}
       </div>
-
-      <input
-        v-model="search"
-        type="text"
-        placeholder="Search spells..."
-        class="mb-4 w-full max-w-xs px-3 py-1.5 text-sm rounded-lg border border-surface-300 dark:border-surface-600 bg-surface-50 dark:bg-surface-900 text-surface-900 dark:text-surface-0 placeholder-surface-400 focus:outline-none focus:ring-2 focus:ring-primary-400"
-      />
 
       <VueDraggableNext
         class="flex flex-wrap gap-x-4 gap-y-6"
@@ -191,14 +191,14 @@ async function onSlotChange(slotIndex: number | string, event: any) {
         <div
           v-for="element in filteredSpells"
           :key="element.id"
-          class="cursor-pointer w-24 h-24 shrink-0"
+          class="cursor-pointer w-32 h-32 shrink-0"
           @click="openSpellDetails(element)"
         >
           <SpellCard :spell="element" compact />
         </div>
       </VueDraggableNext>
     </div>
-    
+
     <SpellDetailsDialog
       v-model:visible="isDialogVisible"
       :spell="selectedSpell"
@@ -220,5 +220,4 @@ async function onSlotChange(slotIndex: number | string, event: any) {
   min-width: 0;
   min-height: 0;
 }
-
 </style>

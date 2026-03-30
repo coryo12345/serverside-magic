@@ -19,7 +19,7 @@ defineProps<{
     <!-- Compact Layout -->
     <template v-if="compact">
       <h3
-        class="font-bold text-surface-900 dark:text-surface-0 text-xs text-center w-full truncate px-1"
+        class="font-bold text-surface-900 dark:text-surface-0 text-xs text-center w-full leading-tight"
       >
         {{ spell.displayName }}
       </h3>
