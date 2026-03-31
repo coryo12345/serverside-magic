@@ -24,6 +24,7 @@ import servermagic.db.MigrationFailedException;
 import servermagic.entitybinding.EntityBindingLifecycleHandler;
 import servermagic.entitybinding.EntityBindingManager;
 import servermagic.entitybinding.EntityBindingTickHandler;
+import servermagic.spells.freeze.FreezeProjectileManager;
 import servermagic.mana.ManaInfo;
 import servermagic.mana.ManaScoreboard;
 import servermagic.mana.ManaTracker;
@@ -78,6 +79,7 @@ public class ServerMagic implements ModInitializer {
 		// AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
 
 		ServerTickEvents.END_SERVER_TICK.register(EntityBindingTickHandler::tick);
+		ServerTickEvents.END_SERVER_TICK.register(FreezeProjectileManager::tick);
 
 		ServerTickEvents.END_WORLD_TICK.register((ServerLevel world) -> {
 			tickCount = (++tickCount % 1000); // so we dont get too large
