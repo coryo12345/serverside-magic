@@ -14,6 +14,8 @@ public class Skills {
                         .setAdvancement("husbandry/tame_an_animal", "Best friends forever");
         public static final Skill BOUND_SPYGLASS = new Skill("bound_spyglass", "Bound Spyglass",
                         "Conjure a bound spyglass", UNLOCK_MAGIC.id());
+        public static final Skill BAG_OF_HOLDING = new Skill("bag_of_holding", "Bag of Holding",
+                        "Access your ender chest from anywhere", BOUND_SPYGLASS.id());
         public static final Skill BOUND_SWORD = new Skill("bound_sword", "Bound Sword", "Conjure a bound sword",
                         BOUND_SPYGLASS.id());
         public static final Skill BOUND_AXE = new Skill("bound_axe", "Bound Axe", "Conjure a bound axe",
