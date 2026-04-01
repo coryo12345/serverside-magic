@@ -42,6 +42,29 @@ public final class EntityBindingUtil {
     }
 
     /**
+     * Bind follower to driver with positional and yaw offsets, but with pitch locked
+     * to 0. The follower stays level regardless of the driver's look pitch.
+     * Useful for things like a flying carpet that should always be horizontal.
+     *
+     * @param positionOffset offset in driver-local space (x=right, y=up, z=forward)
+     * @param yawOffset      added to the driver's yaw before applying to follower
+     */
+    public static void bindLevelFollower(ServerLevel level, Entity driver, Entity follower,
+            Vec3 positionOffset, float yawOffset) {
+        driver.setInvisible(true);
+        driver.setSilent(true);
+
+        EntityBinding binding = new EntityBinding(
+                driver.getUUID(),
+                follower.getUUID(),
+                positionOffset,
+                yawOffset,
+                0f,
+                true);
+        EntityBindingManager.getOrCreate(level).addBinding(binding);
+    }
+
+    /**
      * Unbind a specific follower. Does NOT remove the entities themselves.
      */
     public static void unbindFollower(ServerLevel level, Entity follower) {

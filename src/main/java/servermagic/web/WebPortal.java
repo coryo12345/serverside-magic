@@ -35,7 +35,7 @@ public class WebPortal {
                     staticFiles.directory = externalWebDir.toString();
                     staticFiles.location = Location.EXTERNAL;
                 });
-                ServerMagic.LOGGER.info("[YourMod] Serving web files from: " + externalWebDir);
+                ServerMagic.LOGGER.info("Serving web files from: " + externalWebDir);
             } else {
                 // Production mode - serve from JAR resources
                 config.staticFiles.add(staticFiles -> {
@@ -43,7 +43,7 @@ public class WebPortal {
                     staticFiles.directory = "/web";
                     staticFiles.location = Location.CLASSPATH;
                 });
-                ServerMagic.LOGGER.info("[YourMod] Serving web files from JAR resources");
+                ServerMagic.LOGGER.info("Serving web files from JAR resources");
             }
         }).start(port);
 

@@ -38,7 +38,7 @@ public class EntityBindingTickHandler {
 
     private static void applyBinding(Entity driver, Entity follower, EntityBinding binding) {
         float newYaw = driver.getYRot() + binding.yawOffset;
-        float newPitch = driver.getXRot() + binding.pitchOffset;
+        float newPitch = binding.lockPitch ? 0f : (driver.getXRot() + binding.pitchOffset);
 
         Vec3 targetPos;
 

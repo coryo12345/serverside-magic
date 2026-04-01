@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import servermagic.spells.FlyingCarpet;
 import servermagic.spells.SummonMount;
 
 @Mixin(LivingEntity.class)
@@ -32,5 +33,10 @@ public class PlayerDismountMixin {
 		if (SummonMount.isCustomHorse(entity)) {
 			entity.discard();
 		}
+
+		if (FlyingCarpet.isFlyingCarpetGhast(entity)) {
+			entity.discard();
+		}
+
 	}
 }

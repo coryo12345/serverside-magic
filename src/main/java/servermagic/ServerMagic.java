@@ -28,6 +28,7 @@ import servermagic.spells.freeze.FreezeProjectileManager;
 import servermagic.mana.ManaInfo;
 import servermagic.mana.ManaScoreboard;
 import servermagic.mana.ManaTracker;
+import servermagic.spells.FlyingCarpet;
 import servermagic.spells.SummonMount;
 import servermagic.spells.utils.PlayerSpellFocusCaster;
 import servermagic.web.WebPortal;
@@ -86,6 +87,7 @@ public class ServerMagic implements ModInitializer {
 			// once every third second - things that don't need to happen often
 			if (tickCount % 60 == 0) {
 				SummonMount.tickCleanup(world);
+				FlyingCarpet.tickCleanup(world);
 			}
 			// if we do this too frequently we overload the client with messages
 			if (tickCount % 100 == 0) {

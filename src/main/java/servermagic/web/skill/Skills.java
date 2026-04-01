@@ -12,6 +12,8 @@ public class Skills {
         public static final Skill SUMMON_MOUNT = new Skill("summon_mount", "Mount: Horse", "Summon your loyal steed",
                         UNLOCK_MAGIC.id())
                         .setAdvancement("husbandry/tame_an_animal", "Best friends forever");
+        public static final Skill FLYING_CARPET = new Skill("flying_carpet", "Flying Carpet",
+                        "Summon a magical flying carpet", SUMMON_MOUNT.id());
         public static final Skill BOUND_SPYGLASS = new Skill("bound_spyglass", "Bound Spyglass",
                         "Conjure a bound spyglass", UNLOCK_MAGIC.id());
         public static final Skill BAG_OF_HOLDING = new Skill("bag_of_holding", "Bag of Holding",

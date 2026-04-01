@@ -37,7 +37,9 @@ public class EntityBindingManager extends SavedData {
                     .fieldOf("follower").forGetter(b -> b.followerUUID),
             VEC3_CODEC.fieldOf("position_offset").forGetter(b -> b.positionOffset),
             Codec.FLOAT.fieldOf("yaw_offset").forGetter(b -> b.yawOffset),
-            Codec.FLOAT.fieldOf("pitch_offset").forGetter(b -> b.pitchOffset)).apply(instance, EntityBinding::new));
+            Codec.FLOAT.fieldOf("pitch_offset").forGetter(b -> b.pitchOffset),
+            Codec.BOOL.optionalFieldOf("lock_pitch", false).forGetter(b -> b.lockPitch))
+            .apply(instance, EntityBinding::new));
 
     // Codec for the manager itself — just a list of bindings
     private static final Codec<EntityBindingManager> CODEC = BINDING_CODEC.listOf()
