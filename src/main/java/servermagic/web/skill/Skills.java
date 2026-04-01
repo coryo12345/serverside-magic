@@ -105,6 +105,8 @@ public class Skills {
                         "Strike your target with a bolt of lightning from above", FIREBOLT.id());
         public static final Skill CHAIN_LIGHTNING = new Skill("chain_lightning", "Chain Lightning",
                         "Shoot an arcing blast of lightning that chains between enemies", LIGHTNING_STRIKE.id());
+        public static final Skill ARCANE_MISSILES = new Skill("arcane_missiles", "Arcane Missiles",
+                        "Launch homing arcane projectiles at the nearest enemy", CHAIN_LIGHTNING.id());
         public static final Skill POISON_CLOUD = new Skill("poison_cloud", "Poison Cloud",
                         "Conjure a cloud of poison in an area", FIREBOLT.id());
         public static final Skill WINDCHARGE = new Skill("windcharge", "Wind Charge",
