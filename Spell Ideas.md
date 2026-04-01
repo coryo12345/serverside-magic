@@ -1,8 +1,5 @@
 Projectile & Direct Damage
 
-    Void Rift: Fire a slow-moving Wither Skull. When it hits, it creates a small explosion and applies 3 seconds of Blindness and Wither II.
-    This can replace the existing WitherBlast spell.
-
     Frost Nova: A short-range blast that pushes all nearby enemies back and applies Slowness V for 2 seconds.
 
 Area of Effect (AoE) & Ground Effects
