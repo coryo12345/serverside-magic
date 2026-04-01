@@ -112,6 +112,8 @@ public class Skills {
         public static final Skill WINDCHARGE = new Skill("windcharge", "Wind Charge",
                         "Shoot a powerful gust of wind", POISON_CLOUD.id())
                         .setAdvancement("adventure/who_needs_rockets", "Who Needs Rockets?");
+        public static final Skill GRAVITY_WELL = new Skill("gravity_well", "Gravity Well",
+                        "Open a vortex that pulls nearby enemies toward its center", WINDCHARGE.id());
         public static final Skill FREEZE = new Skill("freeze", "Freeze",
                         "Shoot a block of ice that freezes your target", FIREBOLT.id());
         public static final Skill FROST_NOVA = new Skill("frost_nova", "Frost Nova",

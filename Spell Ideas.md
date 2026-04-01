@@ -1,7 +1,5 @@
 Area of Effect (AoE) & Ground Effects
 
-    Gravity Well: Use a particle circle on the ground. Every tick, use teleport or velocity to pull all nearby mobs toward the center.
-
     Ring of Fire: Create a circle of Fire blocks (or campfire particles) around the caster. Any mob entering the circle is set ablaze.
 
     Meteor Shower: Randomly spawn 5–10 Fireball entities high above a target location, falling straight down with high velocity.
