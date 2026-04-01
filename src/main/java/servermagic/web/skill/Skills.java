@@ -114,6 +114,10 @@ public class Skills {
                         .setAdvancement("adventure/who_needs_rockets", "Who Needs Rockets?");
         public static final Skill FREEZE = new Skill("freeze", "Freeze",
                         "Shoot a block of ice that freezes your target", FIREBOLT.id());
+        public static final Skill FROST_NOVA = new Skill("frost_nova", "Frost Nova",
+                        "Blast nearby enemies back with a freezing shockwave", FREEZE.id());
+        public static final Skill EARTHEN_SPIKE = new Skill("earthen_spike", "Earthen Spike",
+                        "Summon a line of earth spikes in front of you", FIREBOLT.id());
 
         public static final Skill SECRETS = new Skill("secrets", "Secrets", "secret skills", null);
         public static final Skill ANGEL_WINGS = new Skill("angel_wings", "Angel Wings", "Summon wings and fly!",

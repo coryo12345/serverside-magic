@@ -1,10 +1,4 @@
-Projectile & Direct Damage
-
-    Frost Nova: A short-range blast that pushes all nearby enemies back and applies Slowness V for 2 seconds.
-
 Area of Effect (AoE) & Ground Effects
-
-    Earthen Spike: Summon a line of Evoker Fangs in the direction you are facing.
 
     Gravity Well: Use a particle circle on the ground. Every tick, use teleport or velocity to pull all nearby mobs toward the center.
 
