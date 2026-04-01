@@ -25,6 +25,7 @@ import servermagic.entitybinding.EntityBindingLifecycleHandler;
 import servermagic.entitybinding.EntityBindingManager;
 import servermagic.entitybinding.EntityBindingTickHandler;
 import servermagic.spells.arcane.ArcaneMissileManager;
+import servermagic.spells.VoidRift;
 import servermagic.spells.freeze.FreezeProjectileManager;
 import servermagic.mana.ManaInfo;
 import servermagic.mana.ManaScoreboard;
@@ -83,6 +84,7 @@ public class ServerMagic implements ModInitializer {
 		ServerTickEvents.END_SERVER_TICK.register(EntityBindingTickHandler::tick);
 		ServerTickEvents.END_SERVER_TICK.register(FreezeProjectileManager::tick);
 		ServerTickEvents.END_SERVER_TICK.register(ArcaneMissileManager::tick);
+		ServerTickEvents.END_SERVER_TICK.register(VoidRift::tick);
 
 		ServerTickEvents.END_WORLD_TICK.register((ServerLevel world) -> {
 			tickCount = (++tickCount % 1000); // so we dont get too large

@@ -119,8 +119,8 @@ public class Skills {
         public static final Skill ANGEL_WINGS = new Skill("angel_wings", "Angel Wings", "Summon wings and fly!",
                         SECRETS.id())
                         .setAdvancement("end/elytra", "Sky's the limit");
-        public static final Skill WITHERBLAST = new Skill("witherblast", "Witherblast",
-                        "Shoot an explosive wither skull projectile", SECRETS.id());
+        public static final Skill VOID_RIFT = new Skill("void_rift", "Void Rift",
+                        "Fire a void skull that blinds and withers nearby enemies", SECRETS.id());
 
         public static List<Skill> GetAllSkills() {
                 Field[] declaredFields = Skills.class.getDeclaredFields();
