@@ -19,6 +19,8 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Display;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.throwableitemprojectile.Snowball;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -38,12 +40,16 @@ public class ArcaneMissiles extends BaseSpell {
 
     @Override
     protected void spellImplementation() {
-        // Find the nearest living entity to home in on
+        // Find the nearest target, preferring hostile mobs > players > passive mobs
         AABB searchArea = AABB.ofSize(player.position(), 40, 40, 40);
         List<LivingEntity> nearby = world.getEntitiesOfClass(LivingEntity.class, searchArea,
                 e -> e.isAlive() && !e.getUUID().equals(player.getUUID()) && e.isAttackable());
+        Comparator<LivingEntity> byDistance = Comparator.comparingDouble(e -> e.distanceToSqr(player));
         LivingEntity target = nearby.stream()
-                .min(Comparator.comparingDouble(e -> e.distanceToSqr(player)))
+                .filter(e -> e instanceof Monster)
+                .min(byDistance)
+                .or(() -> nearby.stream().filter(e -> e instanceof Player).min(byDistance))
+                .or(() -> nearby.stream().min(byDistance))
                 .orElse(null);
         UUID targetId = target != null ? target.getUUID() : null;
 
