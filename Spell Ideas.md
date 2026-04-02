@@ -1,7 +1,5 @@
 Area of Effect (AoE) & Ground Effects
 
-    Ring of Fire: Create a circle of Fire blocks (or campfire particles) around the caster. Any mob entering the circle is set ablaze.
-
     Meteor Shower: Randomly spawn 5–10 Fireball entities high above a target location, falling straight down with high velocity.
 
     Desecrated Ground: Apply the Wither effect to any mob standing within a specific 5×5 area defined by black particles.
