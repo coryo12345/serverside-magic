@@ -30,7 +30,7 @@ import servermagic.web.skill.Skills;
 public class BeeSwarm extends BaseSpell {
 
     private static final int BEE_COUNT = 5;
-    private static final int BEE_DURATION = 300; // 15 seconds max lifetime
+    private static final int BEE_DURATION = 160; // 8 seconds max lifetime
     private static final double SEARCH_RADIUS = 20.0;
     private static final double SPAWN_RADIUS = 1.2;
     private static final String BEE_TAG = "bee_swarm";

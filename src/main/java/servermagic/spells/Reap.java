@@ -21,7 +21,7 @@ public class Reap extends BaseSpell {
     private static final double RANGE = 8.0;
     private static final double ARC_HALF_ANGLE = 65.0; // 130 degree total arc
     private static final double ARC_HALF_ANGLE_RAD = Math.toRadians(ARC_HALF_ANGLE);
-    private static final float MINOR_DAMAGE = 6.0f; // 3 hearts
+    private static final float MINOR_DAMAGE = 2.0f; // 1 hearts
     private static final double EXECUTE_THRESHOLD = 0.20; // 20% health
 
     public Reap(ServerLevel world, ServerPlayer player, Database db, InteractionHand hand) {

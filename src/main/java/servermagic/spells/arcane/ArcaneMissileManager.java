@@ -65,7 +65,7 @@ public class ArcaneMissileManager {
 
         if (!hits.isEmpty()) {
             LivingEntity target = hits.get(0);
-            target.hurtServer(missile.level, target.damageSources().magic(), 4.0f);
+            target.hurtServer(missile.level, target.damageSources().magic(), 3.0f);
 
             // Impact particles
             missile.level.sendParticles(ParticleTypes.ENCHANT,

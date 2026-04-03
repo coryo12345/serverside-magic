@@ -25,7 +25,7 @@ public class Sunbeam extends BaseSpell {
 
     private static final double PILLAR_RADIUS = 2.0;
     private static final double PILLAR_HEIGHT = 20.0;
-    private static final float SMITE_DAMAGE = 20.0f; // 10 hearts
+    private static final float SMITE_DAMAGE = 16.0f; // 8 hearts
     private static final int BEAM_DURATION = 40; // 2 seconds
     private static final double TARGET_RANGE = 25.0;
 

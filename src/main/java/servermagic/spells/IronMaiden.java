@@ -28,7 +28,7 @@ import servermagic.web.skill.Skills;
 public class IronMaiden extends BaseSpell {
 
     private static final int CAGE_DURATION = 40; // 2 seconds
-    private static final float PIERCE_DAMAGE = 15.0f; // 7.5 hearts
+    private static final float PIERCE_DAMAGE = 11.0f; // 5.5 hearts
 
     private static final List<ActiveCage> active = new ArrayList<>();
 

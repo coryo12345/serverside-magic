@@ -37,7 +37,7 @@ public class MeteorShower extends BaseSpell {
     private static final double FALL_SPEED = 0.8;
     private static final int SPAWN_HEIGHT = 28;
     private static final double SCATTER_RADIUS = 4.0;
-    private static final float IMPACT_DAMAGE = 8.0f;
+    private static final float IMPACT_DAMAGE = 6.0f;
 
     private static final List<ActiveMeteor> active = new ArrayList<>();
 
@@ -162,7 +162,7 @@ public class MeteorShower extends BaseSpell {
                 e -> e.isAlive() && !e.getUUID().equals(meteor.casterId));
         for (LivingEntity target : targets) {
             target.hurtServer(meteor.level, target.damageSources().magic(), IMPACT_DAMAGE);
-            target.igniteForTicks(100);
+            target.igniteForTicks(60);
         }
     }
 
