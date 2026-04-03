@@ -20,7 +20,7 @@ export interface Connection {
 }
 
 export function useSkillTreeLayout(rootTree: Ref<SkillTree> | SkillTree) {
-  const levelDistance = 250;
+  const levelDistance = 300;
 
   const countLeaves = (tree: SkillTree): number => {
     if (tree.branches.length === 0) return 1;
