@@ -25,7 +25,13 @@ import servermagic.entitybinding.EntityBindingLifecycleHandler;
 import servermagic.entitybinding.EntityBindingManager;
 import servermagic.entitybinding.EntityBindingTickHandler;
 import servermagic.spells.arcane.ArcaneMissileManager;
+import servermagic.spells.DesecratedGround;
 import servermagic.spells.GravityWell;
+import servermagic.spells.IronMaiden;
+import servermagic.spells.BeeSwarm;
+import servermagic.spells.Sunbeam;
+import servermagic.spells.MeteorShower;
+import servermagic.spells.SpectralGrasp;
 import servermagic.spells.RingOfFire;
 import servermagic.spells.VoidRift;
 import servermagic.spells.freeze.FreezeProjectileManager;
@@ -89,6 +95,12 @@ public class ServerMagic implements ModInitializer {
 		ServerTickEvents.END_SERVER_TICK.register(VoidRift::tick);
 		ServerTickEvents.END_SERVER_TICK.register(GravityWell::tick);
 		ServerTickEvents.END_SERVER_TICK.register(RingOfFire::tick);
+		ServerTickEvents.END_SERVER_TICK.register(DesecratedGround::tick);
+		ServerTickEvents.END_SERVER_TICK.register(MeteorShower::tick);
+		ServerTickEvents.END_SERVER_TICK.register(SpectralGrasp::tick);
+		ServerTickEvents.END_SERVER_TICK.register(IronMaiden::tick);
+		ServerTickEvents.END_SERVER_TICK.register(BeeSwarm::tick);
+		ServerTickEvents.END_SERVER_TICK.register(Sunbeam::tick);
 
 		ServerTickEvents.END_WORLD_TICK.register((ServerLevel world) -> {
 			tickCount = (++tickCount % 1000); // so we dont get too large
