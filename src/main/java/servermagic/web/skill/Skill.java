@@ -8,6 +8,7 @@ public class Skill {
     public String advancementResourceLocation;
     public String advancementName;
     public String unlockDescription;
+    public String tabTitle;
 
     public Skill(String id, String name, String description, String parentId) {
         this.id = id;
@@ -48,6 +49,11 @@ public class Skill {
 
     public Skill setUnlockDescription(String unlockDescription) {
         this.unlockDescription = unlockDescription;
+        return this;
+    }
+
+    public Skill setTabTitle(String title) {
+        this.tabTitle = title;
         return this;
     }
 }

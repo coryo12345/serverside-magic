@@ -43,7 +43,7 @@
             :key="tree.skill.id"
             :value="tree.skill.id"
           >
-            {{ tree.skill.name }}
+            {{ tree.skill.tabTitle ?? tree.skill.name }}
           </Tab>
         </TabList>
         <TabPanels class="p-0! bg-transparent! flex-1">

@@ -8,6 +8,7 @@ import net.minecraft.server.MinecraftServer;
 import servermagic.db.Database;
 import servermagic.db.tables.SkillUnlocks;
 import servermagic.web.skill.SkillTree;
+import servermagic.web.skill.Skills;
 
 public class SkillRoutes extends RouteGroup {
 
@@ -26,7 +27,13 @@ public class SkillRoutes extends RouteGroup {
             SkillTree.UpdateSpellAvailabiltyForPlayer(db, username);
 
             // first we get the skill trees setup
-            List<SkillTree> trees = SkillTree.GetTrees();
+            List<SkillTree> allTrees = SkillTree.GetTrees();
+
+            // filter to specified base nodes (trees)
+            List<SkillTree> trees = allTrees.stream()
+                    .filter(tree -> List.of(Skills.UNLOCK_MAGIC_ELEMENTAL, Skills.UNLOCK_MAGIC_BUILDING,
+                            Skills.UNLOCK_MAGIC_EFFECTS, Skills.UNLOCK_MAGIC_UTILITY).contains(tree.skill))
+                    .toList();
 
             // then we need to determine which skills the player has and mark accordingly
             Optional<List<SkillUnlocks>> unlocks = SkillUnlocks.GetAllPlayerUnlockedSkills(db, username, false);

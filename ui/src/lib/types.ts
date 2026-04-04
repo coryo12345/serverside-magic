@@ -27,6 +27,7 @@ export type Skill = {
   advancementResourceLocation: string;
   advancementName: string;
   unlockDescription: string;
+  tabTitle?: string | null;
 };
 
 export type SkillTree = {
