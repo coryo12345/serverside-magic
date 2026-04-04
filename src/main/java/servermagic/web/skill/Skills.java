@@ -81,8 +81,6 @@ public class Skills {
         public static final Skill SUMMON_MOUNT = new Skill("summon_mount", "Mount: Horse", "Summon your loyal steed",
                         UNLOCK_MAGIC_UTILITY.id())
                         .setAdvancement("husbandry/tame_an_animal", "Best friends forever");
-        public static final Skill FLYING_CARPET = new Skill("flying_carpet", "Flying Carpet",
-                        "Summon a magical flying carpet", SUMMON_MOUNT.id());
         public static final Skill MOUNT_GALLOP = new Skill("mount_gallop", "Mount: Gallop",
                         "Unlock an additional speed tier for your summoned mount. Configure your mount's speed in the Spellbook.",
                         SUMMON_MOUNT.id());
@@ -179,6 +177,8 @@ public class Skills {
                         .setAdvancement("end/elytra", "Sky's the limit");
         public static final Skill VOID_RIFT = new Skill("void_rift", "Void Rift",
                         "Fire a void skull that blinds and withers nearby enemies", SECRETS.id());
+        public static final Skill FLYING_CARPET = new Skill("flying_carpet", "Flying Carpet",
+                        "Summon a magical flying carpet", SECRETS.id());
 
         public static List<Skill> GetAllSkills() {
                 Field[] declaredFields = Skills.class.getDeclaredFields();
