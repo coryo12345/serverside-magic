@@ -64,7 +64,7 @@
         @click.stop="openSkillDetails(node)"
       >
         <div
-          class="skill-node w-26 h-26 transform -translate-x-1/2 -translate-y-1/2 p-4 rounded-xl border-2 text-center transition-all duration-300 backdrop-blur-md"
+          class="skill-node w-26 h-26 transform -translate-x-1/2 -translate-y-1/2 p-4 rounded-xl border-2 text-center transition-all duration-300"
           :class="[
             node.unlocked
               ? 'bg-primary-700 border-primary shadow-[0_0_20px_rgba(168,85,247,0.6)] text-white'
@@ -157,7 +157,9 @@ const viewport = ref<HTMLElement | null>(null);
 const offset = ref({ x: 0, y: 0 });
 const scale = ref(1);
 const isDragging = ref(false);
-const lastMousePos = ref({ x: 0, y: 0 });
+const lastMousePos = { x: 0, y: 0 };
+const pendingOffset = { x: 0, y: 0 };
+let rafId: number | null = null;
 
 const selectedNode = ref<PositionedNode | null>(null);
 const isDetailsOpen = ref(false);
@@ -178,16 +180,27 @@ onMounted(() => {
 
 const startDrag = (e: MouseEvent) => {
   isDragging.value = true;
-  lastMousePos.value = { x: e.clientX, y: e.clientY };
+  lastMousePos.x = e.clientX;
+  lastMousePos.y = e.clientY;
+  pendingOffset.x = offset.value.x;
+  pendingOffset.y = offset.value.y;
 };
 
 const onDrag = (e: MouseEvent) => {
   if (!isDragging.value) return;
-  const dx = e.clientX - lastMousePos.value.x;
-  const dy = e.clientY - lastMousePos.value.y;
-  offset.value.x += dx;
-  offset.value.y += dy;
-  lastMousePos.value = { x: e.clientX, y: e.clientY };
+  const dx = e.clientX - lastMousePos.x;
+  const dy = e.clientY - lastMousePos.y;
+  lastMousePos.x = e.clientX;
+  lastMousePos.y = e.clientY;
+  pendingOffset.x += dx;
+  pendingOffset.y += dy;
+  if (rafId === null) {
+    rafId = requestAnimationFrame(() => {
+      offset.value.x = pendingOffset.x;
+      offset.value.y = pendingOffset.y;
+      rafId = null;
+    });
+  }
 };
 
 const stopDrag = () => {
