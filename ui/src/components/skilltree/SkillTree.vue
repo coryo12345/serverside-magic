@@ -135,7 +135,7 @@
 
 <script setup lang="ts">
 import Button from "primevue/button";
-import { onMounted, ref, toRef } from "vue";
+import { nextTick, onMounted, onUnmounted, ref, toRef } from "vue";
 import {
   useSkillTreeLayout,
   type PositionedNode,
@@ -169,13 +169,39 @@ const openSkillDetails = (node: PositionedNode) => {
   isDetailsOpen.value = true;
 };
 
-onMounted(() => {
+let hasInitialized = false;
+let resizeObserver: ResizeObserver | null = null;
+
+const centerOnRoot = () => {
   if (viewport.value) {
     offset.value = {
       x: viewport.value.clientWidth / 2,
       y: viewport.value.clientHeight / 2,
     };
   }
+};
+
+onMounted(async () => {
+  await nextTick();
+  if (viewport.value) {
+    if (viewport.value.clientWidth > 0 && viewport.value.clientHeight > 0) {
+      centerOnRoot();
+      hasInitialized = true;
+    } else {
+      resizeObserver = new ResizeObserver(() => {
+        if (!hasInitialized && viewport.value && viewport.value.clientWidth > 0) {
+          centerOnRoot();
+          hasInitialized = true;
+          resizeObserver?.disconnect();
+        }
+      });
+      resizeObserver.observe(viewport.value);
+    }
+  }
+});
+
+onUnmounted(() => {
+  resizeObserver?.disconnect();
 });
 
 const startDrag = (e: MouseEvent) => {
@@ -241,12 +267,7 @@ const zoom = (delta: number, focalPoint?: { x: number; y: number }) => {
 
 const resetView = () => {
   scale.value = 1;
-  if (viewport.value) {
-    offset.value = {
-      x: viewport.value.clientWidth / 2,
-      y: viewport.value.clientHeight / 2,
-    };
-  }
+  centerOnRoot();
 };
 </script>
 
