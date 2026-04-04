@@ -7,7 +7,6 @@ import java.util.Optional;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -62,12 +61,7 @@ public class SummonMount extends BaseSpell {
         world.playSound(null, horse.getX(), horse.getY(), horse.getZ(),
                 SoundEvents.HORSE_AMBIENT, SoundSource.NEUTRAL, 1.0F, 1.0F);
 
-        MinecraftServer server = world.getServer();
-        if (server != null) {
-            server.execute(() -> {
-                player.startRiding(horse);
-            });
-        }
+        player.startRiding(horse);
     }
 
     private double getHorseSpeed() {
