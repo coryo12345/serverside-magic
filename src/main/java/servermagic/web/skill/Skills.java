@@ -146,7 +146,7 @@ public class Skills {
         public static final Skill EARTHEN_SPIKE = new Skill("earthen_spike", "Earthen Spike",
                         "Summon a line of earth spikes in front of you", FIREBOLT.id());
         public static final Skill SPECTRAL_HAMMER = new Skill("spectral_hammer", "Spectral Hammer",
-                        "Summon a spectral hammer that smashes a 3×3 face of blocks", EARTHEN_SPIKE.id());
+                        "Summon a spectral hammer that smashes a 3x3 face of blocks", EARTHEN_SPIKE.id());
 
         public static final Skill SECRETS = new Skill("secrets", "Secrets", "secret skills", null);
         public static final Skill ANGEL_WINGS = new Skill("angel_wings", "Angel Wings", "Summon wings and fly!",
