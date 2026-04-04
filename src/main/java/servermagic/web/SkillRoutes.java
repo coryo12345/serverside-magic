@@ -17,7 +17,7 @@ public class SkillRoutes extends RouteGroup {
 
     @Override
     public void registerRoutes() {
-        this.requireAuthForGroup("/api/spells/");
+        this.requireAuthForGroup("/api/skills/");
 
         app.get("/api/skills/tree", ctx -> {
             String username = this.getAuthSubject(ctx);
