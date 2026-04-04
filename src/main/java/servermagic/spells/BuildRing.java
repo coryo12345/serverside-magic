@@ -10,9 +10,13 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import java.util.List;
+import java.util.Optional;
+
 import servermagic.db.Database;
 import servermagic.web.skill.Skill;
 import servermagic.web.skill.Skills;
+import servermagic.web.spell.SpellConfigField;
 
 public class BuildRing extends BaseSpell {
 
@@ -52,7 +56,15 @@ public class BuildRing extends BaseSpell {
     }
 
     private int getRadius() {
-        return 3;
+        return getStringConfig("radius").map(v -> {
+            try { return Math.max(2, Math.min(5, Integer.parseInt(v))); }
+            catch (NumberFormatException e) { return 3; }
+        }).orElse(3);
+    }
+
+    @Override
+    public Optional<List<SpellConfigField>> getConfigSchema(String username) {
+        return Optional.of(List.of(SpellConfigField.number("radius", 3, 2, 5)));
     }
 
     @Override

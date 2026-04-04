@@ -13,9 +13,13 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
+import java.util.List;
+import java.util.Optional;
+
 import servermagic.db.Database;
 import servermagic.web.skill.Skill;
 import servermagic.web.skill.Skills;
+import servermagic.web.spell.SpellConfigField;
 
 public class BuildLine extends BaseSpell {
 
@@ -67,7 +71,15 @@ public class BuildLine extends BaseSpell {
     }
 
     private int getLineLength() {
-        return 5;
+        return getStringConfig("length").map(v -> {
+            try { return Math.max(1, Math.min(10, Integer.parseInt(v))); }
+            catch (NumberFormatException e) { return 5; }
+        }).orElse(5);
+    }
+
+    @Override
+    public Optional<List<SpellConfigField>> getConfigSchema(String username) {
+        return Optional.of(List.of(SpellConfigField.number("length", 5, 1, 10)));
     }
 
     private BlockPos getLineDirection() {

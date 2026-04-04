@@ -45,12 +45,11 @@ public class SummonMount extends BaseSpell {
         horse.forceSetRotation(player.getYHeadRot(), true, player.xRotO, true);
         horse.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20);
         horse.setHealth(20);
-        horse.getAttribute(Attributes.JUMP_STRENGTH).setBaseValue(1.5);
+        horse.getAttribute(Attributes.JUMP_STRENGTH).setBaseValue(getJumpStrength());
         horse.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(getHorseSpeed());
         ItemStack saddle = new ItemStack(Items.SADDLE);
         horse.equipItemIfPossible(world, saddle);
-        ItemStack armor = new ItemStack(Items.COPPER_HORSE_ARMOR);
-        horse.equipItemIfPossible(world, armor);
+        getHorseArmor().ifPresent(armorStack -> horse.equipItemIfPossible(world, armorStack));
 
         world.addFreshEntity(horse);
 
@@ -62,6 +61,49 @@ public class SummonMount extends BaseSpell {
                 SoundEvents.HORSE_AMBIENT, SoundSource.NEUTRAL, 1.0F, 1.0F);
 
         player.startRiding(horse);
+    }
+
+    private double getJumpStrength() {
+        if (db == null || player == null) return 0.5;
+        try {
+            String username = player.getPlainTextName();
+            Optional<PlayerSpellConfig> cfg = PlayerSpellConfig.GetConfigForPlayer(db, username, this.id());
+            if (cfg.isPresent()) {
+                @SuppressWarnings("unchecked")
+                Map<String, Object> configMap = OBJECT_MAPPER.readValue(cfg.get().config, Map.class);
+                String val = (String) configMap.get("jump");
+                if ("High Jump".equals(val) && SkillUnlocks.IsSkillUnlocked(db, username, Skills.MOUNT_JUMP, false)) {
+                    return 0.8;
+                }
+            }
+        } catch (Exception e) {
+            // fall through
+        }
+        return 0.5;
+    }
+
+    private Optional<ItemStack> getHorseArmor() {
+        if (db == null || player == null) return Optional.empty();
+        try {
+            String username = player.getPlainTextName();
+            if (!SkillUnlocks.IsSkillUnlocked(db, username, Skills.MOUNT_ARMOR, false)) return Optional.empty();
+            Optional<PlayerSpellConfig> cfg = PlayerSpellConfig.GetConfigForPlayer(db, username, this.id());
+            if (cfg.isPresent()) {
+                @SuppressWarnings("unchecked")
+                Map<String, Object> configMap = OBJECT_MAPPER.readValue(cfg.get().config, Map.class);
+                String val = (String) configMap.get("armor");
+                return switch (val == null ? "" : val) {
+                    case "Leather" -> Optional.of(new ItemStack(Items.LEATHER_HORSE_ARMOR));
+                    case "Iron"    -> Optional.of(new ItemStack(Items.IRON_HORSE_ARMOR));
+                    case "Gold"    -> Optional.of(new ItemStack(Items.GOLDEN_HORSE_ARMOR));
+                    case "Diamond" -> Optional.of(new ItemStack(Items.DIAMOND_HORSE_ARMOR));
+                    default        -> Optional.empty();
+                };
+            }
+        } catch (Exception e) {
+            // fall through
+        }
+        return Optional.empty();
     }
 
     private double getHorseSpeed() {
@@ -87,12 +129,24 @@ public class SummonMount extends BaseSpell {
 
     @Override
     public Optional<List<SpellConfigField>> getConfigSchema(String username) {
-        List<String> options = new ArrayList<>();
-        options.add("Walk");
+        List<SpellConfigField> fields = new ArrayList<>();
+
+        List<String> speedOptions = new ArrayList<>();
+        speedOptions.add("Walk");
         if (db != null && SkillUnlocks.IsSkillUnlocked(db, username, Skills.MOUNT_GALLOP, false)) {
-            options.add("Gallop");
+            speedOptions.add("Gallop");
         }
-        return Optional.of(List.of(SpellConfigField.select("speed", options, "Walk")));
+        fields.add(SpellConfigField.select("speed", speedOptions, "Walk"));
+
+        if (db != null && SkillUnlocks.IsSkillUnlocked(db, username, Skills.MOUNT_JUMP, false)) {
+            fields.add(SpellConfigField.select("jump", List.of("Normal", "High Jump"), "Normal"));
+        }
+
+        if (db != null && SkillUnlocks.IsSkillUnlocked(db, username, Skills.MOUNT_ARMOR, false)) {
+            fields.add(SpellConfigField.select("armor", List.of("None", "Leather", "Iron", "Gold", "Diamond"), "None"));
+        }
+
+        return Optional.of(fields);
     }
 
     public static boolean isCustomHorse(Entity entity) {

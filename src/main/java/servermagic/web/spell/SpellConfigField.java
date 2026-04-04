@@ -35,6 +35,13 @@ public class SpellConfigField {
         return f;
     }
 
+    public static SpellConfigField number(String key, Integer defaultValue, Integer min, Integer max) {
+        SpellConfigField f = number(key, defaultValue);
+        f.min = min;
+        f.max = max;
+        return f;
+    }
+
     public static SpellConfigField bool(String key, Boolean defaultValue) {
         SpellConfigField f = new SpellConfigField();
         f.key = key;

@@ -1,6 +1,11 @@
 package servermagic.spells;
 
+import java.util.List;
 import java.util.Optional;
+
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.network.chat.Component;
+import servermagic.web.spell.SpellConfigField;
 
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -24,6 +29,8 @@ public class BoundPickaxe extends BaseSpell {
     @Override
     protected void spellImplementation() {
         ItemStack pickaxe = new ItemStack(Items.IRON_PICKAXE);
+        getStringConfig("name").filter(n -> !n.isBlank()).ifPresent(n ->
+            pickaxe.set(DataComponents.CUSTOM_NAME, Component.literal(n)));
         ItemStack mainHandItem = this.player.getItemInHand(hand);
         BoundItems.BuildBoundItem(this.player, mainHandItem, pickaxe);
         this.player.setItemInHand(InteractionHand.MAIN_HAND, pickaxe);
@@ -41,6 +48,11 @@ public class BoundPickaxe extends BaseSpell {
     @Override
     public String description() {
         return "Summon a bound pickaxe";
+    }
+
+    @Override
+    public Optional<List<SpellConfigField>> getConfigSchema(String username) {
+        return Optional.of(List.of(SpellConfigField.text("name", "")));
     }
 
     @Override

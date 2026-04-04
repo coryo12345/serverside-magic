@@ -17,6 +17,12 @@ public class Skills {
         public static final Skill MOUNT_GALLOP = new Skill("mount_gallop", "Mount: Gallop",
                         "Unlock an additional speed tier for your summoned mount. Configure your mount's speed in the Spellbook.",
                         SUMMON_MOUNT.id());
+        public static final Skill MOUNT_JUMP = new Skill("mount_jump", "Mount: High Jump",
+                        "Unlock an enhanced jump height for your summoned mount. Configure in the Spellbook.",
+                        SUMMON_MOUNT.id());
+        public static final Skill MOUNT_ARMOR = new Skill("mount_armor", "Mount: Armor",
+                        "Equip your summoned mount with horse armor. Configure in the Spellbook.",
+                        SUMMON_MOUNT.id());
         public static final Skill BOUND_SPYGLASS = new Skill("bound_spyglass", "Bound Spyglass",
                         "Conjure a bound spyglass", UNLOCK_MAGIC.id());
         public static final Skill BAG_OF_HOLDING = new Skill("bag_of_holding", "Bag of Holding",

@@ -1,7 +1,11 @@
 package servermagic.spells;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import servermagic.db.tables.PlayerSpellConfig;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -65,6 +69,25 @@ public abstract class BaseSpell {
     }
 
     public Optional<List<SpellConfigField>> getConfigSchema(String username) {
+        return Optional.empty();
+    }
+
+    private static final ObjectMapper BASE_SPELL_OBJECT_MAPPER = new ObjectMapper();
+
+    protected Optional<String> getStringConfig(String key) {
+        if (db == null || player == null) return Optional.empty();
+        try {
+            String username = player.getPlainTextName();
+            Optional<PlayerSpellConfig> cfg = PlayerSpellConfig.GetConfigForPlayer(db, username, this.id());
+            if (cfg.isPresent()) {
+                @SuppressWarnings("unchecked")
+                Map<String, Object> map = BASE_SPELL_OBJECT_MAPPER.readValue(cfg.get().config, Map.class);
+                Object val = map.get(key);
+                return val != null ? Optional.of(val.toString()) : Optional.empty();
+            }
+        } catch (Exception e) {
+            // fall through
+        }
         return Optional.empty();
     }
 
