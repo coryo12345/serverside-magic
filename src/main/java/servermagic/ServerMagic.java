@@ -29,6 +29,7 @@ import servermagic.spells.DesecratedGround;
 import servermagic.spells.GravityWell;
 import servermagic.spells.IronMaiden;
 import servermagic.spells.BeeSwarm;
+import servermagic.spells.SpectralHammer;
 import servermagic.spells.Sunbeam;
 import servermagic.spells.MeteorShower;
 import servermagic.spells.SpectralGrasp;
@@ -101,6 +102,7 @@ public class ServerMagic implements ModInitializer {
 		ServerTickEvents.END_SERVER_TICK.register(IronMaiden::tick);
 		ServerTickEvents.END_SERVER_TICK.register(BeeSwarm::tick);
 		ServerTickEvents.END_SERVER_TICK.register(Sunbeam::tick);
+		ServerTickEvents.END_SERVER_TICK.register(SpectralHammer::tick);
 
 		ServerTickEvents.END_WORLD_TICK.register((ServerLevel world) -> {
 			tickCount = (++tickCount % 1000); // so we dont get too large

@@ -7,6 +7,8 @@ import java.util.Optional;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
@@ -25,6 +27,10 @@ public class ChainLightning extends BaseSpell {
     @Override
     protected void spellImplementation() {
         List<LivingEntity> entities = SpellUtils.getAllLivingEntitiesInCone(player, 10, 30);
+
+        // Cast sound at player origin
+        world.playSound(null, player.getX(), player.getY(), player.getZ(),
+                SoundEvents.EVOKER_CAST_SPELL, SoundSource.PLAYERS, 1.0F, 1.3F);
 
         // we need to build the path between each entity, as line segments
         List<Vec3> points = new ArrayList<>();
@@ -50,12 +56,19 @@ public class ChainLightning extends BaseSpell {
             }
         }
 
-        // Now do the damage
+        // Now do the damage and add impact effects at each target
         DamageSource ds = player.damageSources().magic();
         for (LivingEntity entity : entities) {
             if (entity.isAttackable()) {
                 entity.hurtServer(world, ds, 7);
             }
+            Vec3 ep = entity.getEyePosition();
+            world.sendParticles(ParticleTypes.ELECTRIC_SPARK,
+                    ep.x, ep.y, ep.z, 14, 0.3, 0.4, 0.3, 0.25);
+            world.sendParticles(ParticleTypes.CRIT,
+                    ep.x, ep.y, ep.z, 8, 0.3, 0.3, 0.3, 0.15);
+            world.playSound(null, ep.x, ep.y, ep.z,
+                    SoundEvents.LIGHTNING_BOLT_IMPACT, SoundSource.PLAYERS, 0.5F, 1.8F);
         }
     }
 

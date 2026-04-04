@@ -2,8 +2,11 @@ package servermagic.spells;
 
 import java.util.Optional;
 
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
@@ -39,6 +42,11 @@ public class AngelWings extends BaseSpell {
             }
             tempChestplate.setDamageValue(tempChestplate.getMaxDamage() - 100);
             player.setItemSlot(EquipmentSlot.CHEST, tempChestplate);
+            double px = player.getX(), py = player.getY() + 1.0, pz = player.getZ();
+            world.sendParticles(ParticleTypes.WAX_ON, px, py, pz, 20, 0.6, 0.8, 0.6, 0.2);
+            world.sendParticles(ParticleTypes.CLOUD, px, py, pz, 15, 0.5, 0.7, 0.5, 0.03);
+            world.playSound(null, player.getX(), player.getY(), player.getZ(),
+                    SoundEvents.PHANTOM_FLAP, SoundSource.PLAYERS, 1.0F, 1.3F);
         } else {
             ItemStack original = SummonedArmor.DecodeOriginalFromSummonedItem(player, equipped);
             if (original == null) {
@@ -46,6 +54,10 @@ public class AngelWings extends BaseSpell {
             } else {
                 player.setItemSlot(EquipmentSlot.CHEST, original);
             }
+            double px = player.getX(), py = player.getY() + 1.0, pz = player.getZ();
+            world.sendParticles(ParticleTypes.CLOUD, px, py, pz, 20, 0.5, 0.7, 0.5, 0.04);
+            world.playSound(null, player.getX(), player.getY(), player.getZ(),
+                    SoundEvents.PHANTOM_FLAP, SoundSource.PLAYERS, 0.8F, 0.8F);
         }
     }
 

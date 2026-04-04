@@ -4,8 +4,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
@@ -76,6 +79,21 @@ public class BattlemageArmor extends BaseSpell {
                 tempPiece.setDamageValue(tempPiece.getMaxDamage() - 100);
                 player.setItemSlot(slot, tempPiece);
             }
+        }
+
+        double px = player.getX(), py = player.getY() + 1.0, pz = player.getZ();
+        if (anyExistingTempArmor) {
+            world.sendParticles(ParticleTypes.LARGE_SMOKE, px, py, pz, 20, 0.4, 0.6, 0.4, 0.05);
+            world.sendParticles(ParticleTypes.SMOKE, px, py, pz, 15, 0.3, 0.5, 0.3, 0.02);
+            world.playSound(null, player.getX(), player.getY(), player.getZ(),
+                    SoundEvents.ITEM_BREAK, SoundSource.PLAYERS, 1.0F, 0.8F);
+        } else {
+            world.sendParticles(ParticleTypes.CRIT, px, py, pz, 30, 0.5, 0.7, 0.5, 0.2);
+            world.sendParticles(ParticleTypes.ENCHANTED_HIT, px, py, pz, 25, 0.4, 0.6, 0.4, 0.15);
+            world.playSound(null, player.getX(), player.getY(), player.getZ(),
+                    SoundEvents.IRON_GOLEM_STEP, SoundSource.PLAYERS, 1.2F, 0.7F);
+            world.playSound(null, player.getX(), player.getY(), player.getZ(),
+                    SoundEvents.EVOKER_CAST_SPELL, SoundSource.PLAYERS, 0.8F, 1.1F);
         }
 
     }

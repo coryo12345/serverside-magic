@@ -2,9 +2,12 @@ package servermagic.spells;
 
 import java.util.Optional;
 
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySpawnReason;
@@ -47,6 +50,14 @@ public class SummonMount extends BaseSpell {
         horse.equipItemIfPossible(world, armor);
 
         world.addFreshEntity(horse);
+
+        world.sendParticles(ParticleTypes.HAPPY_VILLAGER,
+                horse.getX(), horse.getY() + 1.0, horse.getZ(), 20, 0.6, 0.8, 0.6, 0.1);
+        world.sendParticles(ParticleTypes.POOF,
+                horse.getX(), horse.getY() + 0.5, horse.getZ(), 10, 0.5, 0.5, 0.5, 0.05);
+        world.playSound(null, horse.getX(), horse.getY(), horse.getZ(),
+                SoundEvents.HORSE_AMBIENT, SoundSource.NEUTRAL, 1.0F, 1.0F);
+
         MinecraftServer server = world.getServer();
         if (server != null) {
             server.execute(() -> {

@@ -6,6 +6,8 @@ import java.util.Optional;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
@@ -27,6 +29,9 @@ public class FireBolt extends BaseSpell {
         Vec3 startPos = player.getEyePosition();
         double maxDistance = 5;
 
+        world.playSound(null, player.getX(), player.getY(), player.getZ(),
+                SoundEvents.BLAZE_SHOOT, SoundSource.PLAYERS, 0.7F, 1.4F);
+
         // Spawn particles
         int i = 3; // start a bit away from the camera
         Vec3 nextParticlePos = new Vec3(startPos.x, startPos.y, startPos.z);
@@ -39,6 +44,12 @@ public class FireBolt extends BaseSpell {
                     0.1, 0.1, 0);
         }
 
+        // Impact burst at beam endpoint
+        world.sendParticles(ParticleTypes.SMALL_FLAME,
+                nextParticlePos.x, nextParticlePos.y, nextParticlePos.z, 10, 0.3, 0.3, 0.3, 0.08);
+        world.sendParticles(ParticleTypes.LAVA,
+                nextParticlePos.x, nextParticlePos.y, nextParticlePos.z, 4, 0.2, 0.2, 0.2, 0.0);
+
         // Attack mobs
         List<LivingEntity> entities = SpellUtils.getAllLivingEntitiesInLineOfSight(player, maxDistance);
         DamageSource ds = player.damageSources().onFire();
@@ -46,6 +57,9 @@ public class FireBolt extends BaseSpell {
             if (entity.isAttackable()) {
                 entity.hurtServer(world, ds, 5);
                 entity.setRemainingFireTicks(20 * 3); // 3 seconds
+                Vec3 ep = entity.getEyePosition();
+                world.sendParticles(ParticleTypes.FLAME, ep.x, ep.y, ep.z, 10, 0.25, 0.35, 0.25, 0.1);
+                world.sendParticles(ParticleTypes.LAVA, ep.x, ep.y, ep.z, 3, 0.15, 0.2, 0.15, 0.0);
             }
         }
     }
