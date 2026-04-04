@@ -1,7 +1,11 @@
 package servermagic.spells;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
@@ -17,12 +21,16 @@ import net.minecraft.world.entity.animal.equine.Horse;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import servermagic.db.Database;
+import servermagic.db.tables.PlayerSpellConfig;
+import servermagic.db.tables.SkillUnlocks;
 import servermagic.web.skill.Skill;
 import servermagic.web.skill.Skills;
+import servermagic.web.spell.SpellConfigField;
 
 public class SummonMount extends BaseSpell {
 
     private final static String CUSTOM_HORSE_TAG = "server-magic-mount-horse";
+    private final static ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     public SummonMount(ServerLevel world, ServerPlayer player, Database db, InteractionHand hand) {
         super(world, player, db, hand);
@@ -36,14 +44,10 @@ public class SummonMount extends BaseSpell {
         horse.addTag(CUSTOM_HORSE_TAG);
         horse.setTamed(true);
         horse.forceSetRotation(player.getYHeadRot(), true, player.xRotO, true);
-        // TODO we'll need to go get info about what unlocks the user has
-        // to determine these...
-        // these values are NOT BASE
-        // check wiki for base values (lets keep them realistic)
         horse.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20);
         horse.setHealth(20);
         horse.getAttribute(Attributes.JUMP_STRENGTH).setBaseValue(1.5);
-        horse.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.4);
+        horse.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(getHorseSpeed());
         ItemStack saddle = new ItemStack(Items.SADDLE);
         horse.equipItemIfPossible(world, saddle);
         ItemStack armor = new ItemStack(Items.COPPER_HORSE_ARMOR);
@@ -64,6 +68,37 @@ public class SummonMount extends BaseSpell {
                 player.startRiding(horse);
             });
         }
+    }
+
+    private double getHorseSpeed() {
+        if (db == null || player == null) {
+            return 0.2;
+        }
+        try {
+            String username = player.getPlainTextName();
+            Optional<PlayerSpellConfig> cfg = PlayerSpellConfig.GetConfigForPlayer(db, username, this.id());
+            if (cfg.isPresent()) {
+                @SuppressWarnings("unchecked")
+                Map<String, Object> configMap = OBJECT_MAPPER.readValue(cfg.get().config, Map.class);
+                String speedVal = (String) configMap.get("speed");
+                if ("Gallop".equals(speedVal) && SkillUnlocks.IsSkillUnlocked(db, username, Skills.MOUNT_GALLOP, false)) {
+                    return 0.4;
+                }
+            }
+        } catch (Exception e) {
+            // fall back to default
+        }
+        return 0.2;
+    }
+
+    @Override
+    public Optional<List<SpellConfigField>> getConfigSchema(String username) {
+        List<String> options = new ArrayList<>();
+        options.add("Walk");
+        if (db != null && SkillUnlocks.IsSkillUnlocked(db, username, Skills.MOUNT_GALLOP, false)) {
+            options.add("Gallop");
+        }
+        return Optional.of(List.of(SpellConfigField.select("speed", options, "Walk")));
     }
 
     public static boolean isCustomHorse(Entity entity) {

@@ -1,5 +1,6 @@
 package servermagic.spells;
 
+import java.util.List;
 import java.util.Optional;
 
 import net.minecraft.server.level.ServerLevel;
@@ -9,6 +10,7 @@ import net.minecraft.world.InteractionResult;
 import servermagic.db.Database;
 import servermagic.db.tables.SkillUnlocks;
 import servermagic.web.skill.Skill;
+import servermagic.web.spell.SpellConfigField;
 
 public abstract class BaseSpell {
     protected ServerLevel world;
@@ -60,6 +62,10 @@ public abstract class BaseSpell {
             return true;
         }
         return SkillUnlocks.IsSkillUnlocked(db, player.getPlainTextName(), skill.get(), false);
+    }
+
+    public Optional<List<SpellConfigField>> getConfigSchema(String username) {
+        return Optional.empty();
     }
 
     public abstract String displayName();

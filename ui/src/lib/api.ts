@@ -3,6 +3,7 @@ import { Result } from "./result";
 import type {
   PlayerSpellResponse,
   SkillTree,
+  SpellConfigResponse,
   SpellSlot,
 } from "./types";
 
@@ -13,6 +14,7 @@ class MagicAPI {
       body?: BodyInit;
       method?: string;
       responseType?: "json" | "text";
+      headers?: Record<string, string>;
     },
   ): Promise<Result<T>> {
     try {
@@ -21,6 +23,10 @@ class MagicAPI {
       const auth = AuthToken.get();
       if (auth && auth.length) {
         headers["Authorization"] = `Bearer ${auth}`;
+      }
+
+      if (options?.headers) {
+        Object.assign(headers, options.headers);
       }
 
       const resp = await fetch(url.href, {
@@ -110,6 +116,24 @@ class MagicAPI {
   async getSkillTrees(): Promise<Result<SkillTree[]>> {
     const url = new URL("/api/skills/tree", window.location.origin);
     return this.request(url, { method: "GET", responseType: "json" });
+  }
+
+  async getSpellConfig(spellId: string): Promise<Result<SpellConfigResponse>> {
+    const url = new URL(`/api/spells/config/${spellId}`, window.location.origin);
+    return this.request(url, { method: "GET", responseType: "json" });
+  }
+
+  async setSpellConfig(
+    spellId: string,
+    config: Record<string, unknown>,
+  ): Promise<Result<void>> {
+    const url = new URL(`/api/spells/config/${spellId}`, window.location.origin);
+    return this.request(url, {
+      method: "POST",
+      body: JSON.stringify(config),
+      responseType: "text",
+      headers: { "Content-Type": "application/json" },
+    });
   }
 
   // get secrets - get all secret skills unlocked

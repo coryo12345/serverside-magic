@@ -4,16 +4,25 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.javalin.Javalin;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
 import servermagic.db.Database;
+import servermagic.db.tables.PlayerSpellConfig;
 import servermagic.db.tables.SpellSlot;
+import servermagic.spells.BaseSpell;
 import servermagic.web.spell.PlayerSpellsResponse;
+import servermagic.web.spell.SpellConfigResponse;
 import servermagic.web.spell.SpellSlots;
 import servermagic.web.spell.Spells;
 import servermagic.web.spell.UISpellDefinition;
 
 public class SpellRoutes extends RouteGroup {
+
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     public SpellRoutes(Javalin app, Database db, MinecraftServer server) {
         super(app, db, server);
@@ -94,6 +103,70 @@ public class SpellRoutes extends RouteGroup {
             }
 
             SpellSlot.ClearSlotForPlayer(db, username, slot);
+            ctx.status(204);
+        });
+
+        app.get("/api/spells/config/{spellId}", ctx -> {
+            String username = this.getAuthSubject(ctx);
+            String spellId = ctx.pathParam("spellId");
+
+            Optional<UISpellDefinition> spellDef = Spells.Get().getSpell(spellId);
+            if (spellDef.isEmpty()) {
+                ctx.status(404).result("Spell not found");
+                return;
+            }
+
+            BaseSpell spell;
+            try {
+                spell = spellDef.get().getClazz()
+                        .getDeclaredConstructor(ServerLevel.class, ServerPlayer.class, Database.class, InteractionHand.class)
+                        .newInstance(null, null, db, null);
+            } catch (Exception e) {
+                ctx.status(500).result("Failed to instantiate spell");
+                return;
+            }
+
+            SpellConfigResponse response = new SpellConfigResponse();
+            response.schema = spell.getConfigSchema(username).orElse(null);
+
+            Optional<PlayerSpellConfig> savedConfig = PlayerSpellConfig.GetConfigForPlayer(db, username, spellId);
+            if (savedConfig.isPresent()) {
+                try {
+                    @SuppressWarnings("unchecked")
+                    Map<String, Object> parsedConfig = OBJECT_MAPPER.readValue(savedConfig.get().config, Map.class);
+                    response.config = parsedConfig;
+                } catch (Exception e) {
+                    response.config = null;
+                }
+            }
+
+            ctx.status(200).json(response);
+        });
+
+        app.post("/api/spells/config/{spellId}", ctx -> {
+            String username = this.getAuthSubject(ctx);
+            String spellId = ctx.pathParam("spellId");
+
+            Optional<UISpellDefinition> spellDef = Spells.Get().getSpell(spellId);
+            if (spellDef.isEmpty()) {
+                ctx.status(404).result("Spell not found");
+                return;
+            }
+
+            String body = ctx.body();
+            if (body == null || body.isBlank()) {
+                ctx.status(400).result("Request body is required");
+                return;
+            }
+
+            try {
+                OBJECT_MAPPER.readTree(body);
+            } catch (Exception e) {
+                ctx.status(400).result("Invalid JSON body");
+                return;
+            }
+
+            PlayerSpellConfig.UpsertConfigForPlayer(db, username, spellId, body);
             ctx.status(204);
         });
     }

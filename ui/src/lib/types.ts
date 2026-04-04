@@ -34,3 +34,17 @@ export type SkillTree = {
   unlocked: boolean;
   branches: SkillTree[];
 };
+
+export type SpellConfigField = {
+  key: string;
+  type: 'text' | 'number' | 'boolean' | 'select';
+  defaultValue?: string | number | boolean;
+  min?: number;
+  max?: number;
+  options?: string[];
+};
+
+export type SpellConfigResponse = {
+  schema: SpellConfigField[] | null;
+  config: Record<string, unknown> | null;
+};

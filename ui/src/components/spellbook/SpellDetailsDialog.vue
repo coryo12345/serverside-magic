@@ -1,12 +1,80 @@
 <script setup lang="ts">
-import { type SpellDefinition } from "../../lib/types";
+import { ref, watch } from "vue";
+import { type SpellDefinition, type SpellConfigField } from "../../lib/types";
+import { api } from "../../lib/api";
+import { useToast } from "primevue/usetoast";
 import Dialog from "primevue/dialog";
+import Button from "primevue/button";
+import Select from "primevue/select";
+import InputText from "primevue/inputtext";
+import InputNumber from "primevue/inputnumber";
+import ToggleSwitch from "primevue/toggleswitch";
 
-defineProps<{
+const props = defineProps<{
   spell: SpellDefinition | null;
 }>();
 
 const visible = defineModel<boolean>("visible");
+const toast = useToast();
+
+const schema = ref<SpellConfigField[] | null>(null);
+const configValues = ref<Record<string, unknown>>({});
+const isSaving = ref(false);
+
+watch(visible, async (isNowVisible) => {
+  if (isNowVisible && props.spell) {
+    schema.value = null;
+    configValues.value = {};
+
+    const result = await api.getSpellConfig(props.spell.id);
+    if (result.isError()) return;
+
+    const data = result.get();
+    schema.value = data.schema;
+
+    if (data.schema) {
+      const initialValues: Record<string, unknown> = {};
+      for (const field of data.schema) {
+        if (data.config && data.config[field.key] !== undefined) {
+          initialValues[field.key] = data.config[field.key];
+        } else if (field.defaultValue !== undefined) {
+          initialValues[field.key] = field.defaultValue;
+        } else if (field.type === "text") {
+          initialValues[field.key] = "";
+        } else if (field.type === "number") {
+          initialValues[field.key] = field.min ?? 0;
+        } else if (field.type === "boolean") {
+          initialValues[field.key] = false;
+        } else if (field.type === "select") {
+          initialValues[field.key] = field.options?.[0] ?? "";
+        }
+      }
+      configValues.value = initialValues;
+    }
+  }
+});
+
+async function saveConfig() {
+  if (!props.spell) return;
+  isSaving.value = true;
+  const result = await api.setSpellConfig(props.spell.id, configValues.value);
+  isSaving.value = false;
+  if (result.isError()) {
+    toast.add({
+      severity: "error",
+      summary: "Error",
+      detail: "Failed to save configuration",
+      life: 3000,
+    });
+  } else {
+    toast.add({
+      severity: "success",
+      summary: "Saved",
+      detail: "Configuration saved",
+      life: 2000,
+    });
+  }
+}
 </script>
 
 <template>
@@ -65,6 +133,61 @@ const visible = defineModel<boolean>("visible");
             {{ spell.cost }}
           </p>
         </div>
+      </div>
+
+      <!-- Configuration -->
+      <div
+        v-if="schema && schema.length > 0"
+        class="space-y-4 border-t border-surface-200 dark:border-surface-700 pt-4"
+      >
+        <label
+          class="text-sm font-semibold text-surface-500 dark:text-surface-400 block"
+        >
+          Configuration
+        </label>
+
+        <div
+          v-for="field in schema"
+          :key="field.key"
+          class="flex flex-col gap-1"
+        >
+          <label
+            class="text-sm text-surface-700 dark:text-surface-300 capitalize"
+          >
+            {{ field.key }}
+          </label>
+
+          <Select
+            v-if="field.type === 'select'"
+            v-model="configValues[field.key]"
+            :options="field.options"
+            class="w-full"
+          />
+          <InputText
+            v-else-if="field.type === 'text'"
+            v-model="(configValues[field.key] as string)"
+            class="w-full"
+          />
+          <InputNumber
+            v-else-if="field.type === 'number'"
+            v-model="(configValues[field.key] as number)"
+            :min="field.min"
+            :max="field.max"
+            class="w-full"
+          />
+          <ToggleSwitch
+            v-else-if="field.type === 'boolean'"
+            v-model="(configValues[field.key] as boolean)"
+          />
+        </div>
+
+        <Button
+          label="Save Configuration"
+          icon="pi pi-save"
+          :loading="isSaving"
+          class="w-full mt-2"
+          @click="saveConfig"
+        />
       </div>
     </div>
   </Dialog>
