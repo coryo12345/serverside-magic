@@ -39,12 +39,12 @@ This document outlines the proposed unlock methods for all magic skills. All tre
 | **Bee Swarm** | Poison Cloud | Advancement: `husbandry/safely_harvest_honey` | Command over nature/swarms. |
 | **Wind Charge** | Poison Cloud | Advancement: `adventure/who_needs_rockets` | Mastering kinetic air. |
 | **Wind Gust** | Wind Charge | Advancement: `adventure/fall_from_world_height` | Surviving the heights of the wind. |
-| **Gravity Well** | Wind Charge |  |  |
+| **Gravity Well** | Wind Charge | Throw an Ender Pearl into the Void while in The End | High risk, high reward. |
 | **Freeze** | Unlock Magic | Advancement: `adventure/walk_on_powder_snow_with_leather_boots` | Embracing the cold. |
-| **Frost Nova** | Freeze |  |  |
+| **Frost Nova** | Freeze | Kill a Stray with a Fireball | Thermal shock theme. |
 | **Earthen Spike** | Unlock Magic | Advancement: `adventure/adventuring_time` | Explore the earth. |
-| **Spectral Grasp** | Gravity Well |  |  |
-| **Iron Maiden** | Spectral Grasp |  |  |
+| **Spectral Grasp** | Gravity Well | Kill a Shulker while affected by Levitation | Mastering the effect. |
+| **Iron Maiden** | Spectral Grasp | Right-click an Anvil with a Soul Lantern | Fusing soul and iron. |
 | **Desecrated Ground** | Ring of Fire | Advancement: `nether/get_wither_skull` | Embracing the dark/withered side. |
 | **Reap** | Desecrated Ground | Advancement: `adventure/kill_all_mobs` | The ultimate dealer of death. |
 
@@ -61,7 +61,7 @@ This document outlines the proposed unlock methods for all magic skills. All tre
 | **Mount: High Jump** | Summon Mount | Advancement: `adventure/bullseye` | Precision and power. |
 | **Mount: Armor** | Summon Mount | Advancement: `story/shiny_gear` | Protecting your companion. |
 | **Bound Spyglass** | Unlock Magic | Advancement: `adventure/spyglass_at_parrot` | Far-reaching vision. |
-| **Bag of Holding** | Bound Spyglass |  |  |
+| **Bag of Holding** | Bound Spyglass | Right-click an Ender Chest while holding a Shulker Box | Ultimate storage combination. |
 | **Bound Sword** | Unlock Magic | **Smith Netherite Sword** | Mastery of the blade. |
 | **Bound Axe** | Bound Sword | **Smith Netherite Axe** | Mastery of the cleaver. |
 | **Bound Spear** | Bound Sword | **Smith Netherite Spear** | Mastering spears. |
@@ -106,4 +106,4 @@ This document outlines the proposed unlock methods for all magic skills. All tre
 | **Battlemage Armor** | Secrets | Smith a piece of netherite armor | Armor? Idk. |
 | **Angel Wings** | Secrets | Reach Y > 1000 while wearing elytra | Reaching the heavens |
 | **Void Rift** | Secrets | Advancement: `end/dragon_breath` | Harnessing the dragon's essence. |
-| **Flying Carpet** | Secrets | | |
+| **Flying Carpet** | Secrets | Hold a carpet while standing on a happy ghast | A literal flying carpet |
