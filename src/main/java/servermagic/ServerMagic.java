@@ -11,12 +11,18 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
+import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.animal.happyghast.HappyGhast;
+import net.minecraft.world.entity.projectile.throwableitemprojectile.ThrownEnderpearl;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
 import servermagic.data.items.CustomItem;
 import servermagic.data.items.utils.ItemInteractionDispatcher;
 import servermagic.db.Database;
@@ -78,6 +84,16 @@ public class ServerMagic implements ModInitializer {
 			return InteractionResult.PASS;
 		});
 
+		UseBlockCallback.EVENT.register((player, world, hand, hitResult) -> {
+			Optional<Database> db = Database.GetDB();
+			if (db.isPresent() && world instanceof ServerLevel && player instanceof ServerPlayer) {
+				SkillGranter granter = new SkillGranter((ServerLevel) world, (ServerPlayer) player, db.get());
+				ItemStack heldItem = player.getItemInHand(hand);
+				granter.grantFromBlockInteraction(world.getBlockState(hitResult.getBlockPos()), heldItem);
+			}
+			return InteractionResult.PASS;
+		});
+
 		AttackEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
 			ItemInteractionDispatcher dispatcher = new ItemInteractionDispatcher(world, player, hand);
 			Optional<CustomItem> item = dispatcher.getHeldCustomItem();
@@ -114,6 +130,9 @@ public class ServerMagic implements ModInitializer {
 			// if we do this too frequently we overload the client with messages
 			if (tickCount % 100 == 0) {
 				this.handleManaRegenUpdates(world);
+			}
+			if (tickCount % 20 == 0) {
+				this.checkSkillUnlockConditions(world);
 			}
 		});
 
@@ -185,6 +204,36 @@ public class ServerMagic implements ModInitializer {
 				continue;
 			}
 			ManaScoreboard.updateManaDisplay(m.get(), player);
+		}
+	}
+
+	private void checkSkillUnlockConditions(ServerLevel world) {
+		Optional<Database> db = Database.GetDB();
+		if (db.isEmpty()) {
+			return;
+		}
+
+		// GRAVITY_WELL: ender pearl falling into the void in The End
+		if (world.dimensionTypeRegistration().is(BuiltinDimensionTypes.END)) {
+			for (net.minecraft.world.entity.Entity e : world.getAllEntities()) {
+				if (e instanceof ThrownEnderpearl pearl && pearl.getY() < -10
+						&& pearl.getOwner() instanceof ServerPlayer player) {
+					SkillGranter.grantSkillForPlayer(db.get(), player, servermagic.web.skill.Skills.GRAVITY_WELL);
+				}
+			}
+		}
+
+		// FLYING_CARPET: player riding a Happy Ghast while holding carpet
+		for (ServerPlayer player : world.players()) {
+			if (player.getVehicle() instanceof HappyGhast) {
+				ItemStack mainHand = player.getMainHandItem();
+				ItemStack offHand = player.getOffhandItem();
+				boolean holdingCarpet = mainHand.is(net.minecraft.tags.ItemTags.WOOL_CARPETS)
+						|| offHand.is(net.minecraft.tags.ItemTags.WOOL_CARPETS);
+				if (holdingCarpet) {
+					SkillGranter.grantSkillForPlayer(db.get(), player, servermagic.web.skill.Skills.FLYING_CARPET);
+				}
+			}
 		}
 	}
 }

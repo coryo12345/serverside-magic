@@ -10,7 +10,9 @@
     "PlayerAdvancementsMixin",
     "PlayerDropMixin",
     "SlotMayPlaceMixin",
-    "ShulkerBoxSlotMayPlaceMixin"
+    "ShulkerBoxSlotMayPlaceMixin",
+    "SmithingMenuMixin",
+    "MobDeathMixin"
   ],
   "injectors": {
     "defaultRequire": 1

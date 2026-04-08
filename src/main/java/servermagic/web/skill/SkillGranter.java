@@ -12,6 +12,10 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionContents;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.ShulkerBoxBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import servermagic.db.Database;
 import servermagic.db.tables.SkillUnlocks;
 
@@ -85,6 +89,77 @@ public class SkillGranter {
             if (anyUnlocked) {
                 SkillTree.UpdateSpellAvailabiltyForPlayer(db, player.getPlainTextName());
             }
+        }
+    }
+
+    public void grantFromBlockInteraction(BlockState blockState, ItemStack held) {
+        List<Skill> skillsPotentiallyEarned = new ArrayList<>();
+
+        Block block = blockState.getBlock();
+        boolean isAnvil = block == Blocks.ANVIL || block == Blocks.CHIPPED_ANVIL || block == Blocks.DAMAGED_ANVIL;
+        boolean isEnderChest = block == Blocks.ENDER_CHEST;
+
+        if (isAnvil && held.is(Items.SOUL_LANTERN)) {
+            skillsPotentiallyEarned.add(Skills.IRON_MAIDEN);
+        } else if (isEnderChest && held.getItem() instanceof net.minecraft.world.item.BlockItem bi
+                && bi.getBlock() instanceof ShulkerBoxBlock) {
+            skillsPotentiallyEarned.add(Skills.BAG_OF_HOLDING);
+        }
+
+        if (!skillsPotentiallyEarned.isEmpty()) {
+            boolean anyUnlocked = false;
+            for (Skill skill : skillsPotentiallyEarned) {
+                Optional<SkillUnlocks> su = SkillUnlocks.UnlockSkillForPlayerIfAble(db, player.getPlainTextName(),
+                        skill);
+                if (su.isPresent()) {
+                    anyUnlocked = true;
+                }
+            }
+            if (anyUnlocked) {
+                SkillTree.UpdateSpellAvailabiltyForPlayer(db, player.getPlainTextName());
+            }
+        }
+    }
+
+    public void grantFromSmithing(ItemStack result) {
+        List<Skill> skillsPotentiallyEarned = new ArrayList<>();
+
+        if (result.is(Items.NETHERITE_SWORD)) {
+            skillsPotentiallyEarned.add(Skills.BOUND_SWORD);
+        } else if (result.is(Items.NETHERITE_AXE)) {
+            skillsPotentiallyEarned.add(Skills.BOUND_AXE);
+        } else if (result.is(Items.NETHERITE_SPEAR)) {
+            skillsPotentiallyEarned.add(Skills.BOUND_SPEAR);
+        } else if (result.is(Items.NETHERITE_PICKAXE)) {
+            skillsPotentiallyEarned.add(Skills.BOUND_PICKAXE);
+        } else if (result.is(Items.NETHERITE_SHOVEL)) {
+            skillsPotentiallyEarned.add(Skills.BOUND_SHOVEL);
+        } else if (result.is(Items.NETHERITE_HOE)) {
+            skillsPotentiallyEarned.add(Skills.BOUND_HOE);
+        } else if (result.is(Items.NETHERITE_HELMET) || result.is(Items.NETHERITE_CHESTPLATE)
+                || result.is(Items.NETHERITE_LEGGINGS) || result.is(Items.NETHERITE_BOOTS)) {
+            skillsPotentiallyEarned.add(Skills.BATTLEMAGE_ARMOR);
+        }
+
+        if (!skillsPotentiallyEarned.isEmpty()) {
+            boolean anyUnlocked = false;
+            for (Skill skill : skillsPotentiallyEarned) {
+                Optional<SkillUnlocks> su = SkillUnlocks.UnlockSkillForPlayerIfAble(db, player.getPlainTextName(),
+                        skill);
+                if (su.isPresent()) {
+                    anyUnlocked = true;
+                }
+            }
+            if (anyUnlocked) {
+                SkillTree.UpdateSpellAvailabiltyForPlayer(db, player.getPlainTextName());
+            }
+        }
+    }
+
+    public static void grantSkillForPlayer(Database db, ServerPlayer player, Skill skill) {
+        Optional<SkillUnlocks> su = SkillUnlocks.UnlockSkillForPlayerIfAble(db, player.getPlainTextName(), skill);
+        if (su.isPresent()) {
+            SkillTree.UpdateSpellAvailabiltyForPlayer(db, player.getPlainTextName());
         }
     }
 }

@@ -14,11 +14,14 @@ public class Skills {
                         .setTabTitle("Building")
                         .setAdvancement("end/root", "The End");
         public static final Skill BUILD_LINE = new Skill("build_line", "Build: Line", "Build blocks in a line",
-                        UNLOCK_MAGIC_BUILDING.id());
+                        UNLOCK_MAGIC_BUILDING.id())
+                        .setAdvancement("husbandry/plant_seed", "A Seedy Place");
         public static final Skill BUILD_SQUARE = new Skill("build_square", "Build: Square",
-                        "Build a hollow square around the player", UNLOCK_MAGIC_BUILDING.id());
+                        "Build a hollow square around the player", UNLOCK_MAGIC_BUILDING.id())
+                        .setAdvancement("adventure/summon_iron_golem", "Hired Help");
         public static final Skill BUILD_RING = new Skill("build_ring", "Build: Ring",
-                        "Build a hollow ring around the player", UNLOCK_MAGIC_BUILDING.id());
+                        "Build a hollow ring around the player", UNLOCK_MAGIC_BUILDING.id())
+                        .setAdvancement("adventure/trade", "What a Deal!");
 
         // ===================== Elemental Tree =====================
         public static final Skill UNLOCK_MAGIC_ELEMENTAL = new Skill("unlock_magic_elemental", "Unlock Magic",
@@ -27,45 +30,62 @@ public class Skills {
                         .setTabTitle("Elemental")
                         .setAdvancement("end/root", "The End");
         public static final Skill FIREBOLT = new Skill("firebolt", "Firebolt", "Shoot a short bolt of fire",
-                        UNLOCK_MAGIC_ELEMENTAL.id());
+                        UNLOCK_MAGIC_ELEMENTAL.id())
+                        .setAdvancement("nether/obtain_blaze_rod", "Into Fire");
         public static final Skill FIREBALL = new Skill("fireball", "Fireball",
-                        "Shoot an explosive fireball", FIREBOLT.id());
+                        "Shoot an explosive fireball", FIREBOLT.id())
+                        .setAdvancement("nether/return_to_sender", "Return to Sender");
         public static final Skill RING_OF_FIRE = new Skill("ring_of_fire", "Ring of Fire",
-                        "Ignite a ring of fire that burns enemies who enter", FIREBALL.id());
+                        "Ignite a ring of fire that burns enemies who enter", FIREBALL.id())
+                        .setAdvancement("nether/explore_nether", "Those Were the Days");
         public static final Skill METEOR_SHOWER = new Skill("meteor_shower", "Meteor Shower",
-                        "Call down a shower of blazing meteors upon a target location", FIREBALL.id());
+                        "Call down a shower of blazing meteors upon a target location", FIREBALL.id())
+                        .setAdvancement("nether/summon_wither", "Withering Heights");
         public static final Skill LIGHTNING_STRIKE = new Skill("lightning_strike", "Lightning Strike",
-                        "Strike your target with a bolt of lightning from above", UNLOCK_MAGIC_ELEMENTAL.id());
+                        "Strike your target with a bolt of lightning from above", UNLOCK_MAGIC_ELEMENTAL.id())
+                        .setAdvancement("adventure/lightning_rod_with_villager_no_fire", "It Spreads");
         public static final Skill SUNBEAM = new Skill("sunbeam", "Sunbeam",
                         "Summon a pillar of holy light that devastates undead mobs within",
-                        LIGHTNING_STRIKE.id());
+                        LIGHTNING_STRIKE.id())
+                        .setAdvancement("adventure/totem_of_undying", "Postmortal");
         public static final Skill CHAIN_LIGHTNING = new Skill("chain_lightning", "Chain Lightning",
-                        "Shoot an arcing blast of lightning that chains between enemies", LIGHTNING_STRIKE.id());
+                        "Shoot an arcing blast of lightning that chains between enemies", LIGHTNING_STRIKE.id())
+                        .setAdvancement("adventure/two_birds_one_arrow", "Two Birds, One Arrow");
         public static final Skill ARCANE_MISSILES = new Skill("arcane_missiles", "Arcane Missiles",
-                        "Launch homing arcane projectiles at the nearest enemy", CHAIN_LIGHTNING.id());
+                        "Launch homing arcane projectiles at the nearest enemy", CHAIN_LIGHTNING.id())
+                        .setAdvancement("adventure/arbalistic", "Arbalistic");
         public static final Skill POISON_CLOUD = new Skill("poison_cloud", "Poison Cloud",
-                        "Conjure a cloud of poison in an area", UNLOCK_MAGIC_ELEMENTAL.id());
+                        "Conjure a cloud of poison in an area", UNLOCK_MAGIC_ELEMENTAL.id())
+                        .setAdvancement("nether/brew_potion", "Local Brewery");
         public static final Skill BEE_SWARM = new Skill("bee_swarm", "Bee Swarm",
-                        "Summon a swarm of bees to attack the nearest enemy", POISON_CLOUD.id());
+                        "Summon a swarm of bees to attack the nearest enemy", POISON_CLOUD.id())
+                        .setAdvancement("husbandry/safely_harvest_honey", "Total Beelocation");
         public static final Skill WINDCHARGE = new Skill("windcharge", "Wind Charge",
                         "Shoot a powerful gust of wind", POISON_CLOUD.id())
                         .setAdvancement("adventure/who_needs_rockets", "Who Needs Rockets?");
         public static final Skill WIND_GUST = new Skill("wind_gust", "Wind Gust",
-                        "Blast a powerful cone of wind that flings all nearby enemies away", WINDCHARGE.id());
+                        "Blast a powerful cone of wind that flings all nearby enemies away", WINDCHARGE.id())
+                        .setAdvancement("adventure/fall_from_world_height", "Sky's the Limit");
         public static final Skill GRAVITY_WELL = new Skill("gravity_well", "Gravity Well",
-                        "Open a vortex that pulls nearby enemies toward its center", WINDCHARGE.id());
+                        "Open a vortex that pulls nearby enemies toward its center", WINDCHARGE.id())
+                        .setUnlockDescription("Throw an ender pearl into the void while in The End");
         public static final Skill FREEZE = new Skill("freeze", "Freeze",
-                        "Shoot a block of ice that freezes your target", UNLOCK_MAGIC_ELEMENTAL.id());
+                        "Shoot a block of ice that freezes your target", UNLOCK_MAGIC_ELEMENTAL.id())
+                        .setAdvancement("adventure/walk_on_powder_snow_with_leather_boots", "Light as a Rabbit");
         public static final Skill FROST_NOVA = new Skill("frost_nova", "Frost Nova",
-                        "Blast nearby enemies back with a freezing shockwave", FREEZE.id());
+                        "Blast nearby enemies back with a freezing shockwave", FREEZE.id())
+                        .setUnlockDescription("Kill a Stray with a Fireball");
         public static final Skill EARTHEN_SPIKE = new Skill("earthen_spike", "Earthen Spike",
-                        "Summon a line of earth spikes in front of you", UNLOCK_MAGIC_ELEMENTAL.id());
+                        "Summon a line of earth spikes in front of you", UNLOCK_MAGIC_ELEMENTAL.id())
+                        .setAdvancement("adventure/adventuring_time", "Adventuring Time");
         public static final Skill SPECTRAL_GRASP = new Skill("spectral_grasp", "Spectral Grasp",
                         "Lift a target mob into the air with a spectral force, suspending them before they fall",
-                        GRAVITY_WELL.id());
+                        GRAVITY_WELL.id())
+                        .setUnlockDescription("Kill a Shulker while you have the Levitation effect");
         public static final Skill IRON_MAIDEN = new Skill("iron_maiden", "Iron Maiden",
                         "Encase a target in iron bars for 2 seconds, then crush them with a burst of piercing damage",
-                        SPECTRAL_GRASP.id());
+                        SPECTRAL_GRASP.id())
+                        .setUnlockDescription("Right-click an Anvil while holding a Soul Lantern");
         public static final Skill DESECRATED_GROUND = new Skill("desecrated_ground", "Desecrated Ground",
                         "Corrupt the earth beneath your feet, withering any mob that enters the zone",
                         RING_OF_FIRE.id());
@@ -83,35 +103,49 @@ public class Skills {
                         .setAdvancement("husbandry/tame_an_animal", "Best friends forever");
         public static final Skill MOUNT_GALLOP = new Skill("mount_gallop", "Mount: Gallop",
                         "Unlock an additional speed tier for your summoned mount. Configure your mount's speed in the Spellbook.",
-                        SUMMON_MOUNT.id());
+                        SUMMON_MOUNT.id())
+                        .setAdvancement("husbandry/breed_an_animal", "The Parrots and the Bats");
         public static final Skill MOUNT_JUMP = new Skill("mount_jump", "Mount: High Jump",
                         "Unlock an enhanced jump height for your summoned mount. Configure in the Spellbook.",
-                        SUMMON_MOUNT.id());
+                        SUMMON_MOUNT.id())
+                        .setAdvancement("adventure/bullseye", "Bullseye");
         public static final Skill MOUNT_ARMOR = new Skill("mount_armor", "Mount: Armor",
                         "Equip your summoned mount with horse armor. Configure in the Spellbook.",
-                        SUMMON_MOUNT.id());
+                        SUMMON_MOUNT.id())
+                        .setAdvancement("story/shiny_gear", "Cover Me with Diamonds");
         public static final Skill BOUND_SPYGLASS = new Skill("bound_spyglass", "Bound Spyglass",
-                        "Conjure a bound spyglass", UNLOCK_MAGIC_UTILITY.id());
+                        "Conjure a bound spyglass", UNLOCK_MAGIC_UTILITY.id())
+                        .setAdvancement("adventure/spyglass_at_parrot", "Is It a Bird?");
         public static final Skill BAG_OF_HOLDING = new Skill("bag_of_holding", "Bag of Holding",
-                        "Access your ender chest from anywhere", BOUND_SPYGLASS.id());
+                        "Access your ender chest from anywhere", BOUND_SPYGLASS.id())
+                        .setUnlockDescription("Right-click an Ender Chest while holding a Shulker Box");
         public static final Skill BOUND_SWORD = new Skill("bound_sword", "Bound Sword", "Conjure a bound sword",
-                        UNLOCK_MAGIC_UTILITY.id());
+                        UNLOCK_MAGIC_UTILITY.id())
+                        .setUnlockDescription("Smith a Netherite Sword");
         public static final Skill BOUND_AXE = new Skill("bound_axe", "Bound Axe", "Conjure a bound axe",
-                        BOUND_SWORD.id());
+                        BOUND_SWORD.id())
+                        .setUnlockDescription("Smith a Netherite Axe");
         public static final Skill BOUND_SPEAR = new Skill("bound_spear", "Bound Spear", "Conjure a bound spear",
-                        BOUND_SWORD.id());
+                        BOUND_SWORD.id())
+                        .setUnlockDescription("Smith a Netherite Spear");
         public static final Skill BOUND_PICKAXE = new Skill("bound_pickaxe", "Bound Pickaxe",
-                        "Conjure a bound pickaxe", BOUND_SPYGLASS.id());
+                        "Conjure a bound pickaxe", BOUND_SPYGLASS.id())
+                        .setUnlockDescription("Smith a Netherite Pickaxe");
         public static final Skill BOUND_SHOVEL = new Skill("bound_shovel", "Bound Shovel", "Conjure a bound shovel",
-                        BOUND_SPYGLASS.id());
+                        BOUND_SPYGLASS.id())
+                        .setUnlockDescription("Smith a Netherite Shovel");
         public static final Skill BOUND_HOE = new Skill("bound_hoe", "Bound Hoe", "Conjure a bound hoe",
-                        BOUND_SPYGLASS.id());
+                        BOUND_SPYGLASS.id())
+                        .setUnlockDescription("Smith a Netherite Hoe");
         public static final Skill BOUND_SHEARS = new Skill("bound_shears", "Bound Shears", "Conjure bound shears",
-                        BOUND_SPYGLASS.id());
+                        BOUND_SPYGLASS.id())
+                        .setAdvancement("adventure/honey_block_slide", "Sticky Situation");
         public static final Skill BOUND_FISHING_ROD = new Skill("bound_fishing_rod", "Bound Fishing Rod",
-                        "Conjure a bound fishing rod", BOUND_SPYGLASS.id());
+                        "Conjure a bound fishing rod", BOUND_SPYGLASS.id())
+                        .setAdvancement("husbandry/fishy_business", "Fishy Business");
         public static final Skill SPECTRAL_HAMMER = new Skill("spectral_hammer", "Spectral Hammer",
-                        "Summon a spectral hammer that smashes a 3x3 face of blocks", BOUND_PICKAXE.id());
+                        "Summon a spectral hammer that smashes a 3x3 face of blocks", BOUND_PICKAXE.id())
+                        .setAdvancement("nether/netherite_armor", "Cover Me in Debris");
 
         // ===================== Effects Tree =====================
         public static final Skill UNLOCK_MAGIC_EFFECTS = new Skill("unlock_magic_effects", "Unlock Magic",
@@ -169,16 +203,20 @@ public class Skills {
         public static final Skill SECRETS = new Skill("secrets", "Secrets", "secret skills", null);
 
         public static final Skill SHADOW_STEP = new Skill("shadow_step", "Shadow Step",
-                        "Teleport behind a target mob and gain Strength II for 2 seconds", SECRETS.id());
+                        "Teleport behind a target mob and gain Strength II for 2 seconds", SECRETS.id())
+                        .setAdvancement("end/respawn_dragon", "The End... Again...");
         public static final Skill BATTLEMAGE_ARMOR = new Skill("battlemage_armor", "Battlemage Armor",
-                        "Summon a suit of bound armor", SECRETS.id());
+                        "Summon a suit of bound armor", SECRETS.id())
+                        .setUnlockDescription("Smith a piece of Netherite Armor");
         public static final Skill ANGEL_WINGS = new Skill("angel_wings", "Angel Wings", "Summon wings and fly!",
                         SECRETS.id())
                         .setAdvancement("end/elytra", "Sky's the limit");
         public static final Skill VOID_RIFT = new Skill("void_rift", "Void Rift",
-                        "Fire a void skull that blinds and withers nearby enemies", SECRETS.id());
+                        "Fire a void skull that blinds and withers nearby enemies", SECRETS.id())
+                        .setAdvancement("end/dragon_breath", "You Need a Mint");
         public static final Skill FLYING_CARPET = new Skill("flying_carpet", "Flying Carpet",
-                        "Summon a magical flying carpet", SECRETS.id());
+                        "Summon a magical flying carpet", SECRETS.id())
+                        .setUnlockDescription("Hold a carpet while riding a Happy Ghast");
 
         public static List<Skill> GetAllSkills() {
                 Field[] declaredFields = Skills.class.getDeclaredFields();
