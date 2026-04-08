@@ -12,6 +12,7 @@
     "SlotMayPlaceMixin",
     "ShulkerBoxSlotMayPlaceMixin",
     "SmithingMenuMixin",
+    "ItemCombinerMenuMixin",
     "MobDeathMixin"
   ],
   "injectors": {
