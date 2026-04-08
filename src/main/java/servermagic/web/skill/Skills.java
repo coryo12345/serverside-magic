@@ -37,13 +37,13 @@ public class Skills {
                         .setAdvancement("nether/return_to_sender", "Return to Sender");
         public static final Skill RING_OF_FIRE = new Skill("ring_of_fire", "Ring of Fire",
                         "Ignite a ring of fire that burns enemies who enter", FIREBALL.id())
-                        .setAdvancement("nether/explore_nether", "Those Were the Days");
+                        .setAdvancement("nether/explore_nether", "Hot Tourist Destinations");
         public static final Skill METEOR_SHOWER = new Skill("meteor_shower", "Meteor Shower",
                         "Call down a shower of blazing meteors upon a target location", FIREBALL.id())
                         .setAdvancement("nether/summon_wither", "Withering Heights");
         public static final Skill LIGHTNING_STRIKE = new Skill("lightning_strike", "Lightning Strike",
                         "Strike your target with a bolt of lightning from above", UNLOCK_MAGIC_ELEMENTAL.id())
-                        .setAdvancement("adventure/lightning_rod_with_villager_no_fire", "It Spreads");
+                        .setAdvancement("adventure/lightning_rod_with_villager_no_fire", "Surge Protector");
         public static final Skill SUNBEAM = new Skill("sunbeam", "Sunbeam",
                         "Summon a pillar of holy light that devastates undead mobs within",
                         LIGHTNING_STRIKE.id())
@@ -59,13 +59,13 @@ public class Skills {
                         .setAdvancement("nether/brew_potion", "Local Brewery");
         public static final Skill BEE_SWARM = new Skill("bee_swarm", "Bee Swarm",
                         "Summon a swarm of bees to attack the nearest enemy", POISON_CLOUD.id())
-                        .setAdvancement("husbandry/safely_harvest_honey", "Total Beelocation");
+                        .setAdvancement("husbandry/safely_harvest_honey", "Bee Our Guest");
         public static final Skill WINDCHARGE = new Skill("windcharge", "Wind Charge",
                         "Shoot a powerful gust of wind", POISON_CLOUD.id())
                         .setAdvancement("adventure/who_needs_rockets", "Who Needs Rockets?");
         public static final Skill WIND_GUST = new Skill("wind_gust", "Wind Gust",
                         "Blast a powerful cone of wind that flings all nearby enemies away", WINDCHARGE.id())
-                        .setAdvancement("adventure/fall_from_world_height", "Sky's the Limit");
+                        .setAdvancement("adventure/fall_from_world_height", "Caves & Cliffs");
         public static final Skill GRAVITY_WELL = new Skill("gravity_well", "Gravity Well",
                         "Open a vortex that pulls nearby enemies toward its center", WINDCHARGE.id())
                         .setUnlockDescription("Throw an ender pearl into the void while in The End");
@@ -88,9 +88,11 @@ public class Skills {
                         .setUnlockDescription("Right-click an Anvil while holding a Soul Lantern");
         public static final Skill DESECRATED_GROUND = new Skill("desecrated_ground", "Desecrated Ground",
                         "Corrupt the earth beneath your feet, withering any mob that enters the zone",
-                        RING_OF_FIRE.id());
+                        RING_OF_FIRE.id())
+                        .setAdvancement("nether/get_wither_skull", "Spooky Scary Skeleton");
         public static final Skill REAP = new Skill("reap", "Reap",
-                        "Execute mobs below 20% health in a wide sweeping arc", DESECRATED_GROUND.id());
+                        "Execute mobs below 20% health in a wide sweeping arc", DESECRATED_GROUND.id())
+                        .setAdvancement("adventure/kill_all_mobs", "Monsters Hunted");
 
         // ===================== Utility Tree =====================
         public static final Skill UNLOCK_MAGIC_UTILITY = new Skill("unlock_magic_utility", "Unlock Magic",
@@ -100,7 +102,7 @@ public class Skills {
                         .setAdvancement("end/root", "The End");
         public static final Skill SUMMON_MOUNT = new Skill("summon_mount", "Mount: Horse", "Summon your loyal steed",
                         UNLOCK_MAGIC_UTILITY.id())
-                        .setAdvancement("husbandry/tame_an_animal", "Best friends forever");
+                        .setAdvancement("husbandry/tame_an_animal", "Best Friends Forever");
         public static final Skill MOUNT_GALLOP = new Skill("mount_gallop", "Mount: Gallop",
                         "Unlock an additional speed tier for your summoned mount. Configure your mount's speed in the Spellbook.",
                         SUMMON_MOUNT.id())
@@ -155,7 +157,7 @@ public class Skills {
                         .setAdvancement("end/root", "The End");
         public static final Skill SPEED_SPELL = new Skill("speed_spell", "Speed Spell",
                         "Enhance self with a burst of speed", UNLOCK_MAGIC_EFFECTS.id())
-                        .setAdvancement("nether/brew_potion", "Local brewery");
+                        .setAdvancement("nether/brew_potion", "Local Brewery");
         public static final Skill JUMP_BOOST_SPELL = new Skill("jump_boost_spell", "Jump Boost",
                         "Leap higher into the air", SPEED_SPELL.id())
                         .setUnlockDescription("Drink a potion of leaping");
@@ -210,7 +212,7 @@ public class Skills {
                         .setUnlockDescription("Smith a piece of Netherite Armor");
         public static final Skill ANGEL_WINGS = new Skill("angel_wings", "Angel Wings", "Summon wings and fly!",
                         SECRETS.id())
-                        .setAdvancement("end/elytra", "Sky's the limit");
+                        .setUnlockDescription("Reach Y > 1000 while wearing an Elytra");
         public static final Skill VOID_RIFT = new Skill("void_rift", "Void Rift",
                         "Fire a void skull that blinds and withers nearby enemies", SECRETS.id())
                         .setAdvancement("end/dragon_breath", "You Need a Mint");

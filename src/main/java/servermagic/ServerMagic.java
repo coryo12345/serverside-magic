@@ -224,6 +224,7 @@ public class ServerMagic implements ModInitializer {
 		}
 
 		// FLYING_CARPET: player riding a Happy Ghast while holding carpet
+		// ANGEL_WINGS: player at Y > 1000 while wearing elytra
 		for (ServerPlayer player : world.players()) {
 			if (player.getVehicle() instanceof HappyGhast) {
 				ItemStack mainHand = player.getMainHandItem();
@@ -233,6 +234,11 @@ public class ServerMagic implements ModInitializer {
 				if (holdingCarpet) {
 					SkillGranter.grantSkillForPlayer(db.get(), player, servermagic.web.skill.Skills.FLYING_CARPET);
 				}
+			}
+
+			if (player.getY() > 1000 && player.getItemBySlot(net.minecraft.world.entity.EquipmentSlot.CHEST)
+					.is(net.minecraft.world.item.Items.ELYTRA)) {
+				SkillGranter.grantSkillForPlayer(db.get(), player, servermagic.web.skill.Skills.ANGEL_WINGS);
 			}
 		}
 	}
