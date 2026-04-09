@@ -240,7 +240,7 @@ public class ServerMagic implements ModInitializer {
 				}
 			}
 
-			if (player.getY() > 1000 && player.getItemBySlot(net.minecraft.world.entity.EquipmentSlot.CHEST)
+			if (player.getY() > 501 && player.getItemBySlot(net.minecraft.world.entity.EquipmentSlot.CHEST)
 					.is(net.minecraft.world.item.Items.ELYTRA)) {
 				SkillGranter.grantSkillForPlayer(db.get(), player, servermagic.web.skill.Skills.ANGEL_WINGS);
 			}

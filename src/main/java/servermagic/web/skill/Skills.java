@@ -212,7 +212,7 @@ public class Skills {
                         .setUnlockDescription("Smith a piece of Netherite Armor");
         public static final Skill ANGEL_WINGS = new Skill("angel_wings", "Angel Wings", "Summon wings and fly!",
                         SECRETS.id())
-                        .setUnlockDescription("Reach Y > 1000 while wearing an Elytra");
+                        .setUnlockDescription("Reach Y > 501 while wearing an Elytra");
         public static final Skill VOID_RIFT = new Skill("void_rift", "Void Rift",
                         "Fire a void skull that blinds and withers nearby enemies", SECRETS.id())
                         .setAdvancement("end/dragon_breath", "You Need a Mint");
