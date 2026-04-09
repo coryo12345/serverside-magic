@@ -16,10 +16,13 @@ import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.animal.happyghast.HappyGhast;
 import net.minecraft.world.entity.projectile.throwableitemprojectile.ThrownEnderpearl;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
@@ -50,6 +53,7 @@ import servermagic.spells.SummonMount;
 import servermagic.spells.utils.PlayerSpellFocusCaster;
 import servermagic.web.WebPortal;
 import servermagic.web.skill.SkillGranter;
+import servermagic.web.skill.Skills;
 import servermagic.web.spell.Spells;
 
 public class ServerMagic implements ModInitializer {
@@ -239,6 +243,10 @@ public class ServerMagic implements ModInitializer {
 			if (player.getY() > 1000 && player.getItemBySlot(net.minecraft.world.entity.EquipmentSlot.CHEST)
 					.is(net.minecraft.world.item.Items.ELYTRA)) {
 				SkillGranter.grantSkillForPlayer(db.get(), player, servermagic.web.skill.Skills.ANGEL_WINGS);
+			}
+
+			if (player.getY() < -60 && player.level().dimension() == Level.OVERWORLD && player.getItemBySlot(EquipmentSlot.MAINHAND).is(ItemTags.PICKAXES)) {
+				SkillGranter.grantSkillForPlayer(db.get(), player, Skills.SPECTRAL_HAMMER);
 			}
 		}
 	}

@@ -147,7 +147,7 @@ public class Skills {
                         .setAdvancement("husbandry/fishy_business", "Fishy Business");
         public static final Skill SPECTRAL_HAMMER = new Skill("spectral_hammer", "Spectral Hammer",
                         "Summon a spectral hammer that smashes a 3x3 face of blocks", BOUND_PICKAXE.id())
-                        .setAdvancement("nether/netherite_armor", "Cover Me in Debris");
+                        .setUnlockDescription("Take a pickaxe to the depths of the overworld.");
 
         // ===================== Effects Tree =====================
         public static final Skill UNLOCK_MAGIC_EFFECTS = new Skill("unlock_magic_effects", "Unlock Magic",
