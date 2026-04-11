@@ -10,6 +10,7 @@ import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import servermagic.data.items.SpellbookItem;
 
@@ -35,7 +36,22 @@ public class ModRecipes extends FabricRecipeProvider {
 				SpellbookItem si = new SpellbookItem();
 				this.shapeless(RecipeCategory.TOOLS, si.getDefaultItemStack()).requires(Items.BOOK)
 						.unlockedBy(getHasName(Items.BOOK), has(Items.BOOK)).save(this.output);
-				;
+
+				// Crystalline Mana: Amethyst Shard + Lapis + 2 Glass Bottles = 2 Bottles o' Enchanting
+				this.shapeless(RecipeCategory.BREWING, new ItemStack(Items.EXPERIENCE_BOTTLE, 2))
+						.requires(Items.AMETHYST_SHARD)
+						.requires(Items.LAPIS_LAZULI)
+						.requires(Items.GLASS_BOTTLE, 2)
+						.unlockedBy(getHasName(Items.AMETHYST_SHARD), has(Items.AMETHYST_SHARD))
+						.save(this.output, "crystalline_mana");
+
+				// Gilded Glow: Gold Ingot + Glowstone Dust + 2 Glass Bottles = 2 Bottles o' Enchanting
+				this.shapeless(RecipeCategory.BREWING, new ItemStack(Items.EXPERIENCE_BOTTLE, 2))
+						.requires(Items.GOLD_INGOT)
+						.requires(Items.GLOWSTONE_DUST)
+						.requires(Items.GLASS_BOTTLE, 2)
+						.unlockedBy(getHasName(Items.GOLD_INGOT), has(Items.GOLD_INGOT))
+						.save(this.output, "gilded_glow");
 			}
 		};
 	}
