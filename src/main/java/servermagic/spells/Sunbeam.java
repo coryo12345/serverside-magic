@@ -127,10 +127,14 @@ public class Sunbeam extends BaseSpell {
     }
 
     @Override
-    public int cost() {
-        return 6;
+
+    public int getFlatXpCost() {
+        return 20;
     }
 
+    public double getLevelPercentCost() {
+        return 0.5;
+    }
     @Override
     public String displayName() {
         return "Sunbeam";

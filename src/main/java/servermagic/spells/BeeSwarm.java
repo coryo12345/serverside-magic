@@ -150,10 +150,14 @@ public class BeeSwarm extends BaseSpell {
     }
 
     @Override
-    public int cost() {
-        return 5;
+
+    public int getFlatXpCost() {
+        return 14;
     }
 
+    public double getLevelPercentCost() {
+        return 0.35;
+    }
     @Override
     public String displayName() {
         return "Bee Swarm";

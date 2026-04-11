@@ -60,10 +60,14 @@ public class FreezeSpell extends BaseSpell {
     }
 
     @Override
-    public int cost() {
-        return 2;
+
+    public int getFlatXpCost() {
+        return 8;
     }
 
+    public double getLevelPercentCost() {
+        return 0.2;
+    }
     @Override
     public String displayName() {
         return "Freeze";

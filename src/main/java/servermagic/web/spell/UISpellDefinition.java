@@ -14,7 +14,8 @@ public class UISpellDefinition {
     public String id;
     public String displayName;
     public String description;
-    public int cost;
+    public int flatXpCost;
+    public double levelPercentCost;
     public String requiredSkillId;
 
     private Class<? extends BaseSpell> clazz;
@@ -39,7 +40,8 @@ public class UISpellDefinition {
             def.id = spell.id();
             def.displayName = spell.displayName();
             def.description = spell.description();
-            def.cost = spell.cost();
+            def.flatXpCost = spell.getFlatXpCost();
+            def.levelPercentCost = spell.getLevelPercentCost();
             def.clazz = clazz;
             Optional<Skill> s = spell.getRequiredSkill();
             if (s.isPresent()) {

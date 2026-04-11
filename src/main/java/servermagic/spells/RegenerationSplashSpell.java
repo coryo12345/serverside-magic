@@ -28,6 +28,15 @@ public class RegenerationSplashSpell extends BaseSpell {
     }
 
     @Override
+
+    public int getFlatXpCost() {
+        return 5;
+    }
+
+    public double getLevelPercentCost() {
+        return 0.15;
+    }
+
     public String displayName() {
         return "Regeneration Others";
     }

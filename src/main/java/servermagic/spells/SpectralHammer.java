@@ -255,10 +255,14 @@ public class SpectralHammer extends BaseSpell {
     }
 
     @Override
-    public int cost() {
-        return 5;
+
+    public int getFlatXpCost() {
+        return 1;
     }
 
+    public double getLevelPercentCost() {
+        return 0.05;
+    }
     @Override
     public String displayName() {
         return "Spectral Hammer";

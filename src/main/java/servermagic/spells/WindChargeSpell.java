@@ -50,6 +50,15 @@ public class WindChargeSpell extends BaseSpell {
     }
 
     @Override
+
+    public int getFlatXpCost() {
+        return 8;
+    }
+
+    public double getLevelPercentCost() {
+        return 0.2;
+    }
+
     public String displayName() {
         return "Wind Charge";
     }

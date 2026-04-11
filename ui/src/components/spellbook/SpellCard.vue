@@ -1,10 +1,20 @@
 <script setup lang="ts">
 import { type SpellDefinition } from "../../lib/types";
 
-defineProps<{
+const props = defineProps<{
   spell: SpellDefinition;
   compact?: boolean;
 }>();
+
+function formatXpCost(spell: SpellDefinition): string {
+  const flat = spell.flatXpCost;
+  const pct = spell.levelPercentCost;
+  if (flat === 0 && pct === 0) return "Free";
+  const parts: string[] = [];
+  if (flat > 0) parts.push(`${flat} XP`);
+  if (pct > 0) parts.push(`${Math.round(pct * 100)}% of level`);
+  return parts.join(" + ");
+}
 </script>
 
 <template>
@@ -53,7 +63,7 @@ defineProps<{
         <p
           class="text-xs text-surface-500 dark:text-surface-400 truncate mt-0.5"
         >
-          Cost: {{ spell.cost }}
+          Cost: {{ formatXpCost(spell) }}
         </p>
       </div>
     </template>

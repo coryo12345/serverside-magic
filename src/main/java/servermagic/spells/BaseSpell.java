@@ -48,8 +48,12 @@ public abstract class BaseSpell {
         return InteractionResult.FAIL;
     }
 
-    public int cost() {
-        return 1;
+    public int getFlatXpCost() {
+        return 0;
+    }
+
+    public double getLevelPercentCost() {
+        return 0.0;
     }
 
     public String id() {

@@ -146,10 +146,14 @@ public class SpectralGrasp extends BaseSpell {
     }
 
     @Override
-    public int cost() {
-        return 4;
+
+    public int getFlatXpCost() {
+        return 20;
     }
 
+    public double getLevelPercentCost() {
+        return 0.5;
+    }
     @Override
     public String displayName() {
         return "Spectral Grasp";

@@ -80,10 +80,14 @@ public class WindGust extends BaseSpell {
     }
 
     @Override
-    public int cost() {
-        return 3;
+
+    public int getFlatXpCost() {
+        return 14;
     }
 
+    public double getLevelPercentCost() {
+        return 0.35;
+    }
     @Override
     public String displayName() {
         return "Wind Gust";

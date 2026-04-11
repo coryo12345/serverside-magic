@@ -1,6 +1,16 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 import { type SpellDefinition, type SpellConfigField } from "../../lib/types";
+
+function formatXpCost(spell: SpellDefinition): string {
+  const flat = spell.flatXpCost;
+  const pct = spell.levelPercentCost;
+  if (flat === 0 && pct === 0) return "Free";
+  const parts: string[] = [];
+  if (flat > 0) parts.push(`${flat} XP`);
+  if (pct > 0) parts.push(`${Math.round(pct * 100)}% of level`);
+  return parts.join(" + ");
+}
 import { api } from "../../lib/api";
 import { useToast } from "primevue/usetoast";
 import Dialog from "primevue/dialog";
@@ -127,10 +137,10 @@ async function saveConfig() {
           <label
             class="text-sm font-semibold text-surface-500 dark:text-surface-400 block mb-1"
           >
-            Mana Cost
+            XP Cost
           </label>
           <p class="text-surface-900 dark:text-surface-100 font-mono">
-            {{ spell.cost }}
+            {{ formatXpCost(spell) }}
           </p>
         </div>
       </div>

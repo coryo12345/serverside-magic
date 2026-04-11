@@ -2,7 +2,8 @@ export type SpellDefinition = {
   id: string;
   displayName: string;
   description: string;
-  cost: string;
+  flatXpCost: number;
+  levelPercentCost: number;
   icon?: string;
   group?: string;
 };

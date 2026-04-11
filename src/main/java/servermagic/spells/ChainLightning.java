@@ -73,6 +73,15 @@ public class ChainLightning extends BaseSpell {
     }
 
     @Override
+
+    public int getFlatXpCost() {
+        return 20;
+    }
+
+    public double getLevelPercentCost() {
+        return 0.5;
+    }
+
     public String displayName() {
         return "Chain Lightning";
     }

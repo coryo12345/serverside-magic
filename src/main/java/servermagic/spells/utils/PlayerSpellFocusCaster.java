@@ -91,14 +91,35 @@ public class PlayerSpellFocusCaster {
             BaseSpell spell = clazz.getDeclaredConstructor(
                     ServerLevel.class, ServerPlayer.class, Database.class, InteractionHand.class)
                     .newInstance(world, player, db, hand);
-            if (spell.playerHasRequiredSkill()) {
-                return spell.castAsInteraction();
-            } else {
+            if (!spell.playerHasRequiredSkill()) {
                 return InteractionResult.PASS;
             }
+
+            int xpForLevel = player.getXpNeededForNextLevel();
+            int totalCost = spell.getFlatXpCost() + (int)(spell.getLevelPercentCost() * xpForLevel);
+            if (getPlayerTotalXp(player) < totalCost) {
+                player.displayClientMessage(
+                    Component.literal("Not enough XP to cast this spell!").withStyle(ChatFormatting.RED), true);
+                return InteractionResult.FAIL;
+            }
+
+            player.giveExperiencePoints(-totalCost);
+            return spell.castAsInteraction();
         } catch (Exception e) {
             return InteractionResult.FAIL;
         }
+    }
+
+    private static int getPlayerTotalXp(ServerPlayer player) {
+        int level = player.experienceLevel;
+        int barXp = (int)(player.experienceProgress * player.getXpNeededForNextLevel());
+        int cumulative = 0;
+        for (int l = 0; l < level; l++) {
+            if (l >= 30) cumulative += 9 * l - 158;
+            else if (l >= 16) cumulative += 5 * l - 38;
+            else cumulative += 2 * l + 7;
+        }
+        return cumulative + barXp;
     }
 
     private void sendCastStatusToPlayer(ServerPlayer player, PlayerCastStatus status) {

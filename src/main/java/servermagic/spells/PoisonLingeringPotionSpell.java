@@ -53,6 +53,15 @@ public class PoisonLingeringPotionSpell extends BaseSpell {
     }
 
     @Override
+
+    public int getFlatXpCost() {
+        return 14;
+    }
+
+    public double getLevelPercentCost() {
+        return 0.35;
+    }
+
     public String displayName() {
         return "Poison Cloud";
     }

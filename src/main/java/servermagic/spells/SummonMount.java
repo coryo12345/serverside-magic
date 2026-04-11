@@ -163,6 +163,15 @@ public class SummonMount extends BaseSpell {
     }
 
     @Override
+
+    public int getFlatXpCost() {
+        return 0;
+    }
+
+    public double getLevelPercentCost() {
+        return 0.0;
+    }
+
     public String displayName() {
         return "Mount: Horse";
     }

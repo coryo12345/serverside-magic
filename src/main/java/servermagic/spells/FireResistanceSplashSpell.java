@@ -27,6 +27,15 @@ public class FireResistanceSplashSpell extends BaseSpell {
     }
 
     @Override
+
+    public int getFlatXpCost() {
+        return 2;
+    }
+
+    public double getLevelPercentCost() {
+        return 0.05;
+    }
+
     public String displayName() {
         return "Fire Resistance Others";
     }

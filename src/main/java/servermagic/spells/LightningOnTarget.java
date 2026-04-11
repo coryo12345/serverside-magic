@@ -49,6 +49,15 @@ public class LightningOnTarget extends BaseSpell {
     }
 
     @Override
+
+    public int getFlatXpCost() {
+        return 8;
+    }
+
+    public double getLevelPercentCost() {
+        return 0.2;
+    }
+
     public String displayName() {
         return "Lightning Strike";
     }

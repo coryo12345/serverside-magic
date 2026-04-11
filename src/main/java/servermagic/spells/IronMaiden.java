@@ -167,10 +167,14 @@ public class IronMaiden extends BaseSpell {
     }
 
     @Override
-    public int cost() {
-        return 5;
+
+    public int getFlatXpCost() {
+        return 75;
     }
 
+    public double getLevelPercentCost() {
+        return 1.0;
+    }
     @Override
     public String displayName() {
         return "Iron Maiden";

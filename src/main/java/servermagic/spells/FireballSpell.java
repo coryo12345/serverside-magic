@@ -48,6 +48,15 @@ public class FireballSpell extends BaseSpell {
     }
 
     @Override
+
+    public int getFlatXpCost() {
+        return 20;
+    }
+
+    public double getLevelPercentCost() {
+        return 0.5;
+    }
+
     public String displayName() {
         return "Fireball";
     }

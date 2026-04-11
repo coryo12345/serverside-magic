@@ -129,10 +129,14 @@ public class FlyingCarpet extends BaseSpell {
     }
 
     @Override
-    public int cost() {
-        return 3;
+
+    public int getFlatXpCost() {
+        return 8;
     }
 
+    public double getLevelPercentCost() {
+        return 0.2;
+    }
     @Override
     public Optional<Skill> getRequiredSkill() {
         return Optional.of(Skills.FLYING_CARPET);
