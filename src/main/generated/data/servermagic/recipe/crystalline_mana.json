@@ -8,6 +8,25 @@
     "minecraft:glass_bottle"
   ],
   "result": {
+    "components": {
+      "minecraft:custom_name": {
+        "color": "aqua",
+        "italic": false,
+        "text": "Mana Potion"
+      },
+      "minecraft:lore": [
+        {
+          "color": "gray",
+          "italic": false,
+          "text": "A burst of arcane energy."
+        },
+        {
+          "color": "dark_gray",
+          "italic": false,
+          "text": "Best used below level 10."
+        }
+      ]
+    },
     "count": 2,
     "id": "minecraft:experience_bottle"
   }

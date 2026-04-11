@@ -21,6 +21,7 @@ declare module 'vue' {
     LoginPage: typeof import('./src/components/LoginPage.vue')['default']
     Message: typeof import('primevue/message')['default']
     ProgressSpinner: typeof import('primevue/progressspinner')['default']
+    SecretsPage: typeof import('./src/components/secrets/SecretsPage.vue')['default']
     SideNavigation: typeof import('./src/components/SideNavigation.vue')['default']
     SkillDetailDialog: typeof import('./src/components/skilltree/SkillDetailDialog.vue')['default']
     SkillTree: typeof import('./src/components/skilltree/SkillTree.vue')['default']

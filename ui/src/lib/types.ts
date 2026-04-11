@@ -46,6 +46,12 @@ export type SpellConfigField = {
   options?: string[];
 };
 
+export type SecretSkill = {
+  id: string;
+  name: string;
+  description: string;
+};
+
 export type SpellConfigResponse = {
   schema: SpellConfigField[] | null;
   config: Record<string, unknown> | null;

@@ -41,3 +41,6 @@ replay_*.log
 *.jfr
 
 *.zip
+
+src/main/resources/web
+!src/main/resources/web/.gitkeep

@@ -202,7 +202,8 @@ public class Skills {
                         .setUnlockDescription("Drink a potion of strength");
 
         // ===================== Secrets =====================
-        public static final Skill SECRETS = new Skill("secrets", "Secrets", "secret skills", null);
+        public static final Skill SECRETS = new Skill("secrets", "Secrets", "secret skills", null)
+                        .setAdvancement("end/root", "The End");
 
         public static final Skill SHADOW_STEP = new Skill("shadow_step", "Shadow Step",
                         "Teleport behind a target mob and gain Strength II for 2 seconds", SECRETS.id())

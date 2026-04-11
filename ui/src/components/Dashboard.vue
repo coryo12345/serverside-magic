@@ -3,6 +3,7 @@ import { ref } from "vue";
 import SpellbookConfig from "./spellbook/SpellbookConfig.vue";
 import SideNavigation from "./SideNavigation.vue";
 import SkillTreePage from "./skilltree/SkillTreePage.vue";
+import SecretsPage from "./secrets/SecretsPage.vue";
 
 const emit = defineEmits(["logout"]);
 const drawerVisible = ref(false);
@@ -56,23 +57,7 @@ const currentPage = ref("spellbook");
         </template>
 
         <template v-else-if="currentPage === 'secrets'">
-          <header class="mb-8">
-            <h1
-              class="text-2xl md:text-3xl font-bold text-surface-900 dark:text-surface-0"
-            >
-              Secrets
-            </h1>
-            <p class="text-surface-500 dark:text-surface-400">
-              Discover hidden knowledge and ancient mysteries.
-            </p>
-          </header>
-          <div
-            class="bg-surface-0 dark:bg-surface-800 p-6 rounded-xl shadow-sm border border-surface-200 dark:border-surface-700"
-          >
-            <p class="text-surface-600 dark:text-surface-400">
-              Secrets content coming soon...
-            </p>
-          </div>
+          <SecretsPage />
         </template>
       </div>
     </main>

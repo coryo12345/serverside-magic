@@ -2,6 +2,7 @@ import { AuthToken } from "./authtoken";
 import { Result } from "./result";
 import type {
   PlayerSpellResponse,
+  SecretSkill,
   SkillTree,
   SpellConfigResponse,
   SpellSlot,
@@ -136,7 +137,10 @@ class MagicAPI {
     });
   }
 
-  // get secrets - get all secret skills unlocked
+  async getMySecrets(): Promise<Result<SecretSkill[]>> {
+    const url = new URL("/api/skills/secrets", window.location.origin);
+    return this.request(url, { method: "GET", responseType: "json" });
+  }
 }
 
 export const api = new MagicAPI();

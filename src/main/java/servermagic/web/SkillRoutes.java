@@ -1,12 +1,16 @@
 package servermagic.web;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import io.javalin.Javalin;
 import net.minecraft.server.MinecraftServer;
 import servermagic.db.Database;
 import servermagic.db.tables.SkillUnlocks;
+import servermagic.web.skill.Skill;
 import servermagic.web.skill.SkillTree;
 import servermagic.web.skill.Skills;
 
@@ -48,6 +52,33 @@ public class SkillRoutes extends RouteGroup {
             }
 
             ctx.status(200).json(trees);
+        });
+
+        app.get("/api/skills/secrets", ctx -> {
+            String username = this.getAuthSubject(ctx);
+
+            SkillTree.UpdateSpellAvailabiltyForPlayer(db, username);
+
+            Optional<List<SkillUnlocks>> unlocks = SkillUnlocks.GetAllPlayerUnlockedSkills(db, username, false);
+            if (unlocks.isEmpty()) {
+                ctx.status(500).result("Unable to determine unlocked skills for player");
+                return;
+            }
+
+            Set<String> unlockedIds = unlocks.get().stream()
+                    .map(u -> u.skill)
+                    .collect(Collectors.toSet());
+
+            List<Map<String, Object>> secrets = Skills.GetAllSkills().stream()
+                    .filter(s -> Skills.SECRETS.id().equals(s.parentId()))
+                    .filter(s -> unlockedIds.contains(s.id()))
+                    .map(s -> Map.<String, Object>of(
+                            "id", s.id,
+                            "name", s.name,
+                            "description", s.description))
+                    .toList();
+
+            ctx.status(200).json(secrets);
         });
     }
 
