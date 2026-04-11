@@ -32,6 +32,7 @@ import servermagic.entitybinding.EntityBindingLifecycleHandler;
 import servermagic.entitybinding.EntityBindingManager;
 import servermagic.entitybinding.EntityBindingTickHandler;
 import servermagic.spells.arcane.ArcaneMissileManager;
+import servermagic.spells.Blink;
 import servermagic.spells.DesecratedGround;
 import servermagic.spells.GravityWell;
 import servermagic.spells.IronMaiden;
@@ -73,10 +74,15 @@ public class ServerMagic implements ModInitializer {
 			}
 			// TODO detect item type here
 			Optional<Database> db = Database.GetDB();
-			if (db.isPresent() && world instanceof ServerLevel && player instanceof ServerPlayer) {
-				SkillGranter granter = new SkillGranter((ServerLevel) world, (ServerPlayer) player, db.get());
-				ItemStack stack = player.getItemInHand(hand);
+			if (db.isPresent() && world instanceof ServerLevel && player instanceof ServerPlayer sp) {
+				SkillGranter granter = new SkillGranter((ServerLevel) world, sp, db.get());
+				ItemStack stack = sp.getItemInHand(hand);
 				granter.grantFromItemUse(stack);
+
+				// BLINK unlock: throw an ender pearl during a 20+ block fall
+				if (stack.is(net.minecraft.world.item.Items.ENDER_PEARL)) {
+					Blink.onEnderPearlThrown(sp);
+				}
 			}
 			return InteractionResult.PASS;
 		});
@@ -127,6 +133,7 @@ public class ServerMagic implements ModInitializer {
 			if (tickCount % 20 == 0) {
 				this.checkSkillUnlockConditions(world);
 			}
+			Blink.tickClutchCheck(world);
 		});
 
 		ServerEntityEvents.ENTITY_UNLOAD.register(EntityBindingLifecycleHandler::onEntityUnload);

@@ -75,6 +75,10 @@ public class Skills {
         public static final Skill FROST_NOVA = new Skill("frost_nova", "Frost Nova",
                         "Blast nearby enemies back with a freezing shockwave", FREEZE.id())
                         .setUnlockDescription("Kill a Stray with a Fireball");
+        public static final Skill BLINK = new Skill("blink", "Blink",
+                        "Teleport a short distance by conjuring an ender pearl",
+                        UNLOCK_MAGIC_ELEMENTAL.id())
+                        .setUnlockDescription("Throw an ender pearl to save yourself from a fall of 20+ blocks");
         public static final Skill EARTHEN_SPIKE = new Skill("earthen_spike", "Earthen Spike",
                         "Summon a line of earth spikes in front of you", UNLOCK_MAGIC_ELEMENTAL.id())
                         .setAdvancement("adventure/adventuring_time", "Adventuring Time");
