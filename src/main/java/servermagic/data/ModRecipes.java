@@ -33,11 +33,6 @@ public class ModRecipes extends FabricRecipeProvider {
 				// Is this needed?
 				HolderLookup.RegistryLookup<Item> itemLookup = registries.lookupOrThrow(Registries.ITEM);
 
-				this.shapeless(RecipeCategory.MISC, Items.LEATHER)
-						.requires(Items.ROTTEN_FLESH)
-						.unlockedBy(getHasName(Items.ROTTEN_FLESH), has(Items.ROTTEN_FLESH))
-						.save(this.output);
-
 				SpellbookItem si = new SpellbookItem();
 				this.shapeless(RecipeCategory.TOOLS, si.getDefaultItemStack()).requires(Items.BOOK)
 						.unlockedBy(getHasName(Items.BOOK), has(Items.BOOK)).save(this.output);
