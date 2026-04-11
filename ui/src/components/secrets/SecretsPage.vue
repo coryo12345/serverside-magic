@@ -77,7 +77,7 @@ onMounted(async () => {
     if (!result.isError()) {
       secrets.value = result.get();
     } else {
-      error.value = result.error?.toString() || "Failed to load secrets";
+      error.value = result.error().message || "Failed to load secrets";
     }
   } catch (e) {
     error.value = "An unexpected error occurred";

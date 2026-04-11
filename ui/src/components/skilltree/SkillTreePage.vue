@@ -82,7 +82,7 @@ const loadSkillTrees = async () => {
     if (!result.isError()) {
       skillTrees.value = result.get();
     } else {
-      error.value = result.error?.toString() || "Failed to load skill trees";
+      error.value = result.error().message || "Failed to load skill trees";
     }
   } catch (e) {
     error.value = "An unexpected error occurred";

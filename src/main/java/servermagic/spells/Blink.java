@@ -21,8 +21,8 @@ import servermagic.web.skill.Skills;
 
 public class Blink extends BaseSpell {
 
-    // Reduced velocity vs. a normal ender pearl throw (~1.5F), giving roughly half the range
-    private static final float PEARL_VELOCITY = 0.7F;
+    // Reduced velocity vs. a normal ender pearl throw (~1.5F)
+    private static final float PEARL_VELOCITY = 1.2F;
 
     // ── Clutch-fall unlock tracking ──────────────────────────────────────────
     // Maps player UUID → game-time tick when the pearl was thrown
@@ -93,7 +93,7 @@ public class Blink extends BaseSpell {
 
     @Override
     public int getFlatXpCost() {
-        return 10;
+        return 5;
     }
 
     @Override
