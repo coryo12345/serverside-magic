@@ -16,6 +16,7 @@ declare module 'vue' {
     Card: typeof import('primevue/card')['default']
     Dashboard: typeof import('./src/components/Dashboard.vue')['default']
     Drawer: typeof import('primevue/drawer')['default']
+    InfoPage: typeof import('./src/components/info/InfoPage.vue')['default']
     InputOtp: typeof import('primevue/inputotp')['default']
     InputText: typeof import('primevue/inputtext')['default']
     LoginPage: typeof import('./src/components/LoginPage.vue')['default']

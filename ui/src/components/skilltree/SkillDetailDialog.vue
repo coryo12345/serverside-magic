@@ -28,7 +28,7 @@ const visible = defineModel<boolean>("visible");
           :class="[
             node.unlocked
               ? 'bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 border-primary-200 dark:border-primary-800'
-              : 'bg-surface-100 dark:bg-surface-800 text-surface-400 border-surface-200 dark:border-surface-700'
+              : 'bg-surface-100 dark:bg-surface-800 text-surface-400 border-surface-200 dark:border-surface-700',
           ]"
         >
           <i
@@ -62,13 +62,20 @@ const visible = defineModel<boolean>("visible");
         </div>
 
         <!-- Unlock Requirements -->
-        <div v-if="node.advancementName || node.unlockDescription" class="pt-4 border-t border-surface-200 dark:border-surface-700">
-          <label class="text-sm font-semibold text-surface-500 dark:text-surface-400 block mb-2">
-             {{ node.unlocked ? 'Unlock Requirements' : 'How to Unlock' }}
+        <div
+          v-if="node.advancementName || node.unlockDescription"
+          class="pt-4 border-t border-surface-200 dark:border-surface-700"
+        >
+          <label
+            class="text-sm font-semibold text-surface-500 dark:text-surface-400 block mb-2"
+          >
+            {{ node.unlocked ? "Unlock Requirements" : "How to Unlock" }}
           </label>
-          
+
           <div v-if="node.advancementName" class="mb-3">
-            <div class="flex items-start gap-2 text-surface-900 dark:text-surface-100">
+            <div
+              class="flex items-start gap-2 text-surface-900 dark:text-surface-100"
+            >
               <i class="pi pi-shield mt-1 text-primary-500"></i>
               <div>
                 <span class="font-medium">Advancement:</span>
@@ -80,10 +87,14 @@ const visible = defineModel<boolean>("visible");
           </div>
 
           <div v-if="node.unlockDescription">
-            <div class="flex items-start gap-2 text-surface-900 dark:text-surface-100">
+            <div
+              class="flex items-start gap-2 text-surface-900 dark:text-surface-100"
+            >
               <i class="pi pi-info-circle mt-1 text-primary-500"></i>
               <div>
-                <span v-if="node.advancementName" class="font-medium">Additional Info:</span>
+                <span v-if="node.advancementName" class="font-medium"
+                  >Additional Info:</span
+                >
                 <span v-else class="font-medium">Requirement:</span>
                 <p class="text-sm text-surface-600 dark:text-surface-400">
                   {{ node.unlockDescription }}
