@@ -64,7 +64,7 @@
         @click.stop="openSkillDetails(node)"
       >
         <div
-          class="skill-node w-26 h-26 transform -translate-x-1/2 -translate-y-1/2 p-4 rounded-xl border-2 text-center transition-all duration-300"
+          class="skill-node w-36 h-36 transform -translate-x-1/2 -translate-y-1/2 p-4 rounded-xl border-2 text-center transition-all duration-300"
           :class="[
             node.unlocked
               ? 'bg-primary-700 border-primary shadow-[0_0_20px_rgba(168,85,247,0.6)] text-white'
@@ -75,10 +75,12 @@
             class="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-blue-500 rounded-xl blur opacity-0 transition duration-300 group-hover:opacity-100"
             v-if="node.unlocked"
           ></div>
-          <div class="relative">
+          <div
+            class="relative h-full w-full flex justify-center items-center text-center"
+          >
             <!-- TODO these should be icons once i have them -->
             <div
-              class="font-bold text-sm mb-1 wrap-break-word text-wrap tracking-wide"
+              class="font-bold text-md mb-1 wrap-break-word text-wrap tracking-wide"
             >
               {{ node.name }}
             </div>
@@ -126,10 +128,7 @@
       <i class="pi pi-arrows-alt mr-1"></i> Drag to pan • Scroll to zoom
     </div>
 
-    <SkillDetailDialog
-      v-model:visible="isDetailsOpen"
-      :node="selectedNode"
-    />
+    <SkillDetailDialog v-model:visible="isDetailsOpen" :node="selectedNode" />
   </div>
 </template>
 
@@ -155,7 +154,7 @@ const { nodes, connections } = useSkillTreeLayout(toRef(props, "tree"));
 
 const viewport = ref<HTMLElement | null>(null);
 const offset = ref({ x: 0, y: 0 });
-const scale = ref(1);
+const scale = ref(0.8);
 const isDragging = ref(false);
 const lastMousePos = { x: 0, y: 0 };
 const pendingOffset = { x: 0, y: 0 };
@@ -189,7 +188,11 @@ onMounted(async () => {
       hasInitialized = true;
     } else {
       resizeObserver = new ResizeObserver(() => {
-        if (!hasInitialized && viewport.value && viewport.value.clientWidth > 0) {
+        if (
+          !hasInitialized &&
+          viewport.value &&
+          viewport.value.clientWidth > 0
+        ) {
           centerOnRoot();
           hasInitialized = true;
           resizeObserver?.disconnect();

@@ -20,7 +20,7 @@ export interface Connection {
 }
 
 export function useSkillTreeLayout(rootTree: Ref<SkillTree> | SkillTree) {
-  const levelDistance = 300;
+  const levelDistance = 450;
 
   const countLeaves = (tree: SkillTree): number => {
     if (tree.branches.length === 0) return 1;
@@ -74,7 +74,7 @@ export function useSkillTreeLayout(rootTree: Ref<SkillTree> | SkillTree) {
         if (level === 0) {
           actualArc = 360;
         } else {
-          const anglePerLeaf = Math.max(15, 60 / (level + 1));
+          const anglePerLeaf = Math.max(15, 90 / (level + 1));
           const preferredSpread = (totalLeaves - 1) * anglePerLeaf;
           actualArc = Math.min(availableArc, preferredSpread, 120);
         }
