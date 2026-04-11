@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_book": {
+    "has_enchanted_book": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:book"
+            "items": "minecraft:enchanted_book"
           }
         ]
       },
@@ -21,12 +21,13 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_book"
+      "has_enchanted_book"
     ]
   ],
   "rewards": {
     "recipes": [
       "servermagic:book"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

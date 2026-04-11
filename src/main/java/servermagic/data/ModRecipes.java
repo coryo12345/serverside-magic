@@ -1,11 +1,19 @@
 package servermagic.data;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.ChatFormatting;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementHolder;
+import net.minecraft.advancements.AdvancementRequirements;
+import net.minecraft.advancements.AdvancementRewards;
+import net.minecraft.advancements.criterion.InventoryChangeTrigger;
+import net.minecraft.advancements.criterion.RecipeUnlockedTrigger;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
@@ -13,10 +21,17 @@ import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.ItemLore;
+import net.minecraft.world.item.crafting.CraftingBookCategory;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.ShapedRecipe;
+import net.minecraft.world.item.crafting.ShapedRecipePattern;
 import servermagic.data.items.SpellbookItem;
 
 public class ModRecipes extends FabricRecipeProvider {
@@ -33,9 +48,30 @@ public class ModRecipes extends FabricRecipeProvider {
 				// Is this needed?
 				HolderLookup.RegistryLookup<Item> itemLookup = registries.lookupOrThrow(Registries.ITEM);
 
+				// Spellbook: shaped recipe with custom ItemStack output.
+				// ShapedRecipeBuilder.shaped() only accepts ItemLike, so we construct ShapedRecipe directly.
 				SpellbookItem si = new SpellbookItem();
-				this.shapeless(RecipeCategory.TOOLS, si.getDefaultItemStack()).requires(Items.BOOK)
-						.unlockedBy(getHasName(Items.BOOK), has(Items.BOOK)).save(this.output);
+				ResourceKey<Recipe<?>> spellbookKey = ResourceKey.create(Registries.RECIPE,
+						Identifier.fromNamespaceAndPath("servermagic", "book"));
+
+				Map<Character, Ingredient> ingredientMap = new LinkedHashMap<>();
+				ingredientMap.put('F', Ingredient.of(Items.FEATHER));
+				ingredientMap.put('L', Ingredient.of(Items.LAPIS_LAZULI));
+				ingredientMap.put('B', Ingredient.of(Items.ENCHANTED_BOOK));
+				ingredientMap.put('A', Ingredient.of(Items.AMETHYST_SHARD));
+
+				ShapedRecipePattern spellbookPattern = ShapedRecipePattern.of(ingredientMap, " F ", "LBL", " A ");
+				ShapedRecipe spellbookRecipe = new ShapedRecipe("", CraftingBookCategory.EQUIPMENT, spellbookPattern, si.getDefaultItemStack());
+
+				AdvancementHolder spellbookAdvancement = Advancement.Builder.advancement()
+						.parent(Identifier.withDefaultNamespace("recipes/root"))
+						.addCriterion("has_enchanted_book", InventoryChangeTrigger.TriggerInstance.hasItems(Items.ENCHANTED_BOOK))
+						.addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(spellbookKey))
+						.requirements(AdvancementRequirements.anyOf(List.of("has_the_recipe", "has_enchanted_book")))
+						.rewards(AdvancementRewards.Builder.recipe(spellbookKey))
+						.build(Identifier.fromNamespaceAndPath("servermagic", "recipes/tools/book"));
+
+				this.output.accept(spellbookKey, spellbookRecipe, spellbookAdvancement);
 
 				// Build the custom Mana Potion output stack (used by both recipes)
 				ItemStack manaPotion = new ItemStack(Items.EXPERIENCE_BOTTLE, 2);

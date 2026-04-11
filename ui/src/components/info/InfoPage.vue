@@ -431,10 +431,51 @@ const potionRecipes = [
                 >
                   Crafting
                 </p>
-                <p class="text-sm text-surface-700 dark:text-surface-200">
-                  Place a <strong>Book</strong> in any crafting grid (Shapeless)
-                  to craft your Spellbook. Without it, you cannot cast spells.
+                <p class="text-sm text-surface-700 dark:text-surface-200 mb-3">
+                  Craft your Spellbook at a crafting table using this shaped
+                  recipe. Without it, you cannot cast spells.
                 </p>
+                <!-- Crafting grid -->
+                <div class="inline-grid grid-cols-3 gap-1">
+                  <template
+                    v-for="(cell, i) in [
+                      { label: '', empty: true },
+                      { label: 'Feather', abbr: 'F', color: 'bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300' },
+                      { label: '', empty: true },
+                      { label: 'Lapis Lazuli', abbr: 'L', color: 'bg-blue-100 dark:bg-blue-900/40 border-blue-400 text-blue-700 dark:text-blue-300' },
+                      { label: 'Enchanted Book', abbr: 'B', color: 'bg-purple-100 dark:bg-purple-900/40 border-purple-400 text-purple-700 dark:text-purple-300' },
+                      { label: 'Lapis Lazuli', abbr: 'L', color: 'bg-blue-100 dark:bg-blue-900/40 border-blue-400 text-blue-700 dark:text-blue-300' },
+                      { label: '', empty: true },
+                      { label: 'Amethyst Shard', abbr: 'A', color: 'bg-violet-100 dark:bg-violet-900/40 border-violet-400 text-violet-700 dark:text-violet-300' },
+                      { label: '', empty: true },
+                    ]"
+                    :key="i"
+                  >
+                    <div
+                      v-if="cell.empty"
+                      class="w-10 h-10 rounded border-2 border-dashed border-surface-200 dark:border-surface-700 bg-surface-100 dark:bg-surface-800"
+                    ></div>
+                    <div
+                      v-else
+                      class="w-10 h-10 rounded border-2 flex items-center justify-center text-xs font-bold select-none"
+                      :class="cell.color"
+                      :title="cell.label"
+                    >
+                      {{ cell.abbr }}
+                    </div>
+                  </template>
+                </div>
+                <div class="flex flex-wrap gap-3 mt-3">
+                  <span v-for="item in [
+                    { abbr: 'F', label: 'Feather', color: 'bg-gray-100 dark:bg-gray-800 border-gray-300 text-gray-600 dark:text-gray-300' },
+                    { abbr: 'L', label: 'Lapis Lazuli', color: 'bg-blue-100 dark:bg-blue-900/40 border-blue-400 text-blue-700 dark:text-blue-300' },
+                    { abbr: 'B', label: 'Enchanted Book', color: 'bg-purple-100 dark:bg-purple-900/40 border-purple-400 text-purple-700 dark:text-purple-300' },
+                    { abbr: 'A', label: 'Amethyst Shard', color: 'bg-violet-100 dark:bg-violet-900/40 border-violet-400 text-violet-700 dark:text-violet-300' },
+                  ]" :key="item.abbr" class="flex items-center gap-1.5 text-xs text-surface-500 dark:text-surface-400">
+                    <span class="w-5 h-5 rounded border-2 flex items-center justify-center text-xs font-bold" :class="item.color">{{ item.abbr }}</span>
+                    {{ item.label }}
+                  </span>
+                </div>
               </div>
             </div>
 
