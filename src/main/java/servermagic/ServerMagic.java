@@ -17,6 +17,7 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.animal.happyghast.HappyGhast;
@@ -88,6 +89,17 @@ public class ServerMagic implements ModInitializer {
 		});
 
 		UseBlockCallback.EVENT.register((player, world, hand, hitResult) -> {
+			// Suppress offhand block interactions when main hand holds a spellbook.
+			// Without this, each right-click casting gesture also places a block from the offhand.
+			if (hand == InteractionHand.OFF_HAND
+					&& world instanceof ServerLevel sl
+					&& player instanceof ServerPlayer sp) {
+				ItemInteractionDispatcher mainHandDispatcher = new ItemInteractionDispatcher(world, sp, InteractionHand.MAIN_HAND);
+				if (mainHandDispatcher.isCustomItem()) {
+					return InteractionResult.FAIL;
+				}
+			}
+
 			Optional<Database> db = Database.GetDB();
 			if (db.isPresent() && world instanceof ServerLevel && player instanceof ServerPlayer) {
 				SkillGranter granter = new SkillGranter((ServerLevel) world, (ServerPlayer) player, db.get());
