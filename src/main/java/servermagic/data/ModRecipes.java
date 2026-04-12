@@ -84,6 +84,7 @@ public class ModRecipes extends FabricRecipeProvider {
 						Component.literal("Best used below level 10.")
 								.withStyle(ChatFormatting.DARK_GRAY).withStyle(s -> s.withItalic(false))
 				)));
+				manaPotion.set(DataComponents.ITEM_MODEL, Identifier.fromNamespaceAndPath("servermagic", "mana_potion"));
 
 				// Crystalline Mana: Amethyst Shard + Lapis + 2 Glass Bottles = 2 Mana Potions
 				this.shapeless(RecipeCategory.BREWING, manaPotion.copy())

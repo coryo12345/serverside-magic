@@ -14,6 +14,7 @@
         "italic": false,
         "text": "Mana Potion"
       },
+      "minecraft:item_model": "servermagic:mana_potion",
       "minecraft:lore": [
         {
           "color": "gray",
