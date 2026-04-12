@@ -2,6 +2,7 @@ package servermagic.data.items;
 
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -25,6 +26,7 @@ public class SpellbookItem extends CustomItem implements ISpellFocus {
     public ItemStack getDefaultItemStack() {
         ItemStack is = this.getBaseItemStack(Items.BOOK);
         is.set(DataComponents.ITEM_NAME, Component.literal("Spellbook"));
+        is.set(DataComponents.ITEM_MODEL, Identifier.fromNamespaceAndPath("servermagic", "spellbook"));
         return is;
     }
 

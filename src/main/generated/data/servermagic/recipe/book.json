@@ -17,6 +17,7 @@
       "minecraft:custom_data": {
         "magicitem": "base_spellbook"
       },
+      "minecraft:item_model": "servermagic:spellbook",
       "minecraft:item_name": "Spellbook"
     },
     "count": 1,
