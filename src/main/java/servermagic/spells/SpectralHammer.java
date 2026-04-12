@@ -6,14 +6,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import com.mojang.math.Transformation;
-import org.joml.Quaternionf;
-import org.joml.Vector3f;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -24,7 +22,8 @@ import net.minecraft.world.entity.Display;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
@@ -73,30 +72,14 @@ public class SpectralHammer extends BaseSpell {
                     face.getStepZ() * 2.5);
         }
 
-        // Spawn hammer head (iron block, wide and short)
-        Display.BlockDisplay head = new Display.BlockDisplay(EntityType.BLOCK_DISPLAY, world);
-        head.setPos(startPos.x, startPos.y, startPos.z);
-        head.setBlockState(Blocks.IRON_BLOCK.defaultBlockState());
-        head.setTransformation(new Transformation(
-                new Vector3f(-0.45f, -0.25f, -0.45f),
-                new Quaternionf(),
-                new Vector3f(0.9f, 0.5f, 0.9f),
-                new Quaternionf()));
-        world.addFreshEntity(head);
-
-        // Spawn hammer handle (polished blackstone, thin vertical rod trailing behind)
-        Vec3 trailDir = computeTrailDir(startPos, faceCenter);
-        Vec3 handleStartPos = startPos.add(trailDir.scale(0.65));
-
-        Display.BlockDisplay handle = new Display.BlockDisplay(EntityType.BLOCK_DISPLAY, world);
-        handle.setPos(handleStartPos.x, handleStartPos.y, handleStartPos.z);
-        handle.setBlockState(Blocks.POLISHED_BLACKSTONE.defaultBlockState());
-        handle.setTransformation(new Transformation(
-                new Vector3f(-0.1f, -0.6f, -0.1f),
-                new Quaternionf(),
-                new Vector3f(0.2f, 1.2f, 0.2f),
-                new Quaternionf()));
-        world.addFreshEntity(handle);
+        // Spawn hammer as a single ItemDisplay using the custom spectral_hammer model
+        ItemStack hammerItem = new ItemStack(Items.STICK);
+        hammerItem.set(DataComponents.ITEM_MODEL,
+                Identifier.fromNamespaceAndPath("servermagic", "spectral_hammer"));
+        Display.ItemDisplay display = new Display.ItemDisplay(EntityType.ITEM_DISPLAY, world);
+        display.setPos(startPos.x, startPos.y, startPos.z);
+        display.setItemStack(hammerItem);
+        world.addFreshEntity(display);
 
         // Summon effects
         world.sendParticles(ParticleTypes.ENCHANTED_HIT,
@@ -110,8 +93,7 @@ public class SpectralHammer extends BaseSpell {
                 SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.PLAYERS, 0.7F, 0.5F);
 
         active.add(new ActiveHammer(
-                head.getUUID(),
-                handle.getUUID(),
+                display.getUUID(),
                 player.getUUID(),
                 world,
                 startPos,
@@ -138,10 +120,8 @@ public class SpectralHammer extends BaseSpell {
                 float eased = t * t;
 
                 Vec3 headPos = lerp(hammer.startPos, hammer.targetPos, eased);
-                Vec3 trailDir = computeTrailDir(hammer.startPos, hammer.targetPos);
-                Vec3 handlePos = headPos.add(trailDir.scale(0.65));
 
-                moveHammer(hammer, headPos, handlePos);
+                moveHammer(hammer, headPos);
 
                 // Swing trail particles
                 hammer.level.sendParticles(ParticleTypes.ENCHANTED_HIT,
@@ -164,11 +144,9 @@ public class SpectralHammer extends BaseSpell {
         }
     }
 
-    private static void moveHammer(ActiveHammer hammer, Vec3 headPos, Vec3 handlePos) {
-        Entity head = hammer.level.getEntity(hammer.headId);
-        Entity handle = hammer.level.getEntity(hammer.handleId);
-        if (head != null) head.setPos(headPos.x, headPos.y, headPos.z);
-        if (handle != null) handle.setPos(handlePos.x, handlePos.y, handlePos.z);
+    private static void moveHammer(ActiveHammer hammer, Vec3 pos) {
+        Entity display = hammer.level.getEntity(hammer.displayId);
+        if (display != null) display.setPos(pos.x, pos.y, pos.z);
     }
 
     private static void onImpact(ActiveHammer hammer) {
@@ -235,16 +213,8 @@ public class SpectralHammer extends BaseSpell {
     }
 
     private static void discardHammer(ActiveHammer hammer) {
-        Entity head = hammer.level.getEntity(hammer.headId);
-        Entity handle = hammer.level.getEntity(hammer.handleId);
-        if (head != null) head.discard();
-        if (handle != null) handle.discard();
-    }
-
-    private static Vec3 computeTrailDir(Vec3 from, Vec3 to) {
-        Vec3 diff = from.subtract(to);
-        double len = diff.length();
-        return len > 1e-6 ? diff.scale(1.0 / len) : new Vec3(0, 1, 0);
+        Entity display = hammer.level.getEntity(hammer.displayId);
+        if (display != null) display.discard();
     }
 
     private static Vec3 lerp(Vec3 from, Vec3 to, float t) {
@@ -281,8 +251,7 @@ public class SpectralHammer extends BaseSpell {
     // -------------------------------------------------------------------------
 
     private static class ActiveHammer {
-        final UUID headId;
-        final UUID handleId;
+        final UUID displayId;
         final UUID casterId;
         final ServerLevel level;
         final Vec3 startPos;
@@ -291,10 +260,9 @@ public class SpectralHammer extends BaseSpell {
         final Direction face;
         int ticksAlive = 0;
 
-        ActiveHammer(UUID headId, UUID handleId, UUID casterId, ServerLevel level,
+        ActiveHammer(UUID displayId, UUID casterId, ServerLevel level,
                 Vec3 startPos, Vec3 targetPos, BlockPos targetBlock, Direction face) {
-            this.headId = headId;
-            this.handleId = handleId;
+            this.displayId = displayId;
             this.casterId = casterId;
             this.level = level;
             this.startPos = startPos;
