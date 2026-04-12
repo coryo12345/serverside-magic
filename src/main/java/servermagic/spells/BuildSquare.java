@@ -73,7 +73,7 @@ public class BuildSquare extends BaseSpell {
 
     @Override
     public String description() {
-        return "Builds a hollow square around the player";
+        return "Places a hollow square of blocks around the player at their current level. Blocks are drawn from your offhand — make sure to hold the block you want to place there before casting.";
     }
 
     @Override

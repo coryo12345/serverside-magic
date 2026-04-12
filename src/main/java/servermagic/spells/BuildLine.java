@@ -104,7 +104,7 @@ public class BuildLine extends BaseSpell {
 
     @Override
     public String description() {
-        return "Builds in a line";
+        return "Places blocks in a line from the block you're looking at. Blocks are drawn from your offhand, or mainhand if offhand is empty. The line extends in the direction you're facing.";
     }
 
     @Override

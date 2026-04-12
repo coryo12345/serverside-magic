@@ -74,7 +74,7 @@ public class BuildRing extends BaseSpell {
 
     @Override
     public String description() {
-        return "Builds a hollow ring around the player";
+        return "Places a circular ring of blocks around the player at their current level. Blocks are drawn from your offhand — make sure to hold the block you want to place there before casting.";
     }
 
     @Override
