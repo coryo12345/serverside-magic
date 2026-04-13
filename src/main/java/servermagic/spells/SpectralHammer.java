@@ -6,6 +6,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import com.mojang.math.Transformation;
+import org.joml.Quaternionf;
+import org.joml.Vector3f;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
@@ -61,16 +65,11 @@ public class SpectralHammer extends BaseSpell {
                 face.getStepY() * 0.5,
                 face.getStepZ() * 0.5);
 
-        // Hammer starts in front of and above the face, then swings in
-        Vec3 startPos;
-        if (face.getAxis() == Direction.Axis.Y) {
-            startPos = faceCenter.add(0, 4.5, 0);
-        } else {
-            startPos = faceCenter.add(
-                    face.getStepX() * 2.5,
-                    3.0,
-                    face.getStepZ() * 2.5);
-        }
+        // Hammer starts 1.5 blocks directly in front of the face, then swings in
+        Vec3 startPos = faceCenter.add(
+                face.getStepX() * 1.5,
+                face.getStepY() * 1.5,
+                face.getStepZ() * 1.5);
 
         // Spawn hammer as a single ItemDisplay using the custom spectral_hammer model
         ItemStack hammerItem = new ItemStack(Items.STICK);
@@ -79,6 +78,7 @@ public class SpectralHammer extends BaseSpell {
         Display.ItemDisplay display = new Display.ItemDisplay(EntityType.ITEM_DISPLAY, world);
         display.setPos(startPos.x, startPos.y, startPos.z);
         display.setItemStack(hammerItem);
+        display.setTransformation(computeSwingTransform(face, (float) (Math.PI / 2)));
         world.addFreshEntity(display);
 
         // Summon effects
@@ -120,8 +120,10 @@ public class SpectralHammer extends BaseSpell {
                 float eased = t * t;
 
                 Vec3 headPos = lerp(hammer.startPos, hammer.targetPos, eased);
+                // Swing from 90° tilted-back to 0° at impact
+                float swingAngle = (float) (Math.PI / 2) * (1.0f - eased);
 
-                moveHammer(hammer, headPos);
+                moveHammer(hammer, headPos, swingAngle);
 
                 // Swing trail particles
                 hammer.level.sendParticles(ParticleTypes.ENCHANTED_HIT,
@@ -144,9 +146,31 @@ public class SpectralHammer extends BaseSpell {
         }
     }
 
-    private static void moveHammer(ActiveHammer hammer, Vec3 pos) {
-        Entity display = hammer.level.getEntity(hammer.displayId);
-        if (display != null) display.setPos(pos.x, pos.y, pos.z);
+    private static void moveHammer(ActiveHammer hammer, Vec3 pos, float swingAngle) {
+        Entity entity = hammer.level.getEntity(hammer.displayId);
+        if (entity instanceof Display.ItemDisplay display) {
+            display.setPos(pos.x, pos.y, pos.z);
+            display.setTransformation(computeSwingTransform(hammer.face, swingAngle));
+        }
+    }
+
+    private static Transformation computeSwingTransform(Direction face, float swingAngle) {
+        // Swing rotation in world space
+        Vector3f swingAxis = getSwingAxis(face);
+        Quaternionf swingRot = new Quaternionf().rotationAxis(swingAngle, swingAxis);
+        // Base orientation: rotate 90° around the swing axis to orient the model
+        Quaternionf baseRot = new Quaternionf().rotationAxis((float) (Math.PI / 2), new Vector3f(0, 1, 0));
+        return new Transformation(new Vector3f(0, 0, 0), swingRot, new Vector3f(1, 1, 1), baseRot);
+    }
+
+    private static Vector3f getSwingAxis(Direction face) {
+        if (face.getAxis() == Direction.Axis.Y) {
+            return new Vector3f(1, 0, 0);
+        }
+        // Negated cross product so rotation swings the head forward into the face
+        float nx = face.getStepX();
+        float nz = face.getStepZ();
+        return new Vector3f(nz, 0, -nx);
     }
 
     private static void onImpact(ActiveHammer hammer) {
