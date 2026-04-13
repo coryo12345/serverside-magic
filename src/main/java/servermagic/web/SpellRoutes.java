@@ -106,6 +106,12 @@ public class SpellRoutes extends RouteGroup {
             ctx.status(204);
         });
 
+        app.delete("/api/spells/slots", ctx -> {
+            String username = this.getAuthSubject(ctx);
+            SpellSlot.ClearAllSlotsForPlayer(db, username);
+            ctx.status(204);
+        });
+
         app.get("/api/spells/config/{spellId}", ctx -> {
             String username = this.getAuthSubject(ctx);
             String spellId = ctx.pathParam("spellId");

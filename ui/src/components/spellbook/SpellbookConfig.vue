@@ -48,6 +48,21 @@ onMounted(async () => {
   }
 });
 
+async function clearAllSlots() {
+  const previous = { ...slots.value };
+  Object.values(SPELL_SLOTS).forEach((s) => (slots.value[s] = []));
+  const result = await api.clearAllSpellSlots();
+  if (result.isError()) {
+    slots.value = previous;
+    toast.add({
+      severity: "error",
+      summary: "Error",
+      detail: "Failed to clear spell slots",
+      life: 3000,
+    });
+  }
+}
+
 async function onSlotChange(slotIndex: number | string, event: any) {
   slotIndex = parseInt(slotIndex.toString());
 
@@ -116,9 +131,17 @@ async function onSlotChange(slotIndex: number | string, event: any) {
     <div
       class="bg-surface-0 dark:bg-surface-800 p-6 rounded-xl shadow-sm border border-surface-200 dark:border-surface-700"
     >
-      <h2 class="text-xl font-bold text-surface-900 dark:text-surface-0 mb-4">
-        Spell Hotbar
-      </h2>
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xl font-bold text-surface-900 dark:text-surface-0">
+          Spell Hotbar
+        </h2>
+        <button
+          @click="clearAllSlots"
+          class="text-xs px-3 py-1.5 rounded-lg border border-surface-300 dark:border-surface-600 text-surface-500 dark:text-surface-400 hover:border-red-400 hover:text-red-500 dark:hover:border-red-500 dark:hover:text-red-400 transition-colors"
+        >
+          Clear All
+        </button>
+      </div>
       <p class="text-surface-500 dark:text-surface-400 mb-12 text-sm">
         Drag spells from your spellbook below into the slots to assign them.
       </p>

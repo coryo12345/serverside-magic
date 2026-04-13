@@ -40,6 +40,14 @@ public class SpellSlot {
         });
     }
 
+    public static void ClearAllSlotsForPlayer(Database db, String username) {
+        db.query(conn -> {
+            conn.createQuery("delete from spellslot where username = :username")
+                    .addParameter("username", username).executeUpdate();
+            return Optional.empty();
+        });
+    }
+
     public static Optional<List<SpellSlot>> GetSlotsForPlayer(Database db, String username) {
         return db.query(conn -> {
             List<SpellSlot> spells = conn

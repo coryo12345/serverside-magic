@@ -114,6 +114,14 @@ class MagicAPI {
     });
   }
 
+  async clearAllSpellSlots(): Promise<Result<void>> {
+    const url = new URL("/api/spells/slots", window.location.origin);
+    return this.request(url, {
+      method: "DELETE",
+      responseType: "text",
+    });
+  }
+
   async getSkillTrees(): Promise<Result<SkillTree[]>> {
     const url = new URL("/api/skills/tree", window.location.origin);
     return this.request(url, { method: "GET", responseType: "json" });
