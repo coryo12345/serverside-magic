@@ -1,0 +1,10 @@
+{
+  "layers": {
+    "wings": [
+      {
+        "texture": "servermagic:angelwings",
+        "use_player_texture": false
+      }
+    ]
+  }
+}

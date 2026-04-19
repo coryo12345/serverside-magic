@@ -2,7 +2,10 @@ package servermagic.spells;
 
 import java.util.Optional;
 
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -11,6 +14,8 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.equipment.EquipmentAssets;
+import net.minecraft.world.item.equipment.Equippable;
 import servermagic.db.Database;
 import servermagic.spells.utils.SummonedArmor;
 import servermagic.spells.utils.SummonedArmor.ArmorDescriptor;
@@ -41,6 +46,21 @@ public class AngelWings extends BaseSpell {
                 return;
             }
             tempChestplate.setDamageValue(tempChestplate.getMaxDamage() - 100);
+            Equippable existing = tempChestplate.get(DataComponents.EQUIPPABLE);
+            if (existing != null) {
+                ResourceKey<net.minecraft.world.item.equipment.EquipmentAsset> angelwingsAsset =
+                        ResourceKey.create(EquipmentAssets.ROOT_ID,
+                                Identifier.fromNamespaceAndPath("servermagic", "angelwings"));
+                Equippable updated = Equippable.builder(existing.slot())
+                        .setEquipSound(existing.equipSound())
+                        .setAsset(angelwingsAsset)
+                        .setDispensable(existing.dispensable())
+                        .setSwappable(existing.swappable())
+                        .setDamageOnHurt(existing.damageOnHurt())
+                        .setEquipOnInteract(existing.equipOnInteract())
+                        .build();
+                tempChestplate.set(DataComponents.EQUIPPABLE, updated);
+            }
             player.setItemSlot(EquipmentSlot.CHEST, tempChestplate);
             double px = player.getX(), py = player.getY() + 1.0, pz = player.getZ();
             world.sendParticles(ParticleTypes.WAX_ON, px, py, pz, 20, 0.6, 0.8, 0.6, 0.2);
