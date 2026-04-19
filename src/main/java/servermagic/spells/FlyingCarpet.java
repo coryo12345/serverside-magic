@@ -43,6 +43,8 @@ public class FlyingCarpet extends BaseSpell {
     // Increase to make the carpet larger.
     private static final float CARPET_SCALE = 2.0f;
 
+    private static final float CARPET_SPEED = 1.4f;
+
     public FlyingCarpet(ServerLevel world, ServerPlayer player, Database db, InteractionHand hand) {
         super(world, player, db, hand);
     }
@@ -54,6 +56,7 @@ public class FlyingCarpet extends BaseSpell {
         ghast.setPos(player.getX(), player.getY(), player.getZ());
         ghast.forceSetRotation(player.getYHeadRot(), true, 0, true);
         ghast.addTag(TAG);
+        ghast.setSpeed(CARPET_SPEED);
 
         // 2. Equip harness so the client recognises this as a controllable vehicle
         //    and sends forward/strafe inputs. Override the equippable asset_id so the
@@ -96,6 +99,7 @@ public class FlyingCarpet extends BaseSpell {
         carpetDisplay.setItemTransform(ItemDisplayContext.HEAD);
         // Smooth out the per-tick teleports from EntityBindingTickHandler.
         // The client interpolates position over this many client ticks instead of snapping.
+        carpetDisplay.setPosRotInterpolationDuration(3);
         carpetDisplay.setTransformation(new Transformation(
                 new Vector3f(0f, 0f, 0f),
                 new Quaternionf(),
