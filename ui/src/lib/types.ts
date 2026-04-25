@@ -56,3 +56,16 @@ export type SpellConfigResponse = {
   schema: SpellConfigField[] | null;
   config: Record<string, unknown> | null;
 };
+
+export type CosmeticSlotId = "helmet" | "chestplate" | "leggings" | "boots" | "spellbook";
+
+export type UnlockedCosmetic = {
+  id: string;
+  displayName: string;
+  slot: CosmeticSlotId;
+};
+
+export type PlayerCosmeticsResponse = {
+  unlocked: UnlockedCosmetic[];
+  selected: Record<CosmeticSlotId, string | null>;
+};

@@ -60,5 +60,6 @@ public class WebPortal {
         new AuthRoutes(app, db, server).registerRoutes();
         new SpellRoutes(app, db, server).registerRoutes();
         new SkillRoutes(app, db, server).registerRoutes();
+        new CosmeticRoutes(app, db, server).registerRoutes();
     }
 }

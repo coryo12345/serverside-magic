@@ -1,6 +1,8 @@
 import { AuthToken } from "./authtoken";
 import { Result } from "./result";
 import type {
+  CosmeticSlotId,
+  PlayerCosmeticsResponse,
   PlayerSpellResponse,
   SecretSkill,
   SkillTree,
@@ -148,6 +150,19 @@ class MagicAPI {
   async getMySecrets(): Promise<Result<SecretSkill[]>> {
     const url = new URL("/api/skills/secrets", window.location.origin);
     return this.request(url, { method: "GET", responseType: "json" });
+  }
+
+  async getMyCosmetics(): Promise<Result<PlayerCosmeticsResponse>> {
+    const url = new URL("/api/cosmetics/mine", window.location.origin);
+    return this.request(url, { method: "GET", responseType: "json" });
+  }
+
+  async selectCosmetic(slot: CosmeticSlotId, style: string): Promise<Result<void>> {
+    const url = new URL("/api/cosmetics/select", window.location.origin);
+    const formData = new FormData();
+    formData.append("slot", slot);
+    formData.append("style", style);
+    return this.request(url, { method: "POST", body: formData, responseType: "text" });
   }
 }
 

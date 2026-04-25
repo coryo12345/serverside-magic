@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
@@ -14,6 +15,7 @@ import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
+import servermagic.cosmetics.CosmeticAppearanceManager;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.ItemTags;
@@ -150,7 +152,25 @@ public class ServerMagic implements ModInitializer {
 
 		ServerEntityEvents.ENTITY_UNLOAD.register(EntityBindingLifecycleHandler::onEntityUnload);
 
-		ServerPlayConnectionEvents.DISCONNECT.register((handler, server) -> { });
+		ServerTickEvents.END_SERVER_TICK.register(CosmeticAppearanceManager::tick);
+
+		ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
+			Optional<Database> db = Database.GetDB();
+			if (db.isPresent()) {
+				CosmeticAppearanceManager.loadPlayerCosmetics(handler.player, db.get());
+			}
+		});
+
+		ServerPlayConnectionEvents.DISCONNECT.register((handler, server) -> {
+			CosmeticAppearanceManager.revertAndClearPlayer(handler.player);
+		});
+
+		ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) -> {
+			Optional<Database> db = Database.GetDB();
+			if (db.isPresent()) {
+				CosmeticAppearanceManager.loadPlayerCosmetics(newPlayer, db.get());
+			}
+		});
 
 		// initialize spell defs for web
 		Spells.Get();

@@ -23,6 +23,7 @@ declare module 'vue' {
     Message: typeof import('primevue/message')['default']
     ProgressSpinner: typeof import('primevue/progressspinner')['default']
     SecretsPage: typeof import('./src/components/secrets/SecretsPage.vue')['default']
+    Select: typeof import('primevue/select')['default']
     SideNavigation: typeof import('./src/components/SideNavigation.vue')['default']
     SkillDetailDialog: typeof import('./src/components/skilltree/SkillDetailDialog.vue')['default']
     SkillTree: typeof import('./src/components/skilltree/SkillTree.vue')['default']
@@ -31,6 +32,7 @@ declare module 'vue' {
     SpellCard: typeof import('./src/components/spellbook/SpellCard.vue')['default']
     SpellDetailsDialog: typeof import('./src/components/spellbook/SpellDetailsDialog.vue')['default']
     Toast: typeof import('primevue/toast')['default']
+    VanityPage: typeof import('./src/components/vanity/VanityPage.vue')['default']
   }
   export interface GlobalDirectives {
     Tooltip: typeof import('primevue/tooltip')['default']

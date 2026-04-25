@@ -13,6 +13,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import servermagic.cosmetics.CosmeticAppearanceManager;
 import servermagic.spells.utils.BoundItems;
 import servermagic.spells.utils.SummonedArmor;
 import servermagic.spells.utils.SummonedArmor.ArmorDescriptor;
@@ -36,6 +37,9 @@ public class PlayerOnDeathMixin {
 		if (player.level().isClientSide()) {
 			return;
 		}
+
+		// Revert cosmetics before items are dropped so they don't persist on dropped items
+		CosmeticAppearanceManager.revertAllEquippedCosmetics(player);
 
 		// look at the players inventory,
 		// if any items are custom items,

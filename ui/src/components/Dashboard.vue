@@ -5,6 +5,7 @@ import SideNavigation from "./SideNavigation.vue";
 import SkillTreePage from "./skilltree/SkillTreePage.vue";
 import SecretsPage from "./secrets/SecretsPage.vue";
 import InfoPage from "./info/InfoPage.vue";
+import VanityPage from "./vanity/VanityPage.vue";
 
 const emit = defineEmits(["logout"]);
 const drawerVisible = ref(false);
@@ -55,6 +56,10 @@ const currentPage = ref("spellbook");
 
         <template v-else-if="currentPage === 'skills'">
           <SkillTreePage></SkillTreePage>
+        </template>
+
+        <template v-else-if="currentPage === 'vanity'">
+          <VanityPage />
         </template>
 
         <template v-else-if="currentPage === 'secrets'">

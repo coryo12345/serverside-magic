@@ -8,6 +8,7 @@ defineEmits(["logout", "update:modelValue"]);
 const navItems = [
   { id: "spellbook", label: "My Spellbook", icon: "pi pi-book" },
   { id: "skills", label: "Skill Tree", icon: "pi pi-sitemap" },
+  { id: "vanity", label: "Vanity", icon: "pi pi-palette" },
   { id: "secrets", label: "Secrets", icon: "pi pi-lock" },
   { id: "info", label: "Getting Started", icon: "pi pi-info-circle" },
 ];
