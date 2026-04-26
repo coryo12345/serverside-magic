@@ -10,6 +10,8 @@ import servermagic.ServerMagic;
 public class Cosmetics {
     public static final Cosmetic LUNAR_STAFF = new Cosmetic(
             "lunar_staff", "Lunar Staff", CosmeticSlot.SPELLBOOK, "servermagic:lunar_staff");
+    public static final Cosmetic EARTH_STAFF = new Cosmetic(
+            "earth_staff", "Earth Staff", CosmeticSlot.SPELLBOOK, "servermagic:earth_staff");
 
     public static List<Cosmetic> GetAll() {
         Field[] declaredFields = Cosmetics.class.getDeclaredFields();
