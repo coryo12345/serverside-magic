@@ -8,7 +8,6 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
@@ -17,6 +16,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.CustomData;
+import net.minecraft.core.component.DataComponents;
 import servermagic.data.items.CustomItem;
 import servermagic.data.items.SpellbookItem;
 import servermagic.db.Database;
@@ -26,7 +26,7 @@ public class CosmeticAppearanceManager {
     // Cache: player UUID → CosmeticSlot → selected cosmetic id (null = none)
     private static final Map<UUID, Map<CosmeticSlot, String>> selectedCache = new ConcurrentHashMap<>();
 
-    // Tracks which ItemStack objects currently have a cosmetic applied, per player per equipment slot
+    // Tracks which ItemStack objects are currently in each slot per player
     private static final Map<UUID, Map<EquipmentSlot, ItemStack>> trackedItems = new ConcurrentHashMap<>();
 
     private static int tickAccumulator = 0;
@@ -54,25 +54,24 @@ public class CosmeticAppearanceManager {
                 ItemStack current = player.getItemBySlot(mcSlot);
                 ItemStack tracked_ = tracked.get(mcSlot);
 
-                // If the tracked item is no longer in this slot, revert it
+                // Item left the slot — just stop tracking it, leave model as-is
                 if (tracked_ != null && tracked_ != current) {
-                    if (CosmeticItemHelper.hasCosmeticApplied(tracked_)) {
-                        CosmeticItemHelper.revertCosmetic(tracked_);
-                    }
                     tracked.remove(mcSlot);
                     tracked_ = null;
                 }
 
-                // If no tracked item in this slot, check if current item should get a cosmetic
+                // New item entered the slot — apply this player's cosmetic (or default)
                 if (tracked_ == null && !current.isEmpty() && isValidForSlot(current, cosmeticSlot)) {
                     String styleId = selected.get(cosmeticSlot);
+                    String modelToApply;
                     if (styleId != null) {
                         Optional<Cosmetic> cosmetic = Cosmetics.GetById(styleId);
-                        if (cosmetic.isPresent()) {
-                            CosmeticItemHelper.applyCosmetic(current, cosmetic.get().getItemModel());
-                            tracked.put(mcSlot, current);
-                        }
+                        modelToApply = cosmetic.map(Cosmetic::getItemModel).orElse(cosmeticSlot.getDefaultModel().orElse(null));
+                    } else {
+                        modelToApply = cosmeticSlot.getDefaultModel().orElse(null);
                     }
+                    CosmeticItemHelper.setModel(current, modelToApply);
+                    tracked.put(mcSlot, current);
                 }
             }
         }
@@ -82,26 +81,8 @@ public class CosmeticAppearanceManager {
         UUID uuid = player.getUUID();
         String username = player.getName().getString();
 
-        // Revert any stale cosmetics from a previous session
-        Map<EquipmentSlot, ItemStack> tracked = trackedItems.get(uuid);
-        if (tracked != null) {
-            for (ItemStack item : tracked.values()) {
-                if (item != null && CosmeticItemHelper.hasCosmeticApplied(item)) {
-                    CosmeticItemHelper.revertCosmetic(item);
-                }
-            }
-        }
-        // Also scan equipped slots for any stale cosmetic flags (e.g., from disk)
-        for (EquipmentSlot mcSlot : EquipmentSlot.values()) {
-            ItemStack item = player.getItemBySlot(mcSlot);
-            if (!item.isEmpty() && CosmeticItemHelper.hasCosmeticApplied(item)) {
-                CosmeticItemHelper.revertCosmetic(item);
-            }
-        }
-
         trackedItems.put(uuid, new EnumMap<>(EquipmentSlot.class));
 
-        // Load selected cosmetics from DB
         Map<CosmeticSlot, String> cache = new HashMap<>();
         Optional<List<CosmeticConfig>> configs = CosmeticConfig.GetConfigsForPlayer(db, username);
         if (configs.isPresent()) {
@@ -113,37 +94,8 @@ public class CosmeticAppearanceManager {
     }
 
     public static void revertAndClearPlayer(ServerPlayer player) {
-        UUID uuid = player.getUUID();
-        Map<EquipmentSlot, ItemStack> tracked = trackedItems.remove(uuid);
-        if (tracked != null) {
-            for (ItemStack item : tracked.values()) {
-                if (item != null && CosmeticItemHelper.hasCosmeticApplied(item)) {
-                    CosmeticItemHelper.revertCosmetic(item);
-                }
-            }
-        }
-        selectedCache.remove(uuid);
-    }
-
-    public static void revertAllEquippedCosmetics(ServerPlayer player) {
-        UUID uuid = player.getUUID();
-        Map<EquipmentSlot, ItemStack> tracked = trackedItems.get(uuid);
-        if (tracked != null) {
-            for (Map.Entry<EquipmentSlot, ItemStack> entry : tracked.entrySet()) {
-                ItemStack item = entry.getValue();
-                if (item != null && CosmeticItemHelper.hasCosmeticApplied(item)) {
-                    CosmeticItemHelper.revertCosmetic(item);
-                }
-            }
-            tracked.clear();
-        }
-        // Also scan equipment slots directly
-        for (EquipmentSlot mcSlot : EquipmentSlot.values()) {
-            ItemStack item = player.getItemBySlot(mcSlot);
-            if (!item.isEmpty() && CosmeticItemHelper.hasCosmeticApplied(item)) {
-                CosmeticItemHelper.revertCosmetic(item);
-            }
-        }
+        trackedItems.remove(player.getUUID());
+        selectedCache.remove(player.getUUID());
     }
 
     public static void updateSelectedCosmetic(UUID playerUuid, CosmeticSlot slot, String styleId) {
@@ -153,13 +105,21 @@ public class CosmeticAppearanceManager {
         } else {
             cache.put(slot, styleId);
         }
-        // Force re-evaluation on next tick by clearing tracked items for this cosmetic slot
+
+        // Immediately update model on any currently tracked item for this slot
         Map<EquipmentSlot, ItemStack> tracked = trackedItems.get(playerUuid);
         if (tracked != null) {
+            String modelToApply;
+            if (styleId != null) {
+                Optional<Cosmetic> cosmetic = Cosmetics.GetById(styleId);
+                modelToApply = cosmetic.map(Cosmetic::getItemModel).orElse(slot.getDefaultModel().orElse(null));
+            } else {
+                modelToApply = slot.getDefaultModel().orElse(null);
+            }
             for (EquipmentSlot mcSlot : slot.getEquipmentSlots()) {
-                ItemStack item = tracked.remove(mcSlot);
-                if (item != null && CosmeticItemHelper.hasCosmeticApplied(item)) {
-                    CosmeticItemHelper.revertCosmetic(item);
+                ItemStack item = tracked.get(mcSlot);
+                if (item != null) {
+                    CosmeticItemHelper.setModel(item, modelToApply);
                 }
             }
         }

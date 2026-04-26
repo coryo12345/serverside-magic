@@ -36,6 +36,13 @@ public enum CosmeticSlot {
         return Optional.empty();
     }
 
+    public Optional<String> getDefaultModel() {
+        if (this == SPELLBOOK) {
+            return Optional.of("servermagic:spellbook");
+        }
+        return Optional.empty();
+    }
+
     public static Optional<CosmeticSlot> fromEquipmentSlot(EquipmentSlot mcSlot) {
         for (CosmeticSlot slot : values()) {
             for (EquipmentSlot eq : slot.equipmentSlots) {
