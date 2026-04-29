@@ -14,6 +14,8 @@ public class Cosmetics {
             "earth_staff", "Earth Staff", CosmeticSlot.SPELLBOOK, "servermagic:earth_staff");
     public static final Cosmetic STAR_WAND = new Cosmetic(
             "star_wand", "Star Wand", CosmeticSlot.SPELLBOOK, "servermagic:star_wand");
+    public static final Cosmetic FLICKER_STAFF = new Cosmetic(
+            "flicker_staff", "Flicker Staff", CosmeticSlot.SPELLBOOK, "servermagic:flicker_staff");
 
     public static List<Cosmetic> GetAll() {
         Field[] declaredFields = Cosmetics.class.getDeclaredFields();
