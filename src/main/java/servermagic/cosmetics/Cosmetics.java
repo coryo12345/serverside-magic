@@ -18,6 +18,8 @@ public class Cosmetics {
             "flicker_staff", "Flicker Staff", CosmeticSlot.SPELLBOOK, "servermagic:flicker_staff");
     public static final Cosmetic ICE_STAFF = new Cosmetic(
             "ice_staff", "Ice Staff", CosmeticSlot.SPELLBOOK, "servermagic:ice_staff");
+    public static final Cosmetic POTTER_WAND = new Cosmetic(
+            "potter_wand", "Magic Wand", CosmeticSlot.SPELLBOOK, "servermagic:potter_wand");
 
     public static List<Cosmetic> GetAll() {
         Field[] declaredFields = Cosmetics.class.getDeclaredFields();
