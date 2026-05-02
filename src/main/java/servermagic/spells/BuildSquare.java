@@ -11,7 +11,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import java.util.List;
-import java.util.Optional;
 
 import servermagic.db.Database;
 import servermagic.web.skill.Skill;

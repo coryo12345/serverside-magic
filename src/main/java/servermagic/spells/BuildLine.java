@@ -14,7 +14,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import java.util.List;
-import java.util.Optional;
 
 import servermagic.db.Database;
 import servermagic.web.skill.Skill;
