@@ -121,7 +121,7 @@ public class FlyingCarpet extends BaseSpell {
     }
 
     public static boolean isFlyingCarpetGhast(Entity entity) {
-        return entity instanceof HappyGhast && entity.getTags().contains(TAG);
+        return entity instanceof HappyGhast && entity.entityTags().contains(TAG);
     }
 
     /**
@@ -131,7 +131,7 @@ public class FlyingCarpet extends BaseSpell {
      */
     public static void tickCleanup(ServerLevel world) {
         var stray = world.getEntities(EntityType.HAPPY_GHAST,
-                ghast -> ghast.getTags().contains(TAG) && !ghast.isVehicle());
+                ghast -> ghast.entityTags().contains(TAG) && !ghast.isVehicle());
         for (var ghast : stray) {
             ghast.discard();
         }

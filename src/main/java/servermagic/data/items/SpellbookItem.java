@@ -1,5 +1,6 @@
 package servermagic.data.items;
 
+import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
@@ -9,6 +10,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.phys.EntityHitResult;
 import servermagic.data.items.utils.ISpellFocus;
@@ -28,6 +30,16 @@ public class SpellbookItem extends CustomItem implements ISpellFocus {
         is.set(DataComponents.ITEM_NAME, Component.literal("Spellbook"));
         is.set(DataComponents.ITEM_MODEL, Identifier.fromNamespaceAndPath("servermagic", "spellbook"));
         return is;
+    }
+
+    @Override
+    public ItemStackTemplate getDefaultItemStackTemplate() {
+        DataComponentPatch patch = DataComponentPatch.builder()
+                .set(DataComponents.CUSTOM_DATA, getCustomDataComponent())
+                .set(DataComponents.ITEM_NAME, Component.literal("Spellbook"))
+                .set(DataComponents.ITEM_MODEL, Identifier.fromNamespaceAndPath("servermagic", "spellbook"))
+                .build();
+        return new ItemStackTemplate(Items.BOOK, patch);
     }
 
     @Override

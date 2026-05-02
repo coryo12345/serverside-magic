@@ -20,7 +20,7 @@
       "minecraft:item_model": "servermagic:spellbook",
       "minecraft:item_name": "Spellbook"
     },
-    "count": 1,
     "id": "minecraft:book"
-  }
+  },
+  "show_notification": false
 }

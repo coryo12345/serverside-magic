@@ -92,11 +92,13 @@ public class ServerMagic implements ModInitializer {
 
 		UseBlockCallback.EVENT.register((player, world, hand, hitResult) -> {
 			// Suppress offhand block interactions when main hand holds a spellbook.
-			// Without this, each right-click casting gesture also places a block from the offhand.
+			// Without this, each right-click casting gesture also places a block from the
+			// offhand.
 			if (hand == InteractionHand.OFF_HAND
-					&& world instanceof ServerLevel sl
+					&& world instanceof ServerLevel
 					&& player instanceof ServerPlayer sp) {
-				ItemInteractionDispatcher mainHandDispatcher = new ItemInteractionDispatcher(world, sp, InteractionHand.MAIN_HAND);
+				ItemInteractionDispatcher mainHandDispatcher = new ItemInteractionDispatcher(world, sp,
+						InteractionHand.MAIN_HAND);
 				if (mainHandDispatcher.isCustomItem()) {
 					return InteractionResult.FAIL;
 				}
@@ -137,7 +139,7 @@ public class ServerMagic implements ModInitializer {
 		ServerTickEvents.END_SERVER_TICK.register(Sunbeam::tick);
 		ServerTickEvents.END_SERVER_TICK.register(SpectralHammer::tick);
 
-		ServerTickEvents.END_WORLD_TICK.register((ServerLevel world) -> {
+		ServerTickEvents.END_LEVEL_TICK.register((ServerLevel world) -> {
 			tickCount = (++tickCount % 1000); // so we dont get too large
 			// once every third second - things that don't need to happen often
 			if (tickCount % 60 == 0) {
@@ -248,7 +250,8 @@ public class ServerMagic implements ModInitializer {
 				SkillGranter.grantSkillForPlayer(db.get(), player, servermagic.web.skill.Skills.ANGEL_WINGS);
 			}
 
-			if (player.getY() < -60 && player.level().dimension() == Level.OVERWORLD && player.getItemBySlot(EquipmentSlot.MAINHAND).is(ItemTags.PICKAXES)) {
+			if (player.getY() < -60 && player.level().dimension() == Level.OVERWORLD
+					&& player.getItemBySlot(EquipmentSlot.MAINHAND).is(ItemTags.PICKAXES)) {
 				SkillGranter.grantSkillForPlayer(db.get(), player, Skills.SPECTRAL_HAMMER);
 			}
 		}

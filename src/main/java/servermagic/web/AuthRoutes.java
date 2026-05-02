@@ -41,7 +41,7 @@ public class AuthRoutes extends RouteGroup {
 
             String code = ac.get().code;
 
-            player.displayClientMessage(
+            player.sendSystemMessage(
                     Component.literal("Your Code is:  " + code + "  | It will expire in 5 minutes."),
                     false);
             ctx.status(200).result("Verification sent to player");

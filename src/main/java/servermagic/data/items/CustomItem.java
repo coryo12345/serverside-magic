@@ -11,6 +11,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.phys.EntityHitResult;
 
@@ -32,6 +33,10 @@ public abstract class CustomItem {
     public abstract String getItemId();
 
     public abstract ItemStack getDefaultItemStack();
+
+    public ItemStackTemplate getDefaultItemStackTemplate() {
+        throw new UnsupportedOperationException("getDefaultItemStackTemplate not implemented for " + getClass().getName());
+    }
 
     // The below functions are OPTIONAL to implement ------------------------------
 

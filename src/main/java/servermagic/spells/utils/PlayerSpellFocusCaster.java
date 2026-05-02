@@ -43,7 +43,8 @@ public class PlayerSpellFocusCaster {
      * @return SUCCESS if spell was cast, FAIL if something went wrong, PASS
      *         otherwise
      */
-    public InteractionResult handleClick(ServerLevel world, ServerPlayer player, InteractionHand hand, ClickType clickType) {
+    public InteractionResult handleClick(ServerLevel world, ServerPlayer player, InteractionHand hand,
+            ClickType clickType) {
         Optional<PlayerCastResult> playerCastStatus = PlayerCastStatus.UpdateCastForPlayer(db,
                 player.getPlainTextName(), clickType, player.isCrouching());
         if (playerCastStatus.isEmpty()) {
@@ -96,10 +97,10 @@ public class PlayerSpellFocusCaster {
             }
 
             int xpForLevel = player.getXpNeededForNextLevel();
-            int totalCost = spell.getFlatXpCost() + (int)(spell.getLevelPercentCost() * xpForLevel);
+            int totalCost = spell.getFlatXpCost() + (int) (spell.getLevelPercentCost() * xpForLevel);
             if (getPlayerTotalXp(player) < totalCost) {
-                player.displayClientMessage(
-                    Component.literal("Not enough XP to cast this spell!").withStyle(ChatFormatting.RED), true);
+                player.sendSystemMessage(
+                        Component.literal("Not enough XP to cast this spell!").withStyle(ChatFormatting.RED), true);
                 return InteractionResult.FAIL;
             }
 
@@ -112,12 +113,15 @@ public class PlayerSpellFocusCaster {
 
     private static int getPlayerTotalXp(ServerPlayer player) {
         int level = player.experienceLevel;
-        int barXp = (int)(player.experienceProgress * player.getXpNeededForNextLevel());
+        int barXp = (int) (player.experienceProgress * player.getXpNeededForNextLevel());
         int cumulative = 0;
         for (int l = 0; l < level; l++) {
-            if (l >= 30) cumulative += 9 * l - 158;
-            else if (l >= 16) cumulative += 5 * l - 38;
-            else cumulative += 2 * l + 7;
+            if (l >= 30)
+                cumulative += 9 * l - 158;
+            else if (l >= 16)
+                cumulative += 5 * l - 38;
+            else
+                cumulative += 2 * l + 7;
         }
         return cumulative + barXp;
     }
@@ -147,6 +151,6 @@ public class PlayerSpellFocusCaster {
                 : ChatFormatting.RED;
 
         Component combo = Component.literal(s.toString()).withStyle(ChatFormatting.BOLD, color);
-        player.displayClientMessage(combo, true);
+        player.sendSystemMessage(combo, true);
     }
 }

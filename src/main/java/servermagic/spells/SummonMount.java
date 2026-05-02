@@ -151,12 +151,12 @@ public class SummonMount extends BaseSpell {
 
     public static boolean isCustomHorse(Entity entity) {
         // check custom tags on a supplied entity to see if it is one of our horses
-        return entity instanceof Horse && entity.getTags().contains(CUSTOM_HORSE_TAG);
+        return entity instanceof Horse && entity.entityTags().contains(CUSTOM_HORSE_TAG);
     }
 
     public static void tickCleanup(ServerLevel world) {
         var horses = world.getEntities(EntityType.HORSE,
-                horse -> horse.getTags().contains(CUSTOM_HORSE_TAG) && !horse.isVehicle());
+                horse -> horse.entityTags().contains(CUSTOM_HORSE_TAG) && !horse.isVehicle());
         for (Horse horse : horses) {
             horse.discard();
         }

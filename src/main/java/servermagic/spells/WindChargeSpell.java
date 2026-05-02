@@ -37,9 +37,9 @@ public class WindChargeSpell extends BaseSpell {
         for (int i = 0; i < 5; i++) {
             world.sendParticles(
                     ParticleTypes.SMALL_GUST,
-                    startPos.x + (world.random.nextDouble() - 0.5) * 0.5,
-                    startPos.y + (world.random.nextDouble() - 0.5) * 0.5,
-                    startPos.z + (world.random.nextDouble() - 0.5) * 0.5,
+                    startPos.x + (world.getRandom().nextDouble() - 0.5) * 0.5,
+                    startPos.y + (world.getRandom().nextDouble() - 0.5) * 0.5,
+                    startPos.z + (world.getRandom().nextDouble() - 0.5) * 0.5,
                     1, 0.0, 0.0, 0.0, 0.05);
         }
 

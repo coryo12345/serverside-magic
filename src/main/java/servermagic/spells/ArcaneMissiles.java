@@ -53,7 +53,7 @@ public class ArcaneMissiles extends BaseSpell {
                 .orElse(null);
         UUID targetId = target != null ? target.getUUID() : null;
 
-        int missileCount = 3 + world.random.nextInt(3); // 3, 4, or 5
+        int missileCount = 3 + world.getRandom().nextInt(3); // 3, 4, or 5
 
         // Cast sound + burst particles at eye position
         Vec3 eyePos = player.getEyePosition();
@@ -68,8 +68,8 @@ public class ArcaneMissiles extends BaseSpell {
 
         for (int i = 0; i < missileCount; i++) {
             // Random spread ±20° in yaw and pitch
-            double yawOffset = Math.toRadians(world.random.nextDouble() * 40 - 20);
-            double pitchOffset = Math.toRadians(world.random.nextDouble() * 40 - 20);
+            double yawOffset = Math.toRadians(world.getRandom().nextDouble() * 40 - 20);
+            double pitchOffset = Math.toRadians(world.getRandom().nextDouble() * 40 - 20);
             double newYaw = baseYaw + yawOffset;
             double newPitch = basePitch + pitchOffset;
             double cosPitch = Math.cos(newPitch);

@@ -11,6 +11,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
@@ -45,7 +46,7 @@ public class Sunbeam extends BaseSpell {
                 center.x - PILLAR_RADIUS, center.y - 0.5, center.z - PILLAR_RADIUS,
                 center.x + PILLAR_RADIUS, center.y + PILLAR_HEIGHT, center.z + PILLAR_RADIUS);
         List<LivingEntity> targets = world.getEntitiesOfClass(LivingEntity.class, pillarBox,
-                e -> e.isAlive() && e.getType().is(EntityTypeTags.SENSITIVE_TO_SMITE)
+                e -> e.isAlive() && BuiltInRegistries.ENTITY_TYPE.wrapAsHolder(e.getType()).is(EntityTypeTags.SENSITIVE_TO_SMITE)
                         && !e.getUUID().equals(player.getUUID()));
         for (LivingEntity target : targets) {
             target.hurtServer(world, target.damageSources().magic(), SMITE_DAMAGE);

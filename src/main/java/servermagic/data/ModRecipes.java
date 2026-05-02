@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.Advancement;
@@ -15,6 +15,7 @@ import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
 import net.minecraft.advancements.criterion.RecipeUnlockedTrigger;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -23,8 +24,7 @@ import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.ItemLore;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
@@ -32,10 +32,12 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraft.world.item.crafting.ShapedRecipePattern;
+import net.minecraft.world.item.crafting.CraftingRecipe.CraftingBookInfo;
+import net.minecraft.world.item.crafting.Recipe.CommonInfo;
 import servermagic.data.items.SpellbookItem;
 
 public class ModRecipes extends FabricRecipeProvider {
-	public ModRecipes(FabricDataOutput output,
+	public ModRecipes(FabricPackOutput output,
 			CompletableFuture<HolderLookup.Provider> registriesFuture) {
 		super(output, registriesFuture);
 	}
@@ -45,11 +47,9 @@ public class ModRecipes extends FabricRecipeProvider {
 		return new RecipeProvider(registryLookup, exporter) {
 			@Override
 			public void buildRecipes() {
-				// Is this needed?
-				HolderLookup.RegistryLookup<Item> itemLookup = registries.lookupOrThrow(Registries.ITEM);
-
 				// Spellbook: shaped recipe with custom ItemStack output.
-				// ShapedRecipeBuilder.shaped() only accepts ItemLike, so we construct ShapedRecipe directly.
+				// ShapedRecipeBuilder.shaped() only accepts ItemLike, so we construct
+				// ShapedRecipe directly.
 				SpellbookItem si = new SpellbookItem();
 				ResourceKey<Recipe<?>> spellbookKey = ResourceKey.create(Registries.RECIPE,
 						Identifier.fromNamespaceAndPath("servermagic", "book"));
@@ -61,11 +61,16 @@ public class ModRecipes extends FabricRecipeProvider {
 				ingredientMap.put('A', Ingredient.of(Items.AMETHYST_SHARD));
 
 				ShapedRecipePattern spellbookPattern = ShapedRecipePattern.of(ingredientMap, " F ", "LBL", " A ");
-				ShapedRecipe spellbookRecipe = new ShapedRecipe("", CraftingBookCategory.EQUIPMENT, spellbookPattern, si.getDefaultItemStack());
+				ShapedRecipe spellbookRecipe = new ShapedRecipe(
+						new CommonInfo(false),
+						new CraftingBookInfo(CraftingBookCategory.EQUIPMENT, ""),
+						spellbookPattern,
+						si.getDefaultItemStackTemplate());
 
 				AdvancementHolder spellbookAdvancement = Advancement.Builder.advancement()
 						.parent(Identifier.withDefaultNamespace("recipes/root"))
-						.addCriterion("has_enchanted_book", InventoryChangeTrigger.TriggerInstance.hasItems(Items.ENCHANTED_BOOK))
+						.addCriterion("has_enchanted_book",
+								InventoryChangeTrigger.TriggerInstance.hasItems(Items.ENCHANTED_BOOK))
 						.addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(spellbookKey))
 						.requirements(AdvancementRequirements.anyOf(List.of("has_the_recipe", "has_enchanted_book")))
 						.rewards(AdvancementRewards.Builder.recipe(spellbookKey))
@@ -73,21 +78,22 @@ public class ModRecipes extends FabricRecipeProvider {
 
 				this.output.accept(spellbookKey, spellbookRecipe, spellbookAdvancement);
 
-				// Build the custom Mana Potion output stack (used by both recipes)
-				ItemStack manaPotion = new ItemStack(Items.EXPERIENCE_BOTTLE, 2);
-				manaPotion.set(DataComponents.CUSTOM_NAME,
-						Component.literal("Mana Potion")
-								.withStyle(s -> s.withItalic(false).withColor(ChatFormatting.AQUA)));
-				manaPotion.set(DataComponents.LORE, new ItemLore(List.of(
-						Component.literal("A burst of arcane energy.")
-								.withStyle(ChatFormatting.GRAY).withStyle(s -> s.withItalic(false)),
-						Component.literal("Best used below level 10.")
-								.withStyle(ChatFormatting.DARK_GRAY).withStyle(s -> s.withItalic(false))
-				)));
-				manaPotion.set(DataComponents.ITEM_MODEL, Identifier.fromNamespaceAndPath("servermagic", "mana_potion"));
+				// Build the custom Mana Potion output template (used by both recipes)
+				ItemStackTemplate manaPotionTemplate = new ItemStackTemplate(Items.EXPERIENCE_BOTTLE,
+						DataComponentPatch.builder()
+								.set(DataComponents.CUSTOM_NAME, Component.literal("Mana Potion")
+										.withStyle(s -> s.withItalic(false).withColor(ChatFormatting.AQUA)))
+								.set(DataComponents.LORE, new ItemLore(List.of(
+										Component.literal("A burst of arcane energy.")
+												.withStyle(ChatFormatting.GRAY).withStyle(s -> s.withItalic(false)),
+										Component.literal("Best used below level 10.")
+												.withStyle(ChatFormatting.DARK_GRAY).withStyle(s -> s.withItalic(false)))))
+								.set(DataComponents.ITEM_MODEL, Identifier.fromNamespaceAndPath("servermagic", "mana_potion"))
+								.build())
+						.withCount(2);
 
 				// Crystalline Mana: Amethyst Shard + Lapis + 2 Glass Bottles = 2 Mana Potions
-				this.shapeless(RecipeCategory.BREWING, manaPotion.copy())
+				this.shapeless(RecipeCategory.BREWING, manaPotionTemplate)
 						.requires(Items.AMETHYST_SHARD)
 						.requires(Items.LAPIS_LAZULI)
 						.requires(Items.GLASS_BOTTLE, 2)
@@ -95,7 +101,7 @@ public class ModRecipes extends FabricRecipeProvider {
 						.save(this.output, "crystalline_mana");
 
 				// Gilded Glow: Gold Ingot + Glowstone Dust + 2 Glass Bottles = 2 Mana Potions
-				this.shapeless(RecipeCategory.BREWING, manaPotion.copy())
+				this.shapeless(RecipeCategory.BREWING, manaPotionTemplate)
 						.requires(Items.GOLD_INGOT)
 						.requires(Items.GLOWSTONE_DUST)
 						.requires(Items.GLASS_BOTTLE, 2)

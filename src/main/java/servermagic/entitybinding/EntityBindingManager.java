@@ -13,6 +13,7 @@ import java.util.UUID;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.datafix.DataFixTypes;
@@ -52,7 +53,7 @@ public class EntityBindingManager extends SavedData {
                     manager -> new ArrayList<>(manager.bindingsByFollower.values()));
 
     public static final SavedDataType<EntityBindingManager> TYPE = new SavedDataType<>(
-            "entity_bindings",
+            Identifier.parse("servermagic:entity_bindings"),
             EntityBindingManager::new,
             CODEC,
             DataFixTypes.LEVEL // closest generic type, or use LEVEL if available

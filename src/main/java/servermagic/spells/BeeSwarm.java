@@ -110,7 +110,7 @@ public class BeeSwarm extends BaseSpell {
 
         // Priority 3: passive mobs (excluding our own bees)
         List<Animal> animals = world.getEntitiesOfClass(Animal.class, searchBox,
-                e -> e.isAlive() && !e.getTags().contains(BEE_TAG)
+                e -> e.isAlive() && !e.entityTags().contains(BEE_TAG)
                         && e.distanceTo(player) <= SEARCH_RADIUS);
         if (!animals.isEmpty()) {
             return animals.stream()
