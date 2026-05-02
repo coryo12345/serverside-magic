@@ -20,6 +20,8 @@ public class Cosmetics {
             "ice_staff", "Ice Staff", CosmeticSlot.SPELLBOOK, "servermagic:ice_staff");
     public static final Cosmetic POTTER_WAND = new Cosmetic(
             "potter_wand", "Magic Wand", CosmeticSlot.SPELLBOOK, "servermagic:potter_wand");
+    public static final Cosmetic ELDER_WAND = new Cosmetic(
+            "elder_wand", "Elder Wand", CosmeticSlot.SPELLBOOK, "servermagic:elder_wand");
 
     public static List<Cosmetic> GetAll() {
         Field[] declaredFields = Cosmetics.class.getDeclaredFields();
