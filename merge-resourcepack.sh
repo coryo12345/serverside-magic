@@ -80,6 +80,62 @@ echo "Zipping final pack to: $OUTPUT"
 rm -f "$OUTPUT"
 (cd "$MERGED_DIR" && zip -qr "$OUTPUT" .)
 
+# Generate armor cosmetics from equipment directory
+COSMETICS_FILE="$SCRIPT_DIR/src/main/java/servermagic/cosmetics/Cosmetics.java"
+EQUIPMENT_DIR="$MERGED_DIR/assets/minecraft/equipment"
+
+if [[ -f "$COSMETICS_FILE" && -d "$EQUIPMENT_DIR" ]]; then
+  echo "Generating armor cosmetics in Cosmetics.java..."
+
+  title_case() {
+    echo "$1" | sed 's/_/ /g' | awk '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2); print}'
+  }
+
+  GENERATED_FILE="$WORK_DIR/generated.txt"
+  printf '\n' > "$GENERATED_FILE"
+
+  for tier in chainmail iron gold diamond netherite; do
+    tier_dir="$EQUIPMENT_DIR/$tier"
+    [[ -d "$tier_dir" ]] || continue
+
+    for json_file in "$tier_dir"/*.json; do
+      [[ -f "$json_file" ]] || continue
+      name="$(basename "$json_file" .json)"
+
+      display_tier="$(title_case "$tier")"
+      display_name="$(title_case "$name")"
+      var_prefix="$(echo "${tier}_${name}" | tr '[:lower:]' '[:upper:]')"
+      item_model="minecraft:${tier}/${name}"
+      cosmetic_id="${tier}/${name}"
+
+      for slot_lower in helmet chestplate leggings boots; do
+        slot_upper="$(echo "$slot_lower" | tr '[:lower:]' '[:upper:]')"
+        slot_display="$(title_case "$slot_lower")"
+        printf '    public static final Cosmetic %s = new Cosmetic(\n' "${var_prefix}_${slot_upper}" >> "$GENERATED_FILE"
+        printf '            "%s", "%s", CosmeticSlot.%s, "%s");\n' \
+          "${cosmetic_id}_${slot_lower}" \
+          "${display_tier} ${display_name} ${slot_display}" \
+          "$slot_upper" \
+          "$item_model" >> "$GENERATED_FILE"
+      done
+      printf '\n' >> "$GENERATED_FILE"
+    done
+  done
+
+  awk -v gen_file="$GENERATED_FILE" '
+    /\/\/ below are generated cosmetic items, do not edit manually <generated>/ {
+      print
+      while ((getline line < gen_file) > 0) print line
+      in_generated = 1
+      next
+    }
+    /\/\/ <\/generated>/ { in_generated = 0 }
+    !in_generated { print }
+  ' "$COSMETICS_FILE" > "$COSMETICS_FILE.tmp" && mv "$COSMETICS_FILE.tmp" "$COSMETICS_FILE"
+
+  echo "  Updated Cosmetics.java"
+fi
+
 if $DEV_MODE; then
   PACK_URL="http://localhost:8080/assets/$PACK_FILENAME"
   PACK_SHA1="$(shasum -a 1 "$OUTPUT" | awk '{print $1}')"

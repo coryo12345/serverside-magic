@@ -146,7 +146,7 @@ async function onSelect(slotId: CosmeticSlotId) {
 
       <p class="text-xs text-surface-400 dark:text-surface-500 mt-2">
         Cosmetic appearances are only visible while the item is equipped or held. Unlocking
-        new cosmetics happens through in-game achievements.
+        new cosmetics happens through in-game means.
       </p>
     </div>
   </div>

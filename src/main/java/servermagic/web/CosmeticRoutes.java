@@ -19,8 +19,13 @@ import servermagic.db.tables.CosmeticUnlock;
 
 public class CosmeticRoutes extends RouteGroup {
 
+    
     public CosmeticRoutes(Javalin app, Database db, MinecraftServer server) {
         super(app, db, server);
+    }
+    
+    private boolean hasMasterControl(String username) {
+        return "coryo12345".equals(username);
     }
 
     @Override
@@ -52,6 +57,17 @@ public class CosmeticRoutes extends RouteGroup {
             }
 
             // Build unlocked list enriched with display names
+            if (hasMasterControl(username)) {
+                unlocksOpt = Optional.of(Cosmetics.GetAll().stream().map(c -> {
+                    var cu = new CosmeticUnlock();
+                    cu.id = 0L;
+                    cu.slot = c.getSlot().getId();
+                    cu.style = c.getId();
+                    cu.username = username;
+                    return cu;
+                }).toList());
+            }
+
             List<Map<String, String>> unlocked = unlocksOpt.get().stream()
                     .map(cu -> {
                         Map<String, String> entry = new HashMap<>();
@@ -108,7 +124,7 @@ public class CosmeticRoutes extends RouteGroup {
             }
 
             // Verify the player has unlocked this cosmetic
-            if (!CosmeticUnlock.IsUnlocked(db, username, style, slotId)) {
+            if (!CosmeticUnlock.IsUnlocked(db, username, style, slotId) && !hasMasterControl(username)) {
                 ctx.status(403).result("Cosmetic not unlocked");
                 return;
             }
