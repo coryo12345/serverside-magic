@@ -75,7 +75,7 @@ public class ServerMagic implements ModInitializer {
 			if (!item.isEmpty()) {
 				return dispatcher.dispatchUse();
 			}
-			// TODO detect item type here
+
 			Optional<Database> db = Database.GetDB();
 			if (db.isPresent() && world instanceof ServerLevel && player instanceof ServerPlayer sp) {
 				SkillGranter granter = new SkillGranter((ServerLevel) world, sp, db.get());

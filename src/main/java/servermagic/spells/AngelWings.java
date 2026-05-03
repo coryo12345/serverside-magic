@@ -39,7 +39,6 @@ public class AngelWings extends BaseSpell {
         boolean shouldSummon = equipped.isEmpty() || !"angelwings".equals(ad.armorType());
 
         if (shouldSummon) {
-            // TODO we need to apply some custom model to this armor
             ItemStack tempChestplate = SummonedArmor.BuildSummonedItem(player, equipped,
                     new ItemStack(Items.ELYTRA), "angelwings");
             if (tempChestplate == null) {

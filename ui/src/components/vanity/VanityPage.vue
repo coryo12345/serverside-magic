@@ -130,6 +130,7 @@ async function onSelect(slotId: CosmeticSlotId) {
                 v-if="saving[slot.id]"
                 class="pi pi-spin pi-spinner text-primary"
               ></i>
+              <!-- TODO make this searchable -->
               <Select
                 v-model="selectedValues[slot.id]"
                 :options="getOptionsForSlot(slot.id)"
