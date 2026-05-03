@@ -16,7 +16,7 @@
       "minecraft:custom_data": {
         "magicitem": "base_lootbox"
       },
-      "minecraft:item_model": "minecraft:diamond",
+      "minecraft:item_model": "servermagic:lootbox",
       "minecraft:item_name": "Vanity Box",
       "minecraft:lore": [
         {

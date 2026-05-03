@@ -73,7 +73,7 @@ public class SpellbookItem extends CustomItem implements ISpellFocus {
                 getDefaultItemStackTemplate());
 
         AdvancementHolder advancement = Advancement.Builder.advancement()
-                .parent(Identifier.withDefaultNamespace("recipes/root"))
+                .parent(Advancement.Builder.advancement().build(Identifier.withDefaultNamespace("recipes/root")))
                 .addCriterion("has_enchanted_book",
                         InventoryChangeTrigger.TriggerInstance.hasItems(Items.ENCHANTED_BOOK))
                 .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(key))

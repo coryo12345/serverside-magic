@@ -48,14 +48,14 @@ public class ManaPotionItem extends CustomItem {
                                         .withStyle(ChatFormatting.DARK_GRAY).withStyle(s -> s.withItalic(false)))))
                         .set(DataComponents.ITEM_MODEL, Identifier.fromNamespaceAndPath("servermagic", "mana_potion"))
                         .build())
-                .withCount(2);
+                .withCount(3);
     }
 
     @Override
     public void buildRecipe(RecipeOutput output, HolderLookup.Provider registryLookup) {
         ItemStackTemplate template = getDefaultItemStackTemplate();
 
-        // Crystalline Mana: Amethyst Shard + Lapis + 2 Glass Bottles = 2 Mana Potions
+        // Crystalline Mana: Amethyst Shard + Lapis + Glass Bottle = 3 Mana Potions
         ResourceKey<Recipe<?>> crystallineKey = ResourceKey.create(Registries.RECIPE,
                 Identifier.fromNamespaceAndPath("servermagic", "crystalline_mana"));
         ShapelessRecipe crystallineRecipe = new ShapelessRecipe(
@@ -63,9 +63,9 @@ public class ManaPotionItem extends CustomItem {
                 new CraftingBookInfo(CraftingBookCategory.MISC, ""),
                 template,
                 List.of(Ingredient.of(Items.AMETHYST_SHARD), Ingredient.of(Items.LAPIS_LAZULI),
-                        Ingredient.of(Items.GLASS_BOTTLE), Ingredient.of(Items.GLASS_BOTTLE)));
+                        Ingredient.of(Items.GLASS_BOTTLE)));
         AdvancementHolder crystallineAdvancement = Advancement.Builder.advancement()
-                .parent(Identifier.withDefaultNamespace("recipes/root"))
+                .parent(Advancement.Builder.advancement().build(Identifier.withDefaultNamespace("recipes/root")))
                 .addCriterion("has_amethyst_shard",
                         InventoryChangeTrigger.TriggerInstance.hasItems(Items.AMETHYST_SHARD))
                 .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(crystallineKey))
@@ -74,7 +74,7 @@ public class ManaPotionItem extends CustomItem {
                 .build(Identifier.fromNamespaceAndPath("servermagic", "recipes/brewing/crystalline_mana"));
         output.accept(crystallineKey, crystallineRecipe, crystallineAdvancement);
 
-        // Gilded Glow: Gold Ingot + Glowstone Dust + 2 Glass Bottles = 2 Mana Potions
+        // Gilded Glow: Gold Ingot + Glowstone Dust + Glass Bottle = 3 Mana Potions
         ResourceKey<Recipe<?>> gildedKey = ResourceKey.create(Registries.RECIPE,
                 Identifier.fromNamespaceAndPath("servermagic", "gilded_glow"));
         ShapelessRecipe gildedRecipe = new ShapelessRecipe(
@@ -82,9 +82,9 @@ public class ManaPotionItem extends CustomItem {
                 new CraftingBookInfo(CraftingBookCategory.MISC, ""),
                 template,
                 List.of(Ingredient.of(Items.GOLD_INGOT), Ingredient.of(Items.GLOWSTONE_DUST),
-                        Ingredient.of(Items.GLASS_BOTTLE), Ingredient.of(Items.GLASS_BOTTLE)));
+                        Ingredient.of(Items.GLASS_BOTTLE)));
         AdvancementHolder gildedAdvancement = Advancement.Builder.advancement()
-                .parent(Identifier.withDefaultNamespace("recipes/root"))
+                .parent(Advancement.Builder.advancement().build(Identifier.withDefaultNamespace("recipes/root")))
                 .addCriterion("has_gold_ingot",
                         InventoryChangeTrigger.TriggerInstance.hasItems(Items.GOLD_INGOT))
                 .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(gildedKey))

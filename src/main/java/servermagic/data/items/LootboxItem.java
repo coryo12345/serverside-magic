@@ -60,8 +60,7 @@ public class LootboxItem extends CustomItem {
                 .set(DataComponents.LORE, new ItemLore(List.of(
                         Component.literal("Use to unlock a new vanity option")
                                 .withStyle(ChatFormatting.GRAY).withStyle(s -> s.withItalic(false)))))
-                // TODO set a unique texture
-                .set(DataComponents.ITEM_MODEL, Identifier.fromNamespaceAndPath("minecraft", "diamond"))
+                .set(DataComponents.ITEM_MODEL, Identifier.fromNamespaceAndPath("servermagic", "lootbox"))
                 .build();
     }
 
@@ -74,7 +73,7 @@ public class LootboxItem extends CustomItem {
                         Component.literal("Use to unlock a new vanity option")
                                 .withStyle(ChatFormatting.GRAY).withStyle(s -> s.withItalic(false))))))
                 .apply(SetComponentsFunction.setComponent(DataComponents.ITEM_MODEL,
-                        Identifier.fromNamespaceAndPath("minecraft", "diamond")));
+                        Identifier.fromNamespaceAndPath("servermagic", "lootbox")));
     }
 
     @Override
@@ -100,7 +99,7 @@ public class LootboxItem extends CustomItem {
                 getDefaultItemStackTemplate());
 
         AdvancementHolder advancement = Advancement.Builder.advancement()
-                .parent(Identifier.withDefaultNamespace("recipes/root"))
+                .parent(Advancement.Builder.advancement().build(Identifier.withDefaultNamespace("recipes/root")))
                 .addCriterion("has_diamond",
                         InventoryChangeTrigger.TriggerInstance.hasItems(Items.DIAMOND))
                 .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(key))
