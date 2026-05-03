@@ -18,6 +18,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import servermagic.ServerMagic;
 import servermagic.data.items.CustomItem;
+import servermagic.data.items.LootboxItem;
 import servermagic.data.items.SpellbookItem;
 
 public class ItemInteractionDispatcher {
@@ -26,7 +27,8 @@ public class ItemInteractionDispatcher {
     private InteractionHand hand;
 
     private final static Map<String, Class<? extends CustomItem>> customItemMap = Map.of(
-            SpellbookItem.ID, SpellbookItem.class);
+            SpellbookItem.ID, SpellbookItem.class,
+            LootboxItem.ID, LootboxItem.class);
 
     public ItemInteractionDispatcher(Level world, Player player, InteractionHand hand) {
         MinecraftServer server = world.getServer();

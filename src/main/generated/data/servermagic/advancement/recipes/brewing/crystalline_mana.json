@@ -28,5 +28,6 @@
     "recipes": [
       "servermagic:crystalline_mana"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

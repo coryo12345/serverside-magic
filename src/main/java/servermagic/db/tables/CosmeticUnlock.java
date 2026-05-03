@@ -22,6 +22,18 @@ public class CosmeticUnlock {
         });
     }
 
+    public static void Insert(Database db, String username, String style, String slot) {
+        db.transaction(conn -> {
+            conn.createQuery(
+                    "insert into cosmeticunlocks (username, style, slot) values (:username, :style, :slot)")
+                    .addParameter("username", username)
+                    .addParameter("style", style)
+                    .addParameter("slot", slot)
+                    .executeUpdate();
+            return Optional.empty();
+        });
+    }
+
     public static boolean IsUnlocked(Database db, String username, String style, String slot) {
         Optional<List<CosmeticUnlock>> unlocks = db.query(conn -> {
             List<CosmeticUnlock> rows = conn

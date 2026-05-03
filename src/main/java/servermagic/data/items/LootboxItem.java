@@ -3,7 +3,13 @@ package servermagic.data.items;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
+import servermagic.cosmetics.Cosmetic;
+import servermagic.cosmetics.CosmeticSlot;
+import servermagic.cosmetics.Cosmetics;
+import servermagic.db.Database;
+import servermagic.db.tables.CosmeticUnlock;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementRequirements;
@@ -89,20 +95,60 @@ public class LootboxItem extends CustomItem {
 
     @Override
     public InteractionResult onUse(ServerLevel world, ServerPlayer player, InteractionHand hand) {
-        // TODO this will need to add a random cosmetic unlock for the player they have not yet unlocked.
-        // When we pick a cosmetic to unlock, first do a 50/50 pick to either unlock a spellbook cosmetic, or an armor set.
-        // (if the player has all of the spellbook cosmetics or all the armor cosmetics then skip that type and guarantee the other)
+        java.util.Optional<Database> dbOpt = Database.GetDB();
+        if (dbOpt.isEmpty()) return InteractionResult.PASS;
+        Database db = dbOpt.get();
 
-        // If we are giving a spellbook skin, give a random cosmetic from Cosmetics.java for the spellbook slot.
-        // If we are giving an armor set, then we need to pick a random SET. You can detmine which items are in the same set based on the itemModel for the cosmetic.
-        // If two pieces for an armor slot have the same item model, then they are in the same set. When we unlock a set, all cosmetics with that itemModel get unlocked.
-        // So, I could unlock Lunar Staff spellbook model, OR i could unlock the "minecraft:chainmail/ar_useful" armor set (4 different pieces for this set.)
+        String username = player.getName().getString();
 
-        // Once we set the unlock, create a message to send to the player in the chat to inform them what they unlocked.
-        // Then delete the lootbox item from their inventory they used to trigger this. (if multipel in a stack, just remove one)
+        List<Cosmetic> lockedSpellbooks = Cosmetics.GetAllForSlot(CosmeticSlot.SPELLBOOK).stream()
+                .filter(c -> !CosmeticUnlock.IsUnlocked(db, username, c.getId(), c.getSlot().getId()))
+                .toList();
 
-        // If the player has ALL cosmetics unlocked, do NOT consume the item, just give them a message in chat telling them they have nothing else to unlock.
+        Map<String, List<Cosmetic>> armorBySet = Cosmetics.GetAll().stream()
+                .filter(c -> c.getSlot() != CosmeticSlot.SPELLBOOK)
+                .collect(Collectors.groupingBy(Cosmetic::getItemModel));
+
+        List<List<Cosmetic>> lockedArmorSets = armorBySet.values().stream()
+                .filter(pieces -> pieces.stream()
+                        .anyMatch(c -> !CosmeticUnlock.IsUnlocked(db, username, c.getId(), c.getSlot().getId())))
+                .toList();
+
+        if (lockedSpellbooks.isEmpty() && lockedArmorSets.isEmpty()) {
+            player.sendSystemMessage(Component.literal("You have already unlocked all cosmetics!")
+                    .withStyle(ChatFormatting.GOLD).withStyle(s -> s.withItalic(false)), false);
+            return InteractionResult.SUCCESS;
+        }
+
+        boolean pickSpellbook;
+        if (lockedSpellbooks.isEmpty()) pickSpellbook = false;
+        else if (lockedArmorSets.isEmpty()) pickSpellbook = true;
+        else pickSpellbook = world.getRandom().nextBoolean();
+
+        if (pickSpellbook) {
+            Cosmetic cosmetic = lockedSpellbooks.get(world.getRandom().nextInt(lockedSpellbooks.size()));
+            CosmeticUnlock.Insert(db, username, cosmetic.getId(), cosmetic.getSlot().getId());
+            player.sendSystemMessage(Component.literal("You unlocked: " + cosmetic.getDisplayName() + "!")
+                    .withStyle(ChatFormatting.AQUA).withStyle(s -> s.withItalic(false)), false);
+        } else {
+            List<Cosmetic> setToUnlock = lockedArmorSets.get(world.getRandom().nextInt(lockedArmorSets.size()));
+            for (Cosmetic piece : setToUnlock) {
+                if (!CosmeticUnlock.IsUnlocked(db, username, piece.getId(), piece.getSlot().getId())) {
+                    CosmeticUnlock.Insert(db, username, piece.getId(), piece.getSlot().getId());
+                }
+            }
+            String setName = deriveSetName(setToUnlock.get(0).getDisplayName());
+            player.sendSystemMessage(Component.literal("You unlocked: " + setName + " armor set!")
+                    .withStyle(ChatFormatting.AQUA).withStyle(s -> s.withItalic(false)), false);
+        }
+
+        player.getItemInHand(hand).shrink(1);
         return InteractionResult.SUCCESS;
+    }
+
+    private String deriveSetName(String pieceName) {
+        int lastSpace = pieceName.lastIndexOf(' ');
+        return lastSpace > 0 ? pieceName.substring(0, lastSpace) : pieceName;
     }
 
     @Override

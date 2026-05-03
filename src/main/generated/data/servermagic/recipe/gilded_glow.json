@@ -30,5 +30,6 @@
     },
     "count": 2,
     "id": "minecraft:experience_bottle"
-  }
+  },
+  "show_notification": false
 }

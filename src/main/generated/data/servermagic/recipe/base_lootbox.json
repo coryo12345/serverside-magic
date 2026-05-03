@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": "minecraft:chest",
+    "D": "minecraft:diamond",
+    "F": "minecraft:chorus_fruit"
+  },
+  "pattern": [
+    " F ",
+    "DCD",
+    " F "
+  ],
+  "result": {
+    "components": {
+      "minecraft:custom_data": {
+        "magicitem": "base_lootbox"
+      },
+      "minecraft:item_model": "minecraft:diamond",
+      "minecraft:item_name": "Vanity Box",
+      "minecraft:lore": [
+        {
+          "color": "gray",
+          "italic": false,
+          "text": "Use to unlock a new vanity option"
+        }
+      ]
+    },
+    "id": "minecraft:trial_key"
+  },
+  "show_notification": false
+}
