@@ -1,7 +1,10 @@
 package servermagic.data.items;
 
+import java.util.List;
+
 import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
@@ -11,6 +14,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.ItemLore;
 import net.minecraft.world.phys.EntityHitResult;
 
 public class LootboxItem extends CustomItem {
@@ -26,7 +30,9 @@ public class LootboxItem extends CustomItem {
         DataComponentPatch patch = DataComponentPatch.builder()
                 .set(DataComponents.CUSTOM_DATA, getCustomDataComponent())
                 .set(DataComponents.ITEM_NAME, Component.literal("Vanity Box"))
-                // TODO set description: "Use to unlock a new vanity option"
+                .set(DataComponents.LORE, new ItemLore(List.of(
+                        Component.literal("Use to unlock a new vanity option")
+                                .withStyle(ChatFormatting.GRAY).withStyle(s -> s.withItalic(false)))))
                 // TODO set a unique texture
                 .set(DataComponents.ITEM_MODEL, Identifier.fromNamespaceAndPath("minecraft", "diamond"))
                 .build();
