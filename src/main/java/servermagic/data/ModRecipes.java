@@ -34,6 +34,7 @@ import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraft.world.item.crafting.ShapedRecipePattern;
 import net.minecraft.world.item.crafting.CraftingRecipe.CraftingBookInfo;
 import net.minecraft.world.item.crafting.Recipe.CommonInfo;
+import servermagic.data.items.LootboxItem;
 import servermagic.data.items.SpellbookItem;
 
 public class ModRecipes extends FabricRecipeProvider {
@@ -77,6 +78,34 @@ public class ModRecipes extends FabricRecipeProvider {
 						.build(Identifier.fromNamespaceAndPath("servermagic", "recipes/tools/book"));
 
 				this.output.accept(spellbookKey, spellbookRecipe, spellbookAdvancement);
+
+				// Lootbox: shaped recipe with custom ItemStack output.
+				LootboxItem li = new LootboxItem();
+				ResourceKey<Recipe<?>> lootboxKey = ResourceKey.create(Registries.RECIPE,
+						Identifier.fromNamespaceAndPath("servermagic", "base_lootbox"));
+
+				Map<Character, Ingredient> lootboxIngredientMap = new LinkedHashMap<>();
+				lootboxIngredientMap.put('F', Ingredient.of(Items.CHORUS_FRUIT));
+				lootboxIngredientMap.put('D', Ingredient.of(Items.DIAMOND));
+				lootboxIngredientMap.put('C', Ingredient.of(Items.CHEST));
+
+				ShapedRecipePattern lootboxPattern = ShapedRecipePattern.of(lootboxIngredientMap, " F ", "DCD", " F ");
+				ShapedRecipe lootboxRecipe = new ShapedRecipe(
+						new CommonInfo(false),
+						new CraftingBookInfo(CraftingBookCategory.MISC, ""),
+						lootboxPattern,
+						li.getDefaultItemStackTemplate());
+
+				AdvancementHolder lootboxAdvancement = Advancement.Builder.advancement()
+						.parent(Identifier.withDefaultNamespace("recipes/root"))
+						.addCriterion("has_diamond",
+								InventoryChangeTrigger.TriggerInstance.hasItems(Items.DIAMOND))
+						.addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(lootboxKey))
+						.requirements(AdvancementRequirements.anyOf(List.of("has_the_recipe", "has_diamond")))
+						.rewards(AdvancementRewards.Builder.recipe(lootboxKey))
+						.build(Identifier.fromNamespaceAndPath("servermagic", "recipes/tools/base_lootbox"));
+
+				this.output.accept(lootboxKey, lootboxRecipe, lootboxAdvancement);
 
 				// Build the custom Mana Potion output template (used by both recipes)
 				ItemStackTemplate manaPotionTemplate = new ItemStackTemplate(Items.EXPERIENCE_BOTTLE,
