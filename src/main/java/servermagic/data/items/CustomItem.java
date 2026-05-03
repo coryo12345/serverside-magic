@@ -32,11 +32,11 @@ public abstract class CustomItem {
 
     public abstract String getItemId();
 
-    public abstract ItemStack getDefaultItemStack();
-
-    public ItemStackTemplate getDefaultItemStackTemplate() {
-        throw new UnsupportedOperationException("getDefaultItemStackTemplate not implemented for " + getClass().getName());
+    public ItemStack getDefaultItemStack() {
+        return getDefaultItemStackTemplate().create();
     }
+
+    public abstract ItemStackTemplate getDefaultItemStackTemplate();
 
     // The below functions are OPTIONAL to implement ------------------------------
 

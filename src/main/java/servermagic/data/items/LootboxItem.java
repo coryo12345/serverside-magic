@@ -12,11 +12,9 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.phys.EntityHitResult;
-import servermagic.data.items.utils.ISpellFocus;
-import servermagic.spells.utils.ClickType;
 
-public class SpellbookItem extends CustomItem implements ISpellFocus {
-    public static final String ID = "base_spellbook";
+public class LootboxItem extends CustomItem {
+    public static final String ID = "base_lootbox";
 
     @Override
     public String getItemId() {
@@ -27,15 +25,18 @@ public class SpellbookItem extends CustomItem implements ISpellFocus {
     public ItemStackTemplate getDefaultItemStackTemplate() {
         DataComponentPatch patch = DataComponentPatch.builder()
                 .set(DataComponents.CUSTOM_DATA, getCustomDataComponent())
-                .set(DataComponents.ITEM_NAME, Component.literal("Spellbook"))
-                .set(DataComponents.ITEM_MODEL, Identifier.fromNamespaceAndPath("servermagic", "spellbook"))
+                .set(DataComponents.ITEM_NAME, Component.literal("Vanity Box"))
+                // TODO set description: "Use to unlock a new vanity option"
+                // TODO set a unique texture
+                .set(DataComponents.ITEM_MODEL, Identifier.fromNamespaceAndPath("minecraft", "diamond"))
                 .build();
-        return new ItemStackTemplate(Items.BOOK, patch);
+        return new ItemStackTemplate(Items.TRIAL_KEY, patch);
     }
 
     @Override
     public InteractionResult onUse(ServerLevel world, ServerPlayer player, InteractionHand hand) {
-        return this.cast(world, player, hand, ClickType.RIGHT_CLICK);
+        // TODO
+        return InteractionResult.SUCCESS;
     }
 
     @Override
