@@ -17,7 +17,8 @@ public class CosmeticUnlock {
                     .createQuery("select * from cosmeticunlocks where username = :username")
                     .addParameter("username", username)
                     .executeAndFetch(CosmeticUnlock.class);
-            if (unlocks == null) return Optional.empty();
+            if (unlocks == null)
+                return Optional.empty();
             return Optional.of(unlocks);
         });
     }
@@ -30,6 +31,7 @@ public class CosmeticUnlock {
                     .addParameter("style", style)
                     .addParameter("slot", slot)
                     .executeUpdate();
+            conn.commit();
             return Optional.empty();
         });
     }
@@ -37,12 +39,14 @@ public class CosmeticUnlock {
     public static boolean IsUnlocked(Database db, String username, String style, String slot) {
         Optional<List<CosmeticUnlock>> unlocks = db.query(conn -> {
             List<CosmeticUnlock> rows = conn
-                    .createQuery("select * from cosmeticunlocks where username = :username and style = :style and slot = :slot")
+                    .createQuery(
+                            "select * from cosmeticunlocks where username = :username and style = :style and slot = :slot")
                     .addParameter("username", username)
                     .addParameter("style", style)
                     .addParameter("slot", slot)
                     .executeAndFetch(CosmeticUnlock.class);
-            if (rows == null) return Optional.empty();
+            if (rows == null)
+                return Optional.empty();
             return Optional.of(rows);
         });
         return unlocks.isPresent() && !unlocks.get().isEmpty();

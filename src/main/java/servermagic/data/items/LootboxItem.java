@@ -25,6 +25,9 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
+import net.minecraft.world.level.storage.loot.functions.SetComponentsFunction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -50,10 +53,9 @@ public class LootboxItem extends CustomItem {
         return ID;
     }
 
-    @Override
-    public ItemStackTemplate getDefaultItemStackTemplate() {
-        DataComponentPatch patch = DataComponentPatch.builder()
-                .set(DataComponents.CUSTOM_DATA, getCustomDataComponent())
+    public static DataComponentPatch buildComponentPatch() {
+        return DataComponentPatch.builder()
+                .set(DataComponents.CUSTOM_DATA, new LootboxItem().getCustomDataComponent())
                 .set(DataComponents.ITEM_NAME, Component.literal("Vanity Box"))
                 .set(DataComponents.LORE, new ItemLore(List.of(
                         Component.literal("Use to unlock a new vanity option")
@@ -61,7 +63,23 @@ public class LootboxItem extends CustomItem {
                 // TODO set a unique texture
                 .set(DataComponents.ITEM_MODEL, Identifier.fromNamespaceAndPath("minecraft", "diamond"))
                 .build();
-        return new ItemStackTemplate(Items.TRIAL_KEY, patch);
+    }
+
+    public static LootPoolEntryContainer.Builder<?> buildLootEntry() {
+        LootboxItem item = new LootboxItem();
+        return LootItem.lootTableItem(Items.TRIAL_KEY)
+                .apply(SetComponentsFunction.setComponent(DataComponents.CUSTOM_DATA, item.getCustomDataComponent()))
+                .apply(SetComponentsFunction.setComponent(DataComponents.ITEM_NAME, Component.literal("Vanity Box")))
+                .apply(SetComponentsFunction.setComponent(DataComponents.LORE, new ItemLore(List.of(
+                        Component.literal("Use to unlock a new vanity option")
+                                .withStyle(ChatFormatting.GRAY).withStyle(s -> s.withItalic(false))))))
+                .apply(SetComponentsFunction.setComponent(DataComponents.ITEM_MODEL,
+                        Identifier.fromNamespaceAndPath("minecraft", "diamond")));
+    }
+
+    @Override
+    public ItemStackTemplate getDefaultItemStackTemplate() {
+        return new ItemStackTemplate(Items.TRIAL_KEY, buildComponentPatch());
     }
 
     @Override

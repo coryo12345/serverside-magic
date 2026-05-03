@@ -14,11 +14,17 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
+import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import servermagic.cosmetics.CosmeticAppearanceManager;
+import servermagic.data.items.LootboxItem;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.level.storage.loot.BuiltInLootTables;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -172,6 +178,16 @@ public class ServerMagic implements ModInitializer {
 			if (db.isPresent()) {
 				CosmeticAppearanceManager.loadPlayerCosmetics(newPlayer, db.get());
 			}
+		});
+
+		LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
+			if (!source.isBuiltin()) return;
+			if (!key.equals(BuiltInLootTables.ANCIENT_CITY) && !key.equals(BuiltInLootTables.END_CITY_TREASURE)) return;
+
+			LootPool.Builder pool = LootPool.lootPool()
+					.setRolls(ConstantValue.exactly(1))
+					.add(LootboxItem.buildLootEntry());
+			tableBuilder.withPool(pool);
 		});
 
 		// initialize spell defs for web
