@@ -2,7 +2,9 @@ package servermagic.data.items;
 
 import java.util.Optional;
 
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -37,6 +39,8 @@ public abstract class CustomItem {
     }
 
     public abstract ItemStackTemplate getDefaultItemStackTemplate();
+
+    public void buildRecipe(RecipeOutput output, HolderLookup.Provider registryLookup) {}
 
     // The below functions are OPTIONAL to implement ------------------------------
 
