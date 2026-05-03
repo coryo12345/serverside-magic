@@ -25,7 +25,8 @@ public class CosmeticRoutes extends RouteGroup {
     }
     
     private boolean hasMasterControl(String username) {
-        return "coryo12345".equals(username);
+        return false;
+        // return "coryo12345".equals(username);
     }
 
     @Override
