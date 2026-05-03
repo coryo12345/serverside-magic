@@ -2,7 +2,9 @@ package servermagic.cosmetics;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import servermagic.ServerMagic;
@@ -2767,7 +2769,14 @@ public class Cosmetics {
         return GetAll().stream().filter(c -> c.getSlot() == slot).toList();
     }
 
+    private static volatile Map<String, Cosmetic> ID_CACHE;
+
     public static Optional<Cosmetic> GetById(String id) {
-        return GetAll().stream().filter(c -> c.getId().equals(id)).findFirst();
+        if (ID_CACHE == null) {
+            Map<String, Cosmetic> cache = new HashMap<>();
+            GetAll().forEach(c -> cache.put(c.getId(), c));
+            ID_CACHE = cache;
+        }
+        return Optional.ofNullable(ID_CACHE.get(id));
     }
 }

@@ -16,12 +16,25 @@ const saving = ref<Record<CosmeticSlotId, boolean>>({
   boots: false,
   spellbook: false,
 });
-const selectedValues = ref<Record<CosmeticSlotId, string>>({
-  helmet: "none",
-  chestplate: "none",
-  leggings: "none",
-  boots: "none",
-  spellbook: "none",
+
+type CosmeticOption = { id: string; displayName: string };
+
+const NONE_OPTION: CosmeticOption = { id: "none", displayName: "None" };
+
+const selectedObjects = ref<Record<CosmeticSlotId, CosmeticOption | null>>({
+  helmet: NONE_OPTION,
+  chestplate: NONE_OPTION,
+  leggings: NONE_OPTION,
+  boots: NONE_OPTION,
+  spellbook: NONE_OPTION,
+});
+
+const suggestions = ref<Record<CosmeticSlotId, CosmeticOption[]>>({
+  helmet: [],
+  chestplate: [],
+  leggings: [],
+  boots: [],
+  spellbook: [],
 });
 
 const SLOTS: { id: CosmeticSlotId; label: string; icon: string; description: string }[] = [
@@ -32,12 +45,41 @@ const SLOTS: { id: CosmeticSlotId; label: string; icon: string; description: str
   { id: "spellbook", label: "Spellbook", icon: "📖", description: "Customize your spellbook appearance" },
 ];
 
-function getOptionsForSlot(slotId: CosmeticSlotId) {
+function sortOptions(options: CosmeticOption[]): CosmeticOption[] {
+  const none = options.filter((o) => o.id === "none");
+  const rest = options.filter((o) => o.id !== "none");
+  rest.sort((a, b) => {
+    const aWords = a.displayName.split(" ");
+    const bWords = b.displayName.split(" ");
+    const aSuffix = aWords.slice(1).join(" ");
+    const bSuffix = bWords.slice(1).join(" ");
+    const suffixCmp = aSuffix.localeCompare(bSuffix);
+    if (suffixCmp !== 0) return suffixCmp;
+    return (aWords[0] ?? "").localeCompare(bWords[0] ?? "");
+  });
+  return [...none, ...rest];
+}
+
+function getOptionsForSlot(slotId: CosmeticSlotId): CosmeticOption[] {
   const unlockedForSlot = cosmetics.value?.unlocked.filter((c) => c.slot === slotId) ?? [];
-  return [
-    { id: "none", displayName: "None" },
+  return sortOptions([
+    NONE_OPTION,
     ...unlockedForSlot.map((c) => ({ id: c.id, displayName: c.displayName })),
-  ];
+  ]);
+}
+
+function onSearch(slotId: CosmeticSlotId, event: { query: string }) {
+  const query = event.query.toLowerCase().trim();
+  const all = getOptionsForSlot(slotId);
+  suggestions.value[slotId] = query
+    ? all.filter((o) => o.displayName.toLowerCase().includes(query))
+    : all;
+}
+
+function onBlur(slotId: CosmeticSlotId) {
+  if (!selectedObjects.value[slotId]) {
+    selectedObjects.value[slotId] = NONE_OPTION;
+  }
 }
 
 const anySaving = computed(() => Object.values(saving.value).some(Boolean));
@@ -50,19 +92,29 @@ onMounted(async () => {
     cosmetics.value = result.get();
     const sel = result.get().selected;
     for (const slotId of Object.keys(sel) as CosmeticSlotId[]) {
-      selectedValues.value[slotId] = sel[slotId] ?? "none";
+      const selectedId = sel[slotId];
+      if (selectedId) {
+        const option = getOptionsForSlot(slotId).find((o) => o.id === selectedId);
+        selectedObjects.value[slotId] = option ?? NONE_OPTION;
+      }
     }
   }
   loading.value = false;
 });
 
 async function onSelect(slotId: CosmeticSlotId) {
+  const selected = selectedObjects.value[slotId];
+  if (!selected) return;
+
   saving.value[slotId] = true;
-  const style = selectedValues.value[slotId];
+  const style = selected.id;
   const result = await api.selectCosmetic(slotId, style);
   if (result.isError()) {
-    // Revert to previous selection from server state
-    selectedValues.value[slotId] = cosmetics.value?.selected[slotId] ?? "none";
+    const prevId = cosmetics.value?.selected[slotId] ?? null;
+    const prevOption = prevId
+      ? (getOptionsForSlot(slotId).find((o) => o.id === prevId) ?? NONE_OPTION)
+      : NONE_OPTION;
+    selectedObjects.value[slotId] = prevOption;
     toast.add({
       severity: "error",
       summary: "Error",
@@ -70,7 +122,6 @@ async function onSelect(slotId: CosmeticSlotId) {
       life: 3000,
     });
   } else {
-    // Update local state to match what we just saved
     if (cosmetics.value) {
       cosmetics.value.selected[slotId] = style === "none" ? null : style;
     }
@@ -114,7 +165,7 @@ async function onSelect(slotId: CosmeticSlotId) {
           {{ slot.icon }}
         </div>
 
-        <!-- Slot info + dropdown -->
+        <!-- Slot info + autocomplete -->
         <div class="flex-1 min-w-0">
           <div class="flex items-center justify-between gap-4 flex-wrap">
             <div>
@@ -130,15 +181,18 @@ async function onSelect(slotId: CosmeticSlotId) {
                 v-if="saving[slot.id]"
                 class="pi pi-spin pi-spinner text-primary"
               ></i>
-              <!-- TODO make this searchable -->
-              <Select
-                v-model="selectedValues[slot.id]"
-                :options="getOptionsForSlot(slot.id)"
+              <AutoComplete
+                v-model="selectedObjects[slot.id]"
+                :suggestions="suggestions[slot.id]"
                 option-label="displayName"
-                option-value="id"
+                force-selection
+                dropdown
+                scroll-height="400px"
                 :disabled="saving[slot.id] || anySaving"
-                class="w-44"
-                @change="onSelect(slot.id)"
+                class="w-60"
+                @complete="onSearch(slot.id, $event)"
+                @item-select="onSelect(slot.id)"
+                @blur="onBlur(slot.id)"
               />
             </div>
           </div>

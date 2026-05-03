@@ -36,6 +36,10 @@ public enum CosmeticSlot {
         return Optional.empty();
     }
 
+    public boolean isModelBased() {
+        return this == SPELLBOOK;
+    }
+
     public Optional<String> getDefaultModel() {
         if (this == SPELLBOOK) {
             return Optional.of("servermagic:spellbook");

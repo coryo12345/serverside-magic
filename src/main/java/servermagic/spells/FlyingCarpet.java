@@ -19,13 +19,11 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.animal.happyghast.HappyGhast;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.Identifier;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.equipment.EquipmentAssets;
-import net.minecraft.world.item.equipment.Equippable;
 import net.minecraft.world.phys.Vec3;
+import servermagic.cosmetics.CosmeticItemHelper;
 import servermagic.db.Database;
 import servermagic.entitybinding.EntityBindingUtil;
 import servermagic.web.skill.Skill;
@@ -62,24 +60,7 @@ public class FlyingCarpet extends BaseSpell {
         //    and sends forward/strafe inputs. Override the equippable asset_id so the
         //    harness renders as invisible via the resource pack's servermagic:invisible asset.
         ItemStack harness = new ItemStack(Items.RED_HARNESS);
-        Equippable existing = harness.get(DataComponents.EQUIPPABLE);
-        if (existing != null) {
-            ResourceKey<net.minecraft.world.item.equipment.EquipmentAsset> invisibleAsset =
-                    ResourceKey.create(EquipmentAssets.ROOT_ID,
-                            Identifier.fromNamespaceAndPath("servermagic", "invisible"));
-            Equippable.Builder builder = Equippable.builder(existing.slot())
-                    .setEquipSound(existing.equipSound())
-                    .setAsset(invisibleAsset)
-                    .setDispensable(existing.dispensable())
-                    .setSwappable(existing.swappable())
-                    .setDamageOnHurt(existing.damageOnHurt())
-                    .setEquipOnInteract(existing.equipOnInteract())
-                    .setCanBeSheared(existing.canBeSheared())
-                    .setShearingSound(existing.shearingSound());
-            existing.allowedEntities().ifPresent(builder::setAllowedEntities);
-            existing.cameraOverlay().ifPresent(builder::setCameraOverlay);
-            harness.set(DataComponents.EQUIPPABLE, builder.build());
-        }
+        CosmeticItemHelper.setEquippableAssetId(harness, "servermagic:invisible");
         ghast.setItemSlot(EquipmentSlot.BODY, harness);
 
         world.addFreshEntity(ghast);

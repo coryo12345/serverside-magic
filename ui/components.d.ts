@@ -11,6 +11,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    AutoComplete: typeof import('primevue/autocomplete')['default']
     Avatar: typeof import('primevue/avatar')['default']
     Button: typeof import('primevue/button')['default']
     Card: typeof import('primevue/card')['default']
@@ -23,7 +24,6 @@ declare module 'vue' {
     Message: typeof import('primevue/message')['default']
     ProgressSpinner: typeof import('primevue/progressspinner')['default']
     SecretsPage: typeof import('./src/components/secrets/SecretsPage.vue')['default']
-    Select: typeof import('primevue/select')['default']
     SideNavigation: typeof import('./src/components/SideNavigation.vue')['default']
     SkillDetailDialog: typeof import('./src/components/skilltree/SkillDetailDialog.vue')['default']
     SkillTree: typeof import('./src/components/skilltree/SkillTree.vue')['default']

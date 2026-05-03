@@ -44,7 +44,9 @@ public class CosmeticItemHelper {
                     .setDispensable(existing.dispensable())
                     .setSwappable(existing.swappable())
                     .setDamageOnHurt(existing.damageOnHurt())
-                    .setEquipOnInteract(existing.equipOnInteract());
+                    .setEquipOnInteract(existing.equipOnInteract())
+                    .setCanBeSheared(existing.canBeSheared())
+                    .setShearingSound(existing.shearingSound());
             existing.allowedEntities().ifPresent(builder::setAllowedEntities);
             existing.cameraOverlay().ifPresent(builder::setCameraOverlay);
             if (assetId != null) {
