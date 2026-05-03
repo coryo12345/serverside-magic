@@ -29,6 +29,9 @@ public class CosmeticAppearanceManager {
     // Tracks which ItemStack objects are currently in each slot per player
     private static final Map<UUID, Map<EquipmentSlot, ItemStack>> trackedItems = new ConcurrentHashMap<>();
 
+    // Saves original equippable asset_id before any cosmetic overrides it (armor slots only)
+    private static final Map<UUID, Map<EquipmentSlot, String>> originalAssetIds = new ConcurrentHashMap<>();
+
     private static int tickAccumulator = 0;
     private static final int TICK_INTERVAL = 5;
 
@@ -54,23 +57,43 @@ public class CosmeticAppearanceManager {
                 ItemStack current = player.getItemBySlot(mcSlot);
                 ItemStack tracked_ = tracked.get(mcSlot);
 
-                // Item left the slot — just stop tracking it, leave model as-is
+                // Item left the slot — stop tracking, clear saved original asset_id
                 if (tracked_ != null && tracked_ != current) {
                     tracked.remove(mcSlot);
+                    Map<EquipmentSlot, String> origMap = originalAssetIds.get(uuid);
+                    if (origMap != null) origMap.remove(mcSlot);
                     tracked_ = null;
                 }
 
                 // New item entered the slot — apply this player's cosmetic (or default)
                 if (tracked_ == null && !current.isEmpty() && isValidForSlot(current, cosmeticSlot)) {
                     String styleId = selected.get(cosmeticSlot);
-                    String modelToApply;
-                    if (styleId != null) {
-                        Optional<Cosmetic> cosmetic = Cosmetics.GetById(styleId);
-                        modelToApply = cosmetic.map(Cosmetic::getItemModel).orElse(cosmeticSlot.getDefaultModel().orElse(null));
+
+                    if (cosmeticSlot == CosmeticSlot.SPELLBOOK) {
+                        String modelToApply;
+                        if (styleId != null) {
+                            Optional<Cosmetic> cosmetic = Cosmetics.GetById(styleId);
+                            modelToApply = cosmetic.map(Cosmetic::getItemModel).orElse(cosmeticSlot.getDefaultModel().orElse(null));
+                        } else {
+                            modelToApply = cosmeticSlot.getDefaultModel().orElse(null);
+                        }
+                        CosmeticItemHelper.setModel(current, modelToApply);
                     } else {
-                        modelToApply = cosmeticSlot.getDefaultModel().orElse(null);
+                        // Armor slot: save vanilla asset_id from a fresh item of this type (the
+                        // equipped item may already have a cosmetic applied from a prior session)
+                        Map<EquipmentSlot, String> origMap = originalAssetIds.computeIfAbsent(uuid, k -> new EnumMap<>(EquipmentSlot.class));
+                        String vanillaAssetId = CosmeticItemHelper.getEquippableAssetId(new ItemStack(current.getItem()));
+                        origMap.putIfAbsent(mcSlot, vanillaAssetId);
+
+                        if (styleId != null) {
+                            String assetId = Cosmetics.GetById(styleId).map(Cosmetic::getItemModel).orElse(null);
+                            if (assetId != null) CosmeticItemHelper.setEquippableAssetId(current, assetId);
+                        } else {
+                            // No cosmetic selected — actively restore vanilla in case item was previously styled
+                            CosmeticItemHelper.setEquippableAssetId(current, vanillaAssetId);
+                        }
                     }
-                    CosmeticItemHelper.setModel(current, modelToApply);
+
                     tracked.put(mcSlot, current);
                 }
             }
@@ -82,6 +105,7 @@ public class CosmeticAppearanceManager {
         String username = player.getName().getString();
 
         trackedItems.put(uuid, new EnumMap<>(EquipmentSlot.class));
+        originalAssetIds.put(uuid, new EnumMap<>(EquipmentSlot.class));
 
         Map<CosmeticSlot, String> cache = new HashMap<>();
         Optional<List<CosmeticConfig>> configs = CosmeticConfig.GetConfigsForPlayer(db, username);
@@ -94,8 +118,10 @@ public class CosmeticAppearanceManager {
     }
 
     public static void revertAndClearPlayer(ServerPlayer player) {
-        trackedItems.remove(player.getUUID());
-        selectedCache.remove(player.getUUID());
+        UUID uuid = player.getUUID();
+        trackedItems.remove(uuid);
+        selectedCache.remove(uuid);
+        originalAssetIds.remove(uuid);
     }
 
     public static void updateSelectedCosmetic(UUID playerUuid, CosmeticSlot slot, String styleId) {
@@ -106,20 +132,35 @@ public class CosmeticAppearanceManager {
             cache.put(slot, styleId);
         }
 
-        // Immediately update model on any currently tracked item for this slot
+        // Immediately update appearance on any currently tracked item for this slot
         Map<EquipmentSlot, ItemStack> tracked = trackedItems.get(playerUuid);
         if (tracked != null) {
-            String modelToApply;
-            if (styleId != null) {
-                Optional<Cosmetic> cosmetic = Cosmetics.GetById(styleId);
-                modelToApply = cosmetic.map(Cosmetic::getItemModel).orElse(slot.getDefaultModel().orElse(null));
+            if (slot == CosmeticSlot.SPELLBOOK) {
+                String modelToApply;
+                if (styleId != null) {
+                    Optional<Cosmetic> cosmetic = Cosmetics.GetById(styleId);
+                    modelToApply = cosmetic.map(Cosmetic::getItemModel).orElse(slot.getDefaultModel().orElse(null));
+                } else {
+                    modelToApply = slot.getDefaultModel().orElse(null);
+                }
+                for (EquipmentSlot mcSlot : slot.getEquipmentSlots()) {
+                    ItemStack item = tracked.get(mcSlot);
+                    if (item != null) CosmeticItemHelper.setModel(item, modelToApply);
+                }
             } else {
-                modelToApply = slot.getDefaultModel().orElse(null);
-            }
-            for (EquipmentSlot mcSlot : slot.getEquipmentSlots()) {
-                ItemStack item = tracked.get(mcSlot);
-                if (item != null) {
-                    CosmeticItemHelper.setModel(item, modelToApply);
+                // Armor slot: modify equippable asset_id, never touch ITEM_MODEL
+                Map<EquipmentSlot, String> origMap = originalAssetIds.get(playerUuid);
+                for (EquipmentSlot mcSlot : slot.getEquipmentSlots()) {
+                    ItemStack item = tracked.get(mcSlot);
+                    if (item == null) continue;
+                    if (styleId != null) {
+                        String assetId = Cosmetics.GetById(styleId).map(Cosmetic::getItemModel).orElse(null);
+                        if (assetId != null) CosmeticItemHelper.setEquippableAssetId(item, assetId);
+                    } else {
+                        // Restore original asset_id
+                        String original = (origMap != null) ? origMap.get(mcSlot) : null;
+                        CosmeticItemHelper.setEquippableAssetId(item, original);
+                    }
                 }
             }
         }
