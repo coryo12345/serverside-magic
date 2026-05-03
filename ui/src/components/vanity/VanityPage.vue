@@ -45,18 +45,20 @@ const SLOTS: { id: CosmeticSlotId; label: string; icon: string; description: str
   { id: "spellbook", label: "Spellbook", icon: "📖", description: "Customize your spellbook appearance" },
 ];
 
+const TIER_PREFIXES = new Set(["Netherite", "Diamond", "Iron", "Gold", "Chainmail"]);
+
+function getSortKey(displayName: string): string {
+  const words = displayName.split(" ");
+  if (words[0] && TIER_PREFIXES.has(words[0])) {
+    return words.slice(1).join(" ") + " " + words[0];
+  }
+  return displayName;
+}
+
 function sortOptions(options: CosmeticOption[]): CosmeticOption[] {
   const none = options.filter((o) => o.id === "none");
   const rest = options.filter((o) => o.id !== "none");
-  rest.sort((a, b) => {
-    const aWords = a.displayName.split(" ");
-    const bWords = b.displayName.split(" ");
-    const aSuffix = aWords.slice(1).join(" ");
-    const bSuffix = bWords.slice(1).join(" ");
-    const suffixCmp = aSuffix.localeCompare(bSuffix);
-    if (suffixCmp !== 0) return suffixCmp;
-    return (aWords[0] ?? "").localeCompare(bWords[0] ?? "");
-  });
+  rest.sort((a, b) => getSortKey(a.displayName).localeCompare(getSortKey(b.displayName)));
   return [...none, ...rest];
 }
 

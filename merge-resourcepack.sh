@@ -94,6 +94,23 @@ if [[ -f "$COSMETICS_FILE" && -d "$EQUIPMENT_DIR" ]]; then
   GENERATED_FILE="$WORK_DIR/generated.txt"
   printf '\n' > "$GENERATED_FILE"
 
+  # First pass: collect every name to detect which appear in multiple tiers
+  NAMES_FILE="$WORK_DIR/names.txt"
+  for tier in chainmail iron gold diamond netherite; do
+    tier_dir="$EQUIPMENT_DIR/$tier"
+    [[ -d "$tier_dir" ]] || continue
+    for json_file in "$tier_dir"/*.json; do
+      [[ -f "$json_file" ]] || continue
+      basename "$json_file" .json >> "$NAMES_FILE"
+    done
+  done
+
+  name_is_multi_tier() {
+    local count
+    count=$(grep -c "^${1}$" "$NAMES_FILE" 2>/dev/null || echo 0)
+    [[ "$count" -gt 1 ]]
+  }
+
   for tier in chainmail iron gold diamond netherite; do
     tier_dir="$EQUIPMENT_DIR/$tier"
     [[ -d "$tier_dir" ]] || continue
@@ -108,13 +125,19 @@ if [[ -f "$COSMETICS_FILE" && -d "$EQUIPMENT_DIR" ]]; then
       item_model="minecraft:${tier}/${name}"
       cosmetic_id="${tier}/${name}"
 
+      if name_is_multi_tier "$name"; then
+        label_prefix="${display_tier} ${display_name}"
+      else
+        label_prefix="${display_name}"
+      fi
+
       for slot_lower in helmet chestplate leggings boots; do
         slot_upper="$(echo "$slot_lower" | tr '[:lower:]' '[:upper:]')"
         slot_display="$(title_case "$slot_lower")"
         printf '    public static final Cosmetic %s = new Cosmetic(\n' "${var_prefix}_${slot_upper}" >> "$GENERATED_FILE"
         printf '            "%s", "%s", CosmeticSlot.%s, "%s");\n' \
           "${cosmetic_id}_${slot_lower}" \
-          "${display_tier} ${display_name} ${slot_display}" \
+          "${label_prefix} ${slot_display}" \
           "$slot_upper" \
           "$item_model" >> "$GENERATED_FILE"
       done

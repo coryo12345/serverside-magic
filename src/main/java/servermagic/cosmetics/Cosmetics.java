@@ -127,22 +127,22 @@ public class Cosmetics {
             "chainmail/ender_boots", "Chainmail Ender Boots", CosmeticSlot.BOOTS, "minecraft:chainmail/ender");
 
     public static final Cosmetic CHAINMAIL_EXPOSED_COMBAT_HELMET = new Cosmetic(
-            "chainmail/exposed_combat_helmet", "Chainmail Exposed Combat Helmet", CosmeticSlot.HELMET, "minecraft:chainmail/exposed_combat");
+            "chainmail/exposed_combat_helmet", "Exposed Combat Helmet", CosmeticSlot.HELMET, "minecraft:chainmail/exposed_combat");
     public static final Cosmetic CHAINMAIL_EXPOSED_COMBAT_CHESTPLATE = new Cosmetic(
-            "chainmail/exposed_combat_chestplate", "Chainmail Exposed Combat Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:chainmail/exposed_combat");
+            "chainmail/exposed_combat_chestplate", "Exposed Combat Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:chainmail/exposed_combat");
     public static final Cosmetic CHAINMAIL_EXPOSED_COMBAT_LEGGINGS = new Cosmetic(
-            "chainmail/exposed_combat_leggings", "Chainmail Exposed Combat Leggings", CosmeticSlot.LEGGINGS, "minecraft:chainmail/exposed_combat");
+            "chainmail/exposed_combat_leggings", "Exposed Combat Leggings", CosmeticSlot.LEGGINGS, "minecraft:chainmail/exposed_combat");
     public static final Cosmetic CHAINMAIL_EXPOSED_COMBAT_BOOTS = new Cosmetic(
-            "chainmail/exposed_combat_boots", "Chainmail Exposed Combat Boots", CosmeticSlot.BOOTS, "minecraft:chainmail/exposed_combat");
+            "chainmail/exposed_combat_boots", "Exposed Combat Boots", CosmeticSlot.BOOTS, "minecraft:chainmail/exposed_combat");
 
     public static final Cosmetic CHAINMAIL_EXPOSED_TRIAL_HELMET = new Cosmetic(
-            "chainmail/exposed_trial_helmet", "Chainmail Exposed Trial Helmet", CosmeticSlot.HELMET, "minecraft:chainmail/exposed_trial");
+            "chainmail/exposed_trial_helmet", "Exposed Trial Helmet", CosmeticSlot.HELMET, "minecraft:chainmail/exposed_trial");
     public static final Cosmetic CHAINMAIL_EXPOSED_TRIAL_CHESTPLATE = new Cosmetic(
-            "chainmail/exposed_trial_chestplate", "Chainmail Exposed Trial Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:chainmail/exposed_trial");
+            "chainmail/exposed_trial_chestplate", "Exposed Trial Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:chainmail/exposed_trial");
     public static final Cosmetic CHAINMAIL_EXPOSED_TRIAL_LEGGINGS = new Cosmetic(
-            "chainmail/exposed_trial_leggings", "Chainmail Exposed Trial Leggings", CosmeticSlot.LEGGINGS, "minecraft:chainmail/exposed_trial");
+            "chainmail/exposed_trial_leggings", "Exposed Trial Leggings", CosmeticSlot.LEGGINGS, "minecraft:chainmail/exposed_trial");
     public static final Cosmetic CHAINMAIL_EXPOSED_TRIAL_BOOTS = new Cosmetic(
-            "chainmail/exposed_trial_boots", "Chainmail Exposed Trial Boots", CosmeticSlot.BOOTS, "minecraft:chainmail/exposed_trial");
+            "chainmail/exposed_trial_boots", "Exposed Trial Boots", CosmeticSlot.BOOTS, "minecraft:chainmail/exposed_trial");
 
     public static final Cosmetic CHAINMAIL_FOX_HELMET = new Cosmetic(
             "chainmail/fox_helmet", "Chainmail Fox Helmet", CosmeticSlot.HELMET, "minecraft:chainmail/fox");
@@ -271,22 +271,22 @@ public class Cosmetics {
             "chainmail/ore_boots", "Chainmail Ore Boots", CosmeticSlot.BOOTS, "minecraft:chainmail/ore");
 
     public static final Cosmetic CHAINMAIL_OXIDIZED_COMBAT_HELMET = new Cosmetic(
-            "chainmail/oxidized_combat_helmet", "Chainmail Oxidized Combat Helmet", CosmeticSlot.HELMET, "minecraft:chainmail/oxidized_combat");
+            "chainmail/oxidized_combat_helmet", "Oxidized Combat Helmet", CosmeticSlot.HELMET, "minecraft:chainmail/oxidized_combat");
     public static final Cosmetic CHAINMAIL_OXIDIZED_COMBAT_CHESTPLATE = new Cosmetic(
-            "chainmail/oxidized_combat_chestplate", "Chainmail Oxidized Combat Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:chainmail/oxidized_combat");
+            "chainmail/oxidized_combat_chestplate", "Oxidized Combat Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:chainmail/oxidized_combat");
     public static final Cosmetic CHAINMAIL_OXIDIZED_COMBAT_LEGGINGS = new Cosmetic(
-            "chainmail/oxidized_combat_leggings", "Chainmail Oxidized Combat Leggings", CosmeticSlot.LEGGINGS, "minecraft:chainmail/oxidized_combat");
+            "chainmail/oxidized_combat_leggings", "Oxidized Combat Leggings", CosmeticSlot.LEGGINGS, "minecraft:chainmail/oxidized_combat");
     public static final Cosmetic CHAINMAIL_OXIDIZED_COMBAT_BOOTS = new Cosmetic(
-            "chainmail/oxidized_combat_boots", "Chainmail Oxidized Combat Boots", CosmeticSlot.BOOTS, "minecraft:chainmail/oxidized_combat");
+            "chainmail/oxidized_combat_boots", "Oxidized Combat Boots", CosmeticSlot.BOOTS, "minecraft:chainmail/oxidized_combat");
 
     public static final Cosmetic CHAINMAIL_OXIDIZED_TRIAL_HELMET = new Cosmetic(
-            "chainmail/oxidized_trial_helmet", "Chainmail Oxidized Trial Helmet", CosmeticSlot.HELMET, "minecraft:chainmail/oxidized_trial");
+            "chainmail/oxidized_trial_helmet", "Oxidized Trial Helmet", CosmeticSlot.HELMET, "minecraft:chainmail/oxidized_trial");
     public static final Cosmetic CHAINMAIL_OXIDIZED_TRIAL_CHESTPLATE = new Cosmetic(
-            "chainmail/oxidized_trial_chestplate", "Chainmail Oxidized Trial Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:chainmail/oxidized_trial");
+            "chainmail/oxidized_trial_chestplate", "Oxidized Trial Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:chainmail/oxidized_trial");
     public static final Cosmetic CHAINMAIL_OXIDIZED_TRIAL_LEGGINGS = new Cosmetic(
-            "chainmail/oxidized_trial_leggings", "Chainmail Oxidized Trial Leggings", CosmeticSlot.LEGGINGS, "minecraft:chainmail/oxidized_trial");
+            "chainmail/oxidized_trial_leggings", "Oxidized Trial Leggings", CosmeticSlot.LEGGINGS, "minecraft:chainmail/oxidized_trial");
     public static final Cosmetic CHAINMAIL_OXIDIZED_TRIAL_BOOTS = new Cosmetic(
-            "chainmail/oxidized_trial_boots", "Chainmail Oxidized Trial Boots", CosmeticSlot.BOOTS, "minecraft:chainmail/oxidized_trial");
+            "chainmail/oxidized_trial_boots", "Oxidized Trial Boots", CosmeticSlot.BOOTS, "minecraft:chainmail/oxidized_trial");
 
     public static final Cosmetic CHAINMAIL_PAMA_HELMET = new Cosmetic(
             "chainmail/pama_helmet", "Chainmail Pama Helmet", CosmeticSlot.HELMET, "minecraft:chainmail/pama");
@@ -424,22 +424,22 @@ public class Cosmetics {
             "chainmail/vemi_boots", "Chainmail Vemi Boots", CosmeticSlot.BOOTS, "minecraft:chainmail/vemi");
 
     public static final Cosmetic CHAINMAIL_WEATHERED_COMBAT_HELMET = new Cosmetic(
-            "chainmail/weathered_combat_helmet", "Chainmail Weathered Combat Helmet", CosmeticSlot.HELMET, "minecraft:chainmail/weathered_combat");
+            "chainmail/weathered_combat_helmet", "Weathered Combat Helmet", CosmeticSlot.HELMET, "minecraft:chainmail/weathered_combat");
     public static final Cosmetic CHAINMAIL_WEATHERED_COMBAT_CHESTPLATE = new Cosmetic(
-            "chainmail/weathered_combat_chestplate", "Chainmail Weathered Combat Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:chainmail/weathered_combat");
+            "chainmail/weathered_combat_chestplate", "Weathered Combat Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:chainmail/weathered_combat");
     public static final Cosmetic CHAINMAIL_WEATHERED_COMBAT_LEGGINGS = new Cosmetic(
-            "chainmail/weathered_combat_leggings", "Chainmail Weathered Combat Leggings", CosmeticSlot.LEGGINGS, "minecraft:chainmail/weathered_combat");
+            "chainmail/weathered_combat_leggings", "Weathered Combat Leggings", CosmeticSlot.LEGGINGS, "minecraft:chainmail/weathered_combat");
     public static final Cosmetic CHAINMAIL_WEATHERED_COMBAT_BOOTS = new Cosmetic(
-            "chainmail/weathered_combat_boots", "Chainmail Weathered Combat Boots", CosmeticSlot.BOOTS, "minecraft:chainmail/weathered_combat");
+            "chainmail/weathered_combat_boots", "Weathered Combat Boots", CosmeticSlot.BOOTS, "minecraft:chainmail/weathered_combat");
 
     public static final Cosmetic CHAINMAIL_WEATHERED_TRIAL_HELMET = new Cosmetic(
-            "chainmail/weathered_trial_helmet", "Chainmail Weathered Trial Helmet", CosmeticSlot.HELMET, "minecraft:chainmail/weathered_trial");
+            "chainmail/weathered_trial_helmet", "Weathered Trial Helmet", CosmeticSlot.HELMET, "minecraft:chainmail/weathered_trial");
     public static final Cosmetic CHAINMAIL_WEATHERED_TRIAL_CHESTPLATE = new Cosmetic(
-            "chainmail/weathered_trial_chestplate", "Chainmail Weathered Trial Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:chainmail/weathered_trial");
+            "chainmail/weathered_trial_chestplate", "Weathered Trial Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:chainmail/weathered_trial");
     public static final Cosmetic CHAINMAIL_WEATHERED_TRIAL_LEGGINGS = new Cosmetic(
-            "chainmail/weathered_trial_leggings", "Chainmail Weathered Trial Leggings", CosmeticSlot.LEGGINGS, "minecraft:chainmail/weathered_trial");
+            "chainmail/weathered_trial_leggings", "Weathered Trial Leggings", CosmeticSlot.LEGGINGS, "minecraft:chainmail/weathered_trial");
     public static final Cosmetic CHAINMAIL_WEATHERED_TRIAL_BOOTS = new Cosmetic(
-            "chainmail/weathered_trial_boots", "Chainmail Weathered Trial Boots", CosmeticSlot.BOOTS, "minecraft:chainmail/weathered_trial");
+            "chainmail/weathered_trial_boots", "Weathered Trial Boots", CosmeticSlot.BOOTS, "minecraft:chainmail/weathered_trial");
 
     public static final Cosmetic CHAINMAIL_WOLF_HELMET = new Cosmetic(
             "chainmail/wolf_helmet", "Chainmail Wolf Helmet", CosmeticSlot.HELMET, "minecraft:chainmail/wolf");
@@ -1477,13 +1477,13 @@ public class Cosmetics {
             "diamond/wolf_boots", "Diamond Wolf Boots", CosmeticSlot.BOOTS, "minecraft:diamond/wolf");
 
     public static final Cosmetic NETHERITE_ADAMANTIUM_IMPERVIUM_HELMET = new Cosmetic(
-            "netherite/adamantium_impervium_helmet", "Netherite Adamantium Impervium Helmet", CosmeticSlot.HELMET, "minecraft:netherite/adamantium_impervium");
+            "netherite/adamantium_impervium_helmet", "Adamantium Impervium Helmet", CosmeticSlot.HELMET, "minecraft:netherite/adamantium_impervium");
     public static final Cosmetic NETHERITE_ADAMANTIUM_IMPERVIUM_CHESTPLATE = new Cosmetic(
-            "netherite/adamantium_impervium_chestplate", "Netherite Adamantium Impervium Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/adamantium_impervium");
+            "netherite/adamantium_impervium_chestplate", "Adamantium Impervium Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/adamantium_impervium");
     public static final Cosmetic NETHERITE_ADAMANTIUM_IMPERVIUM_LEGGINGS = new Cosmetic(
-            "netherite/adamantium_impervium_leggings", "Netherite Adamantium Impervium Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/adamantium_impervium");
+            "netherite/adamantium_impervium_leggings", "Adamantium Impervium Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/adamantium_impervium");
     public static final Cosmetic NETHERITE_ADAMANTIUM_IMPERVIUM_BOOTS = new Cosmetic(
-            "netherite/adamantium_impervium_boots", "Netherite Adamantium Impervium Boots", CosmeticSlot.BOOTS, "minecraft:netherite/adamantium_impervium");
+            "netherite/adamantium_impervium_boots", "Adamantium Impervium Boots", CosmeticSlot.BOOTS, "minecraft:netherite/adamantium_impervium");
 
     public static final Cosmetic NETHERITE_AR_USEFUL_HELMET = new Cosmetic(
             "netherite/ar_useful_helmet", "Netherite Ar Useful Helmet", CosmeticSlot.HELMET, "minecraft:netherite/ar_useful");
@@ -1504,94 +1504,94 @@ public class Cosmetics {
             "netherite/ar_boots", "Netherite Ar Boots", CosmeticSlot.BOOTS, "minecraft:netherite/ar");
 
     public static final Cosmetic NETHERITE_AXEBREAKER_HELMET = new Cosmetic(
-            "netherite/axebreaker_helmet", "Netherite Axebreaker Helmet", CosmeticSlot.HELMET, "minecraft:netherite/axebreaker");
+            "netherite/axebreaker_helmet", "Axebreaker Helmet", CosmeticSlot.HELMET, "minecraft:netherite/axebreaker");
     public static final Cosmetic NETHERITE_AXEBREAKER_CHESTPLATE = new Cosmetic(
-            "netherite/axebreaker_chestplate", "Netherite Axebreaker Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/axebreaker");
+            "netherite/axebreaker_chestplate", "Axebreaker Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/axebreaker");
     public static final Cosmetic NETHERITE_AXEBREAKER_LEGGINGS = new Cosmetic(
-            "netherite/axebreaker_leggings", "Netherite Axebreaker Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/axebreaker");
+            "netherite/axebreaker_leggings", "Axebreaker Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/axebreaker");
     public static final Cosmetic NETHERITE_AXEBREAKER_BOOTS = new Cosmetic(
-            "netherite/axebreaker_boots", "Netherite Axebreaker Boots", CosmeticSlot.BOOTS, "minecraft:netherite/axebreaker");
+            "netherite/axebreaker_boots", "Axebreaker Boots", CosmeticSlot.BOOTS, "minecraft:netherite/axebreaker");
 
     public static final Cosmetic NETHERITE_BARD_HELMET = new Cosmetic(
-            "netherite/bard_helmet", "Netherite Bard Helmet", CosmeticSlot.HELMET, "minecraft:netherite/bard");
+            "netherite/bard_helmet", "Bard Helmet", CosmeticSlot.HELMET, "minecraft:netherite/bard");
     public static final Cosmetic NETHERITE_BARD_CHESTPLATE = new Cosmetic(
-            "netherite/bard_chestplate", "Netherite Bard Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/bard");
+            "netherite/bard_chestplate", "Bard Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/bard");
     public static final Cosmetic NETHERITE_BARD_LEGGINGS = new Cosmetic(
-            "netherite/bard_leggings", "Netherite Bard Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/bard");
+            "netherite/bard_leggings", "Bard Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/bard");
     public static final Cosmetic NETHERITE_BARD_BOOTS = new Cosmetic(
-            "netherite/bard_boots", "Netherite Bard Boots", CosmeticSlot.BOOTS, "minecraft:netherite/bard");
+            "netherite/bard_boots", "Bard Boots", CosmeticSlot.BOOTS, "minecraft:netherite/bard");
 
     public static final Cosmetic NETHERITE_BATTLE_HELMET = new Cosmetic(
-            "netherite/battle_helmet", "Netherite Battle Helmet", CosmeticSlot.HELMET, "minecraft:netherite/battle");
+            "netherite/battle_helmet", "Battle Helmet", CosmeticSlot.HELMET, "minecraft:netherite/battle");
     public static final Cosmetic NETHERITE_BATTLE_CHESTPLATE = new Cosmetic(
-            "netherite/battle_chestplate", "Netherite Battle Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/battle");
+            "netherite/battle_chestplate", "Battle Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/battle");
     public static final Cosmetic NETHERITE_BATTLE_LEGGINGS = new Cosmetic(
-            "netherite/battle_leggings", "Netherite Battle Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/battle");
+            "netherite/battle_leggings", "Battle Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/battle");
     public static final Cosmetic NETHERITE_BATTLE_BOOTS = new Cosmetic(
-            "netherite/battle_boots", "Netherite Battle Boots", CosmeticSlot.BOOTS, "minecraft:netherite/battle");
+            "netherite/battle_boots", "Battle Boots", CosmeticSlot.BOOTS, "minecraft:netherite/battle");
 
     public static final Cosmetic NETHERITE_BEEHIVE_HELMET = new Cosmetic(
-            "netherite/beehive_helmet", "Netherite Beehive Helmet", CosmeticSlot.HELMET, "minecraft:netherite/beehive");
+            "netherite/beehive_helmet", "Beehive Helmet", CosmeticSlot.HELMET, "minecraft:netherite/beehive");
     public static final Cosmetic NETHERITE_BEEHIVE_CHESTPLATE = new Cosmetic(
-            "netherite/beehive_chestplate", "Netherite Beehive Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/beehive");
+            "netherite/beehive_chestplate", "Beehive Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/beehive");
     public static final Cosmetic NETHERITE_BEEHIVE_LEGGINGS = new Cosmetic(
-            "netherite/beehive_leggings", "Netherite Beehive Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/beehive");
+            "netherite/beehive_leggings", "Beehive Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/beehive");
     public static final Cosmetic NETHERITE_BEEHIVE_BOOTS = new Cosmetic(
-            "netherite/beehive_boots", "Netherite Beehive Boots", CosmeticSlot.BOOTS, "minecraft:netherite/beehive");
+            "netherite/beehive_boots", "Beehive Boots", CosmeticSlot.BOOTS, "minecraft:netherite/beehive");
 
     public static final Cosmetic NETHERITE_BEENEST_HELMET = new Cosmetic(
-            "netherite/beenest_helmet", "Netherite Beenest Helmet", CosmeticSlot.HELMET, "minecraft:netherite/beenest");
+            "netherite/beenest_helmet", "Beenest Helmet", CosmeticSlot.HELMET, "minecraft:netherite/beenest");
     public static final Cosmetic NETHERITE_BEENEST_CHESTPLATE = new Cosmetic(
-            "netherite/beenest_chestplate", "Netherite Beenest Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/beenest");
+            "netherite/beenest_chestplate", "Beenest Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/beenest");
     public static final Cosmetic NETHERITE_BEENEST_LEGGINGS = new Cosmetic(
-            "netherite/beenest_leggings", "Netherite Beenest Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/beenest");
+            "netherite/beenest_leggings", "Beenest Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/beenest");
     public static final Cosmetic NETHERITE_BEENEST_BOOTS = new Cosmetic(
-            "netherite/beenest_boots", "Netherite Beenest Boots", CosmeticSlot.BOOTS, "minecraft:netherite/beenest");
+            "netherite/beenest_boots", "Beenest Boots", CosmeticSlot.BOOTS, "minecraft:netherite/beenest");
 
     public static final Cosmetic NETHERITE_BLACK_SPOT_HELMET = new Cosmetic(
-            "netherite/black_spot_helmet", "Netherite Black Spot Helmet", CosmeticSlot.HELMET, "minecraft:netherite/black_spot");
+            "netherite/black_spot_helmet", "Black Spot Helmet", CosmeticSlot.HELMET, "minecraft:netherite/black_spot");
     public static final Cosmetic NETHERITE_BLACK_SPOT_CHESTPLATE = new Cosmetic(
-            "netherite/black_spot_chestplate", "Netherite Black Spot Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/black_spot");
+            "netherite/black_spot_chestplate", "Black Spot Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/black_spot");
     public static final Cosmetic NETHERITE_BLACK_SPOT_LEGGINGS = new Cosmetic(
-            "netherite/black_spot_leggings", "Netherite Black Spot Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/black_spot");
+            "netherite/black_spot_leggings", "Black Spot Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/black_spot");
     public static final Cosmetic NETHERITE_BLACK_SPOT_BOOTS = new Cosmetic(
-            "netherite/black_spot_boots", "Netherite Black Spot Boots", CosmeticSlot.BOOTS, "minecraft:netherite/black_spot");
+            "netherite/black_spot_boots", "Black Spot Boots", CosmeticSlot.BOOTS, "minecraft:netherite/black_spot");
 
     public static final Cosmetic NETHERITE_BLASTBREAKER_HELMET = new Cosmetic(
-            "netherite/blastbreaker_helmet", "Netherite Blastbreaker Helmet", CosmeticSlot.HELMET, "minecraft:netherite/blastbreaker");
+            "netherite/blastbreaker_helmet", "Blastbreaker Helmet", CosmeticSlot.HELMET, "minecraft:netherite/blastbreaker");
     public static final Cosmetic NETHERITE_BLASTBREAKER_CHESTPLATE = new Cosmetic(
-            "netherite/blastbreaker_chestplate", "Netherite Blastbreaker Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/blastbreaker");
+            "netherite/blastbreaker_chestplate", "Blastbreaker Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/blastbreaker");
     public static final Cosmetic NETHERITE_BLASTBREAKER_LEGGINGS = new Cosmetic(
-            "netherite/blastbreaker_leggings", "Netherite Blastbreaker Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/blastbreaker");
+            "netherite/blastbreaker_leggings", "Blastbreaker Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/blastbreaker");
     public static final Cosmetic NETHERITE_BLASTBREAKER_BOOTS = new Cosmetic(
-            "netherite/blastbreaker_boots", "Netherite Blastbreaker Boots", CosmeticSlot.BOOTS, "minecraft:netherite/blastbreaker");
+            "netherite/blastbreaker_boots", "Blastbreaker Boots", CosmeticSlot.BOOTS, "minecraft:netherite/blastbreaker");
 
     public static final Cosmetic NETHERITE_BOOM_TOWN_HELMET = new Cosmetic(
-            "netherite/boom_town_helmet", "Netherite Boom Town Helmet", CosmeticSlot.HELMET, "minecraft:netherite/boom_town");
+            "netherite/boom_town_helmet", "Boom Town Helmet", CosmeticSlot.HELMET, "minecraft:netherite/boom_town");
     public static final Cosmetic NETHERITE_BOOM_TOWN_CHESTPLATE = new Cosmetic(
-            "netherite/boom_town_chestplate", "Netherite Boom Town Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/boom_town");
+            "netherite/boom_town_chestplate", "Boom Town Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/boom_town");
     public static final Cosmetic NETHERITE_BOOM_TOWN_LEGGINGS = new Cosmetic(
-            "netherite/boom_town_leggings", "Netherite Boom Town Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/boom_town");
+            "netherite/boom_town_leggings", "Boom Town Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/boom_town");
     public static final Cosmetic NETHERITE_BOOM_TOWN_BOOTS = new Cosmetic(
-            "netherite/boom_town_boots", "Netherite Boom Town Boots", CosmeticSlot.BOOTS, "minecraft:netherite/boom_town");
+            "netherite/boom_town_boots", "Boom Town Boots", CosmeticSlot.BOOTS, "minecraft:netherite/boom_town");
 
     public static final Cosmetic NETHERITE_CAULDRON_HELMET = new Cosmetic(
-            "netherite/cauldron_helmet", "Netherite Cauldron Helmet", CosmeticSlot.HELMET, "minecraft:netherite/cauldron");
+            "netherite/cauldron_helmet", "Cauldron Helmet", CosmeticSlot.HELMET, "minecraft:netherite/cauldron");
     public static final Cosmetic NETHERITE_CAULDRON_CHESTPLATE = new Cosmetic(
-            "netherite/cauldron_chestplate", "Netherite Cauldron Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/cauldron");
+            "netherite/cauldron_chestplate", "Cauldron Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/cauldron");
     public static final Cosmetic NETHERITE_CAULDRON_LEGGINGS = new Cosmetic(
-            "netherite/cauldron_leggings", "Netherite Cauldron Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/cauldron");
+            "netherite/cauldron_leggings", "Cauldron Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/cauldron");
     public static final Cosmetic NETHERITE_CAULDRON_BOOTS = new Cosmetic(
-            "netherite/cauldron_boots", "Netherite Cauldron Boots", CosmeticSlot.BOOTS, "minecraft:netherite/cauldron");
+            "netherite/cauldron_boots", "Cauldron Boots", CosmeticSlot.BOOTS, "minecraft:netherite/cauldron");
 
     public static final Cosmetic NETHERITE_CAVE_CRAWLER_HELMET = new Cosmetic(
-            "netherite/cave_crawler_helmet", "Netherite Cave Crawler Helmet", CosmeticSlot.HELMET, "minecraft:netherite/cave_crawler");
+            "netherite/cave_crawler_helmet", "Cave Crawler Helmet", CosmeticSlot.HELMET, "minecraft:netherite/cave_crawler");
     public static final Cosmetic NETHERITE_CAVE_CRAWLER_CHESTPLATE = new Cosmetic(
-            "netherite/cave_crawler_chestplate", "Netherite Cave Crawler Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/cave_crawler");
+            "netherite/cave_crawler_chestplate", "Cave Crawler Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/cave_crawler");
     public static final Cosmetic NETHERITE_CAVE_CRAWLER_LEGGINGS = new Cosmetic(
-            "netherite/cave_crawler_leggings", "Netherite Cave Crawler Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/cave_crawler");
+            "netherite/cave_crawler_leggings", "Cave Crawler Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/cave_crawler");
     public static final Cosmetic NETHERITE_CAVE_CRAWLER_BOOTS = new Cosmetic(
-            "netherite/cave_crawler_boots", "Netherite Cave Crawler Boots", CosmeticSlot.BOOTS, "minecraft:netherite/cave_crawler");
+            "netherite/cave_crawler_boots", "Cave Crawler Boots", CosmeticSlot.BOOTS, "minecraft:netherite/cave_crawler");
 
     public static final Cosmetic NETHERITE_CHAMPION_HELMET = new Cosmetic(
             "netherite/champion_helmet", "Netherite Champion Helmet", CosmeticSlot.HELMET, "minecraft:netherite/champion");
@@ -1603,22 +1603,22 @@ public class Cosmetics {
             "netherite/champion_boots", "Netherite Champion Boots", CosmeticSlot.BOOTS, "minecraft:netherite/champion");
 
     public static final Cosmetic NETHERITE_CLIMBING_GEAR_HELMET = new Cosmetic(
-            "netherite/climbing_gear_helmet", "Netherite Climbing Gear Helmet", CosmeticSlot.HELMET, "minecraft:netherite/climbing_gear");
+            "netherite/climbing_gear_helmet", "Climbing Gear Helmet", CosmeticSlot.HELMET, "minecraft:netherite/climbing_gear");
     public static final Cosmetic NETHERITE_CLIMBING_GEAR_CHESTPLATE = new Cosmetic(
-            "netherite/climbing_gear_chestplate", "Netherite Climbing Gear Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/climbing_gear");
+            "netherite/climbing_gear_chestplate", "Climbing Gear Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/climbing_gear");
     public static final Cosmetic NETHERITE_CLIMBING_GEAR_LEGGINGS = new Cosmetic(
-            "netherite/climbing_gear_leggings", "Netherite Climbing Gear Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/climbing_gear");
+            "netherite/climbing_gear_leggings", "Climbing Gear Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/climbing_gear");
     public static final Cosmetic NETHERITE_CLIMBING_GEAR_BOOTS = new Cosmetic(
-            "netherite/climbing_gear_boots", "Netherite Climbing Gear Boots", CosmeticSlot.BOOTS, "minecraft:netherite/climbing_gear");
+            "netherite/climbing_gear_boots", "Climbing Gear Boots", CosmeticSlot.BOOTS, "minecraft:netherite/climbing_gear");
 
     public static final Cosmetic NETHERITE_CLOAKED_SKULL_HELMET = new Cosmetic(
-            "netherite/cloaked_skull_helmet", "Netherite Cloaked Skull Helmet", CosmeticSlot.HELMET, "minecraft:netherite/cloaked_skull");
+            "netherite/cloaked_skull_helmet", "Cloaked Skull Helmet", CosmeticSlot.HELMET, "minecraft:netherite/cloaked_skull");
     public static final Cosmetic NETHERITE_CLOAKED_SKULL_CHESTPLATE = new Cosmetic(
-            "netherite/cloaked_skull_chestplate", "Netherite Cloaked Skull Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/cloaked_skull");
+            "netherite/cloaked_skull_chestplate", "Cloaked Skull Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/cloaked_skull");
     public static final Cosmetic NETHERITE_CLOAKED_SKULL_LEGGINGS = new Cosmetic(
-            "netherite/cloaked_skull_leggings", "Netherite Cloaked Skull Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/cloaked_skull");
+            "netherite/cloaked_skull_leggings", "Cloaked Skull Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/cloaked_skull");
     public static final Cosmetic NETHERITE_CLOAKED_SKULL_BOOTS = new Cosmetic(
-            "netherite/cloaked_skull_boots", "Netherite Cloaked Skull Boots", CosmeticSlot.BOOTS, "minecraft:netherite/cloaked_skull");
+            "netherite/cloaked_skull_boots", "Cloaked Skull Boots", CosmeticSlot.BOOTS, "minecraft:netherite/cloaked_skull");
 
     public static final Cosmetic NETHERITE_COMBAT_HELMET = new Cosmetic(
             "netherite/combat_helmet", "Netherite Combat Helmet", CosmeticSlot.HELMET, "minecraft:netherite/combat");
@@ -1648,22 +1648,22 @@ public class Cosmetics {
             "netherite/creed_boots", "Netherite Creed Boots", CosmeticSlot.BOOTS, "minecraft:netherite/creed");
 
     public static final Cosmetic NETHERITE_CRUCUBLE_HELMET = new Cosmetic(
-            "netherite/crucuble_helmet", "Netherite Crucuble Helmet", CosmeticSlot.HELMET, "minecraft:netherite/crucuble");
+            "netherite/crucuble_helmet", "Crucuble Helmet", CosmeticSlot.HELMET, "minecraft:netherite/crucuble");
     public static final Cosmetic NETHERITE_CRUCUBLE_CHESTPLATE = new Cosmetic(
-            "netherite/crucuble_chestplate", "Netherite Crucuble Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/crucuble");
+            "netherite/crucuble_chestplate", "Crucuble Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/crucuble");
     public static final Cosmetic NETHERITE_CRUCUBLE_LEGGINGS = new Cosmetic(
-            "netherite/crucuble_leggings", "Netherite Crucuble Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/crucuble");
+            "netherite/crucuble_leggings", "Crucuble Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/crucuble");
     public static final Cosmetic NETHERITE_CRUCUBLE_BOOTS = new Cosmetic(
-            "netherite/crucuble_boots", "Netherite Crucuble Boots", CosmeticSlot.BOOTS, "minecraft:netherite/crucuble");
+            "netherite/crucuble_boots", "Crucuble Boots", CosmeticSlot.BOOTS, "minecraft:netherite/crucuble");
 
     public static final Cosmetic NETHERITE_CYKLOPPS_HELMET = new Cosmetic(
-            "netherite/cyklopps_helmet", "Netherite Cyklopps Helmet", CosmeticSlot.HELMET, "minecraft:netherite/cyklopps");
+            "netherite/cyklopps_helmet", "Cyklopps Helmet", CosmeticSlot.HELMET, "minecraft:netherite/cyklopps");
     public static final Cosmetic NETHERITE_CYKLOPPS_CHESTPLATE = new Cosmetic(
-            "netherite/cyklopps_chestplate", "Netherite Cyklopps Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/cyklopps");
+            "netherite/cyklopps_chestplate", "Cyklopps Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/cyklopps");
     public static final Cosmetic NETHERITE_CYKLOPPS_LEGGINGS = new Cosmetic(
-            "netherite/cyklopps_leggings", "Netherite Cyklopps Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/cyklopps");
+            "netherite/cyklopps_leggings", "Cyklopps Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/cyklopps");
     public static final Cosmetic NETHERITE_CYKLOPPS_BOOTS = new Cosmetic(
-            "netherite/cyklopps_boots", "Netherite Cyklopps Boots", CosmeticSlot.BOOTS, "minecraft:netherite/cyklopps");
+            "netherite/cyklopps_boots", "Cyklopps Boots", CosmeticSlot.BOOTS, "minecraft:netherite/cyklopps");
 
     public static final Cosmetic NETHERITE_DARK_HELMET = new Cosmetic(
             "netherite/dark_helmet", "Netherite Dark Helmet", CosmeticSlot.HELMET, "minecraft:netherite/dark");
@@ -1684,40 +1684,40 @@ public class Cosmetics {
             "netherite/dragon_boots", "Netherite Dragon Boots", CosmeticSlot.BOOTS, "minecraft:netherite/dragon");
 
     public static final Cosmetic NETHERITE_DRAGONMASTER_HELMET = new Cosmetic(
-            "netherite/dragonmaster_helmet", "Netherite Dragonmaster Helmet", CosmeticSlot.HELMET, "minecraft:netherite/dragonmaster");
+            "netherite/dragonmaster_helmet", "Dragonmaster Helmet", CosmeticSlot.HELMET, "minecraft:netherite/dragonmaster");
     public static final Cosmetic NETHERITE_DRAGONMASTER_CHESTPLATE = new Cosmetic(
-            "netherite/dragonmaster_chestplate", "Netherite Dragonmaster Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/dragonmaster");
+            "netherite/dragonmaster_chestplate", "Dragonmaster Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/dragonmaster");
     public static final Cosmetic NETHERITE_DRAGONMASTER_LEGGINGS = new Cosmetic(
-            "netherite/dragonmaster_leggings", "Netherite Dragonmaster Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/dragonmaster");
+            "netherite/dragonmaster_leggings", "Dragonmaster Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/dragonmaster");
     public static final Cosmetic NETHERITE_DRAGONMASTER_BOOTS = new Cosmetic(
-            "netherite/dragonmaster_boots", "Netherite Dragonmaster Boots", CosmeticSlot.BOOTS, "minecraft:netherite/dragonmaster");
+            "netherite/dragonmaster_boots", "Dragonmaster Boots", CosmeticSlot.BOOTS, "minecraft:netherite/dragonmaster");
 
     public static final Cosmetic NETHERITE_DRAGONSBANE_HELMET = new Cosmetic(
-            "netherite/dragonsbane_helmet", "Netherite Dragonsbane Helmet", CosmeticSlot.HELMET, "minecraft:netherite/dragonsbane");
+            "netherite/dragonsbane_helmet", "Dragonsbane Helmet", CosmeticSlot.HELMET, "minecraft:netherite/dragonsbane");
     public static final Cosmetic NETHERITE_DRAGONSBANE_CHESTPLATE = new Cosmetic(
-            "netherite/dragonsbane_chestplate", "Netherite Dragonsbane Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/dragonsbane");
+            "netherite/dragonsbane_chestplate", "Dragonsbane Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/dragonsbane");
     public static final Cosmetic NETHERITE_DRAGONSBANE_LEGGINGS = new Cosmetic(
-            "netherite/dragonsbane_leggings", "Netherite Dragonsbane Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/dragonsbane");
+            "netherite/dragonsbane_leggings", "Dragonsbane Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/dragonsbane");
     public static final Cosmetic NETHERITE_DRAGONSBANE_BOOTS = new Cosmetic(
-            "netherite/dragonsbane_boots", "Netherite Dragonsbane Boots", CosmeticSlot.BOOTS, "minecraft:netherite/dragonsbane");
+            "netherite/dragonsbane_boots", "Dragonsbane Boots", CosmeticSlot.BOOTS, "minecraft:netherite/dragonsbane");
 
     public static final Cosmetic NETHERITE_DRAGONSLAYER_HELMET = new Cosmetic(
-            "netherite/dragonslayer_helmet", "Netherite Dragonslayer Helmet", CosmeticSlot.HELMET, "minecraft:netherite/dragonslayer");
+            "netherite/dragonslayer_helmet", "Dragonslayer Helmet", CosmeticSlot.HELMET, "minecraft:netherite/dragonslayer");
     public static final Cosmetic NETHERITE_DRAGONSLAYER_CHESTPLATE = new Cosmetic(
-            "netherite/dragonslayer_chestplate", "Netherite Dragonslayer Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/dragonslayer");
+            "netherite/dragonslayer_chestplate", "Dragonslayer Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/dragonslayer");
     public static final Cosmetic NETHERITE_DRAGONSLAYER_LEGGINGS = new Cosmetic(
-            "netherite/dragonslayer_leggings", "Netherite Dragonslayer Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/dragonslayer");
+            "netherite/dragonslayer_leggings", "Dragonslayer Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/dragonslayer");
     public static final Cosmetic NETHERITE_DRAGONSLAYER_BOOTS = new Cosmetic(
-            "netherite/dragonslayer_boots", "Netherite Dragonslayer Boots", CosmeticSlot.BOOTS, "minecraft:netherite/dragonslayer");
+            "netherite/dragonslayer_boots", "Dragonslayer Boots", CosmeticSlot.BOOTS, "minecraft:netherite/dragonslayer");
 
     public static final Cosmetic NETHERITE_DROID_HELMET = new Cosmetic(
-            "netherite/droid_helmet", "Netherite Droid Helmet", CosmeticSlot.HELMET, "minecraft:netherite/droid");
+            "netherite/droid_helmet", "Droid Helmet", CosmeticSlot.HELMET, "minecraft:netherite/droid");
     public static final Cosmetic NETHERITE_DROID_CHESTPLATE = new Cosmetic(
-            "netherite/droid_chestplate", "Netherite Droid Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/droid");
+            "netherite/droid_chestplate", "Droid Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/droid");
     public static final Cosmetic NETHERITE_DROID_LEGGINGS = new Cosmetic(
-            "netherite/droid_leggings", "Netherite Droid Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/droid");
+            "netherite/droid_leggings", "Droid Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/droid");
     public static final Cosmetic NETHERITE_DROID_BOOTS = new Cosmetic(
-            "netherite/droid_boots", "Netherite Droid Boots", CosmeticSlot.BOOTS, "minecraft:netherite/droid");
+            "netherite/droid_boots", "Droid Boots", CosmeticSlot.BOOTS, "minecraft:netherite/droid");
 
     public static final Cosmetic NETHERITE_DROWNED_KING_HELMET = new Cosmetic(
             "netherite/drowned_king_helmet", "Netherite Drowned King Helmet", CosmeticSlot.HELMET, "minecraft:netherite/drowned_king");
@@ -1729,22 +1729,22 @@ public class Cosmetics {
             "netherite/drowned_king_boots", "Netherite Drowned King Boots", CosmeticSlot.BOOTS, "minecraft:netherite/drowned_king");
 
     public static final Cosmetic NETHERITE_ELLEGAARD_HELMET = new Cosmetic(
-            "netherite/ellegaard_helmet", "Netherite Ellegaard Helmet", CosmeticSlot.HELMET, "minecraft:netherite/ellegaard");
+            "netherite/ellegaard_helmet", "Ellegaard Helmet", CosmeticSlot.HELMET, "minecraft:netherite/ellegaard");
     public static final Cosmetic NETHERITE_ELLEGAARD_CHESTPLATE = new Cosmetic(
-            "netherite/ellegaard_chestplate", "Netherite Ellegaard Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/ellegaard");
+            "netherite/ellegaard_chestplate", "Ellegaard Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/ellegaard");
     public static final Cosmetic NETHERITE_ELLEGAARD_LEGGINGS = new Cosmetic(
-            "netherite/ellegaard_leggings", "Netherite Ellegaard Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/ellegaard");
+            "netherite/ellegaard_leggings", "Ellegaard Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/ellegaard");
     public static final Cosmetic NETHERITE_ELLEGAARD_BOOTS = new Cosmetic(
-            "netherite/ellegaard_boots", "Netherite Ellegaard Boots", CosmeticSlot.BOOTS, "minecraft:netherite/ellegaard");
+            "netherite/ellegaard_boots", "Ellegaard Boots", CosmeticSlot.BOOTS, "minecraft:netherite/ellegaard");
 
     public static final Cosmetic NETHERITE_EMBER_HELMET = new Cosmetic(
-            "netherite/ember_helmet", "Netherite Ember Helmet", CosmeticSlot.HELMET, "minecraft:netherite/ember");
+            "netherite/ember_helmet", "Ember Helmet", CosmeticSlot.HELMET, "minecraft:netherite/ember");
     public static final Cosmetic NETHERITE_EMBER_CHESTPLATE = new Cosmetic(
-            "netherite/ember_chestplate", "Netherite Ember Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/ember");
+            "netherite/ember_chestplate", "Ember Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/ember");
     public static final Cosmetic NETHERITE_EMBER_LEGGINGS = new Cosmetic(
-            "netherite/ember_leggings", "Netherite Ember Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/ember");
+            "netherite/ember_leggings", "Ember Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/ember");
     public static final Cosmetic NETHERITE_EMBER_BOOTS = new Cosmetic(
-            "netherite/ember_boots", "Netherite Ember Boots", CosmeticSlot.BOOTS, "minecraft:netherite/ember");
+            "netherite/ember_boots", "Ember Boots", CosmeticSlot.BOOTS, "minecraft:netherite/ember");
 
     public static final Cosmetic NETHERITE_EMERALD_HELMET = new Cosmetic(
             "netherite/emerald_helmet", "Netherite Emerald Helmet", CosmeticSlot.HELMET, "minecraft:netherite/emerald");
@@ -1756,22 +1756,22 @@ public class Cosmetics {
             "netherite/emerald_boots", "Netherite Emerald Boots", CosmeticSlot.BOOTS, "minecraft:netherite/emerald");
 
     public static final Cosmetic NETHERITE_ENDER_DEFENDER_HELMET = new Cosmetic(
-            "netherite/ender_defender_helmet", "Netherite Ender Defender Helmet", CosmeticSlot.HELMET, "minecraft:netherite/ender_defender");
+            "netherite/ender_defender_helmet", "Ender Defender Helmet", CosmeticSlot.HELMET, "minecraft:netherite/ender_defender");
     public static final Cosmetic NETHERITE_ENDER_DEFENDER_CHESTPLATE = new Cosmetic(
-            "netherite/ender_defender_chestplate", "Netherite Ender Defender Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/ender_defender");
+            "netherite/ender_defender_chestplate", "Ender Defender Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/ender_defender");
     public static final Cosmetic NETHERITE_ENDER_DEFENDER_LEGGINGS = new Cosmetic(
-            "netherite/ender_defender_leggings", "Netherite Ender Defender Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/ender_defender");
+            "netherite/ender_defender_leggings", "Ender Defender Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/ender_defender");
     public static final Cosmetic NETHERITE_ENDER_DEFENDER_BOOTS = new Cosmetic(
-            "netherite/ender_defender_boots", "Netherite Ender Defender Boots", CosmeticSlot.BOOTS, "minecraft:netherite/ender_defender");
+            "netherite/ender_defender_boots", "Ender Defender Boots", CosmeticSlot.BOOTS, "minecraft:netherite/ender_defender");
 
     public static final Cosmetic NETHERITE_ENDER_DRAGON_HELMET = new Cosmetic(
-            "netherite/ender_dragon_helmet", "Netherite Ender Dragon Helmet", CosmeticSlot.HELMET, "minecraft:netherite/ender_dragon");
+            "netherite/ender_dragon_helmet", "Ender Dragon Helmet", CosmeticSlot.HELMET, "minecraft:netherite/ender_dragon");
     public static final Cosmetic NETHERITE_ENDER_DRAGON_CHESTPLATE = new Cosmetic(
-            "netherite/ender_dragon_chestplate", "Netherite Ender Dragon Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/ender_dragon");
+            "netherite/ender_dragon_chestplate", "Ender Dragon Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/ender_dragon");
     public static final Cosmetic NETHERITE_ENDER_DRAGON_LEGGINGS = new Cosmetic(
-            "netherite/ender_dragon_leggings", "Netherite Ender Dragon Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/ender_dragon");
+            "netherite/ender_dragon_leggings", "Ender Dragon Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/ender_dragon");
     public static final Cosmetic NETHERITE_ENDER_DRAGON_BOOTS = new Cosmetic(
-            "netherite/ender_dragon_boots", "Netherite Ender Dragon Boots", CosmeticSlot.BOOTS, "minecraft:netherite/ender_dragon");
+            "netherite/ender_dragon_boots", "Ender Dragon Boots", CosmeticSlot.BOOTS, "minecraft:netherite/ender_dragon");
 
     public static final Cosmetic NETHERITE_ENDER_HELMET = new Cosmetic(
             "netherite/ender_helmet", "Netherite Ender Helmet", CosmeticSlot.HELMET, "minecraft:netherite/ender");
@@ -1783,31 +1783,31 @@ public class Cosmetics {
             "netherite/ender_boots", "Netherite Ender Boots", CosmeticSlot.BOOTS, "minecraft:netherite/ender");
 
     public static final Cosmetic NETHERITE_ENTERTAINER_HELMET = new Cosmetic(
-            "netherite/entertainer_helmet", "Netherite Entertainer Helmet", CosmeticSlot.HELMET, "minecraft:netherite/entertainer");
+            "netherite/entertainer_helmet", "Entertainer Helmet", CosmeticSlot.HELMET, "minecraft:netherite/entertainer");
     public static final Cosmetic NETHERITE_ENTERTAINER_CHESTPLATE = new Cosmetic(
-            "netherite/entertainer_chestplate", "Netherite Entertainer Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/entertainer");
+            "netherite/entertainer_chestplate", "Entertainer Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/entertainer");
     public static final Cosmetic NETHERITE_ENTERTAINER_LEGGINGS = new Cosmetic(
-            "netherite/entertainer_leggings", "Netherite Entertainer Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/entertainer");
+            "netherite/entertainer_leggings", "Entertainer Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/entertainer");
     public static final Cosmetic NETHERITE_ENTERTAINER_BOOTS = new Cosmetic(
-            "netherite/entertainer_boots", "Netherite Entertainer Boots", CosmeticSlot.BOOTS, "minecraft:netherite/entertainer");
+            "netherite/entertainer_boots", "Entertainer Boots", CosmeticSlot.BOOTS, "minecraft:netherite/entertainer");
 
     public static final Cosmetic NETHERITE_EVOCATION_HELMET = new Cosmetic(
-            "netherite/evocation_helmet", "Netherite Evocation Helmet", CosmeticSlot.HELMET, "minecraft:netherite/evocation");
+            "netherite/evocation_helmet", "Evocation Helmet", CosmeticSlot.HELMET, "minecraft:netherite/evocation");
     public static final Cosmetic NETHERITE_EVOCATION_CHESTPLATE = new Cosmetic(
-            "netherite/evocation_chestplate", "Netherite Evocation Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/evocation");
+            "netherite/evocation_chestplate", "Evocation Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/evocation");
     public static final Cosmetic NETHERITE_EVOCATION_LEGGINGS = new Cosmetic(
-            "netherite/evocation_leggings", "Netherite Evocation Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/evocation");
+            "netherite/evocation_leggings", "Evocation Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/evocation");
     public static final Cosmetic NETHERITE_EVOCATION_BOOTS = new Cosmetic(
-            "netherite/evocation_boots", "Netherite Evocation Boots", CosmeticSlot.BOOTS, "minecraft:netherite/evocation");
+            "netherite/evocation_boots", "Evocation Boots", CosmeticSlot.BOOTS, "minecraft:netherite/evocation");
 
     public static final Cosmetic NETHERITE_FIREFORGED_HELMET = new Cosmetic(
-            "netherite/fireforged_helmet", "Netherite Fireforged Helmet", CosmeticSlot.HELMET, "minecraft:netherite/fireforged");
+            "netherite/fireforged_helmet", "Fireforged Helmet", CosmeticSlot.HELMET, "minecraft:netherite/fireforged");
     public static final Cosmetic NETHERITE_FIREFORGED_CHESTPLATE = new Cosmetic(
-            "netherite/fireforged_chestplate", "Netherite Fireforged Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/fireforged");
+            "netherite/fireforged_chestplate", "Fireforged Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/fireforged");
     public static final Cosmetic NETHERITE_FIREFORGED_LEGGINGS = new Cosmetic(
-            "netherite/fireforged_leggings", "Netherite Fireforged Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/fireforged");
+            "netherite/fireforged_leggings", "Fireforged Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/fireforged");
     public static final Cosmetic NETHERITE_FIREFORGED_BOOTS = new Cosmetic(
-            "netherite/fireforged_boots", "Netherite Fireforged Boots", CosmeticSlot.BOOTS, "minecraft:netherite/fireforged");
+            "netherite/fireforged_boots", "Fireforged Boots", CosmeticSlot.BOOTS, "minecraft:netherite/fireforged");
 
     public static final Cosmetic NETHERITE_FOX_HELMET = new Cosmetic(
             "netherite/fox_helmet", "Netherite Fox Helmet", CosmeticSlot.HELMET, "minecraft:netherite/fox");
@@ -1819,22 +1819,22 @@ public class Cosmetics {
             "netherite/fox_boots", "Netherite Fox Boots", CosmeticSlot.BOOTS, "minecraft:netherite/fox");
 
     public static final Cosmetic NETHERITE_FRED_HELMET = new Cosmetic(
-            "netherite/fred_helmet", "Netherite Fred Helmet", CosmeticSlot.HELMET, "minecraft:netherite/fred");
+            "netherite/fred_helmet", "Fred Helmet", CosmeticSlot.HELMET, "minecraft:netherite/fred");
     public static final Cosmetic NETHERITE_FRED_CHESTPLATE = new Cosmetic(
-            "netherite/fred_chestplate", "Netherite Fred Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/fred");
+            "netherite/fred_chestplate", "Fred Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/fred");
     public static final Cosmetic NETHERITE_FRED_LEGGINGS = new Cosmetic(
-            "netherite/fred_leggings", "Netherite Fred Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/fred");
+            "netherite/fred_leggings", "Fred Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/fred");
     public static final Cosmetic NETHERITE_FRED_BOOTS = new Cosmetic(
-            "netherite/fred_boots", "Netherite Fred Boots", CosmeticSlot.BOOTS, "minecraft:netherite/fred");
+            "netherite/fred_boots", "Fred Boots", CosmeticSlot.BOOTS, "minecraft:netherite/fred");
 
     public static final Cosmetic NETHERITE_FROST_HELMET = new Cosmetic(
-            "netherite/frost_helmet", "Netherite Frost Helmet", CosmeticSlot.HELMET, "minecraft:netherite/frost");
+            "netherite/frost_helmet", "Frost Helmet", CosmeticSlot.HELMET, "minecraft:netherite/frost");
     public static final Cosmetic NETHERITE_FROST_CHESTPLATE = new Cosmetic(
-            "netherite/frost_chestplate", "Netherite Frost Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/frost");
+            "netherite/frost_chestplate", "Frost Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/frost");
     public static final Cosmetic NETHERITE_FROST_LEGGINGS = new Cosmetic(
-            "netherite/frost_leggings", "Netherite Frost Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/frost");
+            "netherite/frost_leggings", "Frost Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/frost");
     public static final Cosmetic NETHERITE_FROST_BOOTS = new Cosmetic(
-            "netherite/frost_boots", "Netherite Frost Boots", CosmeticSlot.BOOTS, "minecraft:netherite/frost");
+            "netherite/frost_boots", "Frost Boots", CosmeticSlot.BOOTS, "minecraft:netherite/frost");
 
     public static final Cosmetic NETHERITE_FULL_METAL_HELMET = new Cosmetic(
             "netherite/full_metal_helmet", "Netherite Full Metal Helmet", CosmeticSlot.HELMET, "minecraft:netherite/full_metal");
@@ -1846,13 +1846,13 @@ public class Cosmetics {
             "netherite/full_metal_boots", "Netherite Full Metal Boots", CosmeticSlot.BOOTS, "minecraft:netherite/full_metal");
 
     public static final Cosmetic NETHERITE_GABRIEL_HELMET = new Cosmetic(
-            "netherite/gabriel_helmet", "Netherite Gabriel Helmet", CosmeticSlot.HELMET, "minecraft:netherite/gabriel");
+            "netherite/gabriel_helmet", "Gabriel Helmet", CosmeticSlot.HELMET, "minecraft:netherite/gabriel");
     public static final Cosmetic NETHERITE_GABRIEL_CHESTPLATE = new Cosmetic(
-            "netherite/gabriel_chestplate", "Netherite Gabriel Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/gabriel");
+            "netherite/gabriel_chestplate", "Gabriel Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/gabriel");
     public static final Cosmetic NETHERITE_GABRIEL_LEGGINGS = new Cosmetic(
-            "netherite/gabriel_leggings", "Netherite Gabriel Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/gabriel");
+            "netherite/gabriel_leggings", "Gabriel Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/gabriel");
     public static final Cosmetic NETHERITE_GABRIEL_BOOTS = new Cosmetic(
-            "netherite/gabriel_boots", "Netherite Gabriel Boots", CosmeticSlot.BOOTS, "minecraft:netherite/gabriel");
+            "netherite/gabriel_boots", "Gabriel Boots", CosmeticSlot.BOOTS, "minecraft:netherite/gabriel");
 
     public static final Cosmetic NETHERITE_GHOSTLY_HELMET = new Cosmetic(
             "netherite/ghostly_helmet", "Netherite Ghostly Helmet", CosmeticSlot.HELMET, "minecraft:netherite/ghostly");
@@ -1864,40 +1864,40 @@ public class Cosmetics {
             "netherite/ghostly_boots", "Netherite Ghostly Boots", CosmeticSlot.BOOTS, "minecraft:netherite/ghostly");
 
     public static final Cosmetic NETHERITE_GLOW_SQUID_HELMET = new Cosmetic(
-            "netherite/glow_squid_helmet", "Netherite Glow Squid Helmet", CosmeticSlot.HELMET, "minecraft:netherite/glow_squid");
+            "netherite/glow_squid_helmet", "Glow Squid Helmet", CosmeticSlot.HELMET, "minecraft:netherite/glow_squid");
     public static final Cosmetic NETHERITE_GLOW_SQUID_CHESTPLATE = new Cosmetic(
-            "netherite/glow_squid_chestplate", "Netherite Glow Squid Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/glow_squid");
+            "netherite/glow_squid_chestplate", "Glow Squid Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/glow_squid");
     public static final Cosmetic NETHERITE_GLOW_SQUID_LEGGINGS = new Cosmetic(
-            "netherite/glow_squid_leggings", "Netherite Glow Squid Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/glow_squid");
+            "netherite/glow_squid_leggings", "Glow Squid Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/glow_squid");
     public static final Cosmetic NETHERITE_GLOW_SQUID_BOOTS = new Cosmetic(
-            "netherite/glow_squid_boots", "Netherite Glow Squid Boots", CosmeticSlot.BOOTS, "minecraft:netherite/glow_squid");
+            "netherite/glow_squid_boots", "Glow Squid Boots", CosmeticSlot.BOOTS, "minecraft:netherite/glow_squid");
 
     public static final Cosmetic NETHERITE_GOAT_HELMET = new Cosmetic(
-            "netherite/goat_helmet", "Netherite Goat Helmet", CosmeticSlot.HELMET, "minecraft:netherite/goat");
+            "netherite/goat_helmet", "Goat Helmet", CosmeticSlot.HELMET, "minecraft:netherite/goat");
     public static final Cosmetic NETHERITE_GOAT_CHESTPLATE = new Cosmetic(
-            "netherite/goat_chestplate", "Netherite Goat Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/goat");
+            "netherite/goat_chestplate", "Goat Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/goat");
     public static final Cosmetic NETHERITE_GOAT_LEGGINGS = new Cosmetic(
-            "netherite/goat_leggings", "Netherite Goat Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/goat");
+            "netherite/goat_leggings", "Goat Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/goat");
     public static final Cosmetic NETHERITE_GOAT_BOOTS = new Cosmetic(
-            "netherite/goat_boots", "Netherite Goat Boots", CosmeticSlot.BOOTS, "minecraft:netherite/goat");
+            "netherite/goat_boots", "Goat Boots", CosmeticSlot.BOOTS, "minecraft:netherite/goat");
 
     public static final Cosmetic NETHERITE_GOLDEN_APPLE_HELMET = new Cosmetic(
-            "netherite/golden_apple_helmet", "Netherite Golden Apple Helmet", CosmeticSlot.HELMET, "minecraft:netherite/golden_apple");
+            "netherite/golden_apple_helmet", "Golden Apple Helmet", CosmeticSlot.HELMET, "minecraft:netherite/golden_apple");
     public static final Cosmetic NETHERITE_GOLDEN_APPLE_CHESTPLATE = new Cosmetic(
-            "netherite/golden_apple_chestplate", "Netherite Golden Apple Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/golden_apple");
+            "netherite/golden_apple_chestplate", "Golden Apple Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/golden_apple");
     public static final Cosmetic NETHERITE_GOLDEN_APPLE_LEGGINGS = new Cosmetic(
-            "netherite/golden_apple_leggings", "Netherite Golden Apple Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/golden_apple");
+            "netherite/golden_apple_leggings", "Golden Apple Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/golden_apple");
     public static final Cosmetic NETHERITE_GOLDEN_APPLE_BOOTS = new Cosmetic(
-            "netherite/golden_apple_boots", "Netherite Golden Apple Boots", CosmeticSlot.BOOTS, "minecraft:netherite/golden_apple");
+            "netherite/golden_apple_boots", "Golden Apple Boots", CosmeticSlot.BOOTS, "minecraft:netherite/golden_apple");
 
     public static final Cosmetic NETHERITE_GOLDEN_GOLIATH_HELMET = new Cosmetic(
-            "netherite/golden_goliath_helmet", "Netherite Golden Goliath Helmet", CosmeticSlot.HELMET, "minecraft:netherite/golden_goliath");
+            "netherite/golden_goliath_helmet", "Golden Goliath Helmet", CosmeticSlot.HELMET, "minecraft:netherite/golden_goliath");
     public static final Cosmetic NETHERITE_GOLDEN_GOLIATH_CHESTPLATE = new Cosmetic(
-            "netherite/golden_goliath_chestplate", "Netherite Golden Goliath Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/golden_goliath");
+            "netherite/golden_goliath_chestplate", "Golden Goliath Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/golden_goliath");
     public static final Cosmetic NETHERITE_GOLDEN_GOLIATH_LEGGINGS = new Cosmetic(
-            "netherite/golden_goliath_leggings", "Netherite Golden Goliath Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/golden_goliath");
+            "netherite/golden_goliath_leggings", "Golden Goliath Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/golden_goliath");
     public static final Cosmetic NETHERITE_GOLDEN_GOLIATH_BOOTS = new Cosmetic(
-            "netherite/golden_goliath_boots", "Netherite Golden Goliath Boots", CosmeticSlot.BOOTS, "minecraft:netherite/golden_goliath");
+            "netherite/golden_goliath_boots", "Golden Goliath Boots", CosmeticSlot.BOOTS, "minecraft:netherite/golden_goliath");
 
     public static final Cosmetic NETHERITE_GRIM_HELMET = new Cosmetic(
             "netherite/grim_helmet", "Netherite Grim Helmet", CosmeticSlot.HELMET, "minecraft:netherite/grim");
@@ -1918,22 +1918,22 @@ public class Cosmetics {
             "netherite/guard_boots", "Netherite Guard Boots", CosmeticSlot.BOOTS, "minecraft:netherite/guard");
 
     public static final Cosmetic NETHERITE_HEAVY_HELMET = new Cosmetic(
-            "netherite/heavy_helmet", "Netherite Heavy Helmet", CosmeticSlot.HELMET, "minecraft:netherite/heavy");
+            "netherite/heavy_helmet", "Heavy Helmet", CosmeticSlot.HELMET, "minecraft:netherite/heavy");
     public static final Cosmetic NETHERITE_HEAVY_CHESTPLATE = new Cosmetic(
-            "netherite/heavy_chestplate", "Netherite Heavy Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/heavy");
+            "netherite/heavy_chestplate", "Heavy Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/heavy");
     public static final Cosmetic NETHERITE_HEAVY_LEGGINGS = new Cosmetic(
-            "netherite/heavy_leggings", "Netherite Heavy Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/heavy");
+            "netherite/heavy_leggings", "Heavy Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/heavy");
     public static final Cosmetic NETHERITE_HEAVY_BOOTS = new Cosmetic(
-            "netherite/heavy_boots", "Netherite Heavy Boots", CosmeticSlot.BOOTS, "minecraft:netherite/heavy");
+            "netherite/heavy_boots", "Heavy Boots", CosmeticSlot.BOOTS, "minecraft:netherite/heavy");
 
     public static final Cosmetic NETHERITE_HERO_HELMET = new Cosmetic(
-            "netherite/hero_helmet", "Netherite Hero Helmet", CosmeticSlot.HELMET, "minecraft:netherite/hero");
+            "netherite/hero_helmet", "Hero Helmet", CosmeticSlot.HELMET, "minecraft:netherite/hero");
     public static final Cosmetic NETHERITE_HERO_CHESTPLATE = new Cosmetic(
-            "netherite/hero_chestplate", "Netherite Hero Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/hero");
+            "netherite/hero_chestplate", "Hero Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/hero");
     public static final Cosmetic NETHERITE_HERO_LEGGINGS = new Cosmetic(
-            "netherite/hero_leggings", "Netherite Hero Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/hero");
+            "netherite/hero_leggings", "Hero Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/hero");
     public static final Cosmetic NETHERITE_HERO_BOOTS = new Cosmetic(
-            "netherite/hero_boots", "Netherite Hero Boots", CosmeticSlot.BOOTS, "minecraft:netherite/hero");
+            "netherite/hero_boots", "Hero Boots", CosmeticSlot.BOOTS, "minecraft:netherite/hero");
 
     public static final Cosmetic NETHERITE_HIGHLAND_HELMET = new Cosmetic(
             "netherite/highland_helmet", "Netherite Highland Helmet", CosmeticSlot.HELMET, "minecraft:netherite/highland");
@@ -1945,58 +1945,58 @@ public class Cosmetics {
             "netherite/highland_boots", "Netherite Highland Boots", CosmeticSlot.BOOTS, "minecraft:netherite/highland");
 
     public static final Cosmetic NETHERITE_HUNGRIEST_HORROR_HELMET = new Cosmetic(
-            "netherite/hungriest_horror_helmet", "Netherite Hungriest Horror Helmet", CosmeticSlot.HELMET, "minecraft:netherite/hungriest_horror");
+            "netherite/hungriest_horror_helmet", "Hungriest Horror Helmet", CosmeticSlot.HELMET, "minecraft:netherite/hungriest_horror");
     public static final Cosmetic NETHERITE_HUNGRIEST_HORROR_CHESTPLATE = new Cosmetic(
-            "netherite/hungriest_horror_chestplate", "Netherite Hungriest Horror Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/hungriest_horror");
+            "netherite/hungriest_horror_chestplate", "Hungriest Horror Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/hungriest_horror");
     public static final Cosmetic NETHERITE_HUNGRIEST_HORROR_LEGGINGS = new Cosmetic(
-            "netherite/hungriest_horror_leggings", "Netherite Hungriest Horror Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/hungriest_horror");
+            "netherite/hungriest_horror_leggings", "Hungriest Horror Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/hungriest_horror");
     public static final Cosmetic NETHERITE_HUNGRIEST_HORROR_BOOTS = new Cosmetic(
-            "netherite/hungriest_horror_boots", "Netherite Hungriest Horror Boots", CosmeticSlot.BOOTS, "minecraft:netherite/hungriest_horror");
+            "netherite/hungriest_horror_boots", "Hungriest Horror Boots", CosmeticSlot.BOOTS, "minecraft:netherite/hungriest_horror");
 
     public static final Cosmetic NETHERITE_HUNGRY_HORROR_HELMET = new Cosmetic(
-            "netherite/hungry_horror_helmet", "Netherite Hungry Horror Helmet", CosmeticSlot.HELMET, "minecraft:netherite/hungry_horror");
+            "netherite/hungry_horror_helmet", "Hungry Horror Helmet", CosmeticSlot.HELMET, "minecraft:netherite/hungry_horror");
     public static final Cosmetic NETHERITE_HUNGRY_HORROR_CHESTPLATE = new Cosmetic(
-            "netherite/hungry_horror_chestplate", "Netherite Hungry Horror Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/hungry_horror");
+            "netherite/hungry_horror_chestplate", "Hungry Horror Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/hungry_horror");
     public static final Cosmetic NETHERITE_HUNGRY_HORROR_LEGGINGS = new Cosmetic(
-            "netherite/hungry_horror_leggings", "Netherite Hungry Horror Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/hungry_horror");
+            "netherite/hungry_horror_leggings", "Hungry Horror Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/hungry_horror");
     public static final Cosmetic NETHERITE_HUNGRY_HORROR_BOOTS = new Cosmetic(
-            "netherite/hungry_horror_boots", "Netherite Hungry Horror Boots", CosmeticSlot.BOOTS, "minecraft:netherite/hungry_horror");
+            "netherite/hungry_horror_boots", "Hungry Horror Boots", CosmeticSlot.BOOTS, "minecraft:netherite/hungry_horror");
 
     public static final Cosmetic NETHERITE_ILL_HELMET = new Cosmetic(
-            "netherite/ill_helmet", "Netherite Ill Helmet", CosmeticSlot.HELMET, "minecraft:netherite/ill");
+            "netherite/ill_helmet", "Ill Helmet", CosmeticSlot.HELMET, "minecraft:netherite/ill");
     public static final Cosmetic NETHERITE_ILL_CHESTPLATE = new Cosmetic(
-            "netherite/ill_chestplate", "Netherite Ill Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/ill");
+            "netherite/ill_chestplate", "Ill Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/ill");
     public static final Cosmetic NETHERITE_ILL_LEGGINGS = new Cosmetic(
-            "netherite/ill_leggings", "Netherite Ill Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/ill");
+            "netherite/ill_leggings", "Ill Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/ill");
     public static final Cosmetic NETHERITE_ILL_BOOTS = new Cosmetic(
-            "netherite/ill_boots", "Netherite Ill Boots", CosmeticSlot.BOOTS, "minecraft:netherite/ill");
+            "netherite/ill_boots", "Ill Boots", CosmeticSlot.BOOTS, "minecraft:netherite/ill");
 
     public static final Cosmetic NETHERITE_IVOR_HELMET = new Cosmetic(
-            "netherite/ivor_helmet", "Netherite Ivor Helmet", CosmeticSlot.HELMET, "minecraft:netherite/ivor");
+            "netherite/ivor_helmet", "Ivor Helmet", CosmeticSlot.HELMET, "minecraft:netherite/ivor");
     public static final Cosmetic NETHERITE_IVOR_CHESTPLATE = new Cosmetic(
-            "netherite/ivor_chestplate", "Netherite Ivor Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/ivor");
+            "netherite/ivor_chestplate", "Ivor Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/ivor");
     public static final Cosmetic NETHERITE_IVOR_LEGGINGS = new Cosmetic(
-            "netherite/ivor_leggings", "Netherite Ivor Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/ivor");
+            "netherite/ivor_leggings", "Ivor Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/ivor");
     public static final Cosmetic NETHERITE_IVOR_BOOTS = new Cosmetic(
-            "netherite/ivor_boots", "Netherite Ivor Boots", CosmeticSlot.BOOTS, "minecraft:netherite/ivor");
+            "netherite/ivor_boots", "Ivor Boots", CosmeticSlot.BOOTS, "minecraft:netherite/ivor");
 
     public static final Cosmetic NETHERITE_JACK_O_HELMET = new Cosmetic(
-            "netherite/jack_o_helmet", "Netherite Jack O Helmet", CosmeticSlot.HELMET, "minecraft:netherite/jack_o");
+            "netherite/jack_o_helmet", "Jack O Helmet", CosmeticSlot.HELMET, "minecraft:netherite/jack_o");
     public static final Cosmetic NETHERITE_JACK_O_CHESTPLATE = new Cosmetic(
-            "netherite/jack_o_chestplate", "Netherite Jack O Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/jack_o");
+            "netherite/jack_o_chestplate", "Jack O Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/jack_o");
     public static final Cosmetic NETHERITE_JACK_O_LEGGINGS = new Cosmetic(
-            "netherite/jack_o_leggings", "Netherite Jack O Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/jack_o");
+            "netherite/jack_o_leggings", "Jack O Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/jack_o");
     public static final Cosmetic NETHERITE_JACK_O_BOOTS = new Cosmetic(
-            "netherite/jack_o_boots", "Netherite Jack O Boots", CosmeticSlot.BOOTS, "minecraft:netherite/jack_o");
+            "netherite/jack_o_boots", "Jack O Boots", CosmeticSlot.BOOTS, "minecraft:netherite/jack_o");
 
     public static final Cosmetic NETHERITE_JOURNEY_HELMET = new Cosmetic(
-            "netherite/journey_helmet", "Netherite Journey Helmet", CosmeticSlot.HELMET, "minecraft:netherite/journey");
+            "netherite/journey_helmet", "Journey Helmet", CosmeticSlot.HELMET, "minecraft:netherite/journey");
     public static final Cosmetic NETHERITE_JOURNEY_CHESTPLATE = new Cosmetic(
-            "netherite/journey_chestplate", "Netherite Journey Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/journey");
+            "netherite/journey_chestplate", "Journey Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/journey");
     public static final Cosmetic NETHERITE_JOURNEY_LEGGINGS = new Cosmetic(
-            "netherite/journey_leggings", "Netherite Journey Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/journey");
+            "netherite/journey_leggings", "Journey Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/journey");
     public static final Cosmetic NETHERITE_JOURNEY_BOOTS = new Cosmetic(
-            "netherite/journey_boots", "Netherite Journey Boots", CosmeticSlot.BOOTS, "minecraft:netherite/journey");
+            "netherite/journey_boots", "Journey Boots", CosmeticSlot.BOOTS, "minecraft:netherite/journey");
 
     public static final Cosmetic NETHERITE_LAVA_INFUSED_HELMET = new Cosmetic(
             "netherite/lava_infused_helmet", "Netherite Lava Infused Helmet", CosmeticSlot.HELMET, "minecraft:netherite/lava_infused");
@@ -2008,85 +2008,85 @@ public class Cosmetics {
             "netherite/lava_infused_boots", "Netherite Lava Infused Boots", CosmeticSlot.BOOTS, "minecraft:netherite/lava_infused");
 
     public static final Cosmetic NETHERITE_LAVA_WARRIOR_HELMET = new Cosmetic(
-            "netherite/lava_warrior_helmet", "Netherite Lava Warrior Helmet", CosmeticSlot.HELMET, "minecraft:netherite/lava_warrior");
+            "netherite/lava_warrior_helmet", "Lava Warrior Helmet", CosmeticSlot.HELMET, "minecraft:netherite/lava_warrior");
     public static final Cosmetic NETHERITE_LAVA_WARRIOR_CHESTPLATE = new Cosmetic(
-            "netherite/lava_warrior_chestplate", "Netherite Lava Warrior Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/lava_warrior");
+            "netherite/lava_warrior_chestplate", "Lava Warrior Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/lava_warrior");
     public static final Cosmetic NETHERITE_LAVA_WARRIOR_LEGGINGS = new Cosmetic(
-            "netherite/lava_warrior_leggings", "Netherite Lava Warrior Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/lava_warrior");
+            "netherite/lava_warrior_leggings", "Lava Warrior Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/lava_warrior");
     public static final Cosmetic NETHERITE_LAVA_WARRIOR_BOOTS = new Cosmetic(
-            "netherite/lava_warrior_boots", "Netherite Lava Warrior Boots", CosmeticSlot.BOOTS, "minecraft:netherite/lava_warrior");
+            "netherite/lava_warrior_boots", "Lava Warrior Boots", CosmeticSlot.BOOTS, "minecraft:netherite/lava_warrior");
 
     public static final Cosmetic NETHERITE_LIVING_VINES_HELMET = new Cosmetic(
-            "netherite/living_vines_helmet", "Netherite Living Vines Helmet", CosmeticSlot.HELMET, "minecraft:netherite/living_vines");
+            "netherite/living_vines_helmet", "Living Vines Helmet", CosmeticSlot.HELMET, "minecraft:netherite/living_vines");
     public static final Cosmetic NETHERITE_LIVING_VINES_CHESTPLATE = new Cosmetic(
-            "netherite/living_vines_chestplate", "Netherite Living Vines Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/living_vines");
+            "netherite/living_vines_chestplate", "Living Vines Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/living_vines");
     public static final Cosmetic NETHERITE_LIVING_VINES_LEGGINGS = new Cosmetic(
-            "netherite/living_vines_leggings", "Netherite Living Vines Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/living_vines");
+            "netherite/living_vines_leggings", "Living Vines Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/living_vines");
     public static final Cosmetic NETHERITE_LIVING_VINES_BOOTS = new Cosmetic(
-            "netherite/living_vines_boots", "Netherite Living Vines Boots", CosmeticSlot.BOOTS, "minecraft:netherite/living_vines");
+            "netherite/living_vines_boots", "Living Vines Boots", CosmeticSlot.BOOTS, "minecraft:netherite/living_vines");
 
     public static final Cosmetic NETHERITE_MAGNUS_HELMET = new Cosmetic(
-            "netherite/magnus_helmet", "Netherite Magnus Helmet", CosmeticSlot.HELMET, "minecraft:netherite/magnus");
+            "netherite/magnus_helmet", "Magnus Helmet", CosmeticSlot.HELMET, "minecraft:netherite/magnus");
     public static final Cosmetic NETHERITE_MAGNUS_CHESTPLATE = new Cosmetic(
-            "netherite/magnus_chestplate", "Netherite Magnus Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/magnus");
+            "netherite/magnus_chestplate", "Magnus Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/magnus");
     public static final Cosmetic NETHERITE_MAGNUS_LEGGINGS = new Cosmetic(
-            "netherite/magnus_leggings", "Netherite Magnus Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/magnus");
+            "netherite/magnus_leggings", "Magnus Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/magnus");
     public static final Cosmetic NETHERITE_MAGNUS_BOOTS = new Cosmetic(
-            "netherite/magnus_boots", "Netherite Magnus Boots", CosmeticSlot.BOOTS, "minecraft:netherite/magnus");
+            "netherite/magnus_boots", "Magnus Boots", CosmeticSlot.BOOTS, "minecraft:netherite/magnus");
 
     public static final Cosmetic NETHERITE_MCDONALDS_HELMET = new Cosmetic(
-            "netherite/mcdonalds_helmet", "Netherite Mcdonalds Helmet", CosmeticSlot.HELMET, "minecraft:netherite/mcdonalds");
+            "netherite/mcdonalds_helmet", "Mcdonalds Helmet", CosmeticSlot.HELMET, "minecraft:netherite/mcdonalds");
     public static final Cosmetic NETHERITE_MCDONALDS_CHESTPLATE = new Cosmetic(
-            "netherite/mcdonalds_chestplate", "Netherite Mcdonalds Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/mcdonalds");
+            "netherite/mcdonalds_chestplate", "Mcdonalds Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/mcdonalds");
     public static final Cosmetic NETHERITE_MCDONALDS_LEGGINGS = new Cosmetic(
-            "netherite/mcdonalds_leggings", "Netherite Mcdonalds Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/mcdonalds");
+            "netherite/mcdonalds_leggings", "Mcdonalds Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/mcdonalds");
     public static final Cosmetic NETHERITE_MCDONALDS_BOOTS = new Cosmetic(
-            "netherite/mcdonalds_boots", "Netherite Mcdonalds Boots", CosmeticSlot.BOOTS, "minecraft:netherite/mcdonalds");
+            "netherite/mcdonalds_boots", "Mcdonalds Boots", CosmeticSlot.BOOTS, "minecraft:netherite/mcdonalds");
 
     public static final Cosmetic NETHERITE_MEGA_FIRE_PROTECTION_HELMET = new Cosmetic(
-            "netherite/mega_fire_protection_helmet", "Netherite Mega Fire Protection Helmet", CosmeticSlot.HELMET, "minecraft:netherite/mega_fire_protection");
+            "netherite/mega_fire_protection_helmet", "Mega Fire Protection Helmet", CosmeticSlot.HELMET, "minecraft:netherite/mega_fire_protection");
     public static final Cosmetic NETHERITE_MEGA_FIRE_PROTECTION_CHESTPLATE = new Cosmetic(
-            "netherite/mega_fire_protection_chestplate", "Netherite Mega Fire Protection Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/mega_fire_protection");
+            "netherite/mega_fire_protection_chestplate", "Mega Fire Protection Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/mega_fire_protection");
     public static final Cosmetic NETHERITE_MEGA_FIRE_PROTECTION_LEGGINGS = new Cosmetic(
-            "netherite/mega_fire_protection_leggings", "Netherite Mega Fire Protection Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/mega_fire_protection");
+            "netherite/mega_fire_protection_leggings", "Mega Fire Protection Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/mega_fire_protection");
     public static final Cosmetic NETHERITE_MEGA_FIRE_PROTECTION_BOOTS = new Cosmetic(
-            "netherite/mega_fire_protection_boots", "Netherite Mega Fire Protection Boots", CosmeticSlot.BOOTS, "minecraft:netherite/mega_fire_protection");
+            "netherite/mega_fire_protection_boots", "Mega Fire Protection Boots", CosmeticSlot.BOOTS, "minecraft:netherite/mega_fire_protection");
 
     public static final Cosmetic NETHERITE_MEGA_X_FIRE_PROTECTION_HELMET = new Cosmetic(
-            "netherite/mega_x_fire_protection_helmet", "Netherite Mega X Fire Protection Helmet", CosmeticSlot.HELMET, "minecraft:netherite/mega_x_fire_protection");
+            "netherite/mega_x_fire_protection_helmet", "Mega X Fire Protection Helmet", CosmeticSlot.HELMET, "minecraft:netherite/mega_x_fire_protection");
     public static final Cosmetic NETHERITE_MEGA_X_FIRE_PROTECTION_CHESTPLATE = new Cosmetic(
-            "netherite/mega_x_fire_protection_chestplate", "Netherite Mega X Fire Protection Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/mega_x_fire_protection");
+            "netherite/mega_x_fire_protection_chestplate", "Mega X Fire Protection Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/mega_x_fire_protection");
     public static final Cosmetic NETHERITE_MEGA_X_FIRE_PROTECTION_LEGGINGS = new Cosmetic(
-            "netherite/mega_x_fire_protection_leggings", "Netherite Mega X Fire Protection Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/mega_x_fire_protection");
+            "netherite/mega_x_fire_protection_leggings", "Mega X Fire Protection Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/mega_x_fire_protection");
     public static final Cosmetic NETHERITE_MEGA_X_FIRE_PROTECTION_BOOTS = new Cosmetic(
-            "netherite/mega_x_fire_protection_boots", "Netherite Mega X Fire Protection Boots", CosmeticSlot.BOOTS, "minecraft:netherite/mega_x_fire_protection");
+            "netherite/mega_x_fire_protection_boots", "Mega X Fire Protection Boots", CosmeticSlot.BOOTS, "minecraft:netherite/mega_x_fire_protection");
 
     public static final Cosmetic NETHERITE_MEGA_X_PROTECTION_HELMET = new Cosmetic(
-            "netherite/mega_x_protection_helmet", "Netherite Mega X Protection Helmet", CosmeticSlot.HELMET, "minecraft:netherite/mega_x_protection");
+            "netherite/mega_x_protection_helmet", "Mega X Protection Helmet", CosmeticSlot.HELMET, "minecraft:netherite/mega_x_protection");
     public static final Cosmetic NETHERITE_MEGA_X_PROTECTION_CHESTPLATE = new Cosmetic(
-            "netherite/mega_x_protection_chestplate", "Netherite Mega X Protection Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/mega_x_protection");
+            "netherite/mega_x_protection_chestplate", "Mega X Protection Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/mega_x_protection");
     public static final Cosmetic NETHERITE_MEGA_X_PROTECTION_LEGGINGS = new Cosmetic(
-            "netherite/mega_x_protection_leggings", "Netherite Mega X Protection Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/mega_x_protection");
+            "netherite/mega_x_protection_leggings", "Mega X Protection Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/mega_x_protection");
     public static final Cosmetic NETHERITE_MEGA_X_PROTECTION_BOOTS = new Cosmetic(
-            "netherite/mega_x_protection_boots", "Netherite Mega X Protection Boots", CosmeticSlot.BOOTS, "minecraft:netherite/mega_x_protection");
+            "netherite/mega_x_protection_boots", "Mega X Protection Boots", CosmeticSlot.BOOTS, "minecraft:netherite/mega_x_protection");
 
     public static final Cosmetic NETHERITE_MEGA_X_HELMET = new Cosmetic(
-            "netherite/mega_x_helmet", "Netherite Mega X Helmet", CosmeticSlot.HELMET, "minecraft:netherite/mega_x");
+            "netherite/mega_x_helmet", "Mega X Helmet", CosmeticSlot.HELMET, "minecraft:netherite/mega_x");
     public static final Cosmetic NETHERITE_MEGA_X_CHESTPLATE = new Cosmetic(
-            "netherite/mega_x_chestplate", "Netherite Mega X Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/mega_x");
+            "netherite/mega_x_chestplate", "Mega X Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/mega_x");
     public static final Cosmetic NETHERITE_MEGA_X_LEGGINGS = new Cosmetic(
-            "netherite/mega_x_leggings", "Netherite Mega X Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/mega_x");
+            "netherite/mega_x_leggings", "Mega X Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/mega_x");
     public static final Cosmetic NETHERITE_MEGA_X_BOOTS = new Cosmetic(
-            "netherite/mega_x_boots", "Netherite Mega X Boots", CosmeticSlot.BOOTS, "minecraft:netherite/mega_x");
+            "netherite/mega_x_boots", "Mega X Boots", CosmeticSlot.BOOTS, "minecraft:netherite/mega_x");
 
     public static final Cosmetic NETHERITE_MEGA_HELMET = new Cosmetic(
-            "netherite/mega_helmet", "Netherite Mega Helmet", CosmeticSlot.HELMET, "minecraft:netherite/mega");
+            "netherite/mega_helmet", "Mega Helmet", CosmeticSlot.HELMET, "minecraft:netherite/mega");
     public static final Cosmetic NETHERITE_MEGA_CHESTPLATE = new Cosmetic(
-            "netherite/mega_chestplate", "Netherite Mega Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/mega");
+            "netherite/mega_chestplate", "Mega Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/mega");
     public static final Cosmetic NETHERITE_MEGA_LEGGINGS = new Cosmetic(
-            "netherite/mega_leggings", "Netherite Mega Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/mega");
+            "netherite/mega_leggings", "Mega Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/mega");
     public static final Cosmetic NETHERITE_MEGA_BOOTS = new Cosmetic(
-            "netherite/mega_boots", "Netherite Mega Boots", CosmeticSlot.BOOTS, "minecraft:netherite/mega");
+            "netherite/mega_boots", "Mega Boots", CosmeticSlot.BOOTS, "minecraft:netherite/mega");
 
     public static final Cosmetic NETHERITE_MYSTERY_HELMET = new Cosmetic(
             "netherite/mystery_helmet", "Netherite Mystery Helmet", CosmeticSlot.HELMET, "minecraft:netherite/mystery");
@@ -2125,22 +2125,22 @@ public class Cosmetics {
             "netherite/netherwalker_boots", "Netherite Netherwalker Boots", CosmeticSlot.BOOTS, "minecraft:netherite/netherwalker");
 
     public static final Cosmetic NETHERITE_NIMBLE_TURTLE_HELMET = new Cosmetic(
-            "netherite/nimble_turtle_helmet", "Netherite Nimble Turtle Helmet", CosmeticSlot.HELMET, "minecraft:netherite/nimble_turtle");
+            "netherite/nimble_turtle_helmet", "Nimble Turtle Helmet", CosmeticSlot.HELMET, "minecraft:netherite/nimble_turtle");
     public static final Cosmetic NETHERITE_NIMBLE_TURTLE_CHESTPLATE = new Cosmetic(
-            "netherite/nimble_turtle_chestplate", "Netherite Nimble Turtle Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/nimble_turtle");
+            "netherite/nimble_turtle_chestplate", "Nimble Turtle Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/nimble_turtle");
     public static final Cosmetic NETHERITE_NIMBLE_TURTLE_LEGGINGS = new Cosmetic(
-            "netherite/nimble_turtle_leggings", "Netherite Nimble Turtle Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/nimble_turtle");
+            "netherite/nimble_turtle_leggings", "Nimble Turtle Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/nimble_turtle");
     public static final Cosmetic NETHERITE_NIMBLE_TURTLE_BOOTS = new Cosmetic(
-            "netherite/nimble_turtle_boots", "Netherite Nimble Turtle Boots", CosmeticSlot.BOOTS, "minecraft:netherite/nimble_turtle");
+            "netherite/nimble_turtle_boots", "Nimble Turtle Boots", CosmeticSlot.BOOTS, "minecraft:netherite/nimble_turtle");
 
     public static final Cosmetic NETHERITE_NINJA_HELMET = new Cosmetic(
-            "netherite/ninja_helmet", "Netherite Ninja Helmet", CosmeticSlot.HELMET, "minecraft:netherite/ninja");
+            "netherite/ninja_helmet", "Ninja Helmet", CosmeticSlot.HELMET, "minecraft:netherite/ninja");
     public static final Cosmetic NETHERITE_NINJA_CHESTPLATE = new Cosmetic(
-            "netherite/ninja_chestplate", "Netherite Ninja Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/ninja");
+            "netherite/ninja_chestplate", "Ninja Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/ninja");
     public static final Cosmetic NETHERITE_NINJA_LEGGINGS = new Cosmetic(
-            "netherite/ninja_leggings", "Netherite Ninja Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/ninja");
+            "netherite/ninja_leggings", "Ninja Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/ninja");
     public static final Cosmetic NETHERITE_NINJA_BOOTS = new Cosmetic(
-            "netherite/ninja_boots", "Netherite Ninja Boots", CosmeticSlot.BOOTS, "minecraft:netherite/ninja");
+            "netherite/ninja_boots", "Ninja Boots", CosmeticSlot.BOOTS, "minecraft:netherite/ninja");
 
     public static final Cosmetic NETHERITE_OCELOT_HELMET = new Cosmetic(
             "netherite/ocelot_helmet", "Netherite Ocelot Helmet", CosmeticSlot.HELMET, "minecraft:netherite/ocelot");
@@ -2179,22 +2179,22 @@ public class Cosmetics {
             "netherite/pama_boots", "Netherite Pama Boots", CosmeticSlot.BOOTS, "minecraft:netherite/pama");
 
     public static final Cosmetic NETHERITE_PETRA_HELMET = new Cosmetic(
-            "netherite/petra_helmet", "Netherite Petra Helmet", CosmeticSlot.HELMET, "minecraft:netherite/petra");
+            "netherite/petra_helmet", "Petra Helmet", CosmeticSlot.HELMET, "minecraft:netherite/petra");
     public static final Cosmetic NETHERITE_PETRA_CHESTPLATE = new Cosmetic(
-            "netherite/petra_chestplate", "Netherite Petra Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/petra");
+            "netherite/petra_chestplate", "Petra Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/petra");
     public static final Cosmetic NETHERITE_PETRA_LEGGINGS = new Cosmetic(
-            "netherite/petra_leggings", "Netherite Petra Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/petra");
+            "netherite/petra_leggings", "Petra Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/petra");
     public static final Cosmetic NETHERITE_PETRA_BOOTS = new Cosmetic(
-            "netherite/petra_boots", "Netherite Petra Boots", CosmeticSlot.BOOTS, "minecraft:netherite/petra");
+            "netherite/petra_boots", "Petra Boots", CosmeticSlot.BOOTS, "minecraft:netherite/petra");
 
     public static final Cosmetic NETHERITE_PHANTOM_RANGER_HELMET = new Cosmetic(
-            "netherite/phantom_ranger_helmet", "Netherite Phantom Ranger Helmet", CosmeticSlot.HELMET, "minecraft:netherite/phantom_ranger");
+            "netherite/phantom_ranger_helmet", "Phantom Ranger Helmet", CosmeticSlot.HELMET, "minecraft:netherite/phantom_ranger");
     public static final Cosmetic NETHERITE_PHANTOM_RANGER_CHESTPLATE = new Cosmetic(
-            "netherite/phantom_ranger_chestplate", "Netherite Phantom Ranger Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/phantom_ranger");
+            "netherite/phantom_ranger_chestplate", "Phantom Ranger Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/phantom_ranger");
     public static final Cosmetic NETHERITE_PHANTOM_RANGER_LEGGINGS = new Cosmetic(
-            "netherite/phantom_ranger_leggings", "Netherite Phantom Ranger Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/phantom_ranger");
+            "netherite/phantom_ranger_leggings", "Phantom Ranger Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/phantom_ranger");
     public static final Cosmetic NETHERITE_PHANTOM_RANGER_BOOTS = new Cosmetic(
-            "netherite/phantom_ranger_boots", "Netherite Phantom Ranger Boots", CosmeticSlot.BOOTS, "minecraft:netherite/phantom_ranger");
+            "netherite/phantom_ranger_boots", "Phantom Ranger Boots", CosmeticSlot.BOOTS, "minecraft:netherite/phantom_ranger");
 
     public static final Cosmetic NETHERITE_PHANTOM_HELMET = new Cosmetic(
             "netherite/phantom_helmet", "Netherite Phantom Helmet", CosmeticSlot.HELMET, "minecraft:netherite/phantom");
@@ -2224,31 +2224,31 @@ public class Cosmetics {
             "netherite/plate_boots", "Netherite Plate Boots", CosmeticSlot.BOOTS, "minecraft:netherite/plate");
 
     public static final Cosmetic NETHERITE_POISONOUS_POTATO_HELMET = new Cosmetic(
-            "netherite/poisonous_potato_helmet", "Netherite Poisonous Potato Helmet", CosmeticSlot.HELMET, "minecraft:netherite/poisonous_potato");
+            "netherite/poisonous_potato_helmet", "Poisonous Potato Helmet", CosmeticSlot.HELMET, "minecraft:netherite/poisonous_potato");
     public static final Cosmetic NETHERITE_POISONOUS_POTATO_CHESTPLATE = new Cosmetic(
-            "netherite/poisonous_potato_chestplate", "Netherite Poisonous Potato Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/poisonous_potato");
+            "netherite/poisonous_potato_chestplate", "Poisonous Potato Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/poisonous_potato");
     public static final Cosmetic NETHERITE_POISONOUS_POTATO_LEGGINGS = new Cosmetic(
-            "netherite/poisonous_potato_leggings", "Netherite Poisonous Potato Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/poisonous_potato");
+            "netherite/poisonous_potato_leggings", "Poisonous Potato Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/poisonous_potato");
     public static final Cosmetic NETHERITE_POISONOUS_POTATO_BOOTS = new Cosmetic(
-            "netherite/poisonous_potato_boots", "Netherite Poisonous Potato Boots", CosmeticSlot.BOOTS, "minecraft:netherite/poisonous_potato");
+            "netherite/poisonous_potato_boots", "Poisonous Potato Boots", CosmeticSlot.BOOTS, "minecraft:netherite/poisonous_potato");
 
     public static final Cosmetic NETHERITE_PORTAL_BUSTER_HELMET = new Cosmetic(
-            "netherite/portal_buster_helmet", "Netherite Portal Buster Helmet", CosmeticSlot.HELMET, "minecraft:netherite/portal_buster");
+            "netherite/portal_buster_helmet", "Portal Buster Helmet", CosmeticSlot.HELMET, "minecraft:netherite/portal_buster");
     public static final Cosmetic NETHERITE_PORTAL_BUSTER_CHESTPLATE = new Cosmetic(
-            "netherite/portal_buster_chestplate", "Netherite Portal Buster Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/portal_buster");
+            "netherite/portal_buster_chestplate", "Portal Buster Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/portal_buster");
     public static final Cosmetic NETHERITE_PORTAL_BUSTER_LEGGINGS = new Cosmetic(
-            "netherite/portal_buster_leggings", "Netherite Portal Buster Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/portal_buster");
+            "netherite/portal_buster_leggings", "Portal Buster Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/portal_buster");
     public static final Cosmetic NETHERITE_PORTAL_BUSTER_BOOTS = new Cosmetic(
-            "netherite/portal_buster_boots", "Netherite Portal Buster Boots", CosmeticSlot.BOOTS, "minecraft:netherite/portal_buster");
+            "netherite/portal_buster_boots", "Portal Buster Boots", CosmeticSlot.BOOTS, "minecraft:netherite/portal_buster");
 
     public static final Cosmetic NETHERITE_PRISMARINE_HELMET = new Cosmetic(
-            "netherite/prismarine_helmet", "Netherite Prismarine Helmet", CosmeticSlot.HELMET, "minecraft:netherite/prismarine");
+            "netherite/prismarine_helmet", "Prismarine Helmet", CosmeticSlot.HELMET, "minecraft:netherite/prismarine");
     public static final Cosmetic NETHERITE_PRISMARINE_CHESTPLATE = new Cosmetic(
-            "netherite/prismarine_chestplate", "Netherite Prismarine Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/prismarine");
+            "netherite/prismarine_chestplate", "Prismarine Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/prismarine");
     public static final Cosmetic NETHERITE_PRISMARINE_LEGGINGS = new Cosmetic(
-            "netherite/prismarine_leggings", "Netherite Prismarine Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/prismarine");
+            "netherite/prismarine_leggings", "Prismarine Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/prismarine");
     public static final Cosmetic NETHERITE_PRISMARINE_BOOTS = new Cosmetic(
-            "netherite/prismarine_boots", "Netherite Prismarine Boots", CosmeticSlot.BOOTS, "minecraft:netherite/prismarine");
+            "netherite/prismarine_boots", "Prismarine Boots", CosmeticSlot.BOOTS, "minecraft:netherite/prismarine");
 
     public static final Cosmetic NETHERITE_PROUD_HELMET = new Cosmetic(
             "netherite/proud_helmet", "Netherite Proud Helmet", CosmeticSlot.HELMET, "minecraft:netherite/proud");
@@ -2260,31 +2260,31 @@ public class Cosmetics {
             "netherite/proud_boots", "Netherite Proud Boots", CosmeticSlot.BOOTS, "minecraft:netherite/proud");
 
     public static final Cosmetic NETHERITE_RED_RASCAL_HELMET = new Cosmetic(
-            "netherite/red_rascal_helmet", "Netherite Red Rascal Helmet", CosmeticSlot.HELMET, "minecraft:netherite/red_rascal");
+            "netherite/red_rascal_helmet", "Red Rascal Helmet", CosmeticSlot.HELMET, "minecraft:netherite/red_rascal");
     public static final Cosmetic NETHERITE_RED_RASCAL_CHESTPLATE = new Cosmetic(
-            "netherite/red_rascal_chestplate", "Netherite Red Rascal Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/red_rascal");
+            "netherite/red_rascal_chestplate", "Red Rascal Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/red_rascal");
     public static final Cosmetic NETHERITE_RED_RASCAL_LEGGINGS = new Cosmetic(
-            "netherite/red_rascal_leggings", "Netherite Red Rascal Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/red_rascal");
+            "netherite/red_rascal_leggings", "Red Rascal Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/red_rascal");
     public static final Cosmetic NETHERITE_RED_RASCAL_BOOTS = new Cosmetic(
-            "netherite/red_rascal_boots", "Netherite Red Rascal Boots", CosmeticSlot.BOOTS, "minecraft:netherite/red_rascal");
+            "netherite/red_rascal_boots", "Red Rascal Boots", CosmeticSlot.BOOTS, "minecraft:netherite/red_rascal");
 
     public static final Cosmetic NETHERITE_REDSTONE_RIOT_HELMET = new Cosmetic(
-            "netherite/redstone_riot_helmet", "Netherite Redstone Riot Helmet", CosmeticSlot.HELMET, "minecraft:netherite/redstone_riot");
+            "netherite/redstone_riot_helmet", "Redstone Riot Helmet", CosmeticSlot.HELMET, "minecraft:netherite/redstone_riot");
     public static final Cosmetic NETHERITE_REDSTONE_RIOT_CHESTPLATE = new Cosmetic(
-            "netherite/redstone_riot_chestplate", "Netherite Redstone Riot Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/redstone_riot");
+            "netherite/redstone_riot_chestplate", "Redstone Riot Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/redstone_riot");
     public static final Cosmetic NETHERITE_REDSTONE_RIOT_LEGGINGS = new Cosmetic(
-            "netherite/redstone_riot_leggings", "Netherite Redstone Riot Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/redstone_riot");
+            "netherite/redstone_riot_leggings", "Redstone Riot Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/redstone_riot");
     public static final Cosmetic NETHERITE_REDSTONE_RIOT_BOOTS = new Cosmetic(
-            "netherite/redstone_riot_boots", "Netherite Redstone Riot Boots", CosmeticSlot.BOOTS, "minecraft:netherite/redstone_riot");
+            "netherite/redstone_riot_boots", "Redstone Riot Boots", CosmeticSlot.BOOTS, "minecraft:netherite/redstone_riot");
 
     public static final Cosmetic NETHERITE_REDSTONIA_HELMET = new Cosmetic(
-            "netherite/redstonia_helmet", "Netherite Redstonia Helmet", CosmeticSlot.HELMET, "minecraft:netherite/redstonia");
+            "netherite/redstonia_helmet", "Redstonia Helmet", CosmeticSlot.HELMET, "minecraft:netherite/redstonia");
     public static final Cosmetic NETHERITE_REDSTONIA_CHESTPLATE = new Cosmetic(
-            "netherite/redstonia_chestplate", "Netherite Redstonia Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/redstonia");
+            "netherite/redstonia_chestplate", "Redstonia Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/redstonia");
     public static final Cosmetic NETHERITE_REDSTONIA_LEGGINGS = new Cosmetic(
-            "netherite/redstonia_leggings", "Netherite Redstonia Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/redstonia");
+            "netherite/redstonia_leggings", "Redstonia Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/redstonia");
     public static final Cosmetic NETHERITE_REDSTONIA_BOOTS = new Cosmetic(
-            "netherite/redstonia_boots", "Netherite Redstonia Boots", CosmeticSlot.BOOTS, "minecraft:netherite/redstonia");
+            "netherite/redstonia_boots", "Redstonia Boots", CosmeticSlot.BOOTS, "minecraft:netherite/redstonia");
 
     public static final Cosmetic NETHERITE_RENEGADE_HELMET = new Cosmetic(
             "netherite/renegade_helmet", "Netherite Renegade Helmet", CosmeticSlot.HELMET, "minecraft:netherite/renegade");
@@ -2296,40 +2296,40 @@ public class Cosmetics {
             "netherite/renegade_boots", "Netherite Renegade Boots", CosmeticSlot.BOOTS, "minecraft:netherite/renegade");
 
     public static final Cosmetic NETHERITE_RGB_RANGER_HELMET = new Cosmetic(
-            "netherite/rgb_ranger_helmet", "Netherite Rgb Ranger Helmet", CosmeticSlot.HELMET, "minecraft:netherite/rgb_ranger");
+            "netherite/rgb_ranger_helmet", "Rgb Ranger Helmet", CosmeticSlot.HELMET, "minecraft:netherite/rgb_ranger");
     public static final Cosmetic NETHERITE_RGB_RANGER_CHESTPLATE = new Cosmetic(
-            "netherite/rgb_ranger_chestplate", "Netherite Rgb Ranger Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/rgb_ranger");
+            "netherite/rgb_ranger_chestplate", "Rgb Ranger Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/rgb_ranger");
     public static final Cosmetic NETHERITE_RGB_RANGER_LEGGINGS = new Cosmetic(
-            "netherite/rgb_ranger_leggings", "Netherite Rgb Ranger Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/rgb_ranger");
+            "netherite/rgb_ranger_leggings", "Rgb Ranger Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/rgb_ranger");
     public static final Cosmetic NETHERITE_RGB_RANGER_BOOTS = new Cosmetic(
-            "netherite/rgb_ranger_boots", "Netherite Rgb Ranger Boots", CosmeticSlot.BOOTS, "minecraft:netherite/rgb_ranger");
+            "netherite/rgb_ranger_boots", "Rgb Ranger Boots", CosmeticSlot.BOOTS, "minecraft:netherite/rgb_ranger");
 
     public static final Cosmetic NETHERITE_ROBOT_HELMET = new Cosmetic(
-            "netherite/robot_helmet", "Netherite Robot Helmet", CosmeticSlot.HELMET, "minecraft:netherite/robot");
+            "netherite/robot_helmet", "Robot Helmet", CosmeticSlot.HELMET, "minecraft:netherite/robot");
     public static final Cosmetic NETHERITE_ROBOT_CHESTPLATE = new Cosmetic(
-            "netherite/robot_chestplate", "Netherite Robot Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/robot");
+            "netherite/robot_chestplate", "Robot Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/robot");
     public static final Cosmetic NETHERITE_ROBOT_LEGGINGS = new Cosmetic(
-            "netherite/robot_leggings", "Netherite Robot Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/robot");
+            "netherite/robot_leggings", "Robot Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/robot");
     public static final Cosmetic NETHERITE_ROBOT_BOOTS = new Cosmetic(
-            "netherite/robot_boots", "Netherite Robot Boots", CosmeticSlot.BOOTS, "minecraft:netherite/robot");
+            "netherite/robot_boots", "Robot Boots", CosmeticSlot.BOOTS, "minecraft:netherite/robot");
 
     public static final Cosmetic NETHERITE_ROMEO_HELMET = new Cosmetic(
-            "netherite/romeo_helmet", "Netherite Romeo Helmet", CosmeticSlot.HELMET, "minecraft:netherite/romeo");
+            "netherite/romeo_helmet", "Romeo Helmet", CosmeticSlot.HELMET, "minecraft:netherite/romeo");
     public static final Cosmetic NETHERITE_ROMEO_CHESTPLATE = new Cosmetic(
-            "netherite/romeo_chestplate", "Netherite Romeo Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/romeo");
+            "netherite/romeo_chestplate", "Romeo Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/romeo");
     public static final Cosmetic NETHERITE_ROMEO_LEGGINGS = new Cosmetic(
-            "netherite/romeo_leggings", "Netherite Romeo Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/romeo");
+            "netherite/romeo_leggings", "Romeo Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/romeo");
     public static final Cosmetic NETHERITE_ROMEO_BOOTS = new Cosmetic(
-            "netherite/romeo_boots", "Netherite Romeo Boots", CosmeticSlot.BOOTS, "minecraft:netherite/romeo");
+            "netherite/romeo_boots", "Romeo Boots", CosmeticSlot.BOOTS, "minecraft:netherite/romeo");
 
     public static final Cosmetic NETHERITE_ROOT_ROT_HELMET = new Cosmetic(
-            "netherite/root_rot_helmet", "Netherite Root Rot Helmet", CosmeticSlot.HELMET, "minecraft:netherite/root_rot");
+            "netherite/root_rot_helmet", "Root Rot Helmet", CosmeticSlot.HELMET, "minecraft:netherite/root_rot");
     public static final Cosmetic NETHERITE_ROOT_ROT_CHESTPLATE = new Cosmetic(
-            "netherite/root_rot_chestplate", "Netherite Root Rot Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/root_rot");
+            "netherite/root_rot_chestplate", "Root Rot Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/root_rot");
     public static final Cosmetic NETHERITE_ROOT_ROT_LEGGINGS = new Cosmetic(
-            "netherite/root_rot_leggings", "Netherite Root Rot Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/root_rot");
+            "netherite/root_rot_leggings", "Root Rot Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/root_rot");
     public static final Cosmetic NETHERITE_ROOT_ROT_BOOTS = new Cosmetic(
-            "netherite/root_rot_boots", "Netherite Root Rot Boots", CosmeticSlot.BOOTS, "minecraft:netherite/root_rot");
+            "netherite/root_rot_boots", "Root Rot Boots", CosmeticSlot.BOOTS, "minecraft:netherite/root_rot");
 
     public static final Cosmetic NETHERITE_ROYAL_HELMET = new Cosmetic(
             "netherite/royal_helmet", "Netherite Royal Helmet", CosmeticSlot.HELMET, "minecraft:netherite/royal");
@@ -2350,67 +2350,67 @@ public class Cosmetics {
             "netherite/ruby_boots", "Netherite Ruby Boots", CosmeticSlot.BOOTS, "minecraft:netherite/ruby");
 
     public static final Cosmetic NETHERITE_RUGGED_CLIMBING_GEAR_HELMET = new Cosmetic(
-            "netherite/rugged_climbing_gear_helmet", "Netherite Rugged Climbing Gear Helmet", CosmeticSlot.HELMET, "minecraft:netherite/rugged_climbing_gear");
+            "netherite/rugged_climbing_gear_helmet", "Rugged Climbing Gear Helmet", CosmeticSlot.HELMET, "minecraft:netherite/rugged_climbing_gear");
     public static final Cosmetic NETHERITE_RUGGED_CLIMBING_GEAR_CHESTPLATE = new Cosmetic(
-            "netherite/rugged_climbing_gear_chestplate", "Netherite Rugged Climbing Gear Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/rugged_climbing_gear");
+            "netherite/rugged_climbing_gear_chestplate", "Rugged Climbing Gear Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/rugged_climbing_gear");
     public static final Cosmetic NETHERITE_RUGGED_CLIMBING_GEAR_LEGGINGS = new Cosmetic(
-            "netherite/rugged_climbing_gear_leggings", "Netherite Rugged Climbing Gear Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/rugged_climbing_gear");
+            "netherite/rugged_climbing_gear_leggings", "Rugged Climbing Gear Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/rugged_climbing_gear");
     public static final Cosmetic NETHERITE_RUGGED_CLIMBING_GEAR_BOOTS = new Cosmetic(
-            "netherite/rugged_climbing_gear_boots", "Netherite Rugged Climbing Gear Boots", CosmeticSlot.BOOTS, "minecraft:netherite/rugged_climbing_gear");
+            "netherite/rugged_climbing_gear_boots", "Rugged Climbing Gear Boots", CosmeticSlot.BOOTS, "minecraft:netherite/rugged_climbing_gear");
 
     public static final Cosmetic NETHERITE_SAKURA_HELMET = new Cosmetic(
-            "netherite/sakura_helmet", "Netherite Sakura Helmet", CosmeticSlot.HELMET, "minecraft:netherite/sakura");
+            "netherite/sakura_helmet", "Sakura Helmet", CosmeticSlot.HELMET, "minecraft:netherite/sakura");
     public static final Cosmetic NETHERITE_SAKURA_CHESTPLATE = new Cosmetic(
-            "netherite/sakura_chestplate", "Netherite Sakura Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/sakura");
+            "netherite/sakura_chestplate", "Sakura Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/sakura");
     public static final Cosmetic NETHERITE_SAKURA_LEGGINGS = new Cosmetic(
-            "netherite/sakura_leggings", "Netherite Sakura Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/sakura");
+            "netherite/sakura_leggings", "Sakura Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/sakura");
     public static final Cosmetic NETHERITE_SAKURA_BOOTS = new Cosmetic(
-            "netherite/sakura_boots", "Netherite Sakura Boots", CosmeticSlot.BOOTS, "minecraft:netherite/sakura");
+            "netherite/sakura_boots", "Sakura Boots", CosmeticSlot.BOOTS, "minecraft:netherite/sakura");
 
     public static final Cosmetic NETHERITE_SCARECROW_HELMET = new Cosmetic(
-            "netherite/scarecrow_helmet", "Netherite Scarecrow Helmet", CosmeticSlot.HELMET, "minecraft:netherite/scarecrow");
+            "netherite/scarecrow_helmet", "Scarecrow Helmet", CosmeticSlot.HELMET, "minecraft:netherite/scarecrow");
     public static final Cosmetic NETHERITE_SCARECROW_CHESTPLATE = new Cosmetic(
-            "netherite/scarecrow_chestplate", "Netherite Scarecrow Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/scarecrow");
+            "netherite/scarecrow_chestplate", "Scarecrow Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/scarecrow");
     public static final Cosmetic NETHERITE_SCARECROW_LEGGINGS = new Cosmetic(
-            "netherite/scarecrow_leggings", "Netherite Scarecrow Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/scarecrow");
+            "netherite/scarecrow_leggings", "Scarecrow Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/scarecrow");
     public static final Cosmetic NETHERITE_SCARECROW_BOOTS = new Cosmetic(
-            "netherite/scarecrow_boots", "Netherite Scarecrow Boots", CosmeticSlot.BOOTS, "minecraft:netherite/scarecrow");
+            "netherite/scarecrow_boots", "Scarecrow Boots", CosmeticSlot.BOOTS, "minecraft:netherite/scarecrow");
 
     public static final Cosmetic NETHERITE_SCARLET_HELMET = new Cosmetic(
-            "netherite/scarlet_helmet", "Netherite Scarlet Helmet", CosmeticSlot.HELMET, "minecraft:netherite/scarlet");
+            "netherite/scarlet_helmet", "Scarlet Helmet", CosmeticSlot.HELMET, "minecraft:netherite/scarlet");
     public static final Cosmetic NETHERITE_SCARLET_CHESTPLATE = new Cosmetic(
-            "netherite/scarlet_chestplate", "Netherite Scarlet Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/scarlet");
+            "netherite/scarlet_chestplate", "Scarlet Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/scarlet");
     public static final Cosmetic NETHERITE_SCARLET_LEGGINGS = new Cosmetic(
-            "netherite/scarlet_leggings", "Netherite Scarlet Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/scarlet");
+            "netherite/scarlet_leggings", "Scarlet Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/scarlet");
     public static final Cosmetic NETHERITE_SCARLET_BOOTS = new Cosmetic(
-            "netherite/scarlet_boots", "Netherite Scarlet Boots", CosmeticSlot.BOOTS, "minecraft:netherite/scarlet");
+            "netherite/scarlet_boots", "Scarlet Boots", CosmeticSlot.BOOTS, "minecraft:netherite/scarlet");
 
     public static final Cosmetic NETHERITE_SHADOW_WALKER_HELMET = new Cosmetic(
-            "netherite/shadow_walker_helmet", "Netherite Shadow Walker Helmet", CosmeticSlot.HELMET, "minecraft:netherite/shadow_walker");
+            "netherite/shadow_walker_helmet", "Shadow Walker Helmet", CosmeticSlot.HELMET, "minecraft:netherite/shadow_walker");
     public static final Cosmetic NETHERITE_SHADOW_WALKER_CHESTPLATE = new Cosmetic(
-            "netherite/shadow_walker_chestplate", "Netherite Shadow Walker Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/shadow_walker");
+            "netherite/shadow_walker_chestplate", "Shadow Walker Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/shadow_walker");
     public static final Cosmetic NETHERITE_SHADOW_WALKER_LEGGINGS = new Cosmetic(
-            "netherite/shadow_walker_leggings", "Netherite Shadow Walker Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/shadow_walker");
+            "netherite/shadow_walker_leggings", "Shadow Walker Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/shadow_walker");
     public static final Cosmetic NETHERITE_SHADOW_WALKER_BOOTS = new Cosmetic(
-            "netherite/shadow_walker_boots", "Netherite Shadow Walker Boots", CosmeticSlot.BOOTS, "minecraft:netherite/shadow_walker");
+            "netherite/shadow_walker_boots", "Shadow Walker Boots", CosmeticSlot.BOOTS, "minecraft:netherite/shadow_walker");
 
     public static final Cosmetic NETHERITE_SHAMAN_HELMET = new Cosmetic(
-            "netherite/shaman_helmet", "Netherite Shaman Helmet", CosmeticSlot.HELMET, "minecraft:netherite/shaman");
+            "netherite/shaman_helmet", "Shaman Helmet", CosmeticSlot.HELMET, "minecraft:netherite/shaman");
     public static final Cosmetic NETHERITE_SHAMAN_CHESTPLATE = new Cosmetic(
-            "netherite/shaman_chestplate", "Netherite Shaman Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/shaman");
+            "netherite/shaman_chestplate", "Shaman Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/shaman");
     public static final Cosmetic NETHERITE_SHAMAN_LEGGINGS = new Cosmetic(
-            "netherite/shaman_leggings", "Netherite Shaman Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/shaman");
+            "netherite/shaman_leggings", "Shaman Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/shaman");
     public static final Cosmetic NETHERITE_SHAMAN_BOOTS = new Cosmetic(
-            "netherite/shaman_boots", "Netherite Shaman Boots", CosmeticSlot.BOOTS, "minecraft:netherite/shaman");
+            "netherite/shaman_boots", "Shaman Boots", CosmeticSlot.BOOTS, "minecraft:netherite/shaman");
 
     public static final Cosmetic NETHERITE_SHIELD_OF_INFINITY_HELMET = new Cosmetic(
-            "netherite/shield_of_infinity_helmet", "Netherite Shield Of Infinity Helmet", CosmeticSlot.HELMET, "minecraft:netherite/shield_of_infinity");
+            "netherite/shield_of_infinity_helmet", "Shield Of Infinity Helmet", CosmeticSlot.HELMET, "minecraft:netherite/shield_of_infinity");
     public static final Cosmetic NETHERITE_SHIELD_OF_INFINITY_CHESTPLATE = new Cosmetic(
-            "netherite/shield_of_infinity_chestplate", "Netherite Shield Of Infinity Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/shield_of_infinity");
+            "netherite/shield_of_infinity_chestplate", "Shield Of Infinity Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/shield_of_infinity");
     public static final Cosmetic NETHERITE_SHIELD_OF_INFINITY_LEGGINGS = new Cosmetic(
-            "netherite/shield_of_infinity_leggings", "Netherite Shield Of Infinity Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/shield_of_infinity");
+            "netherite/shield_of_infinity_leggings", "Shield Of Infinity Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/shield_of_infinity");
     public static final Cosmetic NETHERITE_SHIELD_OF_INFINITY_BOOTS = new Cosmetic(
-            "netherite/shield_of_infinity_boots", "Netherite Shield Of Infinity Boots", CosmeticSlot.BOOTS, "minecraft:netherite/shield_of_infinity");
+            "netherite/shield_of_infinity_boots", "Shield Of Infinity Boots", CosmeticSlot.BOOTS, "minecraft:netherite/shield_of_infinity");
 
     public static final Cosmetic NETHERITE_SHOGUN_HELMET = new Cosmetic(
             "netherite/shogun_helmet", "Netherite Shogun Helmet", CosmeticSlot.HELMET, "minecraft:netherite/shogun");
@@ -2422,67 +2422,67 @@ public class Cosmetics {
             "netherite/shogun_boots", "Netherite Shogun Boots", CosmeticSlot.BOOTS, "minecraft:netherite/shogun");
 
     public static final Cosmetic NETHERITE_SHULKER_HELMET = new Cosmetic(
-            "netherite/shulker_helmet", "Netherite Shulker Helmet", CosmeticSlot.HELMET, "minecraft:netherite/shulker");
+            "netherite/shulker_helmet", "Shulker Helmet", CosmeticSlot.HELMET, "minecraft:netherite/shulker");
     public static final Cosmetic NETHERITE_SHULKER_CHESTPLATE = new Cosmetic(
-            "netherite/shulker_chestplate", "Netherite Shulker Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/shulker");
+            "netherite/shulker_chestplate", "Shulker Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/shulker");
     public static final Cosmetic NETHERITE_SHULKER_LEGGINGS = new Cosmetic(
-            "netherite/shulker_leggings", "Netherite Shulker Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/shulker");
+            "netherite/shulker_leggings", "Shulker Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/shulker");
     public static final Cosmetic NETHERITE_SHULKER_BOOTS = new Cosmetic(
-            "netherite/shulker_boots", "Netherite Shulker Boots", CosmeticSlot.BOOTS, "minecraft:netherite/shulker");
+            "netherite/shulker_boots", "Shulker Boots", CosmeticSlot.BOOTS, "minecraft:netherite/shulker");
 
     public static final Cosmetic NETHERITE_SKELLY_HELMET = new Cosmetic(
-            "netherite/skelly_helmet", "Netherite Skelly Helmet", CosmeticSlot.HELMET, "minecraft:netherite/skelly");
+            "netherite/skelly_helmet", "Skelly Helmet", CosmeticSlot.HELMET, "minecraft:netherite/skelly");
     public static final Cosmetic NETHERITE_SKELLY_CHESTPLATE = new Cosmetic(
-            "netherite/skelly_chestplate", "Netherite Skelly Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/skelly");
+            "netherite/skelly_chestplate", "Skelly Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/skelly");
     public static final Cosmetic NETHERITE_SKELLY_LEGGINGS = new Cosmetic(
-            "netherite/skelly_leggings", "Netherite Skelly Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/skelly");
+            "netherite/skelly_leggings", "Skelly Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/skelly");
     public static final Cosmetic NETHERITE_SKELLY_BOOTS = new Cosmetic(
-            "netherite/skelly_boots", "Netherite Skelly Boots", CosmeticSlot.BOOTS, "minecraft:netherite/skelly");
+            "netherite/skelly_boots", "Skelly Boots", CosmeticSlot.BOOTS, "minecraft:netherite/skelly");
 
     public static final Cosmetic NETHERITE_SNOW_HELMET = new Cosmetic(
-            "netherite/snow_helmet", "Netherite Snow Helmet", CosmeticSlot.HELMET, "minecraft:netherite/snow");
+            "netherite/snow_helmet", "Snow Helmet", CosmeticSlot.HELMET, "minecraft:netherite/snow");
     public static final Cosmetic NETHERITE_SNOW_CHESTPLATE = new Cosmetic(
-            "netherite/snow_chestplate", "Netherite Snow Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/snow");
+            "netherite/snow_chestplate", "Snow Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/snow");
     public static final Cosmetic NETHERITE_SNOW_LEGGINGS = new Cosmetic(
-            "netherite/snow_leggings", "Netherite Snow Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/snow");
+            "netherite/snow_leggings", "Snow Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/snow");
     public static final Cosmetic NETHERITE_SNOW_BOOTS = new Cosmetic(
-            "netherite/snow_boots", "Netherite Snow Boots", CosmeticSlot.BOOTS, "minecraft:netherite/snow");
+            "netherite/snow_boots", "Snow Boots", CosmeticSlot.BOOTS, "minecraft:netherite/snow");
 
     public static final Cosmetic NETHERITE_SOREN_HELMET = new Cosmetic(
-            "netherite/soren_helmet", "Netherite Soren Helmet", CosmeticSlot.HELMET, "minecraft:netherite/soren");
+            "netherite/soren_helmet", "Soren Helmet", CosmeticSlot.HELMET, "minecraft:netherite/soren");
     public static final Cosmetic NETHERITE_SOREN_CHESTPLATE = new Cosmetic(
-            "netherite/soren_chestplate", "Netherite Soren Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/soren");
+            "netherite/soren_chestplate", "Soren Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/soren");
     public static final Cosmetic NETHERITE_SOREN_LEGGINGS = new Cosmetic(
-            "netherite/soren_leggings", "Netherite Soren Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/soren");
+            "netherite/soren_leggings", "Soren Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/soren");
     public static final Cosmetic NETHERITE_SOREN_BOOTS = new Cosmetic(
-            "netherite/soren_boots", "Netherite Soren Boots", CosmeticSlot.BOOTS, "minecraft:netherite/soren");
+            "netherite/soren_boots", "Soren Boots", CosmeticSlot.BOOTS, "minecraft:netherite/soren");
 
     public static final Cosmetic NETHERITE_SOUL_HELMET = new Cosmetic(
-            "netherite/soul_helmet", "Netherite Soul Helmet", CosmeticSlot.HELMET, "minecraft:netherite/soul");
+            "netherite/soul_helmet", "Soul Helmet", CosmeticSlot.HELMET, "minecraft:netherite/soul");
     public static final Cosmetic NETHERITE_SOUL_CHESTPLATE = new Cosmetic(
-            "netherite/soul_chestplate", "Netherite Soul Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/soul");
+            "netherite/soul_chestplate", "Soul Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/soul");
     public static final Cosmetic NETHERITE_SOUL_LEGGINGS = new Cosmetic(
-            "netherite/soul_leggings", "Netherite Soul Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/soul");
+            "netherite/soul_leggings", "Soul Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/soul");
     public static final Cosmetic NETHERITE_SOUL_BOOTS = new Cosmetic(
-            "netherite/soul_boots", "Netherite Soul Boots", CosmeticSlot.BOOTS, "minecraft:netherite/soul");
+            "netherite/soul_boots", "Soul Boots", CosmeticSlot.BOOTS, "minecraft:netherite/soul");
 
     public static final Cosmetic NETHERITE_SOULDANCER_HELMET = new Cosmetic(
-            "netherite/souldancer_helmet", "Netherite Souldancer Helmet", CosmeticSlot.HELMET, "minecraft:netherite/souldancer");
+            "netherite/souldancer_helmet", "Souldancer Helmet", CosmeticSlot.HELMET, "minecraft:netherite/souldancer");
     public static final Cosmetic NETHERITE_SOULDANCER_CHESTPLATE = new Cosmetic(
-            "netherite/souldancer_chestplate", "Netherite Souldancer Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/souldancer");
+            "netherite/souldancer_chestplate", "Souldancer Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/souldancer");
     public static final Cosmetic NETHERITE_SOULDANCER_LEGGINGS = new Cosmetic(
-            "netherite/souldancer_leggings", "Netherite Souldancer Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/souldancer");
+            "netherite/souldancer_leggings", "Souldancer Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/souldancer");
     public static final Cosmetic NETHERITE_SOULDANCER_BOOTS = new Cosmetic(
-            "netherite/souldancer_boots", "Netherite Souldancer Boots", CosmeticSlot.BOOTS, "minecraft:netherite/souldancer");
+            "netherite/souldancer_boots", "Souldancer Boots", CosmeticSlot.BOOTS, "minecraft:netherite/souldancer");
 
     public static final Cosmetic NETHERITE_SPACE_HELMET = new Cosmetic(
-            "netherite/space_helmet", "Netherite Space Helmet", CosmeticSlot.HELMET, "minecraft:netherite/space");
+            "netherite/space_helmet", "Space Helmet", CosmeticSlot.HELMET, "minecraft:netherite/space");
     public static final Cosmetic NETHERITE_SPACE_CHESTPLATE = new Cosmetic(
-            "netherite/space_chestplate", "Netherite Space Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/space");
+            "netherite/space_chestplate", "Space Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/space");
     public static final Cosmetic NETHERITE_SPACE_LEGGINGS = new Cosmetic(
-            "netherite/space_leggings", "Netherite Space Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/space");
+            "netherite/space_leggings", "Space Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/space");
     public static final Cosmetic NETHERITE_SPACE_BOOTS = new Cosmetic(
-            "netherite/space_boots", "Netherite Space Boots", CosmeticSlot.BOOTS, "minecraft:netherite/space");
+            "netherite/space_boots", "Space Boots", CosmeticSlot.BOOTS, "minecraft:netherite/space");
 
     public static final Cosmetic NETHERITE_SPELUNKER_HELMET = new Cosmetic(
             "netherite/spelunker_helmet", "Netherite Spelunker Helmet", CosmeticSlot.HELMET, "minecraft:netherite/spelunker");
@@ -2494,13 +2494,13 @@ public class Cosmetics {
             "netherite/spelunker_boots", "Netherite Spelunker Boots", CosmeticSlot.BOOTS, "minecraft:netherite/spelunker");
 
     public static final Cosmetic NETHERITE_SPIDER_HELMET = new Cosmetic(
-            "netherite/spider_helmet", "Netherite Spider Helmet", CosmeticSlot.HELMET, "minecraft:netherite/spider");
+            "netherite/spider_helmet", "Spider Helmet", CosmeticSlot.HELMET, "minecraft:netherite/spider");
     public static final Cosmetic NETHERITE_SPIDER_CHESTPLATE = new Cosmetic(
-            "netherite/spider_chestplate", "Netherite Spider Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/spider");
+            "netherite/spider_chestplate", "Spider Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/spider");
     public static final Cosmetic NETHERITE_SPIDER_LEGGINGS = new Cosmetic(
-            "netherite/spider_leggings", "Netherite Spider Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/spider");
+            "netherite/spider_leggings", "Spider Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/spider");
     public static final Cosmetic NETHERITE_SPIDER_BOOTS = new Cosmetic(
-            "netherite/spider_boots", "Netherite Spider Boots", CosmeticSlot.BOOTS, "minecraft:netherite/spider");
+            "netherite/spider_boots", "Spider Boots", CosmeticSlot.BOOTS, "minecraft:netherite/spider");
 
     public static final Cosmetic NETHERITE_SPLEEF_HELMET = new Cosmetic(
             "netherite/spleef_helmet", "Netherite Spleef Helmet", CosmeticSlot.HELMET, "minecraft:netherite/spleef");
@@ -2512,49 +2512,49 @@ public class Cosmetics {
             "netherite/spleef_boots", "Netherite Spleef Boots", CosmeticSlot.BOOTS, "minecraft:netherite/spleef");
 
     public static final Cosmetic NETHERITE_SPLENDID_HELMET = new Cosmetic(
-            "netherite/splendid_helmet", "Netherite Splendid Helmet", CosmeticSlot.HELMET, "minecraft:netherite/splendid");
+            "netherite/splendid_helmet", "Splendid Helmet", CosmeticSlot.HELMET, "minecraft:netherite/splendid");
     public static final Cosmetic NETHERITE_SPLENDID_CHESTPLATE = new Cosmetic(
-            "netherite/splendid_chestplate", "Netherite Splendid Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/splendid");
+            "netherite/splendid_chestplate", "Splendid Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/splendid");
     public static final Cosmetic NETHERITE_SPLENDID_LEGGINGS = new Cosmetic(
-            "netherite/splendid_leggings", "Netherite Splendid Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/splendid");
+            "netherite/splendid_leggings", "Splendid Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/splendid");
     public static final Cosmetic NETHERITE_SPLENDID_BOOTS = new Cosmetic(
-            "netherite/splendid_boots", "Netherite Splendid Boots", CosmeticSlot.BOOTS, "minecraft:netherite/splendid");
+            "netherite/splendid_boots", "Splendid Boots", CosmeticSlot.BOOTS, "minecraft:netherite/splendid");
 
     public static final Cosmetic NETHERITE_SPOOKY_GOURDIAN_HELMET = new Cosmetic(
-            "netherite/spooky_gourdian_helmet", "Netherite Spooky Gourdian Helmet", CosmeticSlot.HELMET, "minecraft:netherite/spooky_gourdian");
+            "netherite/spooky_gourdian_helmet", "Spooky Gourdian Helmet", CosmeticSlot.HELMET, "minecraft:netherite/spooky_gourdian");
     public static final Cosmetic NETHERITE_SPOOKY_GOURDIAN_CHESTPLATE = new Cosmetic(
-            "netherite/spooky_gourdian_chestplate", "Netherite Spooky Gourdian Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/spooky_gourdian");
+            "netherite/spooky_gourdian_chestplate", "Spooky Gourdian Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/spooky_gourdian");
     public static final Cosmetic NETHERITE_SPOOKY_GOURDIAN_LEGGINGS = new Cosmetic(
-            "netherite/spooky_gourdian_leggings", "Netherite Spooky Gourdian Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/spooky_gourdian");
+            "netherite/spooky_gourdian_leggings", "Spooky Gourdian Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/spooky_gourdian");
     public static final Cosmetic NETHERITE_SPOOKY_GOURDIAN_BOOTS = new Cosmetic(
-            "netherite/spooky_gourdian_boots", "Netherite Spooky Gourdian Boots", CosmeticSlot.BOOTS, "minecraft:netherite/spooky_gourdian");
+            "netherite/spooky_gourdian_boots", "Spooky Gourdian Boots", CosmeticSlot.BOOTS, "minecraft:netherite/spooky_gourdian");
 
     public static final Cosmetic NETHERITE_SPOOKY_HELMET = new Cosmetic(
-            "netherite/spooky_helmet", "Netherite Spooky Helmet", CosmeticSlot.HELMET, "minecraft:netherite/spooky");
+            "netherite/spooky_helmet", "Spooky Helmet", CosmeticSlot.HELMET, "minecraft:netherite/spooky");
     public static final Cosmetic NETHERITE_SPOOKY_CHESTPLATE = new Cosmetic(
-            "netherite/spooky_chestplate", "Netherite Spooky Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/spooky");
+            "netherite/spooky_chestplate", "Spooky Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/spooky");
     public static final Cosmetic NETHERITE_SPOOKY_LEGGINGS = new Cosmetic(
-            "netherite/spooky_leggings", "Netherite Spooky Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/spooky");
+            "netherite/spooky_leggings", "Spooky Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/spooky");
     public static final Cosmetic NETHERITE_SPOOKY_BOOTS = new Cosmetic(
-            "netherite/spooky_boots", "Netherite Spooky Boots", CosmeticSlot.BOOTS, "minecraft:netherite/spooky");
+            "netherite/spooky_boots", "Spooky Boots", CosmeticSlot.BOOTS, "minecraft:netherite/spooky");
 
     public static final Cosmetic NETHERITE_SPROUT_HELMET = new Cosmetic(
-            "netherite/sprout_helmet", "Netherite Sprout Helmet", CosmeticSlot.HELMET, "minecraft:netherite/sprout");
+            "netherite/sprout_helmet", "Sprout Helmet", CosmeticSlot.HELMET, "minecraft:netherite/sprout");
     public static final Cosmetic NETHERITE_SPROUT_CHESTPLATE = new Cosmetic(
-            "netherite/sprout_chestplate", "Netherite Sprout Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/sprout");
+            "netherite/sprout_chestplate", "Sprout Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/sprout");
     public static final Cosmetic NETHERITE_SPROUT_LEGGINGS = new Cosmetic(
-            "netherite/sprout_leggings", "Netherite Sprout Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/sprout");
+            "netherite/sprout_leggings", "Sprout Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/sprout");
     public static final Cosmetic NETHERITE_SPROUT_BOOTS = new Cosmetic(
-            "netherite/sprout_boots", "Netherite Sprout Boots", CosmeticSlot.BOOTS, "minecraft:netherite/sprout");
+            "netherite/sprout_boots", "Sprout Boots", CosmeticSlot.BOOTS, "minecraft:netherite/sprout");
 
     public static final Cosmetic NETHERITE_SQUID_HELMET = new Cosmetic(
-            "netherite/squid_helmet", "Netherite Squid Helmet", CosmeticSlot.HELMET, "minecraft:netherite/squid");
+            "netherite/squid_helmet", "Squid Helmet", CosmeticSlot.HELMET, "minecraft:netherite/squid");
     public static final Cosmetic NETHERITE_SQUID_CHESTPLATE = new Cosmetic(
-            "netherite/squid_chestplate", "Netherite Squid Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/squid");
+            "netherite/squid_chestplate", "Squid Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/squid");
     public static final Cosmetic NETHERITE_SQUID_LEGGINGS = new Cosmetic(
-            "netherite/squid_leggings", "Netherite Squid Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/squid");
+            "netherite/squid_leggings", "Squid Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/squid");
     public static final Cosmetic NETHERITE_SQUID_BOOTS = new Cosmetic(
-            "netherite/squid_boots", "Netherite Squid Boots", CosmeticSlot.BOOTS, "minecraft:netherite/squid");
+            "netherite/squid_boots", "Squid Boots", CosmeticSlot.BOOTS, "minecraft:netherite/squid");
 
     public static final Cosmetic NETHERITE_STALWART_HELMET = new Cosmetic(
             "netherite/stalwart_helmet", "Netherite Stalwart Helmet", CosmeticSlot.HELMET, "minecraft:netherite/stalwart");
@@ -2566,58 +2566,58 @@ public class Cosmetics {
             "netherite/stalwart_boots", "Netherite Stalwart Boots", CosmeticSlot.BOOTS, "minecraft:netherite/stalwart");
 
     public static final Cosmetic NETHERITE_STAR_SHIELD_HELMET = new Cosmetic(
-            "netherite/star_shield_helmet", "Netherite Star Shield Helmet", CosmeticSlot.HELMET, "minecraft:netherite/star_shield");
+            "netherite/star_shield_helmet", "Star Shield Helmet", CosmeticSlot.HELMET, "minecraft:netherite/star_shield");
     public static final Cosmetic NETHERITE_STAR_SHIELD_CHESTPLATE = new Cosmetic(
-            "netherite/star_shield_chestplate", "Netherite Star Shield Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/star_shield");
+            "netherite/star_shield_chestplate", "Star Shield Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/star_shield");
     public static final Cosmetic NETHERITE_STAR_SHIELD_LEGGINGS = new Cosmetic(
-            "netherite/star_shield_leggings", "Netherite Star Shield Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/star_shield");
+            "netherite/star_shield_leggings", "Star Shield Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/star_shield");
     public static final Cosmetic NETHERITE_STAR_SHIELD_BOOTS = new Cosmetic(
-            "netherite/star_shield_boots", "Netherite Star Shield Boots", CosmeticSlot.BOOTS, "minecraft:netherite/star_shield");
+            "netherite/star_shield_boots", "Star Shield Boots", CosmeticSlot.BOOTS, "minecraft:netherite/star_shield");
 
     public static final Cosmetic NETHERITE_STRIDER_HELMET = new Cosmetic(
-            "netherite/strider_helmet", "Netherite Strider Helmet", CosmeticSlot.HELMET, "minecraft:netherite/strider");
+            "netherite/strider_helmet", "Strider Helmet", CosmeticSlot.HELMET, "minecraft:netherite/strider");
     public static final Cosmetic NETHERITE_STRIDER_CHESTPLATE = new Cosmetic(
-            "netherite/strider_chestplate", "Netherite Strider Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/strider");
+            "netherite/strider_chestplate", "Strider Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/strider");
     public static final Cosmetic NETHERITE_STRIDER_LEGGINGS = new Cosmetic(
-            "netherite/strider_leggings", "Netherite Strider Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/strider");
+            "netherite/strider_leggings", "Strider Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/strider");
     public static final Cosmetic NETHERITE_STRIDER_BOOTS = new Cosmetic(
-            "netherite/strider_boots", "Netherite Strider Boots", CosmeticSlot.BOOTS, "minecraft:netherite/strider");
+            "netherite/strider_boots", "Strider Boots", CosmeticSlot.BOOTS, "minecraft:netherite/strider");
 
     public static final Cosmetic NETHERITE_STURDY_SHULKER_HELMET = new Cosmetic(
-            "netherite/sturdy_shulker_helmet", "Netherite Sturdy Shulker Helmet", CosmeticSlot.HELMET, "minecraft:netherite/sturdy_shulker");
+            "netherite/sturdy_shulker_helmet", "Sturdy Shulker Helmet", CosmeticSlot.HELMET, "minecraft:netherite/sturdy_shulker");
     public static final Cosmetic NETHERITE_STURDY_SHULKER_CHESTPLATE = new Cosmetic(
-            "netherite/sturdy_shulker_chestplate", "Netherite Sturdy Shulker Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/sturdy_shulker");
+            "netherite/sturdy_shulker_chestplate", "Sturdy Shulker Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/sturdy_shulker");
     public static final Cosmetic NETHERITE_STURDY_SHULKER_LEGGINGS = new Cosmetic(
-            "netherite/sturdy_shulker_leggings", "Netherite Sturdy Shulker Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/sturdy_shulker");
+            "netherite/sturdy_shulker_leggings", "Sturdy Shulker Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/sturdy_shulker");
     public static final Cosmetic NETHERITE_STURDY_SHULKER_BOOTS = new Cosmetic(
-            "netherite/sturdy_shulker_boots", "Netherite Sturdy Shulker Boots", CosmeticSlot.BOOTS, "minecraft:netherite/sturdy_shulker");
+            "netherite/sturdy_shulker_boots", "Sturdy Shulker Boots", CosmeticSlot.BOOTS, "minecraft:netherite/sturdy_shulker");
 
     public static final Cosmetic NETHERITE_SWEET_TOOTH_HELMET = new Cosmetic(
-            "netherite/sweet_tooth_helmet", "Netherite Sweet Tooth Helmet", CosmeticSlot.HELMET, "minecraft:netherite/sweet_tooth");
+            "netherite/sweet_tooth_helmet", "Sweet Tooth Helmet", CosmeticSlot.HELMET, "minecraft:netherite/sweet_tooth");
     public static final Cosmetic NETHERITE_SWEET_TOOTH_CHESTPLATE = new Cosmetic(
-            "netherite/sweet_tooth_chestplate", "Netherite Sweet Tooth Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/sweet_tooth");
+            "netherite/sweet_tooth_chestplate", "Sweet Tooth Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/sweet_tooth");
     public static final Cosmetic NETHERITE_SWEET_TOOTH_LEGGINGS = new Cosmetic(
-            "netherite/sweet_tooth_leggings", "Netherite Sweet Tooth Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/sweet_tooth");
+            "netherite/sweet_tooth_leggings", "Sweet Tooth Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/sweet_tooth");
     public static final Cosmetic NETHERITE_SWEET_TOOTH_BOOTS = new Cosmetic(
-            "netherite/sweet_tooth_boots", "Netherite Sweet Tooth Boots", CosmeticSlot.BOOTS, "minecraft:netherite/sweet_tooth");
+            "netherite/sweet_tooth_boots", "Sweet Tooth Boots", CosmeticSlot.BOOTS, "minecraft:netherite/sweet_tooth");
 
     public static final Cosmetic NETHERITE_SWORDBREAKER_HELMET = new Cosmetic(
-            "netherite/swordbreaker_helmet", "Netherite Swordbreaker Helmet", CosmeticSlot.HELMET, "minecraft:netherite/swordbreaker");
+            "netherite/swordbreaker_helmet", "Swordbreaker Helmet", CosmeticSlot.HELMET, "minecraft:netherite/swordbreaker");
     public static final Cosmetic NETHERITE_SWORDBREAKER_CHESTPLATE = new Cosmetic(
-            "netherite/swordbreaker_chestplate", "Netherite Swordbreaker Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/swordbreaker");
+            "netherite/swordbreaker_chestplate", "Swordbreaker Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/swordbreaker");
     public static final Cosmetic NETHERITE_SWORDBREAKER_LEGGINGS = new Cosmetic(
-            "netherite/swordbreaker_leggings", "Netherite Swordbreaker Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/swordbreaker");
+            "netherite/swordbreaker_leggings", "Swordbreaker Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/swordbreaker");
     public static final Cosmetic NETHERITE_SWORDBREAKER_BOOTS = new Cosmetic(
-            "netherite/swordbreaker_boots", "Netherite Swordbreaker Boots", CosmeticSlot.BOOTS, "minecraft:netherite/swordbreaker");
+            "netherite/swordbreaker_boots", "Swordbreaker Boots", CosmeticSlot.BOOTS, "minecraft:netherite/swordbreaker");
 
     public static final Cosmetic NETHERITE_TELEPORTATION_HELMET = new Cosmetic(
-            "netherite/teleportation_helmet", "Netherite Teleportation Helmet", CosmeticSlot.HELMET, "minecraft:netherite/teleportation");
+            "netherite/teleportation_helmet", "Teleportation Helmet", CosmeticSlot.HELMET, "minecraft:netherite/teleportation");
     public static final Cosmetic NETHERITE_TELEPORTATION_CHESTPLATE = new Cosmetic(
-            "netherite/teleportation_chestplate", "Netherite Teleportation Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/teleportation");
+            "netherite/teleportation_chestplate", "Teleportation Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/teleportation");
     public static final Cosmetic NETHERITE_TELEPORTATION_LEGGINGS = new Cosmetic(
-            "netherite/teleportation_leggings", "Netherite Teleportation Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/teleportation");
+            "netherite/teleportation_leggings", "Teleportation Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/teleportation");
     public static final Cosmetic NETHERITE_TELEPORTATION_BOOTS = new Cosmetic(
-            "netherite/teleportation_boots", "Netherite Teleportation Boots", CosmeticSlot.BOOTS, "minecraft:netherite/teleportation");
+            "netherite/teleportation_boots", "Teleportation Boots", CosmeticSlot.BOOTS, "minecraft:netherite/teleportation");
 
     public static final Cosmetic NETHERITE_THIEF_HELMET = new Cosmetic(
             "netherite/thief_helmet", "Netherite Thief Helmet", CosmeticSlot.HELMET, "minecraft:netherite/thief");
@@ -2629,31 +2629,31 @@ public class Cosmetics {
             "netherite/thief_boots", "Netherite Thief Boots", CosmeticSlot.BOOTS, "minecraft:netherite/thief");
 
     public static final Cosmetic NETHERITE_TIM_HELMET = new Cosmetic(
-            "netherite/tim_helmet", "Netherite Tim Helmet", CosmeticSlot.HELMET, "minecraft:netherite/tim");
+            "netherite/tim_helmet", "Tim Helmet", CosmeticSlot.HELMET, "minecraft:netherite/tim");
     public static final Cosmetic NETHERITE_TIM_CHESTPLATE = new Cosmetic(
-            "netherite/tim_chestplate", "Netherite Tim Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/tim");
+            "netherite/tim_chestplate", "Tim Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/tim");
     public static final Cosmetic NETHERITE_TIM_LEGGINGS = new Cosmetic(
-            "netherite/tim_leggings", "Netherite Tim Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/tim");
+            "netherite/tim_leggings", "Tim Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/tim");
     public static final Cosmetic NETHERITE_TIM_BOOTS = new Cosmetic(
-            "netherite/tim_boots", "Netherite Tim Boots", CosmeticSlot.BOOTS, "minecraft:netherite/tim");
+            "netherite/tim_boots", "Tim Boots", CosmeticSlot.BOOTS, "minecraft:netherite/tim");
 
     public static final Cosmetic NETHERITE_TITAN_SHROUD_HELMET = new Cosmetic(
-            "netherite/titan_shroud_helmet", "Netherite Titan Shroud Helmet", CosmeticSlot.HELMET, "minecraft:netherite/titan_shroud");
+            "netherite/titan_shroud_helmet", "Titan Shroud Helmet", CosmeticSlot.HELMET, "minecraft:netherite/titan_shroud");
     public static final Cosmetic NETHERITE_TITAN_SHROUD_CHESTPLATE = new Cosmetic(
-            "netherite/titan_shroud_chestplate", "Netherite Titan Shroud Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/titan_shroud");
+            "netherite/titan_shroud_chestplate", "Titan Shroud Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/titan_shroud");
     public static final Cosmetic NETHERITE_TITAN_SHROUD_LEGGINGS = new Cosmetic(
-            "netherite/titan_shroud_leggings", "Netherite Titan Shroud Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/titan_shroud");
+            "netherite/titan_shroud_leggings", "Titan Shroud Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/titan_shroud");
     public static final Cosmetic NETHERITE_TITAN_SHROUD_BOOTS = new Cosmetic(
-            "netherite/titan_shroud_boots", "Netherite Titan Shroud Boots", CosmeticSlot.BOOTS, "minecraft:netherite/titan_shroud");
+            "netherite/titan_shroud_boots", "Titan Shroud Boots", CosmeticSlot.BOOTS, "minecraft:netherite/titan_shroud");
 
     public static final Cosmetic NETHERITE_TOWER_HELMET = new Cosmetic(
-            "netherite/tower_helmet", "Netherite Tower Helmet", CosmeticSlot.HELMET, "minecraft:netherite/tower");
+            "netherite/tower_helmet", "Tower Helmet", CosmeticSlot.HELMET, "minecraft:netherite/tower");
     public static final Cosmetic NETHERITE_TOWER_CHESTPLATE = new Cosmetic(
-            "netherite/tower_chestplate", "Netherite Tower Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/tower");
+            "netherite/tower_chestplate", "Tower Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/tower");
     public static final Cosmetic NETHERITE_TOWER_LEGGINGS = new Cosmetic(
-            "netherite/tower_leggings", "Netherite Tower Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/tower");
+            "netherite/tower_leggings", "Tower Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/tower");
     public static final Cosmetic NETHERITE_TOWER_BOOTS = new Cosmetic(
-            "netherite/tower_boots", "Netherite Tower Boots", CosmeticSlot.BOOTS, "minecraft:netherite/tower");
+            "netherite/tower_boots", "Tower Boots", CosmeticSlot.BOOTS, "minecraft:netherite/tower");
 
     public static final Cosmetic NETHERITE_TRIAL_HELMET = new Cosmetic(
             "netherite/trial_helmet", "Netherite Trial Helmet", CosmeticSlot.HELMET, "minecraft:netherite/trial");
@@ -2665,31 +2665,31 @@ public class Cosmetics {
             "netherite/trial_boots", "Netherite Trial Boots", CosmeticSlot.BOOTS, "minecraft:netherite/trial");
 
     public static final Cosmetic NETHERITE_TROUBADOUR_HELMET = new Cosmetic(
-            "netherite/troubadour_helmet", "Netherite Troubadour Helmet", CosmeticSlot.HELMET, "minecraft:netherite/troubadour");
+            "netherite/troubadour_helmet", "Troubadour Helmet", CosmeticSlot.HELMET, "minecraft:netherite/troubadour");
     public static final Cosmetic NETHERITE_TROUBADOUR_CHESTPLATE = new Cosmetic(
-            "netherite/troubadour_chestplate", "Netherite Troubadour Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/troubadour");
+            "netherite/troubadour_chestplate", "Troubadour Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/troubadour");
     public static final Cosmetic NETHERITE_TROUBADOUR_LEGGINGS = new Cosmetic(
-            "netherite/troubadour_leggings", "Netherite Troubadour Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/troubadour");
+            "netherite/troubadour_leggings", "Troubadour Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/troubadour");
     public static final Cosmetic NETHERITE_TROUBADOUR_BOOTS = new Cosmetic(
-            "netherite/troubadour_boots", "Netherite Troubadour Boots", CosmeticSlot.BOOTS, "minecraft:netherite/troubadour");
+            "netherite/troubadour_boots", "Troubadour Boots", CosmeticSlot.BOOTS, "minecraft:netherite/troubadour");
 
     public static final Cosmetic NETHERITE_TURTLE_HELMET = new Cosmetic(
-            "netherite/turtle_helmet", "Netherite Turtle Helmet", CosmeticSlot.HELMET, "minecraft:netherite/turtle");
+            "netherite/turtle_helmet", "Turtle Helmet", CosmeticSlot.HELMET, "minecraft:netherite/turtle");
     public static final Cosmetic NETHERITE_TURTLE_CHESTPLATE = new Cosmetic(
-            "netherite/turtle_chestplate", "Netherite Turtle Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/turtle");
+            "netherite/turtle_chestplate", "Turtle Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/turtle");
     public static final Cosmetic NETHERITE_TURTLE_LEGGINGS = new Cosmetic(
-            "netherite/turtle_leggings", "Netherite Turtle Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/turtle");
+            "netherite/turtle_leggings", "Turtle Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/turtle");
     public static final Cosmetic NETHERITE_TURTLE_BOOTS = new Cosmetic(
-            "netherite/turtle_boots", "Netherite Turtle Boots", CosmeticSlot.BOOTS, "minecraft:netherite/turtle");
+            "netherite/turtle_boots", "Turtle Boots", CosmeticSlot.BOOTS, "minecraft:netherite/turtle");
 
     public static final Cosmetic NETHERITE_UNSTABLE_HELMET = new Cosmetic(
-            "netherite/unstable_helmet", "Netherite Unstable Helmet", CosmeticSlot.HELMET, "minecraft:netherite/unstable");
+            "netherite/unstable_helmet", "Unstable Helmet", CosmeticSlot.HELMET, "minecraft:netherite/unstable");
     public static final Cosmetic NETHERITE_UNSTABLE_CHESTPLATE = new Cosmetic(
-            "netherite/unstable_chestplate", "Netherite Unstable Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/unstable");
+            "netherite/unstable_chestplate", "Unstable Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/unstable");
     public static final Cosmetic NETHERITE_UNSTABLE_LEGGINGS = new Cosmetic(
-            "netherite/unstable_leggings", "Netherite Unstable Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/unstable");
+            "netherite/unstable_leggings", "Unstable Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/unstable");
     public static final Cosmetic NETHERITE_UNSTABLE_BOOTS = new Cosmetic(
-            "netherite/unstable_boots", "Netherite Unstable Boots", CosmeticSlot.BOOTS, "minecraft:netherite/unstable");
+            "netherite/unstable_boots", "Unstable Boots", CosmeticSlot.BOOTS, "minecraft:netherite/unstable");
 
     public static final Cosmetic NETHERITE_VEMI_HELMET = new Cosmetic(
             "netherite/vemi_helmet", "Netherite Vemi Helmet", CosmeticSlot.HELMET, "minecraft:netherite/vemi");
@@ -2701,31 +2701,31 @@ public class Cosmetics {
             "netherite/vemi_boots", "Netherite Vemi Boots", CosmeticSlot.BOOTS, "minecraft:netherite/vemi");
 
     public static final Cosmetic NETHERITE_VERDANT_HELMET = new Cosmetic(
-            "netherite/verdant_helmet", "Netherite Verdant Helmet", CosmeticSlot.HELMET, "minecraft:netherite/verdant");
+            "netherite/verdant_helmet", "Verdant Helmet", CosmeticSlot.HELMET, "minecraft:netherite/verdant");
     public static final Cosmetic NETHERITE_VERDANT_CHESTPLATE = new Cosmetic(
-            "netherite/verdant_chestplate", "Netherite Verdant Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/verdant");
+            "netherite/verdant_chestplate", "Verdant Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/verdant");
     public static final Cosmetic NETHERITE_VERDANT_LEGGINGS = new Cosmetic(
-            "netherite/verdant_leggings", "Netherite Verdant Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/verdant");
+            "netherite/verdant_leggings", "Verdant Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/verdant");
     public static final Cosmetic NETHERITE_VERDANT_BOOTS = new Cosmetic(
-            "netherite/verdant_boots", "Netherite Verdant Boots", CosmeticSlot.BOOTS, "minecraft:netherite/verdant");
+            "netherite/verdant_boots", "Verdant Boots", CosmeticSlot.BOOTS, "minecraft:netherite/verdant");
 
     public static final Cosmetic NETHERITE_VORTEX_HELMET = new Cosmetic(
-            "netherite/vortex_helmet", "Netherite Vortex Helmet", CosmeticSlot.HELMET, "minecraft:netherite/vortex");
+            "netherite/vortex_helmet", "Vortex Helmet", CosmeticSlot.HELMET, "minecraft:netherite/vortex");
     public static final Cosmetic NETHERITE_VORTEX_CHESTPLATE = new Cosmetic(
-            "netherite/vortex_chestplate", "Netherite Vortex Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/vortex");
+            "netherite/vortex_chestplate", "Vortex Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/vortex");
     public static final Cosmetic NETHERITE_VORTEX_LEGGINGS = new Cosmetic(
-            "netherite/vortex_leggings", "Netherite Vortex Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/vortex");
+            "netherite/vortex_leggings", "Vortex Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/vortex");
     public static final Cosmetic NETHERITE_VORTEX_BOOTS = new Cosmetic(
-            "netherite/vortex_boots", "Netherite Vortex Boots", CosmeticSlot.BOOTS, "minecraft:netherite/vortex");
+            "netherite/vortex_boots", "Vortex Boots", CosmeticSlot.BOOTS, "minecraft:netherite/vortex");
 
     public static final Cosmetic NETHERITE_WITHER_HELMET = new Cosmetic(
-            "netherite/wither_helmet", "Netherite Wither Helmet", CosmeticSlot.HELMET, "minecraft:netherite/wither");
+            "netherite/wither_helmet", "Wither Helmet", CosmeticSlot.HELMET, "minecraft:netherite/wither");
     public static final Cosmetic NETHERITE_WITHER_CHESTPLATE = new Cosmetic(
-            "netherite/wither_chestplate", "Netherite Wither Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/wither");
+            "netherite/wither_chestplate", "Wither Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/wither");
     public static final Cosmetic NETHERITE_WITHER_LEGGINGS = new Cosmetic(
-            "netherite/wither_leggings", "Netherite Wither Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/wither");
+            "netherite/wither_leggings", "Wither Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/wither");
     public static final Cosmetic NETHERITE_WITHER_BOOTS = new Cosmetic(
-            "netherite/wither_boots", "Netherite Wither Boots", CosmeticSlot.BOOTS, "minecraft:netherite/wither");
+            "netherite/wither_boots", "Wither Boots", CosmeticSlot.BOOTS, "minecraft:netherite/wither");
 
     public static final Cosmetic NETHERITE_WOLF_HELMET = new Cosmetic(
             "netherite/wolf_helmet", "Netherite Wolf Helmet", CosmeticSlot.HELMET, "minecraft:netherite/wolf");
@@ -2737,13 +2737,13 @@ public class Cosmetics {
             "netherite/wolf_boots", "Netherite Wolf Boots", CosmeticSlot.BOOTS, "minecraft:netherite/wolf");
 
     public static final Cosmetic NETHERITE_XARA_HELMET = new Cosmetic(
-            "netherite/xara_helmet", "Netherite Xara Helmet", CosmeticSlot.HELMET, "minecraft:netherite/xara");
+            "netherite/xara_helmet", "Xara Helmet", CosmeticSlot.HELMET, "minecraft:netherite/xara");
     public static final Cosmetic NETHERITE_XARA_CHESTPLATE = new Cosmetic(
-            "netherite/xara_chestplate", "Netherite Xara Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/xara");
+            "netherite/xara_chestplate", "Xara Chestplate", CosmeticSlot.CHESTPLATE, "minecraft:netherite/xara");
     public static final Cosmetic NETHERITE_XARA_LEGGINGS = new Cosmetic(
-            "netherite/xara_leggings", "Netherite Xara Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/xara");
+            "netherite/xara_leggings", "Xara Leggings", CosmeticSlot.LEGGINGS, "minecraft:netherite/xara");
     public static final Cosmetic NETHERITE_XARA_BOOTS = new Cosmetic(
-            "netherite/xara_boots", "Netherite Xara Boots", CosmeticSlot.BOOTS, "minecraft:netherite/xara");
+            "netherite/xara_boots", "Xara Boots", CosmeticSlot.BOOTS, "minecraft:netherite/xara");
 
     // </generated>
 
