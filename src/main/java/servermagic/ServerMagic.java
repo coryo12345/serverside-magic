@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
@@ -16,6 +17,7 @@ import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
+import servermagic.commands.MagicCommands;
 import servermagic.cosmetics.CosmeticAppearanceManager;
 import servermagic.data.items.LootboxItem;
 import net.minecraft.server.level.ServerLevel;
@@ -74,6 +76,10 @@ public class ServerMagic implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		LOGGER.info("Starting server magic!");
+
+		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+			MagicCommands.register(dispatcher);
+		});
 
 		UseItemCallback.EVENT.register((player, world, hand) -> {
 			ItemInteractionDispatcher dispatcher = new ItemInteractionDispatcher(world, player, hand);
