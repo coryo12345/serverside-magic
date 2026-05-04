@@ -63,6 +63,7 @@ export type UnlockedCosmetic = {
   id: string;
   displayName: string;
   slot: CosmeticSlotId;
+  itemModel?: string;
 };
 
 export type PlayerCosmeticsResponse = {

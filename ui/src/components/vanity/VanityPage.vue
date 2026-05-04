@@ -17,7 +17,7 @@ const saving = ref<Record<CosmeticSlotId, boolean>>({
   spellbook: false,
 });
 
-type CosmeticOption = { id: string; displayName: string };
+type CosmeticOption = { id: string; displayName: string; itemModel?: string };
 
 const NONE_OPTION: CosmeticOption = { id: "none", displayName: "None" };
 
@@ -36,6 +36,8 @@ const suggestions = ref<Record<CosmeticSlotId, CosmeticOption[]>>({
   boots: [],
   spellbook: [],
 });
+
+const ARMOR_SLOT_IDS: CosmeticSlotId[] = ["helmet", "chestplate", "leggings", "boots"];
 
 const SLOTS: { id: CosmeticSlotId; label: string; icon: string; description: string }[] = [
   { id: "helmet", label: "Helmet", icon: "🪖", description: "Customize your helmet appearance" },
@@ -66,7 +68,7 @@ function getOptionsForSlot(slotId: CosmeticSlotId): CosmeticOption[] {
   const unlockedForSlot = cosmetics.value?.unlocked.filter((c) => c.slot === slotId) ?? [];
   return sortOptions([
     NONE_OPTION,
-    ...unlockedForSlot.map((c) => ({ id: c.id, displayName: c.displayName })),
+    ...unlockedForSlot.map((c) => ({ id: c.id, displayName: c.displayName, itemModel: c.itemModel })),
   ]);
 }
 
@@ -103,6 +105,22 @@ onMounted(async () => {
   }
   loading.value = false;
 });
+
+async function applyToAllArmor(slotId: CosmeticSlotId) {
+  const source = selectedObjects.value[slotId];
+  const itemModel = source?.itemModel;
+  if (!itemModel) return;
+
+  const targets = ARMOR_SLOT_IDS.filter((s) => s !== slotId);
+  await Promise.all(
+    targets.map(async (targetSlotId) => {
+      const match = getOptionsForSlot(targetSlotId).find((o) => o.itemModel === itemModel);
+      if (!match) return;
+      selectedObjects.value[targetSlotId] = match;
+      await onSelect(targetSlotId);
+    })
+  );
+}
 
 async function onSelect(slotId: CosmeticSlotId) {
   const selected = selectedObjects.value[slotId];
@@ -183,6 +201,15 @@ async function onSelect(slotId: CosmeticSlotId) {
                 v-if="saving[slot.id]"
                 class="pi pi-spin pi-spinner text-primary"
               ></i>
+              <button
+                v-if="ARMOR_SLOT_IDS.includes(slot.id) && selectedObjects[slot.id]?.itemModel"
+                v-tooltip.top="'Apply this style to all armor slots'"
+                :disabled="anySaving"
+                class="w-8 h-8 rounded flex items-center justify-center text-surface-500 hover:text-primary hover:bg-surface-100 dark:hover:bg-surface-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                @click="applyToAllArmor(slot.id)"
+              >
+                <i class="pi pi-clone text-sm"></i>
+              </button>
               <AutoComplete
                 v-model="selectedObjects[slot.id]"
                 :suggestions="suggestions[slot.id]"

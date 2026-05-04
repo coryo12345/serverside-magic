@@ -19,11 +19,10 @@ import servermagic.db.tables.CosmeticUnlock;
 
 public class CosmeticRoutes extends RouteGroup {
 
-    
     public CosmeticRoutes(Javalin app, Database db, MinecraftServer server) {
         super(app, db, server);
     }
-    
+
     private boolean hasMasterControl(String username) {
         return false;
         // return "coryo12345".equals(username);
@@ -74,7 +73,10 @@ public class CosmeticRoutes extends RouteGroup {
                         Map<String, String> entry = new HashMap<>();
                         entry.put("id", cu.style);
                         entry.put("slot", cu.slot);
-                        Cosmetics.GetById(cu.style).ifPresent(c -> entry.put("displayName", c.getDisplayName()));
+                        Cosmetics.GetById(cu.style).ifPresent(c -> {
+                            entry.put("displayName", c.getDisplayName());
+                            entry.put("itemModel", c.getItemModel());
+                        });
                         return entry;
                     })
                     .filter(e -> e.containsKey("displayName")) // skip unknown cosmetic ids
@@ -138,7 +140,8 @@ public class CosmeticRoutes extends RouteGroup {
 
     private void applyInGame(String username, CosmeticSlot slot, String styleId) {
         ServerPlayer player = server.getPlayerList().getPlayerByName(username);
-        if (player == null) return;
+        if (player == null)
+            return;
         UUID uuid = player.getUUID();
         CosmeticAppearanceManager.updateSelectedCosmetic(uuid, slot, styleId);
     }
