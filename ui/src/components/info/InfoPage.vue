@@ -7,6 +7,7 @@ const sections = [
   { id: "spellbook", label: "Spellbook & Casting", icon: "pi-book" },
   { id: "mana", label: "Mana & Experience", icon: "pi-bolt" },
   { id: "progression", label: "Progression & Secrets", icon: "pi-lock" },
+  { id: "vanity", label: "Vanity & Cosmetics", icon: "pi-palette" },
 ];
 
 const tocOpen = ref(false);
@@ -100,13 +101,13 @@ const chipClass: Record<string, string> = {
 const potionRecipes = [
   {
     label: "Recipe A",
-    ingredients: ["Amethyst Shard", "Lapis Lazuli", "2× Glass Bottles"],
-    result: "2 Mana Potions",
+    ingredients: ["Amethyst Shard", "Lapis Lazuli", "Glass Bottle"],
+    result: "3 Mana Potions",
   },
   {
     label: "Recipe B",
-    ingredients: ["Gold Ingot", "Glowstone Dust", "2× Glass Bottles"],
-    result: "2 Mana Potions",
+    ingredients: ["Gold Ingot", "Glowstone Dust", "Glass Bottle"],
+    result: "3 Mana Potions",
   },
 ];
 </script>
@@ -127,7 +128,7 @@ const potionRecipes = [
           <h1
             class="text-2xl md:text-3xl font-bold text-surface-900 dark:text-surface-0"
           >
-            ServerMagic Wiki
+            Wiki
           </h1>
           <p class="text-surface-500 dark:text-surface-400 text-sm mt-0.5">
             Your complete guide to spells, skill trees, and the arcane arts.
@@ -784,6 +785,66 @@ const potionRecipes = [
                     Explore everything.
                   </p>
                 </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- §6 Vanity & Cosmetics -->
+        <section id="vanity">
+          <div
+            class="bg-surface-0 dark:bg-surface-800 border border-surface-200 dark:border-surface-700 rounded-xl shadow-sm p-6"
+          >
+            <div class="flex items-center gap-3 mb-2">
+              <div
+                class="w-9 h-9 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center shrink-0"
+              >
+                <i
+                  class="pi pi-palette text-primary-600 dark:text-primary-400"
+                ></i>
+              </div>
+              <h2
+                class="text-xl font-bold text-surface-900 dark:text-surface-0"
+              >
+                Vanity & Cosmetics
+              </h2>
+            </div>
+            <div
+              class="h-0.5 bg-gradient-to-r from-primary-400/50 to-transparent mb-5"
+            ></div>
+
+            <p
+              class="text-surface-600 dark:text-surface-300 text-sm leading-relaxed mb-6"
+            >
+              Cosmetics let you change the visual appearance of your armor and
+              spellbook without affecting any stats. Unlocked looks are applied
+              through the
+              <strong class="text-surface-900 dark:text-surface-0"
+                >Vanity</strong
+              >
+              tab in this portal.
+            </p>
+
+            <!-- Unlocking callout -->
+            <div
+              class="flex gap-3 bg-amber-50 dark:bg-amber-900/20 border border-amber-300 dark:border-amber-600/40 rounded-xl p-4"
+            >
+              <div class="shrink-0 mt-0.5">
+                <i class="pi pi-gift text-amber-500 text-lg"></i>
+              </div>
+              <div>
+                <p
+                  class="text-xs font-bold uppercase tracking-widest text-amber-600 dark:text-amber-400 mb-1"
+                >
+                  Vanity Boxes
+                </p>
+                <p class="text-sm text-amber-800 dark:text-amber-200">
+                  Cosmetics are unlocked by opening
+                  <strong>Vanity Boxes</strong>. You can find them hidden in
+                  loot chests around the world, or craft them yourself.
+                  Everything you unlock will appear automatically as an option
+                  in the Vanity tab.
+                </p>
               </div>
             </div>
           </div>

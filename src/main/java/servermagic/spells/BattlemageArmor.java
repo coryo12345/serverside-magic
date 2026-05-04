@@ -14,6 +14,11 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import servermagic.cosmetics.Cosmetic;
+import servermagic.cosmetics.CosmeticAppearanceManager;
+import servermagic.cosmetics.CosmeticItemHelper;
+import servermagic.cosmetics.CosmeticSlot;
+import servermagic.cosmetics.Cosmetics;
 import servermagic.db.Database;
 import servermagic.spells.utils.SummonedArmor;
 import servermagic.spells.utils.SummonedArmor.ArmorDescriptor;
@@ -67,7 +72,6 @@ public class BattlemageArmor extends BaseSpell {
             } else {
                 // lets summon!
                 ItemStack equipped = player.getItemBySlot(slot);
-                // TODO we need to apply some custom model to this armor
                 ItemStack tempPiece = SummonedArmor.BuildSummonedItem(
                         player,
                         equipped,
@@ -77,6 +81,12 @@ public class BattlemageArmor extends BaseSpell {
                     continue;
                 }
                 tempPiece.setDamageValue(tempPiece.getMaxDamage() - 100);
+                CosmeticSlot.fromEquipmentSlot(slot).ifPresent(cosmeticSlot -> {
+                    CosmeticAppearanceManager.getSelectedStyle(player.getUUID(), cosmeticSlot)
+                            .flatMap(Cosmetics::GetById)
+                            .map(Cosmetic::getItemModel)
+                            .ifPresent(assetId -> CosmeticItemHelper.setEquippableAssetId(tempPiece, assetId));
+                });
                 player.setItemSlot(slot, tempPiece);
             }
         }

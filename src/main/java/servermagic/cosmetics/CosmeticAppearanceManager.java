@@ -162,6 +162,12 @@ public class CosmeticAppearanceManager {
         return SpellbookItem.ID.equals(tag.getStringOr(CustomItem.CUSTOM_DATA_ITEM_ID_KEY, ""));
     }
 
+    public static Optional<String> getSelectedStyle(UUID playerUuid, CosmeticSlot slot) {
+        Map<CosmeticSlot, String> cache = selectedCache.get(playerUuid);
+        if (cache == null) return Optional.empty();
+        return Optional.ofNullable(cache.get(slot));
+    }
+
     public static Optional<UUID> findOnlinePlayerUuid(MinecraftServer server, String username) {
         ServerPlayer player = server.getPlayerList().getPlayerByName(username);
         if (player == null) return Optional.empty();
