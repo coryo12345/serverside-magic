@@ -45,7 +45,7 @@ public class WebPortal {
                 });
                 ServerMagic.LOGGER.info("Serving web files from JAR resources");
             }
-        }).start(port);
+        }).start("0.0.0.0", port);
 
         setupRoutes();
     }
