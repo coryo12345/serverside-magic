@@ -22,7 +22,8 @@ if $DEV_MODE; then
   OUTPUT_DIR="$SCRIPT_DIR/run/config/servermagic/web/assets"
   mkdir -p "$OUTPUT_DIR"
 else
-  OUTPUT_DIR="$SCRIPT_DIR"
+  OUTPUT_DIR="$SCRIPT_DIR/src/main/resources/web/assets"
+  mkdir -p "$OUTPUT_DIR"
 fi
 OUTPUT="$OUTPUT_DIR/$PACK_FILENAME"
 
