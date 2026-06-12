@@ -30,6 +30,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.animal.happyghast.HappyGhast;
 import net.minecraft.world.entity.projectile.throwableitemprojectile.ThrownEnderpearl;
 import net.minecraft.world.item.ItemStack;
@@ -187,8 +188,10 @@ public class ServerMagic implements ModInitializer {
 		});
 
 		LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
-			if (!source.isBuiltin()) return;
-			if (!key.equals(BuiltInLootTables.ANCIENT_CITY) && !key.equals(BuiltInLootTables.END_CITY_TREASURE)) return;
+			if (!source.isBuiltin())
+				return;
+			if (!key.equals(BuiltInLootTables.ANCIENT_CITY) && !key.equals(BuiltInLootTables.END_CITY_TREASURE))
+				return;
 
 			LootPool.Builder pool = LootPool.lootPool()
 					.setRolls(ConstantValue.exactly(1))
@@ -255,21 +258,27 @@ public class ServerMagic implements ModInitializer {
 		}
 
 		// FLYING_CARPET: player riding a Happy Ghast while holding carpet
-		// ANGEL_WINGS: player at Y > 1000 while wearing elytra
+		// ANGEL_WINGS: player at elevation while (wearing elytra OR holding feather &
+		// gold)
 		for (ServerPlayer player : world.players()) {
 			if (player.getVehicle() instanceof HappyGhast) {
 				ItemStack mainHand = player.getMainHandItem();
 				ItemStack offHand = player.getOffhandItem();
-				boolean holdingCarpet = mainHand.is(net.minecraft.tags.ItemTags.WOOL_CARPETS)
-						|| offHand.is(net.minecraft.tags.ItemTags.WOOL_CARPETS);
+				boolean holdingCarpet = mainHand.is(ItemTags.WOOL_CARPETS)
+						|| offHand.is(ItemTags.WOOL_CARPETS);
 				if (holdingCarpet) {
 					SkillGranter.grantSkillForPlayer(db.get(), player, servermagic.web.skill.Skills.FLYING_CARPET);
 				}
 			}
 
-			if (player.getY() > 501 && player.getItemBySlot(net.minecraft.world.entity.EquipmentSlot.CHEST)
-					.is(net.minecraft.world.item.Items.ELYTRA)) {
-				SkillGranter.grantSkillForPlayer(db.get(), player, servermagic.web.skill.Skills.ANGEL_WINGS);
+			if (player.getY() > 501) {
+				boolean wearingElytra = player.getItemBySlot(net.minecraft.world.entity.EquipmentSlot.CHEST)
+						.is(Items.ELYTRA);
+				boolean holdingItems = player.getItemHeldByArm(HumanoidArm.LEFT).is(Items.GOLD_INGOT)
+						&& player.getItemHeldByArm(HumanoidArm.RIGHT).is(Items.FEATHER);
+				if (wearingElytra || holdingItems) {
+					SkillGranter.grantSkillForPlayer(db.get(), player, servermagic.web.skill.Skills.ANGEL_WINGS);
+				}
 			}
 
 			if (player.getY() < -60 && player.level().dimension() == Level.OVERWORLD
