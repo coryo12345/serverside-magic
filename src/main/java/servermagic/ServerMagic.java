@@ -45,11 +45,14 @@ import servermagic.entitybinding.EntityBindingManager;
 import servermagic.entitybinding.EntityBindingTickHandler;
 import servermagic.spells.arcane.ArcaneMissileManager;
 import servermagic.spells.Blink;
+import servermagic.spells.GhostTool;
+import servermagic.spells.SetGhostTool;
 import servermagic.spells.DesecratedGround;
 import servermagic.spells.GravityWell;
 import servermagic.spells.IronMaiden;
 import servermagic.spells.BeeSwarm;
 import servermagic.spells.SpectralHammer;
+import servermagic.spells.SummonBifrost;
 import servermagic.spells.Sunbeam;
 import servermagic.spells.MeteorShower;
 import servermagic.spells.SpectralGrasp;
@@ -151,6 +154,7 @@ public class ServerMagic implements ModInitializer {
 		ServerTickEvents.END_SERVER_TICK.register(BeeSwarm::tick);
 		ServerTickEvents.END_SERVER_TICK.register(Sunbeam::tick);
 		ServerTickEvents.END_SERVER_TICK.register(SpectralHammer::tick);
+		ServerTickEvents.END_SERVER_TICK.register(SummonBifrost::tick);
 
 		ServerTickEvents.END_LEVEL_TICK.register((ServerLevel world) -> {
 			tickCount = (++tickCount % 1000); // so we dont get too large
@@ -163,6 +167,14 @@ public class ServerMagic implements ModInitializer {
 				this.checkSkillUnlockConditions(world);
 			}
 			Blink.tickClutchCheck(world);
+		});
+
+		ServerEntityEvents.ENTITY_LOAD.register((entity, world) -> {
+			if (entity instanceof net.minecraft.world.entity.item.ItemEntity itemEntity
+					&& world instanceof ServerLevel sl
+					&& sl.dimensionTypeRegistration().is(BuiltinDimensionTypes.END)) {
+				SetGhostTool.onItemEntityLoadedInEnd(itemEntity, sl);
+			}
 		});
 
 		ServerEntityEvents.ENTITY_UNLOAD.register(EntityBindingLifecycleHandler::onEntityUnload);
@@ -286,5 +298,21 @@ public class ServerMagic implements ModInitializer {
 				SkillGranter.grantSkillForPlayer(db.get(), player, Skills.SPECTRAL_HAMMER);
 			}
 		}
+
+		// BIFROST: stand above Y=250 in Overworld during a thunderstorm holding an amethyst shard
+		if (world.dimension() == Level.OVERWORLD && world.isThundering()) {
+			for (ServerPlayer player : world.players()) {
+				if (player.getY() > 250) {
+					ItemStack main = player.getMainHandItem();
+					ItemStack off = player.getOffhandItem();
+					if (main.is(Items.AMETHYST_SHARD) || off.is(Items.AMETHYST_SHARD)) {
+						SkillGranter.grantSkillForPlayer(db.get(), player, Skills.BIFROST);
+					}
+				}
+			}
+		}
+
+		// GHOST_TOOL: toss an item into the End void, follow it yourself, survive
+		SetGhostTool.tickVoidCheck(world);
 	}
 }

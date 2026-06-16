@@ -8,6 +8,7 @@ import type {
   SkillTree,
   SpellConfigResponse,
   SpellSlot,
+  UserInfo,
 } from "./types";
 
 class MagicAPI {
@@ -53,14 +54,11 @@ class MagicAPI {
     }
   }
 
-  /**
-   * @returns the current user's username
-   */
-  async userinfo(): Promise<Result<string>> {
+  async userinfo(): Promise<Result<UserInfo>> {
     const url = new URL("/api/auth/userinfo", window.location.origin);
     return this.request(url, {
       method: "GET",
-      responseType: "text",
+      responseType: "json",
     });
   }
 
@@ -87,8 +85,9 @@ class MagicAPI {
     });
   }
 
-  async getMySpells(): Promise<Result<PlayerSpellResponse>> {
+  async getMySpells(superuser?: boolean): Promise<Result<PlayerSpellResponse>> {
     const url = new URL("/api/spells/mine", window.location.origin);
+    if (superuser) url.searchParams.set("superuser", "true");
     return this.request(url, { method: "GET", responseType: "json" });
   }
 
@@ -124,8 +123,9 @@ class MagicAPI {
     });
   }
 
-  async getSkillTrees(): Promise<Result<SkillTree[]>> {
+  async getSkillTrees(superuser?: boolean): Promise<Result<SkillTree[]>> {
     const url = new URL("/api/skills/tree", window.location.origin);
+    if (superuser) url.searchParams.set("superuser", "true");
     return this.request(url, { method: "GET", responseType: "json" });
   }
 
@@ -147,13 +147,15 @@ class MagicAPI {
     });
   }
 
-  async getMySecrets(): Promise<Result<SecretSkill[]>> {
+  async getMySecrets(superuser?: boolean): Promise<Result<SecretSkill[]>> {
     const url = new URL("/api/skills/secrets", window.location.origin);
+    if (superuser) url.searchParams.set("superuser", "true");
     return this.request(url, { method: "GET", responseType: "json" });
   }
 
-  async getMyCosmetics(): Promise<Result<PlayerCosmeticsResponse>> {
+  async getMyCosmetics(superuser?: boolean): Promise<Result<PlayerCosmeticsResponse>> {
     const url = new URL("/api/cosmetics/mine", window.location.origin);
+    if (superuser) url.searchParams.set("superuser", "true");
     return this.request(url, { method: "GET", responseType: "json" });
   }
 

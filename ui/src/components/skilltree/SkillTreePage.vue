@@ -71,14 +71,16 @@ import { onMounted, ref } from "vue";
 import { api } from "../../lib/api";
 import type { SkillTree } from "../../lib/types";
 import SkillTreeViewer from "./SkillTree.vue";
+import { useSuperuser } from "../../composables/useSuperuser";
 
 const skillTrees = ref<SkillTree[]>([]);
 const loading = ref(true);
 const error = ref<string | null>(null);
+const { isSuperuserModeActive } = useSuperuser();
 
 const loadSkillTrees = async () => {
   try {
-    const result = await api.getSkillTrees();
+    const result = await api.getSkillTrees(isSuperuserModeActive.value);
     if (!result.isError()) {
       skillTrees.value = result.get();
     } else {

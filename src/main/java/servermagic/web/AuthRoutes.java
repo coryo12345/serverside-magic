@@ -1,6 +1,7 @@
 package servermagic.web;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 import java.util.Optional;
 
 import io.javalin.Javalin;
@@ -9,6 +10,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import servermagic.db.Database;
 import servermagic.db.tables.Authcode;
+import servermagic.db.tables.Config;
 import servermagic.web.auth.AuthTokens;
 
 public class AuthRoutes extends RouteGroup {
@@ -85,7 +87,10 @@ public class AuthRoutes extends RouteGroup {
                 return;
             }
             String username = this.getAuthSubject(ctx);
-            ctx.status(200).result(username);
+            ctx.status(200).json(Map.of(
+                    "username", username,
+                    "isSuperuser", Config.IsSuperuser(db, username)
+            ));
         });
     }
 

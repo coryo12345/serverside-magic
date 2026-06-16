@@ -125,6 +125,10 @@ public class Skills {
         public static final Skill BAG_OF_HOLDING = new Skill("bag_of_holding", "Bag of Holding",
                         "Access your ender chest from anywhere", BOUND_SPYGLASS.id())
                         .setUnlockDescription("Right-click an Ender Chest while holding a Shulker Box");
+        public static final Skill GHOST_TOOL = new Skill("ghost_tool", "Ghost Tool",
+                        "Store an item in the void and summon it back to your hand", BOUND_SPYGLASS.id())
+                        .setUnlockDescription(
+                                        "Toss an item into the End void, then follow it yourself — and escape alive");
         public static final Skill BOUND_SWORD = new Skill("bound_sword", "Bound Sword", "Conjure a bound sword",
                         UNLOCK_MAGIC_UTILITY.id())
                         .setUnlockDescription("Smith a Netherite Sword");
@@ -224,6 +228,11 @@ public class Skills {
         public static final Skill FLYING_CARPET = new Skill("flying_carpet", "Flying Carpet",
                         "Summon a magical flying carpet", SECRETS.id())
                         .setUnlockDescription("Hold a carpet while riding a Happy Ghast");
+        public static final Skill BIFROST = new Skill("bifrost", "Bifrost",
+                        "Channel the rainbow bridge to anchor yourself to a point and return to it across dimensions",
+                        SECRETS.id())
+                        .setUnlockDescription(
+                                        "Stand above Y=250 in the Overworld during a thunderstorm while holding an Amethyst Shard");
 
         public static List<Skill> GetAllSkills() {
                 Field[] declaredFields = Skills.class.getDeclaredFields();

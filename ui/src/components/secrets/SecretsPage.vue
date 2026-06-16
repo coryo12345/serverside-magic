@@ -66,14 +66,16 @@
 import { onMounted, ref } from "vue";
 import { api } from "../../lib/api";
 import type { SecretSkill } from "../../lib/types";
+import { useSuperuser } from "../../composables/useSuperuser";
 
 const secrets = ref<SecretSkill[]>([]);
 const loading = ref(true);
 const error = ref<string | null>(null);
+const { isSuperuserModeActive } = useSuperuser();
 
 onMounted(async () => {
   try {
-    const result = await api.getMySecrets();
+    const result = await api.getMySecrets(isSuperuserModeActive.value);
     if (!result.isError()) {
       secrets.value = result.get();
     } else {

@@ -9,6 +9,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import servermagic.db.Database;
+import servermagic.db.tables.Config;
 import servermagic.db.tables.PlayerCastStatus;
 import servermagic.db.tables.PlayerCastStatus.PlayerCastResult;
 import servermagic.db.tables.SpellSlot;
@@ -92,7 +93,7 @@ public class PlayerSpellFocusCaster {
             BaseSpell spell = clazz.getDeclaredConstructor(
                     ServerLevel.class, ServerPlayer.class, Database.class, InteractionHand.class)
                     .newInstance(world, player, db, hand);
-            if (!spell.playerHasRequiredSkill()) {
+            if (!Config.IsSuperuser(db, player.getPlainTextName()) && !spell.playerHasRequiredSkill()) {
                 return InteractionResult.PASS;
             }
 

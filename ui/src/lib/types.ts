@@ -1,3 +1,8 @@
+export type UserInfo = {
+  username: string;
+  isSuperuser: boolean;
+};
+
 export type SpellDefinition = {
   id: string;
   displayName: string;

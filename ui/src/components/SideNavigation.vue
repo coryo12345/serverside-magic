@@ -1,9 +1,13 @@
 <script setup lang="ts">
+import { useSuperuser } from "../composables/useSuperuser";
+
 defineProps<{
   modelValue: string;
 }>();
 
 defineEmits(["logout", "update:modelValue"]);
+
+const { isSuperuser, superuserEnabled } = useSuperuser();
 
 const navItems = [
   { id: "spellbook", label: "My Spellbook", icon: "pi pi-book" },
@@ -39,7 +43,13 @@ const navItems = [
       </button>
     </nav>
 
-    <div class="p-4 border-t border-surface-200 dark:border-surface-700">
+    <div class="p-4 border-t border-surface-200 dark:border-surface-700 space-y-2">
+      <div v-if="isSuperuser" class="flex items-center gap-2 px-1 py-1">
+        <ToggleSwitch v-model="superuserEnabled" inputId="superuser-toggle" />
+        <label for="superuser-toggle" class="text-sm text-surface-600 dark:text-surface-400 cursor-pointer select-none">
+          Elevated Mode
+        </label>
+      </div>
       <Button
         label="Logout"
         icon="pi pi-sign-out"

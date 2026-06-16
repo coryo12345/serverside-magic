@@ -11,6 +11,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import servermagic.db.Database;
+import servermagic.db.tables.Config;
 import servermagic.db.tables.PlayerSpellConfig;
 import servermagic.db.tables.SpellSlot;
 import servermagic.spells.BaseSpell;
@@ -40,7 +41,10 @@ public class SpellRoutes extends RouteGroup {
                 return;
             }
 
-            Optional<Map<String, UISpellDefinition>> allSpells = Spells.Get().allForPlayer(db, username);
+            boolean superuserMode = "true".equals(ctx.queryParam("superuser")) && Config.IsSuperuser(db, username);
+            Optional<Map<String, UISpellDefinition>> allSpells = superuserMode
+                    ? Optional.of(Spells.Get().all())
+                    : Spells.Get().allForPlayer(db, username);
             if (allSpells.isEmpty()) {
                 ctx.status(500).result();
                 return;

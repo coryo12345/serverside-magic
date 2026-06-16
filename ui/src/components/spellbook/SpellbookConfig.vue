@@ -7,8 +7,10 @@ import { type SpellDefinition } from "../../lib/types";
 import SpellCard from "./SpellCard.vue";
 import SpellDetailsDialog from "./SpellDetailsDialog.vue";
 import { slotNumberToString, SPELL_SLOTS } from "../../lib/spellslots";
+import { useSuperuser } from "../../composables/useSuperuser";
 
 const toast = useToast();
+const { isSuperuserModeActive } = useSuperuser();
 const allSpells = ref<SpellDefinition[]>([]);
 // 8 slots, each is a list of spells. This is to keep track of pre/post change state
 // so we can easily revert actions if the API denies it
@@ -31,7 +33,7 @@ function openSpellDetails(spell: SpellDefinition) {
 }
 
 onMounted(async () => {
-  const res = await api.getMySpells();
+  const res = await api.getMySpells(isSuperuserModeActive.value);
   if (res.isError()) {
     error.value = res.error().message;
   } else {

@@ -3,8 +3,10 @@ import { onMounted, ref, computed } from "vue";
 import { useToast } from "primevue/usetoast";
 import { api } from "../../lib/api";
 import type { CosmeticSlotId, PlayerCosmeticsResponse } from "../../lib/types";
+import { useSuperuser } from "../../composables/useSuperuser";
 
 const toast = useToast();
+const { isSuperuserModeActive } = useSuperuser();
 
 const loading = ref(true);
 const error = ref<string | null>(null);
@@ -89,7 +91,7 @@ function onBlur(slotId: CosmeticSlotId) {
 const anySaving = computed(() => Object.values(saving.value).some(Boolean));
 
 onMounted(async () => {
-  const result = await api.getMyCosmetics();
+  const result = await api.getMyCosmetics(isSuperuserModeActive.value);
   if (result.isError()) {
     error.value = result.error().message || "Failed to load cosmetics";
   } else {

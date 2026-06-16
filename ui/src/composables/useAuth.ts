@@ -5,6 +5,7 @@ import { AuthToken } from "../lib/authtoken";
 const isAuthenticated = ref(false);
 const isLoading = ref(true);
 const currentUser = ref<string>("");
+const isSuperuser = ref(false);
 
 export function useAuth() {
   let intervalId: number | undefined;
@@ -21,6 +22,7 @@ export function useAuth() {
     AuthToken.clear();
     isAuthenticated.value = false;
     currentUser.value = "";
+    isSuperuser.value = false;
   }
 
   function startSessionMonitoring() {
@@ -50,7 +52,8 @@ export function useAuth() {
     const result = await api.userinfo();
     if (result.isValid()) {
       isAuthenticated.value = true;
-      currentUser.value = result.get();
+      currentUser.value = result.get().username;
+      isSuperuser.value = result.get().isSuperuser;
       startSessionMonitoring();
     } else {
       logout();
@@ -64,6 +67,7 @@ export function useAuth() {
     isAuthenticated,
     isLoading,
     currentUser,
+    isSuperuser,
     checkAuth,
     logout,
     startSessionMonitoring,

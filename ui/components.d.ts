@@ -32,6 +32,7 @@ declare module 'vue' {
     SpellCard: typeof import('./src/components/spellbook/SpellCard.vue')['default']
     SpellDetailsDialog: typeof import('./src/components/spellbook/SpellDetailsDialog.vue')['default']
     Toast: typeof import('primevue/toast')['default']
+    ToggleSwitch: typeof import('primevue/toggleswitch')['default']
     VanityPage: typeof import('./src/components/vanity/VanityPage.vue')['default']
   }
   export interface GlobalDirectives {

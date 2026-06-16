@@ -14,6 +14,7 @@ import servermagic.cosmetics.CosmeticAppearanceManager;
 import servermagic.cosmetics.CosmeticSlot;
 import servermagic.cosmetics.Cosmetics;
 import servermagic.db.Database;
+import servermagic.db.tables.Config;
 import servermagic.db.tables.CosmeticConfig;
 import servermagic.db.tables.CosmeticUnlock;
 
@@ -23,17 +24,13 @@ public class CosmeticRoutes extends RouteGroup {
         super(app, db, server);
     }
 
-    private boolean hasMasterControl(String username) {
-        return false;
-        // return "coryo12345".equals(username);
-    }
-
     @Override
     public void registerRoutes() {
         this.requireAuthForGroup("/api/cosmetics/");
 
         app.get("/api/cosmetics/mine", ctx -> {
             String username = this.getAuthSubject(ctx);
+            boolean superuserMode = "true".equals(ctx.queryParam("superuser")) && Config.IsSuperuser(db, username);
 
             Optional<List<CosmeticUnlock>> unlocksOpt = CosmeticUnlock.GetUnlocksForPlayer(db, username);
             if (unlocksOpt.isEmpty()) {
@@ -57,7 +54,7 @@ public class CosmeticRoutes extends RouteGroup {
             }
 
             // Build unlocked list enriched with display names
-            if (hasMasterControl(username)) {
+            if (superuserMode) {
                 unlocksOpt = Optional.of(Cosmetics.GetAll().stream().map(c -> {
                     var cu = new CosmeticUnlock();
                     cu.id = 0L;
@@ -127,7 +124,7 @@ public class CosmeticRoutes extends RouteGroup {
             }
 
             // Verify the player has unlocked this cosmetic
-            if (!CosmeticUnlock.IsUnlocked(db, username, style, slotId) && !hasMasterControl(username)) {
+            if (!CosmeticUnlock.IsUnlocked(db, username, style, slotId) && !Config.IsSuperuser(db, username)) {
                 ctx.status(403).result("Cosmetic not unlocked");
                 return;
             }
