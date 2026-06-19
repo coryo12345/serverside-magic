@@ -18,3 +18,8 @@
 
 Note: if you are remapping ports in any way you will need to adjust accordingly. `<server-address>` is always the public domain/ip address the server is accessible to users on.
 
+## Spell Ideas
+* summon clone
+
+## Other TODOs
+* performance of skill tree again

@@ -54,6 +54,9 @@ public class Skills {
         public static final Skill ARCANE_MISSILES = new Skill("arcane_missiles", "Arcane Missiles",
                         "Launch homing arcane projectiles at the nearest enemy", CHAIN_LIGHTNING.id())
                         .setAdvancement("adventure/arbalistic", "Arbalistic");
+        public static final Skill ARROW_VOLLEY = new Skill("arrow_volley", "Arrow Volley",
+                        "Rapidly fire a volley of 3 arrows at your target", CHAIN_LIGHTNING.id())
+                        .setUnlockDescription("Hit yourself with your own arrow");
         public static final Skill POISON_CLOUD = new Skill("poison_cloud", "Poison Cloud",
                         "Conjure a cloud of poison in an area", UNLOCK_MAGIC_ELEMENTAL.id())
                         .setAdvancement("nether/brew_potion", "Local Brewery");
@@ -66,6 +69,9 @@ public class Skills {
         public static final Skill WIND_GUST = new Skill("wind_gust", "Wind Gust",
                         "Blast a powerful cone of wind that flings all nearby enemies away", WINDCHARGE.id())
                         .setAdvancement("adventure/fall_from_world_height", "Caves & Cliffs");
+        public static final Skill BACKSTEP = new Skill("backstep", "Backstep",
+                        "Launch yourself backwards with a burst of force", WINDCHARGE.id())
+                        .setUnlockDescription("Walk backwards without crouching for 20 blocks uninterrupted");
         public static final Skill GRAVITY_WELL = new Skill("gravity_well", "Gravity Well",
                         "Open a vortex that pulls nearby enemies toward its center", WINDCHARGE.id())
                         .setUnlockDescription("Throw an ender pearl into the void while in The End");
@@ -233,6 +239,10 @@ public class Skills {
                         SECRETS.id())
                         .setUnlockDescription(
                                         "Stand above Y=250 in the Overworld during a thunderstorm while holding an Amethyst Shard");
+        public static final Skill FLOATING_SHIELD = new Skill("floating_shield", "Floating Shield",
+                        "Summon 3 orbiting item shields that each absorb one hit", SECRETS.id())
+                        .setUnlockDescription(
+                                        "Block a charged creeper explosion while blocking with a shield and survive");
 
         public static List<Skill> GetAllSkills() {
                 Field[] declaredFields = Skills.class.getDeclaredFields();

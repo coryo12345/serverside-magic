@@ -44,6 +44,8 @@ import servermagic.entitybinding.EntityBindingLifecycleHandler;
 import servermagic.entitybinding.EntityBindingManager;
 import servermagic.entitybinding.EntityBindingTickHandler;
 import servermagic.spells.arcane.ArcaneMissileManager;
+import servermagic.spells.ArrowVolley;
+import servermagic.spells.Backstep;
 import servermagic.spells.Blink;
 import servermagic.spells.GhostTool;
 import servermagic.spells.SetGhostTool;
@@ -51,6 +53,7 @@ import servermagic.spells.DesecratedGround;
 import servermagic.spells.GravityWell;
 import servermagic.spells.IronMaiden;
 import servermagic.spells.BeeSwarm;
+import servermagic.spells.FloatingShield;
 import servermagic.spells.SpectralHammer;
 import servermagic.spells.SummonBifrost;
 import servermagic.spells.Sunbeam;
@@ -142,6 +145,7 @@ public class ServerMagic implements ModInitializer {
 		// AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
 
 		ServerTickEvents.END_SERVER_TICK.register(EntityBindingTickHandler::tick);
+		ServerTickEvents.END_SERVER_TICK.register(ArrowVolley::tick);
 		ServerTickEvents.END_SERVER_TICK.register(FreezeProjectileManager::tick);
 		ServerTickEvents.END_SERVER_TICK.register(ArcaneMissileManager::tick);
 		ServerTickEvents.END_SERVER_TICK.register(VoidRift::tick);
@@ -155,6 +159,7 @@ public class ServerMagic implements ModInitializer {
 		ServerTickEvents.END_SERVER_TICK.register(Sunbeam::tick);
 		ServerTickEvents.END_SERVER_TICK.register(SpectralHammer::tick);
 		ServerTickEvents.END_SERVER_TICK.register(SummonBifrost::tick);
+		ServerTickEvents.END_SERVER_TICK.register(FloatingShield::tick);
 
 		ServerTickEvents.END_LEVEL_TICK.register((ServerLevel world) -> {
 			tickCount = (++tickCount % 1000); // so we dont get too large
@@ -167,9 +172,14 @@ public class ServerMagic implements ModInitializer {
 				this.checkSkillUnlockConditions(world);
 			}
 			Blink.tickClutchCheck(world);
+			Backstep.tickBackstepCheck(world);
 		});
 
 		ServerEntityEvents.ENTITY_LOAD.register((entity, world) -> {
+			if (entity.entityTags().contains("servermagic:floating_shield")) {
+				entity.discard();
+				return;
+			}
 			if (entity instanceof net.minecraft.world.entity.item.ItemEntity itemEntity
 					&& world instanceof ServerLevel sl
 					&& sl.dimensionTypeRegistration().is(BuiltinDimensionTypes.END)) {
@@ -190,6 +200,7 @@ public class ServerMagic implements ModInitializer {
 
 		ServerPlayConnectionEvents.DISCONNECT.register((handler, server) -> {
 			CosmeticAppearanceManager.revertAndClearPlayer(handler.player);
+			FloatingShield.onPlayerDisconnect(handler.player);
 		});
 
 		ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) -> {
@@ -238,6 +249,7 @@ public class ServerMagic implements ModInitializer {
 			if (webApp.webPortal != null) {
 				webApp.webPortal.stop();
 			}
+			FloatingShield.onServerStopping();
 		});
 
 		ServerLifecycleEvents.SERVER_STOPPED.register(server -> {

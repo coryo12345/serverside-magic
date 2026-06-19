@@ -11,8 +11,9 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.projectile.throwableitemprojectile.ThrownEnderpearl;
+import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import servermagic.db.Database;
 import servermagic.web.skill.Skill;
@@ -21,8 +22,7 @@ import servermagic.web.skill.Skills;
 
 public class Blink extends BaseSpell {
 
-    // Reduced velocity vs. a normal ender pearl throw (~1.5F)
-    private static final float PEARL_VELOCITY = 1.2F;
+    private static final double MAX_BLINK_DISTANCE = 30.0;
 
     // ── Clutch-fall unlock tracking ──────────────────────────────────────────
     // Maps player UUID → game-time tick when the pearl was thrown
@@ -75,20 +75,36 @@ public class Blink extends BaseSpell {
         Vec3 eyePos = player.getEyePosition();
         Vec3 lookDir = player.getLookAngle();
 
-        // Pre-cast visual burst at player eye
+        Vec3 rayEnd = eyePos.add(lookDir.scale(MAX_BLINK_DISTANCE));
+        BlockHitResult hit = world.clip(new ClipContext(
+                eyePos, rayEnd,
+                ClipContext.Block.COLLIDER,
+                ClipContext.Fluid.NONE,
+                player));
+
+        Vec3 destEye;
+        if (hit.getType() == HitResult.Type.BLOCK) {
+            destEye = hit.getLocation().subtract(lookDir.normalize().scale(0.6));
+        } else {
+            destEye = rayEnd;
+        }
+
         world.sendParticles(ParticleTypes.PORTAL,
-                eyePos.x, eyePos.y, eyePos.z, 15, 0.2, 0.2, 0.2, 0.08);
-        world.sendParticles(ParticleTypes.ENCHANT,
-                eyePos.x, eyePos.y, eyePos.z, 8, 0.25, 0.25, 0.25, 0.06);
-
+                eyePos.x, eyePos.y, eyePos.z, 20, 0.3, 0.3, 0.3, 0.1);
         world.playSound(null, eyePos.x, eyePos.y, eyePos.z,
-                SoundEvents.ENDER_EYE_LAUNCH, SoundSource.PLAYERS, 0.8F, 1.2F);
+                SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 0.8F, 1.2F);
 
-        ThrownEnderpearl pearl = new ThrownEnderpearl(EntityType.ENDER_PEARL, world);
-        pearl.setOwner(player);
-        pearl.setPos(eyePos.x, eyePos.y, eyePos.z);
-        pearl.shoot(lookDir.x, lookDir.y, lookDir.z, PEARL_VELOCITY, 0.0F);
-        world.addFreshEntity(pearl);
+        Vec3 offset = destEye.subtract(eyePos);
+        player.teleportTo(
+                player.getX() + offset.x,
+                player.getY() + offset.y,
+                player.getZ() + offset.z);
+
+        Vec3 newEye = player.getEyePosition();
+        world.sendParticles(ParticleTypes.PORTAL,
+                newEye.x, newEye.y, newEye.z, 20, 0.3, 0.3, 0.3, 0.1);
+        world.playSound(null, newEye.x, newEye.y, newEye.z,
+                SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 0.6F, 0.8F);
     }
 
     @Override
@@ -108,7 +124,7 @@ public class Blink extends BaseSpell {
 
     @Override
     public String description() {
-        return "Conjure an ender pearl and teleport a short distance";
+        return "Instantly teleport up to 30 blocks in the direction you are looking";
     }
 
     @Override

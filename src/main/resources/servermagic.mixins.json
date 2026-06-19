@@ -13,7 +13,9 @@
     "ShulkerBoxSlotMayPlaceMixin",
     "SmithingMenuMixin",
     "ItemCombinerMenuMixin",
-    "MobDeathMixin"
+    "MobDeathMixin",
+    "LivingEntityHurtMixin",
+    "DisplayPosInterpolationAccessor"
   ],
   "injectors": {
     "defaultRequire": 1
