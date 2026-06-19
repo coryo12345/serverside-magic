@@ -22,4 +22,4 @@ Note: if you are remapping ports in any way you will need to adjust accordingly.
 * summon clone
 
 ## Other TODOs
-* performance of skill tree again
+* prevent dupes for ghost tool

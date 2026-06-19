@@ -22,13 +22,19 @@ export interface Connection {
 export function useSkillTreeLayout(rootTree: Ref<SkillTree> | SkillTree) {
   const levelDistance = 450;
 
-  const countLeaves = (tree: SkillTree): number => {
-    if (tree.branches.length === 0) return 1;
-    return tree.branches.reduce((acc, branch) => acc + countLeaves(branch), 0);
-  };
-
   const layoutResult = computed(() => {
     const treeValue = "value" in rootTree ? rootTree.value : rootTree;
+    const leafCache = new Map<SkillTree, number>();
+
+    const countLeaves = (tree: SkillTree): number => {
+      if (leafCache.has(tree)) return leafCache.get(tree)!;
+      const result =
+        tree.branches.length === 0
+          ? 1
+          : tree.branches.reduce((acc, branch) => acc + countLeaves(branch), 0);
+      leafCache.set(tree, result);
+      return result;
+    };
     const nodes: PositionedNode[] = [];
     const connections: Connection[] = [];
 

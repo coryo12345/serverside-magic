@@ -6,10 +6,10 @@
     @mousemove="onDrag"
     @mouseup="stopDrag"
     @mouseleave="stopDrag"
-    @wheel="handleWheel"
+    @wheel.prevent="handleWheel"
   >
     <!-- Galaxy Background Layers -->
-    <div class="absolute inset-0 pointer-events-none overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none overflow-hidden" style="contain: layout paint">
       <div class="stars-1"></div>
       <div class="stars-2"></div>
       <div class="stars-3"></div>
@@ -18,12 +18,9 @@
 
     <!-- Transformable Canvas -->
     <div
+      ref="canvas"
       class="absolute inset-0"
-      :style="{
-        transform: `translate(${offset.x}px, ${offset.y}px) scale(${scale})`,
-        transformOrigin: '0 0',
-        willChange: 'transform',
-      }"
+      style="transform-origin: 0 0; will-change: transform"
     >
       <!-- Connections (SVG) -->
       <svg class="absolute inset-0 overflow-visible pointer-events-none">
@@ -153,11 +150,14 @@ const emit = defineEmits<{
 const { nodes, connections } = useSkillTreeLayout(toRef(props, "tree"));
 
 const viewport = ref<HTMLElement | null>(null);
-const offset = ref({ x: 0, y: 0 });
-const scale = ref(0.8);
-const isDragging = ref(false);
+const canvas = ref<HTMLElement | null>(null);
+
+// Plain variables — bypasses Vue reactivity on every drag/zoom frame
+let offsetX = 0;
+let offsetY = 0;
+let currentScale = 0.8;
+let isDragging = false;
 const lastMousePos = { x: 0, y: 0 };
-const pendingOffset = { x: 0, y: 0 };
 let rafId: number | null = null;
 
 const selectedNode = ref<PositionedNode | null>(null);
@@ -168,20 +168,26 @@ const openSkillDetails = (node: PositionedNode) => {
   isDetailsOpen.value = true;
 };
 
+const applyTransform = () => {
+  if (canvas.value) {
+    canvas.value.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${currentScale})`;
+  }
+};
+
 let hasInitialized = false;
 let resizeObserver: ResizeObserver | null = null;
 
 const centerOnRoot = () => {
   if (viewport.value) {
-    offset.value = {
-      x: viewport.value.clientWidth / 2,
-      y: viewport.value.clientHeight / 2,
-    };
+    offsetX = viewport.value.clientWidth / 2;
+    offsetY = viewport.value.clientHeight / 2;
+    applyTransform();
   }
 };
 
 onMounted(async () => {
   await nextTick();
+  applyTransform();
   if (viewport.value) {
     if (viewport.value.clientWidth > 0 && viewport.value.clientHeight > 0) {
       centerOnRoot();
@@ -208,68 +214,52 @@ onUnmounted(() => {
 });
 
 const startDrag = (e: MouseEvent) => {
-  isDragging.value = true;
+  isDragging = true;
   lastMousePos.x = e.clientX;
   lastMousePos.y = e.clientY;
-  pendingOffset.x = offset.value.x;
-  pendingOffset.y = offset.value.y;
 };
 
 const onDrag = (e: MouseEvent) => {
-  if (!isDragging.value) return;
-  const dx = e.clientX - lastMousePos.x;
-  const dy = e.clientY - lastMousePos.y;
+  if (!isDragging) return;
+  offsetX += e.clientX - lastMousePos.x;
+  offsetY += e.clientY - lastMousePos.y;
   lastMousePos.x = e.clientX;
   lastMousePos.y = e.clientY;
-  pendingOffset.x += dx;
-  pendingOffset.y += dy;
   if (rafId === null) {
     rafId = requestAnimationFrame(() => {
-      offset.value.x = pendingOffset.x;
-      offset.value.y = pendingOffset.y;
+      applyTransform();
       rafId = null;
     });
   }
 };
 
 const stopDrag = () => {
-  isDragging.value = false;
+  isDragging = false;
 };
 
 const handleWheel = (e: WheelEvent) => {
-  e.preventDefault();
   const delta = e.deltaY > 0 ? -0.1 : 0.1;
-
-  // Get mouse position relative to the viewport element
   const rect = viewport.value?.getBoundingClientRect();
   if (!rect) return;
-
-  const mx = e.clientX - rect.left;
-  const my = e.clientY - rect.top;
-
-  zoom(delta, { x: mx, y: my });
+  zoom(delta, { x: e.clientX - rect.left, y: e.clientY - rect.top });
 };
 
 const zoom = (delta: number, focalPoint?: { x: number; y: number }) => {
-  const oldScale = scale.value;
+  const oldScale = currentScale;
   const newScale = Math.max(0.2, Math.min(2, oldScale + delta));
-
   if (oldScale === newScale) return;
 
-  // Use provided focal point or default to center of viewport
   const fx = focalPoint?.x ?? (viewport.value?.clientWidth ?? 0) / 2;
   const fy = focalPoint?.y ?? (viewport.value?.clientHeight ?? 0) / 2;
 
-  // Adjust offset to keep the focal point stationary in world-space
-  // Formula: offset_new = focal_point - (focal_point - offset_old) * (scale_new / scale_old)
-  offset.value.x = fx - (fx - offset.value.x) * (newScale / oldScale);
-  offset.value.y = fy - (fy - offset.value.y) * (newScale / oldScale);
-
-  scale.value = newScale;
+  offsetX = fx - (fx - offsetX) * (newScale / oldScale);
+  offsetY = fy - (fy - offsetY) * (newScale / oldScale);
+  currentScale = newScale;
+  applyTransform();
 };
 
 const resetView = () => {
-  scale.value = 1;
+  currentScale = 1;
   centerOnRoot();
 };
 </script>
@@ -282,6 +272,7 @@ const resetView = () => {
 .nebula {
   position: absolute;
   inset: -50%;
+  will-change: transform;
   background:
     radial-gradient(
       circle at 30% 30%,
@@ -315,7 +306,6 @@ const resetView = () => {
 .stars-2,
 .stars-3 {
   position: absolute;
-  inset: -100%;
   background-image:
     radial-gradient(1.5px 1.5px at 10% 10%, #fff, transparent),
     radial-gradient(1px 1px at 20% 25%, #fff, transparent),
@@ -330,15 +320,25 @@ const resetView = () => {
   background-size: 300px 300px;
 }
 
+/* Static layer — no animation, no need to extend beyond viewport */
+.stars-1 {
+  inset: 0;
+}
+
+/* Animated layers drift by 300px — extend just enough to cover the shift */
 .stars-2 {
+  inset: -300px;
   background-size: 450px 450px;
   opacity: 0.6;
+  will-change: transform;
   animation: drift 180s linear infinite;
 }
 
 .stars-3 {
+  inset: -300px;
   background-size: 600px 600px;
   opacity: 0.4;
+  will-change: transform;
   animation: drift 240s linear infinite reverse;
 }
 
@@ -369,15 +369,5 @@ const resetView = () => {
 
 .connection-line.unlocked {
   stroke-dasharray: 0;
-  animation: flow 3s linear infinite;
-}
-
-@keyframes flow {
-  0% {
-    stroke-dashoffset: 0;
-  }
-  100% {
-    stroke-dashoffset: -20;
-  }
 }
 </style>
