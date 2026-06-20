@@ -18,6 +18,7 @@ import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import servermagic.commands.MagicCommands;
+import servermagic.entities.Entities;
 import servermagic.cosmetics.CosmeticAppearanceManager;
 import servermagic.data.items.LootboxItem;
 import net.minecraft.server.level.ServerLevel;
@@ -83,6 +84,8 @@ public class ServerMagic implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		LOGGER.info("Starting server magic!");
+
+		Entities.register();
 
 		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
 			MagicCommands.register(dispatcher);

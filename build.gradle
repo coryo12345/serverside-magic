@@ -11,11 +11,13 @@ base {
 }
 
 repositories {
+	maven { url 'https://api.modrinth.com/maven' }
 }
 
 configurations {
 	shadowDeps
 	implementation.extendsFrom(shadowDeps)
+	polymerNested  // used to extract Polymer's nested module JARs for compilation
 }
 
 loom {
@@ -58,6 +60,24 @@ dependencies {
 
 	// reflections (for auto-discovery of migrations/spells)
 	shadowDeps 'org.reflections:reflections:0.10.2'
+
+	// fabric-permissions-api — required by BIL's command registration
+	implementation "maven.modrinth:fabric-permissions-api:b1EqjxFs"
+	include "maven.modrinth:fabric-permissions-api:b1EqjxFs"
+
+	// BIL — classes are directly in its JAR (no nesting)
+	implementation "maven.modrinth:blockbench-import-library:j9IAlR4d"
+	include "maven.modrinth:blockbench-import-library:j9IAlR4d"
+
+	// Polymer — bundled JAR uses Fabric JiJ nesting; we need its nested module JARs
+	// for compile-time, and the outer bundled JAR for runtime/JiJ bundling.
+	polymerNested "maven.modrinth:polymer:tqJUyql2"
+	include "maven.modrinth:polymer:tqJUyql2"
+	compileOnly files({
+		configurations.polymerNested.collect { jar ->
+			project.zipTree(jar).matching { include "META-INF/jars/*.jar" }
+		}
+	})
 }
 
 processResources {
