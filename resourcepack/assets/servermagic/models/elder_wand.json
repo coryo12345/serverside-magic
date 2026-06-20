@@ -321,11 +321,11 @@
 	],
 	"display": {
 		"thirdperson_righthand": {
-			"translation": [0, 2.75, 0],
+			"translation": [0, 2.75, 0.75],
 			"scale": [0.43367, 0.43367, 0.43367]
 		},
 		"thirdperson_lefthand": {
-			"translation": [0, 2.75, 0],
+			"translation": [0, 2.75, 0.75],
 			"scale": [0.43367, 0.43367, 0.43367]
 		},
 		"firstperson_righthand": {
