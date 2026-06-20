@@ -20,6 +20,8 @@ Note: if you are remapping ports in any way you will need to adjust accordingly.
 
 ## Spell Ideas
 * summon clone
+* water affinity ?
+* broomsticks
 
 ## Other TODOs
 * prevent dupes for ghost tool
