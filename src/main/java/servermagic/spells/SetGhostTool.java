@@ -10,6 +10,7 @@ import com.google.gson.JsonElement;
 import com.mojang.serialization.JsonOps;
 
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -50,6 +51,10 @@ public class SetGhostTool extends BaseSpell {
         }
         if (target.getMaxStackSize() > 1) {
             player.sendSystemMessage(Component.literal("Only tools and equipment can be stored as a ghost tool."));
+            return;
+        }
+        if (target.has(DataComponents.CONTAINER) || target.has(DataComponents.BUNDLE_CONTENTS)) {
+            player.sendSystemMessage(Component.literal("Items that contain other items cannot be stored as a ghost tool."));
             return;
         }
 
