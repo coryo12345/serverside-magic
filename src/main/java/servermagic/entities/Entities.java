@@ -15,9 +15,11 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 public class Entities {
 
     public static EntityType<TestBatEntity> TEST_BAT;
+    public static EntityType<DesmodusEntity> DESMODUS;
 
     public static void register() {
         TEST_BAT = registerEntity("test_bat", TestBatEntity::new, TestBatEntity.createAttributes(), 1.0f, 0.75f);
+        DESMODUS  = registerEntity("desmodus",  DesmodusEntity::new,  DesmodusEntity.createAttributes(),  1.5f, 1.5f);
     }
 
     private static <T extends PathfinderMob> EntityType<T> registerEntity(
