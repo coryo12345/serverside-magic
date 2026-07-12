@@ -47,7 +47,6 @@ import servermagic.spells.arcane.ArcaneMissileManager;
 import servermagic.spells.ArrowVolley;
 import servermagic.spells.Backstep;
 import servermagic.spells.Blink;
-import servermagic.spells.GhostTool;
 import servermagic.spells.SetGhostTool;
 import servermagic.spells.DesecratedGround;
 import servermagic.spells.GravityWell;
@@ -63,6 +62,7 @@ import servermagic.spells.RingOfFire;
 import servermagic.spells.VoidRift;
 import servermagic.spells.freeze.FreezeProjectileManager;
 import servermagic.spells.FlyingCarpet;
+import servermagic.spells.ShadowClone;
 import servermagic.spells.SummonMount;
 import servermagic.spells.utils.PlayerSpellFocusCaster;
 import servermagic.web.WebPortal;
@@ -160,6 +160,7 @@ public class ServerMagic implements ModInitializer {
 		ServerTickEvents.END_SERVER_TICK.register(SpectralHammer::tick);
 		ServerTickEvents.END_SERVER_TICK.register(SummonBifrost::tick);
 		ServerTickEvents.END_SERVER_TICK.register(FloatingShield::tick);
+		ServerTickEvents.END_SERVER_TICK.register(ShadowClone::tick);
 
 		ServerTickEvents.END_LEVEL_TICK.register((ServerLevel world) -> {
 			tickCount = (++tickCount % 1000); // so we dont get too large
@@ -177,6 +178,11 @@ public class ServerMagic implements ModInitializer {
 
 		ServerEntityEvents.ENTITY_LOAD.register((entity, world) -> {
 			if (entity.entityTags().contains("servermagic:floating_shield")) {
+				entity.discard();
+				return;
+			}
+			if (entity.entityTags().contains("shadow-clone-wolf")
+					|| entity.entityTags().contains("shadow-clone-mannequin")) {
 				entity.discard();
 				return;
 			}
@@ -250,6 +256,7 @@ public class ServerMagic implements ModInitializer {
 				webApp.webPortal.stop();
 			}
 			FloatingShield.onServerStopping();
+				ShadowClone.onServerStopping();
 		});
 
 		ServerLifecycleEvents.SERVER_STOPPED.register(server -> {
@@ -320,6 +327,17 @@ public class ServerMagic implements ModInitializer {
 					if (main.is(Items.AMETHYST_SHARD) || off.is(Items.AMETHYST_SHARD)) {
 						SkillGranter.grantSkillForPlayer(db.get(), player, Skills.BIFROST);
 					}
+				}
+			}
+		}
+
+		// SHADOW_CLONE: a fox or snow fox near a player is holding a sword
+		for (net.minecraft.world.entity.Entity e : world.getAllEntities()) {
+			if (e instanceof net.minecraft.world.entity.animal.fox.Fox fox
+					&& fox.getMainHandItem().is(net.minecraft.tags.ItemTags.SWORDS)) {
+				net.minecraft.world.entity.player.Player nearest = world.getNearestPlayer(fox, 20.0);
+				if (nearest instanceof ServerPlayer sp) {
+					SkillGranter.grantSkillForPlayer(db.get(), sp, Skills.SHADOW_CLONE);
 				}
 			}
 		}
