@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What This Is
 
-A Minecraft Fabric mod (1.21.11, Java 21) that adds a magic system — spells, skill tree, mana — with a web-based player portal built in Vue 3.
+A Minecraft Fabric mod (26.1.2, Java 25) that adds a magic system — spells, skill tree, mana — with a web-based player portal built in Vue 3.
 
 ## Build & Run
 

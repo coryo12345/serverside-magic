@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
@@ -33,6 +34,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.animal.happyghast.HappyGhast;
+import net.minecraft.world.entity.animal.wolf.Wolf;
 import net.minecraft.world.entity.projectile.throwableitemprojectile.ThrownEnderpearl;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -48,7 +50,6 @@ import servermagic.spells.arcane.ArcaneMissileManager;
 import servermagic.spells.ArrowVolley;
 import servermagic.spells.Backstep;
 import servermagic.spells.Blink;
-import servermagic.spells.GhostTool;
 import servermagic.spells.SetGhostTool;
 import servermagic.spells.DesecratedGround;
 import servermagic.spells.GravityWell;
@@ -64,6 +65,7 @@ import servermagic.spells.RingOfFire;
 import servermagic.spells.VoidRift;
 import servermagic.spells.freeze.FreezeProjectileManager;
 import servermagic.spells.FlyingCarpet;
+import servermagic.spells.ShadowClone;
 import servermagic.spells.SummonMount;
 import servermagic.spells.utils.PlayerSpellFocusCaster;
 import servermagic.web.WebPortal;
@@ -163,6 +165,7 @@ public class ServerMagic implements ModInitializer {
 		ServerTickEvents.END_SERVER_TICK.register(SpectralHammer::tick);
 		ServerTickEvents.END_SERVER_TICK.register(SummonBifrost::tick);
 		ServerTickEvents.END_SERVER_TICK.register(FloatingShield::tick);
+		ServerTickEvents.END_SERVER_TICK.register(ShadowClone::tick);
 
 		ServerTickEvents.END_LEVEL_TICK.register((ServerLevel world) -> {
 			tickCount = (++tickCount % 1000); // so we dont get too large
@@ -183,6 +186,11 @@ public class ServerMagic implements ModInitializer {
 				entity.discard();
 				return;
 			}
+			if (entity.entityTags().contains("shadow-clone-wolf")
+					|| entity.entityTags().contains("shadow-clone-mannequin")) {
+				entity.discard();
+				return;
+			}
 			if (entity instanceof net.minecraft.world.entity.item.ItemEntity itemEntity
 					&& world instanceof ServerLevel sl
 					&& sl.dimensionTypeRegistration().is(BuiltinDimensionTypes.END)) {
@@ -191,6 +199,13 @@ public class ServerMagic implements ModInitializer {
 		});
 
 		ServerEntityEvents.ENTITY_UNLOAD.register(EntityBindingLifecycleHandler::onEntityUnload);
+
+		ServerLivingEntityEvents.ALLOW_DAMAGE.register((entity, source, amount) -> {
+			if (source.getDirectEntity() instanceof Wolf wolf) {
+				ShadowClone.onWolfDealtDamage(wolf);
+			}
+			return true;
+		});
 
 		ServerTickEvents.END_SERVER_TICK.register(CosmeticAppearanceManager::tick);
 
@@ -204,6 +219,7 @@ public class ServerMagic implements ModInitializer {
 		ServerPlayConnectionEvents.DISCONNECT.register((handler, server) -> {
 			CosmeticAppearanceManager.revertAndClearPlayer(handler.player);
 			FloatingShield.onPlayerDisconnect(handler.player);
+			ShadowClone.onPlayerDisconnect(handler.player);
 		});
 
 		ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) -> {
@@ -253,6 +269,7 @@ public class ServerMagic implements ModInitializer {
 				webApp.webPortal.stop();
 			}
 			FloatingShield.onServerStopping();
+				ShadowClone.onServerStopping();
 		});
 
 		ServerLifecycleEvents.SERVER_STOPPED.register(server -> {
@@ -323,6 +340,17 @@ public class ServerMagic implements ModInitializer {
 					if (main.is(Items.AMETHYST_SHARD) || off.is(Items.AMETHYST_SHARD)) {
 						SkillGranter.grantSkillForPlayer(db.get(), player, Skills.BIFROST);
 					}
+				}
+			}
+		}
+
+		// SHADOW_CLONE: a fox or snow fox near a player is holding a sword
+		for (net.minecraft.world.entity.Entity e : world.getAllEntities()) {
+			if (e instanceof net.minecraft.world.entity.animal.fox.Fox fox
+					&& fox.getMainHandItem().is(net.minecraft.tags.ItemTags.SWORDS)) {
+				net.minecraft.world.entity.player.Player nearest = world.getNearestPlayer(fox, 20.0);
+				if (nearest instanceof ServerPlayer sp) {
+					SkillGranter.grantSkillForPlayer(db.get(), sp, Skills.SHADOW_CLONE);
 				}
 			}
 		}

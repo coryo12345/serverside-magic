@@ -243,6 +243,9 @@ public class Skills {
                         "Summon 3 orbiting item shields that each absorb one hit", SECRETS.id())
                         .setUnlockDescription(
                                         "Block a charged creeper explosion while blocking with a shield and survive");
+        public static final Skill SHADOW_CLONE = new Skill("shadow_clone", "Shadow Clone",
+                        "Summon a shadow clone of yourself to fight alongside you", SECRETS.id())
+                        .setUnlockDescription("Give a fox or snow fox a sword to hold");
 
         public static List<Skill> GetAllSkills() {
                 Field[] declaredFields = Skills.class.getDeclaredFields();
