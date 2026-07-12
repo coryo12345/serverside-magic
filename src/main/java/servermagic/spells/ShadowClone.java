@@ -37,6 +37,16 @@ public class ShadowClone extends BaseSpell {
     private static final int DURATION = 600; // 30 seconds
     private static final List<ActiveClone> active = new ArrayList<>();
 
+    private static Method SET_PROFILE_METHOD;
+    static {
+        try {
+            SET_PROFILE_METHOD = Mannequin.class.getDeclaredMethod("setProfile", ResolvableProfile.class);
+            SET_PROFILE_METHOD.setAccessible(true);
+        } catch (NoSuchMethodException e) {
+            ServerMagic.LOGGER.warn("ShadowClone: could not find Mannequin#setProfile via reflection", e);
+        }
+    }
+
     public ShadowClone(ServerLevel world, ServerPlayer player, Database db, InteractionHand hand) {
         super(world, player, db, hand);
     }
@@ -50,6 +60,10 @@ public class ShadowClone extends BaseSpell {
 
         // Wolf is the invisible AI driver: follows player, attacks player's enemies
         Wolf wolf = EntityType.WOLF.create(world, EntitySpawnReason.MOB_SUMMONED);
+        if (wolf == null) {
+            ServerMagic.LOGGER.warn("ShadowClone: failed to create wolf entity");
+            return;
+        }
         wolf.setPos(spawnPos.x, spawnPos.y, spawnPos.z);
         wolf.setOwner(player);
         wolf.setTame(true, false);
@@ -62,14 +76,19 @@ public class ShadowClone extends BaseSpell {
 
         // Mannequin is the visible follower: shows player skin, holds sword
         Mannequin mannequin = EntityType.MANNEQUIN.create(world, EntitySpawnReason.MOB_SUMMONED);
+        if (mannequin == null) {
+            ServerMagic.LOGGER.warn("ShadowClone: failed to create mannequin entity");
+            wolf.discard();
+            return;
+        }
         mannequin.setPos(spawnPos.x, spawnPos.y, spawnPos.z);
 
-        try {
-            Method setProfile = Mannequin.class.getDeclaredMethod("setProfile", ResolvableProfile.class);
-            setProfile.setAccessible(true);
-            setProfile.invoke(mannequin, ResolvableProfile.createResolved(player.getGameProfile()));
-        } catch (Exception e) {
-            ServerMagic.LOGGER.warn("ShadowClone: could not set mannequin profile via reflection", e);
+        if (SET_PROFILE_METHOD != null) {
+            try {
+                SET_PROFILE_METHOD.invoke(mannequin, ResolvableProfile.createResolved(player.getGameProfile()));
+            } catch (Exception e) {
+                ServerMagic.LOGGER.warn("ShadowClone: could not set mannequin profile via reflection", e);
+            }
         }
 
         // Fresh stone sword — never copied from player inventory, drops nothing on death
@@ -144,6 +163,23 @@ public class ShadowClone extends BaseSpell {
                         pos.x, pos.y + 0.5, pos.z, 1, 0.2, 0.3, 0.2, 0.01);
             }
         }
+    }
+
+    public static void onWolfDealtDamage(Wolf wolf) {
+        UUID wolfId = wolf.getUUID();
+        for (ActiveClone clone : active) {
+            if (clone.wolfId.equals(wolfId)) {
+                Entity mannequin = clone.level.getEntity(clone.mannequinId);
+                if (mannequin instanceof Mannequin m) {
+                    m.swing(InteractionHand.MAIN_HAND);
+                }
+                return;
+            }
+        }
+    }
+
+    public static void onPlayerDisconnect(ServerPlayer player) {
+        dismissClone(player.getUUID());
     }
 
     public static void onServerStopping() {

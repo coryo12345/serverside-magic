@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
@@ -32,6 +33,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.animal.happyghast.HappyGhast;
+import net.minecraft.world.entity.animal.wolf.Wolf;
 import net.minecraft.world.entity.projectile.throwableitemprojectile.ThrownEnderpearl;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -195,6 +197,13 @@ public class ServerMagic implements ModInitializer {
 
 		ServerEntityEvents.ENTITY_UNLOAD.register(EntityBindingLifecycleHandler::onEntityUnload);
 
+		ServerLivingEntityEvents.ALLOW_DAMAGE.register((entity, source, amount) -> {
+			if (source.getDirectEntity() instanceof Wolf wolf) {
+				ShadowClone.onWolfDealtDamage(wolf);
+			}
+			return true;
+		});
+
 		ServerTickEvents.END_SERVER_TICK.register(CosmeticAppearanceManager::tick);
 
 		ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
@@ -207,6 +216,7 @@ public class ServerMagic implements ModInitializer {
 		ServerPlayConnectionEvents.DISCONNECT.register((handler, server) -> {
 			CosmeticAppearanceManager.revertAndClearPlayer(handler.player);
 			FloatingShield.onPlayerDisconnect(handler.player);
+			ShadowClone.onPlayerDisconnect(handler.player);
 		});
 
 		ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) -> {
